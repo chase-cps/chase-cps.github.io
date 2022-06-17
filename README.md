@@ -1,5 +1,3 @@
-# CHASE: Contract-based Heterogeneous Analysis and Systems Exploration
-
 CHASE is a framework for requirement capture, formalization, and validation 
 for cyber-physical systems.
 

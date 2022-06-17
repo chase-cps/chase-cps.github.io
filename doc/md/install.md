@@ -1,5 +1,3 @@
-# CHASE: Contract-based Heterogeneous Analysis and Systems Exploration
-
 CHASE is composed of multiple modules, available in the different repositories
 available in this GitHub organization. The main component of chase is the 
 ***core library***, which is the only part that can be compiled and used as a
