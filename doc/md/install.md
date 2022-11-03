@@ -55,7 +55,7 @@ In particular, the first component to be installed is the **core-library**.
 Once the `core-library` is installed, the other modules can be installed in any
 order. However, the installation of the **DSL_tool** and the **logics_tool**
 requires to install the antlr4 runtime (available in the `third_party`
-repository) first. 
+repository), and the **chase-backends** package first. 
 
 ### Compilation of a CHASE module.
 
