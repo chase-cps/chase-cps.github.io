@@ -59,7 +59,7 @@ repositories:
 
 ## Acknowledgement
 
-We acknowledge the support of the National Science Foundation (awards 1846524 and 2139982), the Office of Naval Research (award N00014-20-1-2258), the Defense Advanced Research Projects Agency (award HR00112010003), the Okawa Foundation, and the European Union’s Horizon 2020 research and innovation program under the [Marie Sk\l{}odowska-Curie grant agreement No. 894237](https://cordis.europa.eu/project/id/894237).
+We acknowledge the support of the National Science Foundation (awards 1846524 and 2139982), the Office of Naval Research (award N00014-20-1-2258), the Defense Advanced Research Projects Agency (award HR00112010003), the Okawa Foundation, and the European Union’s Horizon 2020 research and innovation program under the [Marie Sk\l{"}odowska-Curie grant agreement No. 894237](https://cordis.europa.eu/project/id/894237).
 
 [INST]: doc/md/install.md
 [DeFacto]: https://defacto-h2020.github.io/
