@@ -59,13 +59,7 @@ repositories:
 
 ## Acknowledgement
 
-This work was supported in part by the TerraSwarm Research Center, one of six 
-centers supported by the STARnet phase of the Focus Center Research Program 
-(FCRP) a Semiconductor Research Corporation program sponsored by MARCO and
-DARPA.
-Currently, it is supported by the European Project [DeFacto] (Design automation
-for smart Factories) under the grant number 
-[H2020-MSCA-IF-894237](https://cordis.europa.eu/project/id/894237).
+We acknowledge the support of the National Science Foundation (awards 1846524 and 2139982), the Office of Naval Research (award N00014-20-1-2258), the Defense Advanced Research Projects Agency (award HR00112010003), the Okawa Foundation, and the European Union’s Horizon 2020 research and innovation program under the [Marie Sk\l{}odowska-Curie grant agreement No. 894237](https://cordis.europa.eu/project/id/894237).
 
 [INST]: doc/md/install.md
 [DeFacto]: https://defacto-h2020.github.io/
