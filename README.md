@@ -38,19 +38,19 @@ repositories:
   provides a set of utility classes, functions, and methods to manimulate
   CHASE-based representations. It is the main component of the CHASE framework.
 \
-[Link al repository](https://github.com/chase-cps/core-library)
+[Link to the repository](https://github.com/chase-cps/core-library)
 - **chase-backends**: collection of backends tool encoding CHASE problems into
   different external tools, *i.e.*, Slugs, GR1C, NuSMV and PySTL.
 \
-[Link al repository](https://github.com/chase-cps/chase-backends)
+[Link to the repository](https://github.com/chase-cps/chase-backends)
 - **DSL_tool**: tool using a Domain Specification Language to specify discrete
   timed problems difened over architectures modeled using graphs. 
 \
-[Link al repository](https://github.com/chase-cps/DSL_tool)
+[Link to the repository](https://github.com/chase-cps/DSL_tool)
 - **Logics_tool**: tool providing a console to manipulate assume-guarantee
   contracts expressed using a logics-based language.
 \
-[Link al repository](https://github.com/chase-cps/logics_tool)
+[Link to the repository](https://github.com/chase-cps/logics_tool)
 
 
 ## Index
