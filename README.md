@@ -8,6 +8,15 @@ different domain-specific languages, modeling formalisms, and analysis tools.
 It has been applied to industrial design examples, including control of aircraft
 power distribution networks and arbitration of a mixed-criticality automotive bus.
 
+<p align="center">
+  <img src="assets/chase-framework.png" alt="The CHASE framework components and flow" width="640">
+</p>
+
+The front-end modules parse the specification languages and build the CHASE
+representation of a design problem. The CHASE libraries represent and
+manipulate systems, behaviors, and contracts. The back-end modules translate
+the problems into the languages of verification and synthesis tools.
+
 ## Quick start
 
 The [chase](https://github.com/chase-cps/chase) repository is the entry
