@@ -5,31 +5,55 @@ stand-alone software library. The core library defines all the classes necessary
 to represent problems using CHASE. Furthermore, it provides a set of utilities
 function to facilitate the manipulation of objects in CHASE.
 
-The other components of CHASE requires to install the core library first. 
+The other components of CHASE require to install the core library first.
 The following of this page describes the steps required to install the
 components of CHASE.
 
+## Docker image
+
+All the components of CHASE, together with the external tools used by the
+backends (gr1c, slugs and NuSMV), are available in a Docker image. The
+`Dockerfile` is in the core-library repository:
+
+````
+$>  git clone https://github.com/chase-cps/core-library
+$>  cd core-library
+$>  docker build -t chase .
+$>  docker run --rm -it chase
+````
+
+NuSMV is distributed only for x86_64. On ARM machines (e.g., Apple Silicon),
+add `--platform linux/amd64` to both `docker` commands to have it in the image.
+
 ## Installation
 
-CHASE has been developed on Unix-based systems. Currently, it is being developed
-and tested on the Ubuntu 20.04 distribution available in 
-Windows Subsystem for Linux. CHASE is mainly written in C++, with some parts
+CHASE has been developed on Unix-based systems. It has been tested on Ubuntu
+20.04 and 22.04 (also in the Windows Subsystem for Linux) and on macOS. CHASE is mainly written in C++, with some parts
 using Python 3. The compilation of CHASE is based on CMake.
 
 ### Dependencies
 
 The following software is required to be installed in the machine where CHASE is
 to be installed to compile the source code:
-- A modern C++ compiler supporting the C++11 standard (either g++ or clang);
+- A modern C++ compiler supporting the C++17 standard (either g++ or clang);
 - CMake 3.10+;
 - Doxygen, required to compile the documentation;
 - Pybind11, required to compile the Python 3 interface. It can be installed
   using its source code, available [here](https://github.com/pybind/pybind11).
 
-Furthermore, the **Logic_tool** and the **DSL_tool** requires to install the
+Furthermore, the **logics_tool** and the **DSL_tool** require to install the
 C++ runtime of ANTLR4, version 4.5.4. Due to possible difficulties in finding
 the correct version, we made it available at the following address:
-https://github.com/chase-cps/third_party.
+https://github.com/chase-cps/third_party. On Linux, the runtime requires
+`libuuid` (e.g., the `uuid-dev` package on Ubuntu).
+
+The backends generate the input files of the following tools, which must be
+installed to analyze the specifications:
+- [gr1c](https://github.com/tulip-control/gr1c) and
+  [slugs](https://github.com/VerifiableRobotics/slugs), for the realizability
+  check and the synthesis of GR(1) specifications;
+- [NuSMV](https://nusmv.fbk.eu/), to verify refinement, consistency and
+  compatibility of contracts.
 
 ### Preliminaries
 
@@ -55,7 +79,7 @@ In particular, the first component to be installed is the **core-library**.
 Once the `core-library` is installed, the other modules can be installed in any
 order. However, the installation of the **DSL_tool** and the **logics_tool**
 requires to install the antlr4 runtime (available in the `third_party`
-repository), and the **chase-backends** package first. 
+repository), and the **chase-backends** package first.
 
 ### Compilation of a CHASE module.
 
@@ -71,6 +95,9 @@ Then, configure and compile:
 $>  cmake ../repo -Dpybind11_DIR=<path_to_pybind>
 $>  make
 ````
+The modules are compiled in `Release` mode by default. To compile them in
+`Debug` mode, add `-DCMAKE_BUILD_TYPE=Debug` to the `cmake` command.
+
 For the core-library, it is possible to create the Doxygen-based documentation:
 ````
 $>  make doc
@@ -88,8 +115,3 @@ The libraries (both for the C++ and Python interfaces) will be installed in the
 the `CHASE_INSTALL_DIR/chase/include`; the executables will be installed in the
 `CHASE_INSTALL_DIR/chase/bin` directory. Finally, the documentation will be
 available in the `CHASE_INSTALL_DIR/chase/doc` directory.
-
-
-
-
-
