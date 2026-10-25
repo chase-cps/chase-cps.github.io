@@ -54,14 +54,14 @@ the tools found, and `chase-cps check specs.ltl` checks the contracts of a
 specification from the command line.
 
 ````
-from chase_cps import Contract, refines
+from chase_cps import Contract, refinement
 
 spec = Contract.from_strings(inputs=["req"], outputs=["grant"],
                              assumptions=["G F !req"],
                              guarantees=["G (req -> F grant)"], name="Spec")
 impl = Contract.from_strings(inputs=["req"], outputs=["grant"],
                              guarantees=["G (req -> X grant)"], name="Impl")
-print(refines(impl, spec).status)
+print(refinement(impl, spec).status)
 ````
 
 ## Publications
@@ -137,6 +137,8 @@ repositories:
 
 ## Index
 - [Requirements and Installation][INST]
+- [Using CHASE](https://github.com/chase-cps/chase/blob/master/docs/usage.md):
+  the console, the Python package, the command line, and the MCP server
 - [Python API reference](api/)
 - [Demos](https://github.com/chase-cps/demos)
 
