@@ -10,12 +10,14 @@ power distribution networks and arbitration of a mixed-criticality automotive bu
 
 ## Quick start
 
-The complete CHASE toolchain, including the gr1c, slugs, and NuSMV solvers,
-is available as a Docker image:
+The [chase](https://github.com/chase-cps/chase) repository is the entry
+point to CHASE: it collects all the modules and builds them at once. The
+complete CHASE toolchain, including the gr1c, slugs, and NuSMV solvers, is
+available as a Docker image:
 
 ````
-$>  git clone https://github.com/chase-cps/core-library
-$>  cd core-library
+$>  git clone --recursive https://github.com/chase-cps/chase
+$>  cd chase
 $>  docker build -t chase .
 $>  docker run --rm -it chase
 ````
@@ -23,6 +25,29 @@ $>  docker run --rm -it chase
 The container starts in the [demos](https://github.com/chase-cps/demos)
 directory. To build CHASE from sources, see
 [Requirements and Installation][INST].
+
+## Python package
+
+The `chase_cps` Python package provides contracts written in the standard LTL
+syntax, the contract algebra of CHASE (composition, quotient, merging,
+separation), and refinement, consistency, compatibility, and realizability
+checks with nuXmv, NuSMV, and slugs. A failed check returns a counterexample
+trace. From the chase repository:
+
+````
+$>  pip install .
+````
+
+````
+from chase_cps import Contract, refines
+
+spec = Contract.from_strings(inputs=["req"], outputs=["grant"],
+                             assumptions=["G F !req"],
+                             guarantees=["G (req -> F grant)"], name="Spec")
+impl = Contract.from_strings(inputs=["req"], outputs=["grant"],
+                             guarantees=["G (req -> X grant)"], name="Impl")
+print(refines(impl, spec).status)
+````
 
 ## Publications
 
@@ -60,6 +85,11 @@ of the paper.
 
 CHASE is organized in the following components, available at the corresponding
 repositories:
+- **chase**: the entry point, collecting all the components as git
+  submodules, with the scripts to build and install them, the Docker image,
+  and the Python package.
+\
+[Link to the repository](https://github.com/chase-cps/chase)
 - **core-library** (mandatory): the library providing the classes and structures
   required to represent design problems and systems using CHASE. It also
   provides a set of utility classes, functions, and methods to manipulate

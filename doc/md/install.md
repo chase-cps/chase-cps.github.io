@@ -13,14 +13,24 @@ components of CHASE.
 
 All the components of CHASE, together with the external tools used by the
 backends (gr1c, slugs and NuSMV), are available in a Docker image. The
-`Dockerfile` is in the core-library repository:
+`Dockerfile` is in the [chase](https://github.com/chase-cps/chase) repository,
+which collects all the components:
 
 ````
-$>  git clone https://github.com/chase-cps/core-library
-$>  cd core-library
+$>  git clone --recursive https://github.com/chase-cps/chase
+$>  cd chase
 $>  docker build -t chase .
 $>  docker run --rm -it chase
 ````
+
+The same repository builds and installs all the components at once from
+sources:
+
+````
+$>  ./install.sh /path/to/install/directory
+````
+
+The rest of this page describes how to build each component separately.
 
 NuSMV is distributed only for x86_64. On ARM machines (e.g., Apple Silicon),
 add `--platform linux/amd64` to both `docker` commands to have it in the image.
@@ -36,7 +46,7 @@ using Python 3. The compilation of CHASE is based on CMake.
 The following software is required to be installed in the machine where CHASE is
 to be installed to compile the source code:
 - A modern C++ compiler supporting the C++17 standard (either g++ or clang);
-- CMake 3.10+;
+- CMake 3.18+;
 - Doxygen, required to compile the documentation;
 - Pybind11, required to compile the Python 3 interface. It can be installed
   using its source code, available [here](https://github.com/pybind/pybind11).
@@ -96,7 +106,10 @@ $>  cmake ../repo -Dpybind11_DIR=<path_to_pybind>
 $>  make
 ````
 The modules are compiled in `Release` mode by default. To compile them in
-`Debug` mode, add `-DCMAKE_BUILD_TYPE=Debug` to the `cmake` command.
+`Debug` mode, add `-DCMAKE_BUILD_TYPE=Debug` to the `cmake` command. When
+several Python interpreters are installed, add
+`-DPython_EXECUTABLE=<path_to_python>` to choose the one the Python modules are
+built for.
 
 For the core-library, it is possible to create the Doxygen-based documentation:
 ````
