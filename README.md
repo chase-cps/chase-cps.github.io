@@ -21,13 +21,14 @@ the problems into the languages of verification and synthesis tools.
 
 The [chase](https://github.com/chase-cps/chase) repository is the entry
 point to CHASE: it collects all the modules and builds them at once. The
-complete CHASE toolchain, including the gr1c, slugs, and NuSMV solvers, is
-available as a Docker image:
+complete CHASE toolchain, including the gr1c, slugs, and nuXmv solvers, is
+available as a Docker image (nuXmv is free for academic and non-commercial
+use, and installed only when its license is accepted):
 
 ````
 $>  git clone --recursive https://github.com/chase-cps/chase
 $>  cd chase
-$>  docker build -t chase .
+$>  docker build --build-arg ACCEPT_NUXMV_LICENSE=yes -t chase .
 $>  docker run --rm -it chase
 ````
 
@@ -39,16 +40,16 @@ directory. To build CHASE from sources, see
 
 The `chase_cps` Python package provides contracts written in the standard LTL
 syntax, the contract algebra of CHASE (composition, conjunction, merging,
-quotient, separation, saturation), simplification, and refinement,
-consistency, compatibility, and realizability checks with nuXmv, NuSMV, and
-slugs. A failed check returns a counterexample trace.
+quotient, separation, saturation, simplification), and refinement,
+consistency, compatibility, and realizability checks with nuXmv and slugs. A failed check returns a counterexample trace.
 
 ````
 $>  pip install chase-cps
 ````
 
-The checks need nuXmv or NuSMV, and slugs for realizability, installed
-separately with `chase-cps install` (or by hand); `chase-cps doctor` shows
+The checks need nuXmv, and slugs for realizability, installed separately
+with `chase-cps install nuxmv --accept-license` and `chase-cps install slugs`
+(or by hand); `chase-cps doctor` shows
 the tools found, and `chase-cps check specs.ltl` checks the contracts of a
 specification from the command line.
 
@@ -112,7 +113,8 @@ repositories:
 \
 [Link to the repository](https://github.com/chase-cps/core-library)
 - **chase-backends**: collection of backends encoding CHASE problems into
-  different external tools, *i.e.*, Slugs, GR1C, NuSMV and PySTL.
+  different external tools, *i.e.*, Slugs, GR1C, the SMV language of nuXmv,
+  and PySTL.
 \
 [Link to the repository](https://github.com/chase-cps/chase-backends)
 - **DSL_tool**: tool using a Domain Specific Language to specify discrete

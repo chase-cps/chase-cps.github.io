@@ -12,16 +12,19 @@ components of CHASE.
 ## Docker image
 
 All the components of CHASE, together with the external tools used by the
-backends (gr1c, slugs and NuSMV), are available in a Docker image. The
+backends (gr1c, slugs and nuXmv), are available in a Docker image. The
 `Dockerfile` is in the [chase](https://github.com/chase-cps/chase) repository,
 which collects all the components:
 
 ````
 $>  git clone --recursive https://github.com/chase-cps/chase
 $>  cd chase
-$>  docker build -t chase .
+$>  docker build --build-arg ACCEPT_NUXMV_LICENSE=yes -t chase .
 $>  docker run --rm -it chase
 ````
+
+nuXmv may be used only for academic and non-commercial purposes: it is
+installed in the image only with `--build-arg ACCEPT_NUXMV_LICENSE=yes`.
 
 The same repository builds and installs all the components at once from
 sources:
@@ -32,8 +35,9 @@ $>  ./install.sh /path/to/install/directory
 
 The rest of this page describes how to build each component separately.
 
-NuSMV is distributed only for x86_64. On ARM machines (e.g., Apple Silicon),
-add `--platform linux/amd64` to both `docker` commands to have it in the image.
+nuXmv is distributed for Linux only for x86_64. On ARM machines (e.g., Apple
+Silicon), add `--platform linux/amd64` to both `docker` commands to have it in
+the image.
 
 ## Installation
 
@@ -62,8 +66,9 @@ installed to analyze the specifications:
 - [gr1c](https://github.com/tulip-control/gr1c) and
   [slugs](https://github.com/VerifiableRobotics/slugs), for the realizability
   check and the synthesis of GR(1) specifications;
-- [NuSMV](https://nusmv.fbk.eu/), to verify refinement, consistency and
-  compatibility of contracts.
+- [nuXmv](https://nuxmv.fbk.eu/), to verify refinement, consistency and
+  compatibility of contracts (or [NuSMV](https://nusmv.fbk.eu/) where nuXmv
+  cannot be used).
 
 ### Preliminaries
 
