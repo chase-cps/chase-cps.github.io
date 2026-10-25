@@ -38,14 +38,18 @@ directory. To build CHASE from sources, see
 ## Python package
 
 The `chase_cps` Python package provides contracts written in the standard LTL
-syntax, the contract algebra of CHASE (composition, quotient, merging,
-separation), and refinement, consistency, compatibility, and realizability
-checks with nuXmv, NuSMV, and slugs. A failed check returns a counterexample
-trace. From the chase repository:
+syntax, the contract algebra of CHASE (composition, conjunction, merging,
+quotient, separation, saturation), simplification, and refinement,
+consistency, compatibility, and realizability checks with nuXmv, NuSMV, and
+slugs. A failed check returns a counterexample trace.
 
 ````
-$>  pip install .
+$>  pip install chase-cps
 ````
+
+The checks need nuXmv or NuSMV, and slugs for realizability, installed
+separately; `chase-cps doctor` shows the tools found and how to install the
+missing ones.
 
 ````
 from chase_cps import Contract, refines
@@ -130,6 +134,7 @@ repositories:
 
 ## Index
 - [Requirements and Installation][INST]
+- [Python API reference](api/)
 - [Demos](https://github.com/chase-cps/demos)
 
 
