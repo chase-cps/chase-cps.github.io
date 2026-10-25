@@ -48,8 +48,9 @@ $>  pip install chase-cps
 ````
 
 The checks need nuXmv or NuSMV, and slugs for realizability, installed
-separately; `chase-cps doctor` shows the tools found and how to install the
-missing ones.
+separately with `chase-cps install` (or by hand); `chase-cps doctor` shows
+the tools found, and `chase-cps check specs.ltl` checks the contracts of a
+specification from the command line.
 
 ````
 from chase_cps import Contract, refines
