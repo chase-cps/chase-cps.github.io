@@ -7,6 +7,11 @@ the components and of the system are written as contracts in linear temporal
 logic; CHASE composes them, checks that the components refine the system,
 finds the requirements that conflict, and synthesizes controllers.
 
+<figure markdown>
+![The CHASE framework: front ends, libraries, back ends](assets/chase-framework.png){ width="600" }
+<figcaption>The front ends build the CHASE representation of a design problem, the libraries manipulate systems and contracts, and the back ends translate the problems for the verification and synthesis tools (from the DATE 2018 paper).</figcaption>
+</figure>
+
 ```
 $> pip install chase-cps
 ```
@@ -64,10 +69,3 @@ agents. Back ends: nuXmv, NuSMV, slugs, gr1c.
   arbiter for a shared charging station and the lift modes of a NASA aircraft.
 - [MCP server](interfaces/mcp.md): the operations of CHASE as tools for AI
   agents.
-
-![The CHASE framework](assets/chase-framework.png){ width="560" }
-
-The figure is from the DATE 2018 paper: the front ends build the CHASE
-representation of a design problem, the libraries manipulate systems and
-contracts, and the back ends translate the problems for the verification
-and synthesis tools.

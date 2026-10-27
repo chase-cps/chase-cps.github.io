@@ -94,13 +94,16 @@ pre code { padding: 0; background: transparent; font-size: 1em; white-space: inh
 /* The copy button of the code blocks. */
 .has-copy { position: relative; }
 button.copy {
-  position: absolute; top: 6px; right: 6px; padding: 2px 8px; font-size: 12px;
-  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif; color: #444;
-  background: #f7f7f7; border: 1px solid #c4c4c4; border-radius: 4px; cursor: pointer; opacity: .75;
+  position: absolute; top: 6px; right: 6px; display: flex; padding: 5px;
+  color: #666; background: #f4f4f4; border: 1px solid #cfcfcf; border-radius: 5px;
+  cursor: pointer; opacity: 0; transition: opacity .15s;
 }
-button.copy:hover, button.copy:focus-visible { opacity: 1; }
-.has-copy pre { padding-right: 64px; }
-pre.has-copy { padding-right: 64px; }
+.has-copy:hover button.copy, button.copy:focus-visible, button.copy.done { opacity: 1; }
+button.copy:hover { color: #222; }
+button.copy.done { color: #2f7d3c; }
+@media (hover: none) { button.copy { opacity: .8; } }
+.has-copy pre { padding-right: 44px; }
+pre.has-copy { padding-right: 44px; }
 
 /* Tables, as in slate: a dark header row. */
 table { border-collapse: collapse; margin: 0 0 20px; background: #fff; width: 100%; }

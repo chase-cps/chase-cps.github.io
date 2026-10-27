@@ -33,20 +33,36 @@ To cite CHASE, please use the DATE 2018 paper:
 
 ## Work that uses CHASE
 
+- Yifeng Xiao, Pierluigi Nuzzo. *Symbolic Temporal Supervision of LLM Agents
+  Using Contracts*. arXiv 2609.18128, 2026.
+  [arXiv](https://arxiv.org/abs/2609.18128) — ContrAgent exports its
+  contract libraries to CHASE for design-time analysis.
 - Yifeng Xiao, Charles D. Lutz, Mauricio Castillo-Effen, Pierluigi Nuzzo.
   *Contract-Based Consistency and Availability Analysis for Distributed
   Cyber-Physical Systems*. International Symposium on Formal Methods and
-  Models for System Design (MEMOCODE), 2026. The timing contracts are
+  Models for System Design (MEMOCODE), 2026. — The timing contracts are
   formalized with the Python interface of CHASE.
 - Yifeng Xiao, Pierluigi Nuzzo. *Contract-Based Architecture Exploration of
   Cyber-Physical Systems via Satisfiability Modulo Convex Programming*.
-  Design, Automation and Test in Europe (DATE), 2026. The contracts are
+  Design, Automation and Test in Europe (DATE), 2026.
+  [DOI](https://doi.org/10.23919/DATE69613.2026.11539305) — The contracts are
   formalized and modeled with CHASE.
+- Michele Lora, Sebastiano Gaiardelli, Chanwook Oh, Stefano Spellini,
+  Pierluigi Nuzzo, Franco Fummi. *Design Automation for Cyber-Physical
+  Production Systems: Lessons Learned from the DeFacto Project*. Design,
+  Automation and Test in Europe (DATE), 2024.
+  [DOI](https://doi.org/10.23919/DATE58400.2024.10546563) — The methods of the
+  project are implemented in CHASE.
 - Yifeng Xiao, Chanwook Oh, Michele Lora, Pierluigi Nuzzo. *Efficient
   Exploration of Cyber-Physical System Architectures Using Contracts and
   Subgraph Isomorphism*. Design, Automation and Test in Europe (DATE), 2024.
   Best Paper Award. [IEEE](https://ieeexplore.ieee.org/document/10546764) —
   The architecture exploration tool (ContrArc) is built on the CHASE library.
+- Christopher Leet, Chanwook Oh, Michele Lora, Sven Koenig, Pierluigi Nuzzo.
+  *Co-Design of Topology, Scheduling, and Path Planning in Automated
+  Warehouses*. Design, Automation and Test in Europe (DATE), 2023.
+  [DOI](https://doi.org/10.23919/DATE56975.2023.10137069) — The component and
+  workload contracts are compiled and composed with CHASE.
 
 ## Demonstrations
 
