@@ -2,43 +2,14 @@ site_name: CHASE
 site_description: Contract-based Heterogeneous Analysis and Systems Exploration
 site_url: https://chase-cps.github.io/
 repo_url: https://github.com/chase-cps/chase
-repo_name: chase-cps/chase
 edit_uri: ""
-copyright: CHASE is released under the BSD 3-Clause License.
 
+# The theme follows the style of the CHASE site (GitHub Pages "slate").
 theme:
-  name: material
-  font:
-    text: IBM Plex Sans
-    code: IBM Plex Mono
-  palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/weather-night
-        name: Dark theme
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/weather-sunny
-        name: Light theme
-  features:
-    - navigation.sections
-    - navigation.expand
-    - navigation.footer
-    - navigation.top
-    - toc.follow
-    - search.highlight
-    - content.code.copy
-  icon:
-    repo: fontawesome/brands/github
+  name: null
+  custom_dir: theme
 
-extra_css:
-  - stylesheets/extra.css
+plugins: []
 
 markdown_extensions:
   - admonition
@@ -46,8 +17,7 @@ markdown_extensions:
   - md_in_html
   - tables
   - toc:
-      permalink: true
-  - pymdownx.details
+      permalink: "#"
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
@@ -56,7 +26,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+          format: !!python/name:pymdownx.superfences.fence_div_format
 
 nav:
   - Overview: index.md
@@ -73,7 +43,6 @@ nav:
       - Command line: interfaces/command-line.md
       - Specification language and console: interfaces/logics-tool.md
       - MCP server for AI agents: interfaces/mcp.md
-      - Python API reference: https://chase-cps.github.io/api/
   - Demos:
       - All demos: demos/index.md
       - Charger: demos/charger.md

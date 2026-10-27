@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page and page.title and not page.is_homepage %}{{ page.title | striptags }} · {% endif %}CHASE</title>
+  <meta name="description" content="{{ config.site_description }}">
+  <link rel="stylesheet" href="{{ 'css/site.css' | url }}">
+</head>
+<body>
+
+<header id="header_wrap" class="outer">
+  <div class="header-inner">
+    <a id="forkme_banner" href="{{ config.repo_url }}">View on GitHub</a>
+    <h1 id="project_title"><a href="{{ nav.homepage.url | url }}">CHASE</a></h1>
+    <h2 id="project_tagline">{{ config.site_description }}</h2>
+  </div>
+</header>
+
+<div id="main_content_wrap" class="outer">
+  <div class="layout">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label">Contents</label>
+    <nav class="sidebar" aria-label="Handbook">
+      {% for item in nav %}
+        {% if item.is_section %}
+          <div class="nav-group">
+            <div class="nav-group-title">{{ item.title }}</div>
+            <ul>
+              {% for child in item.children %}
+                <li><a href="{{ child.url | url }}"{% if child.active %} class="active" aria-current="page"{% endif %}>{{ child.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% else %}
+          <ul class="nav-top">
+            <li><a href="{{ item.url | url }}"{% if item.active %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a></li>
+          </ul>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <main id="main_content">
+      {{ page.content }}
+
+      {% if page.previous_page or page.next_page %}
+      <div class="pager">
+        {% if page.previous_page %}<a class="prev" href="{{ page.previous_page.url | url }}">← {{ page.previous_page.title }}</a>{% else %}<span></span>{% endif %}
+        {% if page.next_page %}<a class="next" href="{{ page.next_page.url | url }}">{{ page.next_page.title }} →</a>{% endif %}
+      </div>
+      {% endif %}
+    </main>
+
+    {% if page.toc and page.toc.items and page.toc.items[0].children %}
+    <aside class="page-toc" aria-label="On this page">
+      <div class="nav-group-title">On this page</div>
+      <ul>
+        {% for item in page.toc.items[0].children %}
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </aside>
+    {% endif %}
+  </div>
+</div>
+
+<footer id="footer_wrap" class="outer">
+  <div class="footer-inner">
+    <p>CHASE is maintained by <a href="https://github.com/chase-cps">chase-cps</a> and released under the BSD 3-Clause License.</p>
+  </div>
+</footer>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", fontFamily: "'Myriad Pro', Calibri, Helvetica, Arial, sans-serif" });
+</script>
+</body>
+</html>

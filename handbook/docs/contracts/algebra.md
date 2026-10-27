@@ -1,65 +1,122 @@
 # <span class="tag l1">1</span> Contract algebra
 
 The operations that build a contract from contracts. They hold for any
-assume-guarantee contracts and are computed in closed form by the CHASE core
-library, without a solver. In Python they are the methods of `Contract`; each
-returns a new contract. The contracts are saturated: C1 = (A1, G1) and
-C2 = (A2, G2).
+assume-guarantee contracts, and the CHASE core library computes them in
+closed form, without a solver. In Python they are methods of `Contract`, and
+each one returns a new contract.
 
-| Operation | logics_tool | Python | chase-cps check | MCP tool |
-|---|---|---|---|---|
-| composition ∥ | `compose C1 C2 R` | `c1.compose(c2)` | `C1+C2` in a contract argument | `compose` |
-| conjunction ∧ | `conjoin C1 C2 R` | `c1.conjoin(c2)` | | `conjoin` |
-| disjunction ∨ | `disjoin C1 C2 R` | `c1.disjoin(c2)` | | `disjoin` |
-| merging • | `merge C1 C2 R` | `c1.merge(c2)` | | `merge` |
-| quotient / | `divide C1 C2 R` | `c1.divide(c2)` | | `divide` |
-| separation ÷ | `separate C1 C2 R` | `c1.separate(c2)` | | `separate` |
-| implication → | `imply C1 C2 R` | `c1.imply(c2)` | | `imply` |
-| coimplication | `coimply C1 C2 R` | `c1.coimply(c2)` | | `coimply` |
-| reciprocal C⁻¹ | `invert C R` | `c.invert()` | | `invert` |
-| adding an assumption b·C | | `c.assume(b)` | | `assume` |
-| adding a guarantee C·b | | `c.ensure(b)` | | `ensure` |
-| saturation | `saturate C` | `c.saturate()` | | `saturate` |
-| (formula simplification) | `simplify C` | `c.simplify()` | | `simplify` |
+## The operations
 
-## Formulas
+C1 = (A1, G1) and C2 = (A2, G2) are saturated contracts.
 
-| Operation | Result (A, G) | Source |
+| Operation | Result (A, G) | Python |
 |---|---|---|
-| composition C1 ∥ C2 | <span class="f">((A1∧A2) ∨ ¬(G1∧G2), G1∧G2)</span> | Benveniste et al. 2018 |
-| conjunction C1 ∧ C2 | <span class="f">(A1∨A2, G1∧G2)</span> | Benveniste et al. 2018 |
-| disjunction C1 ∨ C2 | <span class="f">(A1∧A2, G1∨G2)</span> | Benveniste et al. 2018 |
-| merging C1 • C2 | <span class="f">(A1∧A2, (G1∧G2) ∨ ¬(A1∧A2))</span> | Passerone et al., TECS 2019 |
-| quotient C1 / C2 | <span class="f">(A1∧G2, (G1∧A2) ∨ ¬(A1∧G2))</span> | Incer et al., MEMOCODE 2018, Thm 3.5 |
-| separation C1 ÷ C2 | <span class="f">((A1∧G2) ∨ ¬(G1∧A2), G1∧A2)</span> | Passerone et al., TECS 2019, Thm 3.12 |
-| implication C1 → C2 | <span class="f">((A2∧¬A1) ∨ (G1∧¬G2), G2 ∨ ¬G1)</span> | Incer et al., arXiv 2309.08875, Prop 6 |
-| coimplication | <span class="f">(A2 ∨ ¬A1, (G2∧¬G1) ∨ (A1∧¬A2))</span> | Incer et al., arXiv 2309.08875, Prop 7 |
-| reciprocal C⁻¹ | <span class="f">(G, A)</span> | Incer et al., arXiv 2309.08875, Sec 2.1 |
-| adding an assumption b·C | <span class="f">(b∧A, b → G)</span> | Incer et al., arXiv 2309.08875, Sec 4 |
-| adding a guarantee C·b | <span class="f">(b → A, b∧G)</span> | Incer et al., arXiv 2309.08875, Sec 4 |
-| saturation | <span class="f">(A, A → G)</span> | Benveniste et al. 2018 |
+| composition C1 ∥ C2 | <span class="f">((A1∧A2) ∨ ¬(G1∧G2), G1∧G2)</span> | `c1.compose(c2)` |
+| conjunction C1 ∧ C2 | <span class="f">(A1∨A2, G1∧G2)</span> | `c1.conjoin(c2)` |
+| disjunction C1 ∨ C2 | <span class="f">(A1∧A2, G1∨G2)</span> | `c1.disjoin(c2)` |
+| merging C1 • C2 | <span class="f">(A1∧A2, (G1∧G2) ∨ ¬(A1∧A2))</span> | `c1.merge(c2)` |
+| quotient C1 / C2 | <span class="f">(A1∧G2, (G1∧A2) ∨ ¬(A1∧G2))</span> | `c1.divide(c2)` |
+| separation C1 ÷ C2 | <span class="f">((A1∧G2) ∨ ¬(G1∧A2), G1∧A2)</span> | `c1.separate(c2)` |
+| implication C1 → C2 | <span class="f">((A2∧¬A1) ∨ (G1∧¬G2), G2 ∨ ¬G1)</span> | `c1.imply(c2)` |
+| coimplication | <span class="f">(A2 ∨ ¬A1, (G2∧¬G1) ∨ (A1∧¬A2))</span> | `c1.coimply(c2)` |
+| reciprocal C⁻¹ | <span class="f">(G, A)</span> | `c.invert()` |
+| adding an assumption b·C | <span class="f">(b∧A, b → G)</span> | `c.assume(b)` |
+| adding a guarantee C·b | <span class="f">(b → A, b∧G)</span> | `c.ensure(b)` |
+| saturation | <span class="f">(A, A → G)</span> | `c.saturate()` |
+| simplification | the same contract, with simpler formulas | `c.simplify()` |
 
-Implication and coimplication are the adjoints of conjunction and
-disjunction, as the quotient and separation are of composition and merging
-(Incer, Benveniste, Sangiovanni-Vincentelli, arXiv 2309.08875, Table 1).
-`c1.imply(c2)` is the largest contract C such that C conjoined with c1
-refines c2. The reciprocal (G, A) is the contract seen from its environment.
-`c.assume(b)` gives (b & A, b -> G), an abstraction of c, and `c.ensure(b)`
-gives (b -> A, b & G), which refines c.
+The same operations are commands of the [console](../interfaces/logics-tool.md)
+and tools of the [MCP server](../interfaces/mcp.md), with the same names.
 
-`c1.compose(c2, discharge=True)` keeps the terms of the two contracts instead
-of the closed form (Incer, PhD thesis 2022, Algorithm 2). When c1 drives the
-inputs of c2 and not the reverse, the assumptions of c2 implied by the
-assumptions and guarantees of c1 are dropped, then the redundant terms. This
-variant is a simplification of the composition with the checks of
-[layer 2](checks.md) (one implication per test), so it needs nuXmv. The result is an abstraction of the composition: a refinement proved
-on it holds for the composition; a failed one may not.
+## What each one is for
 
-The console also accepts the names of its first version: `conjunction` for
-`conjoin`, `quotient` for `divide`, and `refinement` for `refines`. It has
-`show C` to print a contract (`print(c)` in Python).
+**Putting components together**
 
-In the console, the variables of two contracts are matched by name (the
-default), by a map entered by hand (`manual` as last argument), or by a map
-read from a file (its name as last argument). In Python, variables with the
-same name are the same variable, and `c.rename({...})` renames them.
+- **Composition**: the contract of two components connected together;
+  variables with the same name are connected.
+- **Conjunction**: one component that meets two specifications at once (the
+  greatest lower bound).
+- **Merging**: two viewpoints of the same component, such as its function and
+  its timing.
+
+**Finding a missing part**
+
+- **Quotient**: the largest contract C of a missing component such that
+  C2 ∥ C refines C1. Any component that refines C completes the design.
+- **Separation**: the same for merging: the smallest C such that C1 refines
+  C2 • C.
+
+**Reasoning about specifications**
+
+- **Implication** C1 → C2: the largest C such that C ∧ C1 refines C2.
+- **Disjunction** and **coimplication**: the least upper bound, and its
+  adjoint.
+
+**Changing one contract**
+
+- **Reciprocal**: the contract seen from its environment; the inputs become
+  outputs and the outputs inputs.
+- **Adding an assumption** gives an abstraction of the contract;
+  **adding a guarantee** gives a refinement of it.
+- **Saturation** and **simplification** give an equivalent contract.
+
+## Example: the contract of a missing component
+
+The system must grant every request; a queue forwards each request as `fwd`.
+What must the server between `fwd` and `grant` do?
+
+```python
+from chase_cps import Contract, refines
+
+system = Contract.from_strings(inputs=["req"], outputs=["grant"], name="System",
+                               assumptions=["G F !req"],
+                               guarantees=["G (req -> F grant)"])
+queue = Contract.from_strings(inputs=["req"], outputs=["fwd"], name="Queue",
+                              guarantees=["G (req -> X fwd)"])
+
+missing = system.divide(queue)       # the quotient
+server = Contract.from_strings(inputs=["fwd"], outputs=["grant"], name="Server",
+                               guarantees=["G (fwd -> X grant)"])
+lazy = Contract.from_strings(inputs=["fwd"], outputs=["grant"], name="Lazy",
+                             guarantees=["G (fwd -> F grant) | F G !grant"])
+print(refines(server, missing).status, refines(lazy, missing).status)
+```
+
+```
+valid invalid
+```
+
+The server that answers each `fwd` at the next step can fill the gap; the lazy
+one, which may stop answering, cannot. The two refinement checks are
+[layer 2](checks.md).
+
+## Composition with discharge
+
+`c1.compose(c2, discharge=True)` is a simplification of the composition. The
+closed form puts all the terms of the two contracts into one large formula;
+with discharge the result keeps each term, and drops the assumptions of one
+contract that the other one guarantees (Incer, PhD thesis 2022, Algorithm 2):
+
+- when c1 drives the inputs of c2, and not the reverse, the assumptions of c2
+  implied by the assumptions and guarantees of c1 are dropped;
+- when the two feed each other, the discharge goes in one direction only, the
+  one that drops more assumptions;
+- then the terms implied by the others are dropped.
+
+!!! note "This variant uses layer 2"
+    Each drop is decided by an implication check with nuXmv. The result is an
+    abstraction of the composition: a refinement proved on it holds for the
+    composition, one that fails on it may still hold. The
+    [Charger demo](../demos/charger.md) uses it.
+
+## Sources
+
+- Composition, conjunction, disjunction, saturation: Benveniste et al.,
+  *Contracts for System Design*, Foundations and Trends in EDA, 2018.
+- Quotient: Incer, Benveniste, Sangiovanni-Vincentelli, Seshia, MEMOCODE 2018,
+  Theorem 3.5.
+- Merging and separation: Passerone, Incer, Sangiovanni-Vincentelli, ACM TECS
+  2019, Theorem 3.12.
+- Implication, coimplication, reciprocal, adding an assumption or a guarantee:
+  Incer, Benveniste, Sangiovanni-Vincentelli, *Some algebraic aspects of
+  assume-guarantee reasoning*, arXiv 2309.08875.
