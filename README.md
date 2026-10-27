@@ -54,14 +54,14 @@ the tools found, and `chase-cps check specs.ltl` checks the contracts of a
 specification from the command line.
 
 ````
-from chase_cps import Contract, refinement
+from chase_cps import Contract, refines
 
 spec = Contract.from_strings(inputs=["req"], outputs=["grant"],
                              assumptions=["G F !req"],
                              guarantees=["G (req -> F grant)"], name="Spec")
 impl = Contract.from_strings(inputs=["req"], outputs=["grant"],
                              guarantees=["G (req -> X grant)"], name="Impl")
-print(refinement(impl, spec).status)
+print(refines(impl, spec).status)
 ````
 
 ## Publications
