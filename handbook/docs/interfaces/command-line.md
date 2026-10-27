@@ -13,15 +13,17 @@ contracts, or `{"contracts": [...]}`, each in the format of
 $> chase-cps check specs.ltl                                    # verify every contract
 $> chase-cps check specs.ltl --refines Joint1+Joint2 Joints      # the composition refines Joints
 $> chase-cps check specs.ltl --realizable Joint1 --json
+$> chase-cps check specs.ltl --implements joint1.smv Joint1 --receptive joint1.smv Joint1
 ```
 
 A contract argument is `NAME`, or `NAME+NAME+...` for the composition of the
-contracts. The options are grouped by layer:
+contracts. A model is a state machine in an SMV file, or in a JSON file (a
+state machine, or a controller of slugs synthesized from the contract). The options are grouped by layer:
 
 | Group | Options |
 |---|---|
-| 2. checks on contracts (nuXmv) | `--verify` (the default), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT` |
-| 3. GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C` |
+| 2. checks on contracts (nuXmv) | `--verify` (the default: A ∧ G satisfiable), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT`, `--implements MODEL C`, `--receptive MODEL C` |
+| 3. GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C`, `--vacuous C` |
 | all | `--core` (a minimal set of terms that explains a failure), `--json`, `--timeout`, `--backend` |
 
 The exit status is 0 when every check passes, 1 when a check fails or does not

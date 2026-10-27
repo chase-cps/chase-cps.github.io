@@ -13,9 +13,10 @@ nuXmv (or NuSMV).
 | refinement C1 ⪯ C2 | A2 → A1 and (A1→G1) → (A2→G2) are valid | `refines(c1, c2)` |
 | compatibility | some environment satisfies A | `is_compatible(c)` |
 | consistency | some behavior satisfies A → G | `is_consistent(c)` |
-| both of them | compatible and consistent | `verify(c)` |
-| implementation M ⊨ C | M ∧ A → G is valid | `implements(m, c)` |
-| acceptance of an environment E | E → A is valid | `accepts(c, e)` |
+| assumptions and guarantees together | A ∧ G is satisfiable (so compatible and consistent) | `verify(c)` |
+| implementation M ⊨ C | M ∧ A → G is valid, or every behavior of the state machine M satisfies A → G | `implements(m, c)` |
+| acceptance of an environment E | E → A is valid, or every behavior of E satisfies A | `accepts(c, e)` |
+| receptiveness of a state machine M | M refuses no input that the assumptions allow | `is_receptive(m, c)` |
 | no redundant terms | each term is not implied by the others | `remove_redundant(c)` |
 
 M and E are LTL formulas over the variables of the contract. A failed check
@@ -89,7 +90,7 @@ c = Contract.from_strings(inputs=["alive"], outputs=["a"], name="C",
                           guarantees=["G (alive -> a)", "G (alive -> !a)"])
 verify(c).status                     # sat
 verify(c, context=FINITE).status     # unsat
-verify(c.assume(FINITE)).status      # sat
+is_consistent(c.assume(FINITE)).status   # sat
 ```
 
 Without the context, the behavior where `alive` is false from the start
@@ -133,6 +134,7 @@ conditions such as `30.5 < kias < 40`. The
 |---|---|
 | `implies`, `refines`, `implements`, `accepts` | `valid`, `invalid` |
 | `is_satisfiable`, `is_compatible`, `is_consistent`, `verify` | `sat`, `unsat` |
+| `is_receptive` | `receptive`, `not_receptive` |
 | any check | `unknown`, with a `reason` (time out, no tool installed) |
 
 A trace is a list of states, `prefix` then `loop`, the loop repeated forever.

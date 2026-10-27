@@ -107,15 +107,63 @@ violation, and the contract is well-separated.
 The check is one realizability check with slugs, with the goal of the
 controller replaced by `G F false` (Klein and Pnueli, HVC 2010; Maoz and
 Ringert, FSE 2016): if the controller can still win, it can only win by
-breaking the assumptions. With `with_guarantees=True` it must also keep its
-initial and safety guarantees. Only violations that can be forced from every
-initial state are detected.
+breaking the assumptions. The controller must keep its initial and safety
+guarantees while it does so (Def. 4 of Maoz and Ringert): a violation it can
+force only by breaking its own guarantees is not a defect of the
+assumptions. `with_guarantees=False` leaves the guarantees out (Def. 2).
+Only violations that can be forced from every initial state are detected.
 
 ## Vacuity
 
-A term is vacuous when removing it does not change the synthesis problem: the
-same contracts are realizable, with the same controllers (inherent vacuity,
-Maoz and Shalom, ESEC/FSE 2020).
+A contract is vacuous when the controller can win without an output that a
+liveness guarantee asks for: the assumptions already make the guarantee
+hold, and it obliges nothing. `is_vacuous` strengthens the guarantees and
+asks slugs whether the contract is still realizable (Bloem, Chockler,
+Ebrahimi, and Strichman, FMSD 2021):
+
+| Mode | Query, for an output y | Meaning |
+|---|---|---|
+| never | A, G + {G !y} | a winning strategy never sets y |
+| eventually | A, G + {!p, G (p → X p), G (p → !y), G F p}, p a new output | a winning strategy stops setting y from some step on |
+
+The outputs checked are those that a justice guarantee asks to set (they
+occur only positively in it).
+
+**Example.** *Fair* is not vacuous: it cannot win without granting each
+robot. An arbiter that trusts the robots to stop asking on their own is:
+
+```python
+fair = cs["Fair"]
+trusting = Contract("Trusting", fair.inputs, fair.outputs,
+                    [ltl.parse("G F !req1"), ltl.parse("G F !req2")], fair.guarantees)
+is_vacuous(fair).status                  # not_vacuous
+r = is_vacuous(trusting, core=True)
+for v in r.vacuous:
+    print(v.output, v.mode, [ltl.to_str(a) for a in v.core.core])
+```
+
+```
+grant1 never ['G F !req1']
+grant2 never ['G F !req2']
+```
+
+With G F !req1, the guarantee G F (grant1 | !req1) holds without any grant.
+The core is the assumption that makes it so; it is too strong.
+
+!!! note "Two weaker tests are not used"
+    The test on a controller M, M ∧ A → φ[y ← false], and the rewrite
+    Real(A, G[y ← false]) both call a good controller vacuous when an
+    assumption ties the release of the environment to y, such as
+    G ((req ∧ grant) → X !req): the controller grants, the request is
+    released, and φ[grant ← false] holds because it granted. Forcing y false
+    in the behavior asks the right question.
+
+## Redundancy in the GR(1) game
+
+A term is redundant in the game when removing it does not change the
+synthesis problem: the same contracts are realizable, with the same
+controllers (the inherent vacuity of Maoz and Shalom, ESEC/FSE 2020).
+`remove_vacuous` removes these terms.
 
 **Example.** *Fair* has these justice guarantees:
 
@@ -146,7 +194,7 @@ to nuXmv per term:
 | safety `G t` | the bodies of the other safety terms of its side (for a guarantee, also of the safety assumptions), as a propositional implication over the current and next values |
 | justice `G F j` | the initial and safety terms of both sides, and the other justice terms of its side; for a guarantee, also the justice assumptions |
 
-### Vacuity or redundancy?
+### Which redundancy?
 
 `remove_redundant` ([layer 2](checks.md)) also removes the terms implied by
 the others. Here both remove R8; they differ in what they keep:

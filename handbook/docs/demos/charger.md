@@ -27,8 +27,8 @@ inputs of the robots.
 flowchart TD
     G["Greedy: grant at the next step"] -- "is_realizable: unrealizable<br/>core R6.1, R6.2, R5" --> F["Fair: grant eventually"]
     F -- "is_realizable: realizable<br/>controller with 18 states" --> P["Pushy and Polite: different assumptions on robot 1"]
-    P -- "is_well_separated:<br/>Pushy not separated, Polite separated" --> V["Fair without vacuous terms"]
-    V -- "remove_vacuous: R8 removed" --> C["Fair composed with the robots"]
+    P -- "is_well_separated:<br/>Pushy not separated, Polite separated" --> V["Fair, not vacuous"]
+    V -- "is_vacuous: Fair needs its grants;<br/>remove_vacuous: R8 redundant" --> C["Fair composed with the robots"]
     C -- "compose(discharge=True), refines System: valid" --> D(["done"])
 ```
 
@@ -50,7 +50,10 @@ flowchart TD
    again, A2 is violated, and the contract holds without serving anybody.
    `is_well_separated` finds it, with A2 and A3 as its core. **Polite**
    assumes A4 instead of A3, and is well-separated.
-4. R8 is vacuous: R7.1 implies it. `remove_vacuous` removes it, and the
+4. *Fair* is not vacuous: it cannot win without granting each robot. An
+   arbiter that trusts the robots to stop asking on their own (G F !req1,
+   G F !req2) is vacuous: it wins without granting. R8 is redundant: R7.1
+   implies it. `remove_vacuous` removes it, and the
    contract stays realizable.
 5. The arbiter and the robots are composed with discharge
    (layer 1, with the checks of layer 2): the

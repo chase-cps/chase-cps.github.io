@@ -93,8 +93,9 @@ CONTRACT Bad_core
     F req
 ```
 
-`verify` checks compatibility and consistency; here the guarantees cannot
-hold together. `unsat_core` gives a minimal set of terms that cannot hold
+`verify` checks that the assumptions and the guarantees can hold together
+(A ∧ G satisfiable), which implies compatibility and consistency; here the
+guarantees cannot hold together. `unsat_core` gives a minimal set of terms that cannot hold
 together: removing any of them makes the rest satisfiable.
 
 ## Next
