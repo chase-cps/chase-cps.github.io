@@ -18,19 +18,17 @@ a:hover, a:focus { text-decoration: underline; }
 strong { font-weight: 700; }
 p { margin: 10px 0 15px; }
 
-/* Header and footer, as on the home page of the site. */
+/* Header (one line: the name, the tagline, the GitHub mark) and footer,
+   in the colors of the home page of the site. */
 #header_wrap { background: linear-gradient(to top, #373737, #212121); }
 .header-inner, .footer-inner { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
-.header-inner { padding-top: 46px; padding-bottom: 26px; }
-#project_title { margin: 0; font-size: 42px; color: #fff; text-shadow: #111 0 0 10px; }
-#project_title a { color: #fff; }
-#project_title a:hover { text-decoration: none; }
-#project_tagline { margin: 4px 0 0; color: #fff; font-size: 22px; font-weight: 300; letter-spacing: 0; text-shadow: #111 0 0 10px; }
-#forkme_banner {
-  position: absolute; top: 0; right: 24px; z-index: 10; padding: 10px 16px;
-  color: #fff; background: #0090ff; font-weight: 700;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5); border-radius: 0 0 2px 2px;
-}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; color: #fff; }
+.brand:hover { text-decoration: none; }
+.brand-name { font-family: 'Lucida Grande', Calibri, Helvetica, Arial, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -1px; text-shadow: #111 0 0 10px; }
+.brand-tagline { font-size: 16px; color: #c8c8c8; }
+.github { color: #f2f2f2; display: flex; opacity: .85; }
+.github:hover { opacity: 1; }
 #footer_wrap { background: #212121; }
 .footer-inner { padding-top: 18px; padding-bottom: 18px; }
 #footer_wrap p { margin: 0; color: #f2f2f2; font-size: 14px; }
@@ -70,16 +68,19 @@ p { margin: 10px 0 15px; }
 .headerlink { margin-left: 6px; color: #bbb; font-size: .8em; visibility: hidden; }
 h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink { visibility: visible; }
 
-/* Code, as in slate. */
+/* Code: a light gray rounded block, in the code font of slate. Long lines
+   wrap instead of scrolling sideways. */
 code, pre {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: .85em; color: #222; background: #fff; border-radius: 2px;
+  font-size: .8em; color: #222;
 }
-code { padding: 2px 4px; margin: 0 1px; box-shadow: 0 0 6px rgba(0, 0, 0, .08); }
-pre { padding: 12px; overflow-x: auto; box-shadow: 0 0 10px rgba(0, 0, 0, .1); line-height: 1.45; margin: 0 0 16px; }
-pre code { padding: 0; margin: 0; box-shadow: none; background: transparent; font-size: 1em; }
-.highlight { background: #fff; }
-.highlight pre { background: #fff; }
+code { background: #e6e6e6; padding: 1px 5px; border-radius: 4px; }
+pre {
+  background: #e6e6e6; padding: 12px 14px; border-radius: 6px; margin: 0 0 16px;
+  line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+pre code { padding: 0; background: transparent; font-size: 1em; white-space: inherit; }
+.highlight, .highlight pre { background: #e6e6e6; border-radius: 6px; }
 .highlight .c, .highlight .c1, .highlight .cm { color: #777772; font-style: italic; }
 .highlight .k, .highlight .kn, .highlight .kd, .highlight .o, .highlight .ow { color: #000; font-weight: bold; }
 .highlight .s, .highlight .s1, .highlight .s2 { color: #d14; }
@@ -100,10 +101,8 @@ td { padding: 9px 12px; border: 1px solid #c9c9c9; vertical-align: top; }
 td code { white-space: nowrap; }
 td.f, .f { font-family: Monaco, "Lucida Console", monospace; font-size: .85em; white-space: nowrap; }
 
-/* Notes (admonitions). */
-.admonition { background: #fff; border-left: 4px solid #0F79D0; padding: 10px 16px; margin: 18px 0; box-shadow: 0 0 6px rgba(0, 0, 0, .06); }
-.admonition.example { border-left-color: #2f6a3c; }
-.admonition.warning { border-left-color: #b26b00; }
+/* Notes: a darker gray rounded block. */
+.admonition { background: #dcdcdc; border-radius: 8px; padding: 10px 16px; margin: 18px 0; }
 .admonition-title { font-weight: 700; margin: 0 0 4px; color: #222; }
 .admonition p:last-child { margin-bottom: 4px; }
 
@@ -123,17 +122,16 @@ td.f, .f { font-family: Monaco, "Lucida Console", monospace; font-size: .85em; w
 .tabbed-set > input:nth-child(3):checked ~ .tabbed-content > :nth-child(3),
 .tabbed-set > input:nth-child(4):checked ~ .tabbed-content > :nth-child(4) { display: block; }
 
-/* The three layers of CHASE. */
+/* The three layers of CHASE (overview page), and the layer numbers of the
+   table of the demos. */
 .layers { display: grid; gap: 10px; margin: 18px 0; }
-.layers .layer { padding: 12px 16px; background: #fff; border-left: 5px solid; box-shadow: 0 0 6px rgba(0, 0, 0, .06); }
+.layers .layer { padding: 12px 16px; background: #e6e6e6; border-radius: 8px; }
 .layers .layer p { margin: 2px 0; }
-.layer.l1 { border-color: #2f5d8a; } .layer.l2 { border-color: #3f7d4c; } .layer.l3 { border-color: #a8742a; }
-.layers .base { font-size: 14px; color: #555; padding: 8px 16px; border: 1px dashed #bbb; }
-.tag { display: inline-block; min-width: 1.5em; text-align: center; font-size: 12px; font-weight: 700; padding: 0 6px; border-radius: 10px; color: #fff; vertical-align: 1px; }
-.tag.l1 { background: #2f5d8a; } .tag.l2 { background: #3f7d4c; } .tag.l3 { background: #a8742a; }
+.layers .base { font-size: 15px; color: #555; padding: 4px 2px; }
+.tag { display: inline-block; min-width: 1.6em; text-align: center; font-size: 12px; font-weight: 700; padding: 0 6px; border-radius: 10px; color: #fff; background: #555; vertical-align: 1px; }
 
 /* Diagrams and recordings. */
-.mermaid { background: #fff; padding: 12px; margin: 0 0 18px; text-align: center; box-shadow: 0 0 6px rgba(0, 0, 0, .06); }
+.mermaid { background: #fff; border-radius: 8px; padding: 12px; margin: 0 0 18px; text-align: center; }
 img.recording { border-radius: 4px; box-shadow: 0 2px 10px rgba(0, 0, 0, .3); }
 figure { margin: 0 0 18px; }
 figcaption { font-size: 14px; color: #555; margin-top: 4px; }
@@ -149,7 +147,5 @@ figcaption { font-size: 14px; color: #555; margin-top: 4px; }
   .nav-toggle-label { display: block; font-weight: 700; color: #0F79D0; cursor: pointer; }
   .sidebar { display: none; position: static; max-height: none; }
   .nav-toggle:checked ~ .sidebar { display: block; }
-  #project_title { font-size: 32px; }
-  #project_tagline { font-size: 17px; }
-  #forkme_banner { display: none; }
+  .brand-tagline { display: none; }
 }

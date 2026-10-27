@@ -14,10 +14,10 @@ package.
 
 | Layer | Tools |
 |---|---|
-| <span class="tag l1">1</span> Contract algebra | `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
-| <span class="tag l2">2</span> Checks on contracts | `refines`, `verify`, `is_compatible`, `is_consistent`, `implements`, `accepts`, `remove_redundant` |
-| <span class="tag l2">2</span> Queries on formulas | `implies`, `is_satisfiable`, `unsat_core` |
-| <span class="tag l3">3</span> GR(1) synthesis | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `remove_vacuous` |
+| 1. Contract algebra | `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
+| 2. Checks on contracts | `refines`, `verify`, `is_compatible`, `is_consistent`, `implements`, `accepts`, `remove_redundant` |
+| 2. Queries on formulas | `implies`, `is_satisfiable`, `unsat_core` |
+| 3. GR(1) synthesis | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `remove_vacuous` |
 | Specifications | `read_spec`, `write_spec` |
 
 A contract is given in JSON:

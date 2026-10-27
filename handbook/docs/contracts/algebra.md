@@ -1,9 +1,18 @@
-# <span class="tag l1">1</span> Contract algebra
+# 1. Contract algebra
 
 The operations that build a contract from contracts. They hold for any
 assume-guarantee contracts, and the CHASE core library computes them in
 closed form, without a solver. In Python they are methods of `Contract`, and
 each one returns a new contract.
+
+## Assume-guarantee contracts
+
+A contract C = (A, G) describes a component by what it **assumes** of its
+environment (A) and what it **guarantees** when the assumptions hold (G). In
+CHASE, A and G are LTL formulas over the variables of the component: the
+inputs are set by the environment, the outputs by the component. The contract
+allows the behaviors of A → G, and (A, A → G) is its **saturated** form, with
+the same behaviors; CHASE reads every contract saturated.
 
 ## The operations
 

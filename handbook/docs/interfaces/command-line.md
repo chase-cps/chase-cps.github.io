@@ -20,8 +20,8 @@ contracts. The options are grouped by layer:
 
 | Group | Options |
 |---|---|
-| <span class="tag l2">2</span> checks on contracts (nuXmv) | `--verify` (the default), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT` |
-| <span class="tag l3">3</span> GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C` |
+| 2. checks on contracts (nuXmv) | `--verify` (the default), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT` |
+| 3. GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C` |
 | all | `--core` (a minimal set of terms that explains a failure), `--json`, `--timeout`, `--backend` |
 
 The exit status is 0 when every check passes, 1 when a check fails or does not

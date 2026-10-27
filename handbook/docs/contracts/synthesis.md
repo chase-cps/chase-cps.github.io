@@ -1,4 +1,4 @@
-# <span class="tag l3">3</span> GR(1) synthesis
+# 3. GR(1) synthesis
 
 The analyses of this layer ask whether a **component can be synthesized**
 from a contract: a controller that sets the outputs so that the guarantees

@@ -38,9 +38,9 @@ flowchart TD
    request (R6.1, R6.2), and never to both (R5). It is unrealizable: when
    both robots ask at once, it cannot serve both. The unrealizable core
    names the three guarantees in conflict
-   (<span class="tag l3">3</span> `is_realizable(core=True)`). The composition
+   (layer 3: `is_realizable(core=True)`). The composition
    of Greedy with the robots refines the system all the same
-   (<span class="tag l2">2</span> `refines`): the refinement check does not see
+   (layer 2: `refines`): the refinement check does not see
    the conflict.
 2. **Fair** gives the station to each robot eventually (R7.1, R7.2). It is
    realizable, and `synthesize` builds a controller with 18 states.
@@ -53,7 +53,7 @@ flowchart TD
 4. R8 is vacuous: R7.1 implies it. `remove_vacuous` removes it, and the
    contract stays realizable.
 5. The arbiter and the robots are composed with discharge
-   (<span class="tag l1">1</span> with <span class="tag l2">2</span>): the
+   (layer 1, with the checks of layer 2): the
    assumptions of the robots (A1.1, A1.2) are discharged by the guarantees of
    the arbiter (R7.1, R7.2), no assumption is left, and the composition
    refines the system.

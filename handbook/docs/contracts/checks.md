@@ -1,4 +1,4 @@
-# <span class="tag l2">2</span> Checks
+# 2. Checks
 
 The checks answer questions about contracts: does one refine another, can it
 be met at all. Each one reduces to the **validity** or the **satisfiability**

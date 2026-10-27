@@ -1,4 +1,4 @@
-# CHASE
+# Overview
 
 CHASE (Contract-based Heterogeneous Analysis and Systems Exploration) is a
 framework for requirement capture, formalization, and validation of

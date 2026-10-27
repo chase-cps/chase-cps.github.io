@@ -28,13 +28,22 @@ infinitely often, under assumptions on the motor and on the requests.
 - `single_model.ltl` is the same arm as one contract, for comparison with the
   compositional model.
 
+## Run it
+
+![The robotic joints run with chase-cps 0.3.1](../assets/robotic-joints.gif){ .recording }
+
+The composition of the three joints refines the contract of the arm, and
+Joint1 is realizable. `scaling.py` repeats the refinement for N joints, and
+for a broken arm (Joint1 without `G F j1_done`), whose counterexample has
+length 3.
+
 ## Scaling
 
 `scaling.py` builds the same contracts for N joints with the Python package,
 composes them, and checks the refinement, for a correct arm and for a broken
 one (a joint that may never be done):
 
-![Refinement time against the number of joints](../assets/robotic-joints-scaling.png)
+![Refinement time against the number of joints](../assets/robotic-joints-scaling.png){ width="520" }
 
 With the closed-form composition the correct version is checked up to 5 joints
 (84 s); from 6 joints the check of the guarantees does not finish in 600 s.

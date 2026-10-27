@@ -6,10 +6,10 @@ layers:
 
 | Layer | Module | Names |
 |---|---|---|
-| <span class="tag l1">1</span> Contract algebra | `chase_cps.contract` | `Contract` and its methods: `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
-| <span class="tag l2">2</span> Checks on contracts | `chase_cps.checks` | `refines`, `verify`, `is_compatible`, `is_consistent`, `implements`, `accepts`, `remove_redundant` |
-| <span class="tag l2">2</span> Queries on formulas | `chase_cps.logic` | `implies`, `is_satisfiable`, `unsat_core` |
-| <span class="tag l3">3</span> GR(1) synthesis | `chase_cps.gr1` | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `remove_vacuous` |
+| 1. Contract algebra | `chase_cps.contract` | `Contract` and its methods: `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
+| 2. Checks on contracts | `chase_cps.checks` | `refines`, `verify`, `is_compatible`, `is_consistent`, `implements`, `accepts`, `remove_redundant` |
+| 2. Queries on formulas | `chase_cps.logic` | `implies`, `is_satisfiable`, `unsat_core` |
+| 3. GR(1) synthesis | `chase_cps.gr1` | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `remove_vacuous` |
 
 All the names are also in `chase_cps` itself, and the modules of version 0.3.0
 (`chase_cps.checks`, `chase_cps.cores`) still give them. `load_spec(path)`
