@@ -1,0 +1,85 @@
+site_name: CHASE
+site_description: Contract-based Heterogeneous Analysis and Systems Exploration
+site_url: https://chase-cps.github.io/
+repo_url: https://github.com/chase-cps/chase
+repo_name: chase-cps/chase
+edit_uri: ""
+copyright: CHASE is released under the BSD 3-Clause License.
+
+theme:
+  name: material
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Dark theme
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Light theme
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.footer
+    - navigation.top
+    - toc.follow
+    - search.highlight
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Overview: index.md
+  - Getting started:
+      - Installation: getting-started/install.md
+      - A first contract: getting-started/first-contract.md
+  - Contracts:
+      - Assume-guarantee contracts: contracts/concepts.md
+      - "1. Contract algebra": contracts/algebra.md
+      - "2. Checks": contracts/checks.md
+      - "3. GR(1) synthesis": contracts/synthesis.md
+  - Interfaces:
+      - Python package: interfaces/python.md
+      - Command line: interfaces/command-line.md
+      - Specification language and console: interfaces/logics-tool.md
+      - MCP server for AI agents: interfaces/mcp.md
+      - Python API reference: https://chase-cps.github.io/api/
+  - Demos:
+      - All demos: demos/index.md
+      - Charger: demos/charger.md
+      - Lift-Plus-Cruise: demos/lift-plus-cruise.md
+      - Robotic joints: demos/robotic-joints.md
+      - Power systems and factories: demos/power-systems.md
+  - About:
+      - Publications: about/publications.md
+      - Repositories: about/repositories.md
