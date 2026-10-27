@@ -22,12 +22,13 @@ p { margin: 10px 0 15px; }
    in the colors of the home page of the site. */
 #header_wrap { background: linear-gradient(to top, #373737, #212121); }
 .header-inner, .footer-inner { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
-.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
-.brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; color: #fff; }
-.brand:hover { text-decoration: none; }
-.brand-name { font-family: 'Lucida Grande', Calibri, Helvetica, Arial, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -1px; text-shadow: #111 0 0 10px; }
-.brand-tagline { font-size: 16px; color: #c8c8c8; }
-.github { color: #f2f2f2; display: flex; opacity: .85; }
+.header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 40px; padding-bottom: 24px; }
+.brand { min-width: 0; }
+#project_title { margin: 0; font-size: 42px; letter-spacing: -1px; text-shadow: #111 0 0 10px; }
+#project_title a { color: #fff; }
+#project_title a:hover { text-decoration: none; }
+#project_tagline { margin: 4px 0 0; color: #fff; font-size: 22px; font-weight: 300; letter-spacing: 0; text-shadow: #111 0 0 10px; }
+.github { color: #f2f2f2; display: flex; opacity: .85; align-self: flex-start; }
 .github:hover { opacity: 1; }
 #footer_wrap { background: #212121; }
 .footer-inner { padding-top: 18px; padding-bottom: 18px; }
@@ -90,6 +91,17 @@ pre code { padding: 0; background: transparent; font-size: 1em; white-space: inh
 .highlight .nb, .highlight .bp { color: #0086B3; }
 .highlight .go { color: #555; }
 
+/* The copy button of the code blocks. */
+.has-copy { position: relative; }
+button.copy {
+  position: absolute; top: 6px; right: 6px; padding: 2px 8px; font-size: 12px;
+  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif; color: #444;
+  background: #f7f7f7; border: 1px solid #c4c4c4; border-radius: 4px; cursor: pointer; opacity: .75;
+}
+button.copy:hover, button.copy:focus-visible { opacity: 1; }
+.has-copy pre { padding-right: 64px; }
+pre.has-copy { padding-right: 64px; }
+
 /* Tables, as in slate: a dark header row. */
 table { border-collapse: collapse; margin: 0 0 20px; background: #fff; width: 100%; }
 .table-wrap { overflow-x: auto; }
@@ -147,5 +159,6 @@ figcaption { font-size: 14px; color: #555; margin-top: 4px; }
   .nav-toggle-label { display: block; font-weight: 700; color: #0F79D0; cursor: pointer; }
   .sidebar { display: none; position: static; max-height: none; }
   .nav-toggle:checked ~ .sidebar { display: block; }
-  .brand-tagline { display: none; }
+  #project_title { font-size: 32px; }
+  #project_tagline { font-size: 17px; }
 }
