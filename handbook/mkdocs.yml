@@ -49,6 +49,7 @@ nav:
       - Charger: demos/charger.md
       - Lift-Plus-Cruise: demos/lift-plus-cruise.md
       - Robotic joints: demos/robotic-joints.md
+      - BufferSwap: demos/buffer-swap.md
       - Power systems and factories: demos/power-systems.md
   - About:
       - Publications: about/publications.md

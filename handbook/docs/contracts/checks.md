@@ -142,6 +142,30 @@ nuXmv as they are; nuXmv keeps the past values in history variables. The
 values of words in the traces are integers. The operators are in
 [Formulas](formulas.md).
 
+## RTL
+
+A Verilog or SystemVerilog module is a state machine too:
+`Model.from_verilog(files, top)` reads it with Yosys
+(`pip install chase-cps[rtl]`), and `implements`, `accepts`, and
+`is_receptive` take it. The ports are the variables of the contracts (a
+1-bit port is a Boolean, a wider one a word), and one step is one cycle of
+the clock.
+
+```
+from chase_cps import Model, implements
+
+m = Model.from_verilog(["bsg_dff_reset.sv", "bsg_dff_en.sv", "bsg_one_fifo.sv"],
+                       "bsg_one_fifo", parameters={"width_p": 4}, reset="reset_i",
+                       names={"ready_and_o": "ready_o"})
+print(implements(m, slot).status)
+```
+
+`parameters` sets parameters of the top module, `names` renames ports, and
+`defines` gives macros. With `reset`, the reset holds in the first step and
+the contracts are checked from the step after it. The checks are those of
+nuXmv, for small and medium designs; the [BufferSwap demo](../demos/buffer-swap.md)
+checks the RTL of two FIFOs.
+
 ## Engines
 
 nuXmv checks the formulas with IC3 and BDDs at the same time, and the first
