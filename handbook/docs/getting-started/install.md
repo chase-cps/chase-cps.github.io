@@ -18,7 +18,7 @@ The package contains the CHASE library. The checks call external tools, which
 are installed separately:
 
 - [nuXmv](https://nuxmv.fbk.eu/) for the checks (layer 2) and for
-  `remove_vacuous`. nuXmv is free for academic and non-commercial use.
+  `remove_redundant`. nuXmv is free for academic and non-commercial use.
 - [slugs](https://github.com/VerifiableRobotics/slugs) for the other analyses
   of GR(1) synthesis (layer 3).
 

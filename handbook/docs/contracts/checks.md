@@ -22,6 +22,18 @@ nuXmv (or NuSMV).
 M and E are LTL formulas over the variables of the contract. A failed check
 comes with a counterexample: a behavior that breaks it.
 
+`remove_redundant(c)` drops the terms implied by the others. Which terms it
+may drop depends on what the contract is for next:
+
+| Next | Call | Keeps |
+|---|---|---|
+| the algebra and the checks | `remove_redundant(c)` | A → G |
+| synthesis ([layer 3](synthesis.md#redundancy-in-the-gr1-game)) | `remove_redundant(c, synth=True)` | realizability and the controllers |
+
+The two differ only when the assumptions are wrong, for instance
+unsatisfiable. With `core=True`, each removed term comes with the terms
+that imply it.
+
 ```python
 r = refines(impl, spec)
 r.status        # "valid" or "invalid"

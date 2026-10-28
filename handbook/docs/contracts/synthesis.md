@@ -163,7 +163,7 @@ The core is the assumption that makes it so; it is too strong.
 A term is redundant in the game when removing it does not change the
 synthesis problem: the same contracts are realizable, with the same
 controllers (the inherent vacuity of Maoz and Shalom, ESEC/FSE 2020).
-`remove_vacuous` removes these terms.
+`remove_redundant(c, synth=True)` removes these terms.
 
 **Example.** *Fair* has these justice guarantees:
 
@@ -176,7 +176,7 @@ G F (grant1 | !req1 | grant2)    R8
 R8 is weaker than R7.1, so it adds nothing:
 
 ```python
-v = remove_vacuous(cs["Fair"], core=True)
+v = remove_redundant(cs["Fair"], synth=True, core=True)
 for t in v.removed:
     print(t.part, t.kind, ltl.to_str(t.term), [ltl.to_str(x) for x in t.core])
 ```
@@ -194,13 +194,19 @@ to nuXmv per term:
 | safety `G t` | the bodies of the other safety terms of its side (for a guarantee, also of the safety assumptions), as a propositional implication over the current and next values |
 | justice `G F j` | the initial and safety terms of both sides, and the other justice terms of its side; for a guarantee, also the justice assumptions |
 
-### Which redundancy?
+### With or without `synth`?
 
-`remove_redundant` ([layer 2](checks.md)) also removes the terms implied by
-the others. Here both remove R8; they differ in what they keep:
+Without `synth`, `remove_redundant` ([layer 2](checks.md)) keeps A → G
+instead. On *Fair* both remove R8. They differ when the assumptions are
+wrong:
 
-| | `remove_redundant` | `remove_vacuous` |
+| Contract | `remove_redundant(c)` | `remove_redundant(c, synth=True)` |
 |---|---|---|
-| keeps | the behaviors of A → G | realizability and the controllers |
-| may remove | a term that follows from the others only over whole traces | only a term whose removal leaves the game unchanged |
-| use it for | specifications that are checked | specifications that are synthesized |
+| A: G F (x ∧ !x); G: G g, G !g | drops both guarantees, since A cannot hold: now realizable | drops nothing: unrealizable, as before |
+| A: G F g; G: G g | drops nothing | drops G F g: the component keeps G g anyway, but the contract is stronger |
+
+In the game, the component must keep its safety guarantees even when the
+environment breaks its justice assumptions; and an assumption that the
+guarantees make hold does not matter in the game, but it does for A → G.
+Use `synth=True` before synthesis, and the default before the algebra and
+the checks.
