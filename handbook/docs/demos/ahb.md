@@ -4,14 +4,15 @@ The arbiter of the AMBA AHB bus gives the bus to one of two masters, and a
 master can lock the bus. The requirements are simplified from those of R.
 Bloem et al., "Specify, Compile, Run: Hardware from PSL" (COCV 2007), a case
 study of GR(1) synthesis: two masters, no bursts, and no HREADY. They are
-written as two viewpoints of the same arbiter, and the demo compares the
-two ways to put them together: [merging and conjunction](../contracts/algebra.md#what-each-one-is-for).
+written as two viewpoints of the same arbiter, in [SystemVerilog
+Assertions](../interfaces/systemverilog.md), and the demo compares the two
+ways to put them together: [merging and conjunction](../contracts/algebra.md#what-each-one-is-for).
 
 ```mermaid
 flowchart LR
-    M1["Master 1"] -- "req1, lock1" --> A["Arbiter: Grant and Lock"]
-    M2["Master 2"] -- "req2, lock2" --> A
-    A -- "grant1, grant2, locked" --> B["Bus"]
+    M1["Master 1"] -- "hbusreq1, hlock1" --> A["Arbiter: Grant and Lock"]
+    M2["Master 2"] -- "hbusreq2, hlock2" --> A
+    A -- "hgrant1, hgrant2, hmastlock" --> B["Bus"]
 ```
 
 ## The contracts
@@ -28,7 +29,7 @@ flowchart LR
 | Step | Operation | Result |
 |---|---|---|
 | 1. The viewpoints | `is_realizable` | _Grant_ and _Lock_ are each realizable |
-| 2. The merge | `merge`, `refines`, `synthesize` | The merge is equivalent to _Arbiter_ (the assumptions of _Lock_, the guarantees of both), which is realizable; slugs gives a controller |
+| 2. The merge | `merge` with discharge, `synthesize`, `to_sva` | The merge keeps the terms of both viewpoints: _Arbiter_, which is realizable; slugs gives a controller, and _Arbiter_ is written as SVA |
 | 3. The conjunction | `conjoin`, `refines` | The conjunction refines _Arbiter_; _Arbiter_ does not refine it |
 | 4. The controller | `Model.from_controller`, `implements` | The controller implements _Arbiter_, not the conjunction |
 
@@ -51,4 +52,5 @@ $> python3 AHB/ahb.py
 ```
 
 The directory also has the requirements (`requirements.txt`) and the
-contracts (`ahb.ltl`, with the number of the requirement on each line).
+viewpoints in SVA (`sva/grant.sv`, `sva/lock.sv`, with the number of the
+requirement as the label of each assertion).

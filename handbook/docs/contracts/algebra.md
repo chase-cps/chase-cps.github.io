@@ -118,6 +118,29 @@ contract that the other one guarantees (Incer, PhD thesis 2022, Algorithm 2):
     composition, one that fails on it may still hold. The
     [Charger demo](../demos/charger.md) uses it.
 
+## Merging and quotient with discharge
+
+`c1.merge(c2, discharge=True)` and `c1.divide(c2, discharge=True)` keep the
+terms too, and here the result is the same contract as the closed form:
+
+- the merge is (A1 ∧ A2, G1 ∧ G2), whose saturation is the merge;
+- the quotient assumes A1 and the guarantees of c2, and guarantees G1 and
+  the assumptions of c2. The assumptions of c2 implied by A1 are discharged
+  first; when some are left (A2'), each guarantee g of c2 is assumed as
+  A2' → g;
+- then the terms implied by the others are dropped.
+
+The closed forms are rarely GR(1), the terms often are: use these before
+`is_realizable` and `synthesize`. The [AHB demo](../demos/ahb.md) merges
+two viewpoints, and the [BufferSwap demo](../demos/buffer-swap.md) divides
+the system by the neighbours of a buffer. Conjunction, disjunction, and
+separation have no such form: their assumption or guarantee is a
+disjunction.
+
+Pacti computes the quotient of polyhedral terms the same way when A1 implies
+A2. Otherwise it assumes A1 alone, since A2 → g is not a polyhedron: the
+result refines the quotient, so it is correct but smaller.
+
 ## Sources
 
 - Composition, conjunction, disjunction, saturation: Benveniste et al.,

@@ -34,7 +34,7 @@ flowchart LR
 |---|---|---|
 | 1. The old system | `compose` with discharge, `refines` | _Producer_, _TwoFifo_, _Consumer_ refine _System_ |
 | 2. The new buffer against the old one | `refines` | _OneFifo_ does not refine _TwoFifo_: with a value in, it takes no other |
-| 3. What the place of the buffer needs | `divide`, `refines` | _OneFifo_ refines _Slot_ = _System_ / (_Producer_, _Consumer_), and the new system refines _System_ |
+| 3. What the place of the buffer needs | `divide` with discharge, `refines` | _OneFifo_ refines _Slot_ = _System_ / (_Producer_, _Consumer_), and the new system refines _System_ |
 | 4. The contract for the RTL | `to_sva`, `Model.from_rtl`, `implements` | `bsg_one_fifo` implements _Slot_; Jasper proves it too |
 
 The new buffer is not a refinement of the old one, so its contract alone
