@@ -51,6 +51,7 @@ nav:
       - Robotic joints: demos/robotic-joints.md
       - BufferSwap: demos/buffer-swap.md
       - LMFSM: demos/lm-fsm.md
+      - AHB: demos/ahb.md
       - Power systems and factories: demos/power-systems.md
   - About:
       - Publications: about/publications.md
