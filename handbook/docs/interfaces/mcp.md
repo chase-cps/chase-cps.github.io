@@ -18,7 +18,8 @@ package.
 | 2. Checks on contracts | `refines`, `verify`, `is_compatible`, `is_consistent`, `implements`, `accepts`, `is_receptive`, `remove_redundant` |
 | 2. Queries on formulas | `implies`, `is_satisfiable`, `unsat_core` |
 | 3. GR(1) synthesis | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant` with `synth` |
-| Specifications | `read_spec`, `write_spec` |
+| Specifications | `parse_spec`, `to_spec` |
+| SystemVerilog Assertions | `parse_sva`, `to_sva` |
 
 A contract is given in JSON:
 
