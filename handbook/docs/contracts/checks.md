@@ -145,7 +145,7 @@ values of words in the traces are integers. The operators are in
 ## RTL
 
 A Verilog or SystemVerilog module is a state machine too:
-`Model.from_verilog(files, top)` reads it with Yosys
+`Model.from_rtl(files, top)` reads it with Yosys
 (`pip install chase-cps[rtl]`), and `implements`, `accepts`, and
 `is_receptive` take it. The ports are the variables of the contracts (a
 1-bit port is a Boolean, a wider one a word), and one step is one cycle of
@@ -154,9 +154,9 @@ the clock.
 ```
 from chase_cps import Model, implements
 
-m = Model.from_verilog(["bsg_dff_reset.sv", "bsg_dff_en.sv", "bsg_one_fifo.sv"],
-                       "bsg_one_fifo", parameters={"width_p": 4}, reset="reset_i",
-                       names={"ready_and_o": "ready_o"})
+m = Model.from_rtl(["bsg_dff_reset.sv", "bsg_dff_en.sv", "bsg_one_fifo.sv"],
+                   "bsg_one_fifo", parameters={"width_p": 4}, reset="reset_i",
+                   names={"ready_and_o": "ready_o"})
 print(implements(m, slot).status)
 ```
 
