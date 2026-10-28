@@ -42,7 +42,8 @@ without a solver. [More](contracts/algebra.md)
 <div class="layer l2" markdown>
 **2. Checks.** Refinement, compatibility, consistency, and implementation
 reduce to the validity and the satisfiability of formulas, which a model
-checker decides (nuXmv, for LTL over Boolean, integer, and real variables).
+checker decides (nuXmv, for LTL over Boolean, integer, real, and word
+variables).
 A failed check comes with a counterexample, and a core explains it.
 [More](contracts/checks.md)
 </div>
@@ -54,8 +55,8 @@ with slugs. They ask whether a component can be synthesized from a contract.
 </div>
 <div class="base" markdown>
 Front ends: the specification language and console (logics_tool), domain
-languages (DSL_tool), Python, the command line, and the MCP server for AI
-agents. Back ends: nuXmv, NuSMV, slugs, gr1c.
+languages (DSL_tool), SystemVerilog Assertions, Python, the command line, and
+the MCP server for AI agents. Back ends: nuXmv, NuSMV, slugs, gr1c.
 </div>
 </div>
 

@@ -41,6 +41,7 @@ nav:
       - Python package: interfaces/python.md
       - Command line: interfaces/command-line.md
       - Specification language and console: interfaces/logics-tool.md
+      - SystemVerilog Assertions: interfaces/systemverilog.md
       - MCP server for AI agents: interfaces/mcp.md
   - Demos:
       - All demos: demos/index.md

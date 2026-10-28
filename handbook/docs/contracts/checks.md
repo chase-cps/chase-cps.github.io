@@ -135,6 +135,60 @@ counterexamples still show real values, and synthesized controllers state
 conditions such as `30.5 < kias < 40`. The
 [Lift-Plus-Cruise demo](../demos/lift-plus-cruise.md) uses real variables.
 
+## Words
+
+A word is a bit vector of a fixed width, as a register of a circuit:
+`"word[8]"` is unsigned, `"signed word[8]"` is in two's complement, and the
+arithmetic wraps around (for a `word[8]` equal to 255, x + 1 = 0).
+
+| Operator | Meaning |
+|---|---|
+| `+ - * / mod` | arithmetic modulo 2^n |
+| `& \| xor !` | bitwise; in a relation, parenthesize them: `(x & y) = 0` |
+| `<< >>` | shifts by a number |
+| `x :: y` | concatenation, x on the high bits |
+| `x[7:4]`, `x[3]` | bits; a single bit can be used as a Boolean |
+| `extend(x, n)`, `signed(x)`, `unsigned(x)` | n more bits; the same bits read as signed or unsigned |
+
+Both operands of an operation have the same width and signedness, and an
+integer constant takes the type of the other operand. The checks give the
+words to nuXmv. The contract algebra takes contracts with words; GR(1)
+synthesis (slugs) and the logics language do not.
+
+## Past values
+
+`x'` is the value of x at the next step, and `past(x, n)` its value n steps
+before, for a variable of any type: `G X X (y = past(x, 2))` says that y is
+x delayed by two steps. In the first n steps `past(x, n)` is any value, so
+write it under `X` as here. nuXmv keeps the past values in history
+variables. GR(1) synthesis and the logics language do not take `past`.
+
+## Engines
+
+nuXmv checks the formulas with IC3 and BDDs at the same time, and the first
+verdict is taken. Both engines prove and refute, so the verdict does not
+depend on which one answers; the counterexample may. One engine can be
+chosen with `engine`, or in the back end, as the results name it:
+
+| Engine | Proves | Finds counterexamples | Good for |
+|---|---|---|---|
+| `portfolio` (default) | yes | yes | IC3 and BDDs at the same time |
+| `ic3` | yes | yes | large state spaces, words, reals |
+| `bdd` | yes | yes | a counterexample that needs a long loop (a counter that goes around) |
+| `bmc` | no | up to `bmc_bound` steps | short counterexamples |
+
+```
+from chase_cps import implies
+
+r = implies("cnt = 254 & G (cnt' = cnt + 1)", "X (cnt = 0)", {"cnt": "word[8]"},
+            "nuxmv/bdd")
+print(r.status, r.backend)      # invalid nuxmv/bdd
+```
+
+On the command line the option is `--engine`. Formulas with `signed()` or
+`unsigned()` are checked with BDDs only: IC3 of nuXmv 2.2.0 gives wrong
+answers on them.
+
 !!! note "Integers out of range"
     `load_spec` warns when an integer is compared with a constant outside its
     range, for instance `credits >= 90` with `credits` declared without a

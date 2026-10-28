@@ -15,6 +15,9 @@ All the names are also in `chase_cps` itself, and the modules of version 0.3.0
 (`chase_cps.checks`, `chase_cps.cores`) still give them. `load_spec(path)`
 and `parse_spec(text)` read the contracts of a
 [specification file](logics-tool.md), and `to_spec(contracts)` writes one.
+`parse_sva(text)` reads the assertions of SystemVerilog as a contract, and
+`to_sva(contract)` writes a contract as a checker module (see
+[SystemVerilog Assertions](systemverilog.md)).
 
 ## Formulas
 
@@ -22,11 +25,16 @@ The Python package, the command line (JSON files), and the MCP server read
 formulas in the standard LTL syntax: the same operators, plus `W` (weak
 until) and the aliases `[]` (`G`), `<>` (`F`), `&&`, `||`, `=>`, `<=>`,
 `==`. They
-have the usual precedence, from the loosest: `<->`, `->`, `|`, `&`,
-`U R W`, the unary operators, the relations, `+ -`, `* /`. So `G a -> b` is
-`(G a) -> b`. Names cannot be keywords of either syntax (`G`, `F`, `X`, `U`,
-`R`, `W`, `P`, `NAME`, `CONTRACT`, ...). Numbers may have a fraction
-(`20.5`); they are read exactly.
+have the usual precedence, from the loosest: `<->`, `->`, `|` `xor`, `&`,
+`U R W`, the unary operators, the relations, `<< >>`, `+ -`, `* / mod`,
+`::`, the bits `x[7:0]`. So `G a -> b` is `(G a) -> b`. Names cannot be
+keywords of either syntax (`G`, `F`, `X`, `U`, `R`, `W`, `P`, `NAME`,
+`CONTRACT`, `mod`, `xor`, ...). Numbers may have a fraction (`20.5`); they
+are read exactly. The variables are Booleans (`"bool"`), integer ranges
+(`[0, 3]`), reals (`"real"`), and [words](../contracts/checks.md#words)
+(`"word[8]"`, `"signed word[8]"`); `x'` is the value of x at the next step
+and [`past(x, n)`](../contracts/checks.md#past-values) its value n steps
+before.
 
 A contract is built from strings or from a dictionary (the JSON format of
 the command line and of the MCP server):
