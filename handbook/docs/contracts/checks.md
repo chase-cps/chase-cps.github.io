@@ -135,33 +135,12 @@ counterexamples still show real values, and synthesized controllers state
 conditions such as `30.5 < kias < 40`. The
 [Lift-Plus-Cruise demo](../demos/lift-plus-cruise.md) uses real variables.
 
-## Words
+## Words and past values
 
-A word is a bit vector of a fixed width, as a register of a circuit:
-`"word[8]"` is unsigned, `"signed word[8]"` is in two's complement, and the
-arithmetic wraps around (for a `word[8]` equal to 255, x + 1 = 0).
-
-| Operator | Meaning |
-|---|---|
-| `+ - * / mod` | arithmetic modulo 2^n |
-| `& \| xor !` | bitwise; in a relation, parenthesize them: `(x & y) = 0` |
-| `<< >>` | shifts by a number |
-| `x :: y` | concatenation, x on the high bits |
-| `x[7:4]`, `x[3]` | bits; a single bit can be used as a Boolean |
-| `extend(x, n)`, `signed(x)`, `unsigned(x)` | n more bits; the same bits read as signed or unsigned |
-
-Both operands of an operation have the same width and signedness, and an
-integer constant takes the type of the other operand. The checks give the
-words to nuXmv. The contract algebra takes contracts with words; GR(1)
-synthesis (slugs) and the logics language do not.
-
-## Past values
-
-`x'` is the value of x at the next step, and `past(x, n)` its value n steps
-before, for a variable of any type: `G X X (y = past(x, 2))` says that y is
-x delayed by two steps. In the first n steps `past(x, n)` is any value, so
-write it under `X` as here. nuXmv keeps the past values in history
-variables. GR(1) synthesis and the logics language do not take `past`.
+The checks give the words (bit vectors, `"word[8]"`) and `past(x, n)` to
+nuXmv as they are; nuXmv keeps the past values in history variables. The
+values of words in the traces are integers. The operators are in
+[Formulas](formulas.md).
 
 ## Engines
 

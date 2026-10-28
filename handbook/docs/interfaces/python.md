@@ -22,19 +22,9 @@ and `parse_spec(text)` read the contracts of a
 ## Formulas
 
 The Python package, the command line (JSON files), and the MCP server read
-formulas in the standard LTL syntax: the same operators, plus `W` (weak
-until) and the aliases `[]` (`G`), `<>` (`F`), `&&`, `||`, `=>`, `<=>`,
-`==`. They
-have the usual precedence, from the loosest: `<->`, `->`, `|` `xor`, `&`,
-`U R W`, the unary operators, the relations, `<< >>`, `+ -`, `* / mod`,
-`::`, the bits `x[7:0]`. So `G a -> b` is `(G a) -> b`. Names cannot be
-keywords of either syntax (`G`, `F`, `X`, `U`, `R`, `W`, `P`, `NAME`,
-`CONTRACT`, `mod`, `xor`, ...). Numbers may have a fraction (`20.5`); they
-are read exactly. The variables are Booleans (`"bool"`), integer ranges
-(`[0, 3]`), reals (`"real"`), and [words](../contracts/checks.md#words)
-(`"word[8]"`, `"signed word[8]"`); `x'` is the value of x at the next step
-and [`past(x, n)`](../contracts/checks.md#past-values) its value n steps
-before.
+formulas in the standard LTL syntax, over Boolean, integer, real, and word
+variables. The operators, the types, and the precedence are in
+[Formulas](../contracts/formulas.md).
 
 A contract is built from strings or from a dictionary (the JSON format of
 the command line and of the MCP server):

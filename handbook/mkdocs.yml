@@ -34,6 +34,7 @@ nav:
       - Installation: getting-started/install.md
       - A first contract: getting-started/first-contract.md
   - Contracts:
+      - Formulas: contracts/formulas.md
       - "1. Contract algebra": contracts/algebra.md
       - "2. Checks": contracts/checks.md
       - "3. GR(1) synthesis": contracts/synthesis.md
