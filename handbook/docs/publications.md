@@ -71,7 +71,7 @@ To cite CHASE, please use the DATE 2018 paper:
   ([walkthrough](https://github.com/chase-cps/demos/blob/main/DATE21/DATE21.md)).
 - CPS-IoT Week 2022: verification and synthesis of the controller of a
   robotic arm, with a single model and with a compositional model
-  ([robotic joints](../demos/robotic-joints.md)).
+  ([robotic joints](demos/robotic-joints.md)).
 
 ## Acknowledgement
 

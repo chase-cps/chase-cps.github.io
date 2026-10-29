@@ -66,9 +66,8 @@ Python, the command line, and the MCP server for AI agents.
 
 ## Where to start
 
-- [Installation](getting-started/install.md): the Python package, the solvers,
-  the Docker image, or the sources.
-- [A first contract](getting-started/first-contract.md): write two contracts,
+- [Getting started](getting-started.md): install CHASE (the Python package,
+  the solvers, the Docker image, or the sources), then write two contracts,
   compose them, check a refinement, and read a counterexample.
 - [Demos](demos/index.md): design iterations on real examples, from the
   buffer of a circuit and the arbiter of a bus to the lift modes of a NASA
@@ -76,4 +75,9 @@ Python, the command line, and the MCP server for AI agents.
 - [MCP server](interfaces/mcp.md): the operations of CHASE as tools for AI
   agents.
 - [News](news.md): what each version brought, from 0.1 (October 2026) to
-  0.4.1, contracts for hardware.
+  contracts for hardware.
+
+CHASE started at the University of Southern California and the University
+of Verona, and is developed at the University of California, Berkeley. It is
+open source, under the BSD 3-Clause License: see
+[Contributing](contributing.md) and [Publications](publications.md).

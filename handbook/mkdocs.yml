@@ -31,10 +31,8 @@ markdown_extensions:
 
 nav:
   - Overview: index.md
-  - Getting started:
-      - getting-started/index.md
-      - Installation: getting-started/install.md
-      - A first contract: getting-started/first-contract.md
+  - News: news.md
+  - Getting started: getting-started.md
   - Contract theory:
       - contracts/index.md
       - Formulas: contracts/formulas.md
@@ -58,9 +56,5 @@ nav:
       - LMFSM: demos/lm-fsm.md
       - AHB: demos/ahb.md
       - Power systems and factories: demos/power-systems.md
-  - News: news.md
-  - About:
-      - about/index.md
-      - Publications: about/publications.md
-      - Repositories: about/repositories.md
-      - Contributing: about/contributing.md
+  - Contributing: contributing.md
+  - Publications: publications.md
