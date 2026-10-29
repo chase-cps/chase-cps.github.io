@@ -8,58 +8,39 @@ wide: true
 contract does not refine the old one. Can it take its place, and what must
 any buffer in that place satisfy?
 
-A producer sends data to a consumer through a buffer, with a ready/valid
-handshake. The buffer is `bsg_two_fifo` of BaseJump STL, a FIFO of two
-entries. The demo replaces it with `bsg_one_fifo`, a FIFO of one entry,
-which is smaller, and checks that the system still meets its requirements.
-The contracts are written in [SystemVerilog Assertions](../tools/systemverilog.md),
-and the RTL is that of BaseJump STL.
+[![The system: a producer, the buffer, and a consumer, with a ready/valid handshake](../assets/diagram-buffer-swap-system.png)](../assets/diagram-buffer-swap-system.png)
+_The system: a producer, the buffer, and a consumer, with a ready/valid handshake._
 
-[![The system: a producer, the buffer (bsg_two_fifo, with its RTL), and a consumer, with a ready/valid handshake](../assets/diagram-buffer-swap-system.png)](../assets/diagram-buffer-swap-system.png)
-_The system: a producer, the buffer (bsg_two_fifo, with its RTL), and a consumer, with a ready/valid handshake._
-
-## The contracts
-
-- _Producer_ keeps offering a value (`v_i`) until the buffer takes it
-  (`ready_o`).
-- _Consumer_ takes a value (`yumi_i`) only when the buffer offers one
-  (`v_o`), and takes what is offered sooner or later.
-- _TwoFifo_ and _OneFifo_ assume what the consumer guarantees. They keep what
-  they offer until it is taken, take a value when they are empty and after a
-  value is taken, and offer at the next cycle what they take. _TwoFifo_ takes
-  a second value when it holds one; _OneFifo_ does not.
-- _System_: every offer is taken sooner or later, and what the buffer offers
-  stays until it is taken.
+A producer sends data to a consumer through a buffer. The buffer is
+`bsg_two_fifo` of BaseJump STL, a FIFO of two entries; the demo replaces it
+with `bsg_one_fifo`, a FIFO of one entry. The contracts are written in
+[SystemVerilog Assertions](../tools/systemverilog.md): every offer is taken
+sooner or later, and what the buffer offers stays until it is taken. The
+RTL is that of BaseJump STL.
 
 ## The steps
 
-<div class="tbl-steps" markdown>
+**Step 1. The old system.** _Producer_, _TwoFifo_, and _Consumer_ refine
+_System_, and the RTL of `bsg_two_fifo` implements _TwoFifo_ (the diagram at
+the top).
 
-| Step | Operation | Result |
-|---|---|---|
-| 1. The old system | Producer ∥ TwoFifo ∥ Consumer, with discharge; `refines(..., System)` | valid |
-| 2. The new buffer against the old one | `refines(OneFifo, TwoFifo)` | invalid: with a value in, _OneFifo_ takes no other |
-| 3. What the place of the buffer needs | Slot = System / (Producer ∥ Consumer), with discharge; `refines(OneFifo, Slot)` | valid, and the new system refines _System_ |
-| 4. The contract for the RTL | `to_sva(Slot)`, `is_implementation(Model.from_rtl(...), Slot)` | `bsg_one_fifo` implements _Slot_; Jasper proves it too |
+**Step 2. The new buffer against the old one.** _OneFifo_ does not refine
+_TwoFifo_: with a value in, it takes no other. Its contract alone does not
+say that it can take the place.
 
-</div>
+[![Step 2: OneFifo does not refine TwoFifo](../assets/diagram-buffer-swap-2.png)](../assets/diagram-buffer-swap-2.png)
+_Step 2: OneFifo does not refine TwoFifo._
 
-The new buffer is not a refinement of the old one, so its contract alone
-does not say that it can replace it (step 2). The quotient answers the
-question (step 3): it is the weakest contract with which the system meets
-its requirements, here the guarantees of the system under the guarantees of
-the producer and of the consumer. Any buffer that refines it can take the
-place, and the new buffer does. Step 4 checks the same on the RTL, not only
-on the contracts.
+**Step 3. What the place of the buffer needs.** The quotient Slot = System /
+(Producer ∥ Consumer) is the weakest contract with which the system meets
+its requirements. Any buffer that refines it can take the place, and
+_OneFifo_ does.
 
-[![Step 1: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System](../assets/diagram-buffer-swap-1.png)](../assets/diagram-buffer-swap-1.png)
-_Step 1: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System._
+[![Step 3: OneFifo refines Slot, the contract of the place](../assets/diagram-buffer-swap-3.png)](../assets/diagram-buffer-swap-3.png)
+_Step 3: OneFifo refines Slot, the contract of the place._
 
-[![Step 2: OneFifo, with the RTL of bsg_one_fifo, does not refine TwoFifo, so its contract alone does not say that it can take the place](../assets/diagram-buffer-swap-2.png)](../assets/diagram-buffer-swap-2.png)
-_Step 2: OneFifo, with the RTL of bsg_one_fifo, does not refine TwoFifo, so its contract alone does not say that it can take the place._
-
-[![Step 3: the place of the buffer, Slot = System / (Producer ∥ Consumer), is the weakest contract with which the system meets its requirements; OneFifo refines it, and its RTL implements it](../assets/diagram-buffer-swap-3.png)](../assets/diagram-buffer-swap-3.png)
-_Step 3: the place of the buffer, Slot = System / (Producer ∥ Consumer), is the weakest contract with which the system meets its requirements; OneFifo refines it, and its RTL implements it._
+**Step 4. On the RTL.** The RTL of `bsg_one_fifo` implements _Slot_, checked
+with Yosys and nuXmv, and proved with Jasper from _Slot_ written as SVA.
 
 ## Run it
 
@@ -70,7 +51,7 @@ $> chase-cps install nuxmv --accept-license
 $> python3 BufferSwap/bufferswap.py
 ```
 
-The script also writes `out/bufferswap.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
-
-`jasper/run.tcl` proves the contract of the place (`out/slot.sv`, written by
-the script) on the RTL of `bsg_one_fifo` with Jasper.
+The script prints the result of each step and writes `out/bufferswap.html`,
+the diagrams above, to open in a browser: a click on a name opens a
+contract. It also writes `out/slot.sv`, which `BufferSwap/jasper/run.tcl`
+proves on the RTL with Jasper.

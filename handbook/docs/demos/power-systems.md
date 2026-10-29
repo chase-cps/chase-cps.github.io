@@ -4,39 +4,61 @@ wide: true
 
 # Power systems and factories
 
-These demos write the requirements in a domain-specific language (DSL_tool)
-instead of contracts: the components of an architecture, their types, and
-patterns of requirements. DSL_tool turns them into a GR(1) specification for
-gr1c or slugs.
+**The question.** The requirements of the power system of an aircraft are
+written as patterns over its architecture. Can the contactors be controlled
+so that the requirements hold, and if not, which requirements must be
+relaxed?
 
-## Electrical power system (DATE 2018, DATE 2021)
-
-The electrical power system of an aircraft: generators, AC buses, rectifiers,
-DC buses, and the contactors between them. The requirements are those of the
-DATE 2018 paper:
-
-- if possible, left DC buses shall be powered by left generators;
-- failed generators must be disconnected within 15 ms;
-- generators shall never connect in parallel through AC buses;
-- a DC bus shall never be unpowered for more than 15 ms;
-
-under the assumptions that contactors open and close within 10 ms, that at
-most one generator fails, and that the other components do not fail.
-
-```
-$> dsl_tool -i DATE21/specs/template_0_unrealizable.txt -o /tmp/eps -b gr1c
-$> gr1c -r /tmp/eps.spc
-Not realizable.
+```mermaid
+flowchart TB
+    LG["Left generator"] --- C1(["contactor 1"]) --- LB["Left AC bus"]
+    RG["Right generator"] --- C2(["contactor 2"]) --- RB["Right AC bus"]
+    LB --- C3(["contactor 3"]) --- RB
+    LB --- LR["Left rectifier"] --- LD["Left DC bus"] --- LL["Left load"]
+    RB --- RR["Right rectifier"] --- RD["Right DC bus"] --- RL["Right load"]
 ```
 
-With 20 ms to disconnect a failed generator and 30 ms without power for a DC
-bus (`template_0_synthesizable.txt`), the requirements are realizable and gr1c
-synthesizes the controller of the contactors. The DATE 2021 University Booth
-demo goes through both flows, the DSL one and the logics-based one; its
-walkthrough is in `DATE21/DATE21.md`.
+_The architecture of the power system: the contactors are what the controller switches._
 
-## A small factory (FDL 2024)
+These demos write the requirements in the domain-specific language of CHASE
+instead of contracts: the components of an architecture, their types, how
+they are connected, and patterns of requirements and assumptions. CHASE
+turns them into one contract in GR(1), which `load_dsl` reads. The
+requirements are those of the DATE 2018 paper: a DC bus is powered by the
+generator on its side if possible, a failed generator is disconnected within
+15 ms, two generators are never connected in parallel, and a DC bus is never
+unpowered for more than 15 ms. The contactors open and close within 10 ms,
+and at most one generator fails.
 
-`FDL2024/dsl_factory_realizable.txt` describes a factory with the same DSL: a
-warehouse, conveyors, machines that convert iron into coins, pipes, output
-bays, and gates. Its requirements are realizable.
+## The steps
+
+**Step 1. The requirements as written.** They are unrealizable: no
+controller of the contactors meets them.
+
+**Step 2. Relaxed requirements.** With 20 ms to disconnect a failed
+generator and 30 ms without power for a DC bus, the requirements are
+realizable, and slugs synthesizes the controller of the contactors.
+
+**Step 3. A small factory.** The same language describes a factory (FDL
+2024): a warehouse, conveyors, machines that turn iron into coins, pipes,
+output bays, and gates. Its requirements are realizable.
+
+## Run it
+
+```
+$> git clone https://github.com/chase-cps/demos && cd demos
+$> pip install chase-cps
+$> chase-cps install slugs
+$> python3
+>>> from chase_cps import load_dsl, is_realizable
+>>> is_realizable(load_dsl("DATE18/template_0_unrealizable.txt")).status
+'unrealizable'
+>>> is_realizable(load_dsl("DATE18/template_0_realizable.txt")).status
+'realizable'
+>>> is_realizable(load_dsl("FDL2024/dsl_factory_realizable.txt")).status
+'realizable'
+```
+
+The DATE 2021 University Booth demo goes through the same steps with the
+console tools of CHASE (`dsl_tool` and slugs), and through the robotic arm
+in the logics language; its walkthrough is in `DATE21/DATE21.md`.

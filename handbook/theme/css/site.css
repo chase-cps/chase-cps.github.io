@@ -127,8 +127,12 @@ p { margin: 10px 0 15px; }
 #main_content ul, #main_content ol { padding-left: 22px; margin: 0 0 15px; }
 #main_content li { margin: 4px 0; }
 #main_content img { max-width: 100%; height: auto; }
-/* a picture linked to its full size, with its caption on the next line */
-#main_content p > a > img:only-child { display: block; }
+/* a picture (linked to its full size or not), centered, with its caption under it */
+#main_content p:has(> a > img:only-child), #main_content p:has(> img:only-child) { text-align: center; margin: 18px 0 22px; }
+#main_content p > a > img:only-child, #main_content p > img:only-child { display: block; margin: 0 auto 6px; }
+#main_content .mermaid + p:has(> em:only-child) { text-align: center; font-size: .92em; color: var(--chase-ink-soft); margin-top: -6px; }
+#main_content .mermaid { text-align: center; }
+#main_content p:has(> a > img:only-child) em, #main_content p:has(> img:only-child) em { font-size: .92em; color: var(--chase-ink-soft); }
 .headerlink { margin-left: 6px; color: #bbb; font-size: .8em; visibility: hidden; }
 h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink { visibility: visible; }
 

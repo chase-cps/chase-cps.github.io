@@ -9,64 +9,43 @@ AMBA AHB bus: one on how the bus is given to the masters, one on how a
 master locks it. Is there an arbiter that meets both, and what must it
 assume of the masters?
 
+[![The arbiter: the merge of the two viewpoints, Grant and Lock](../assets/diagram-ahb-system.png)](../assets/diagram-ahb-system.png)
+_The arbiter: the merge of the two viewpoints, Grant and Lock._
+
 The arbiter gives the bus to one of two masters, and a master can lock the
-bus. The requirements are simplified from those of R. Bloem et al.,
-"Specify, Compile, Run: Hardware from PSL" (COCV 2007), a case study of
-GR(1) synthesis: two masters, no bursts, and no HREADY. The viewpoints are
-written in [SystemVerilog Assertions](../tools/systemverilog.md), and put
-together by [merging](../contracts/algebra.md#what-each-one-is-for), the
-operation for viewpoints of one component.
-
-[![The arbiter: the merge of the two viewpoints, Grant and Lock, over the requests and the locks of two masters](../assets/diagram-ahb-system.png)](../assets/diagram-ahb-system.png)
-_The arbiter: the merge of the two viewpoints, Grant and Lock, over the requests and the locks of two masters._
-
-## The contracts
-
-<div class="tbl-ag" markdown>
-
-| Viewpoint | Assumes | Guarantees |
-|---|---|---|
-| _Grant_ | nothing | GR1: master 1 has the bus at the start; GR2: the bus is given to exactly one master; GR3.1, GR3.2: no master waits forever |
-| _Lock_ | LA1.1, LA1.2: a master asks for the bus when it asks for a locked access; LA2: a master that has locked the bus stops asking for it sooner or later | LK1: the bus is locked when its master asks for a locked access; LK2.1, LK2.2: while a master has locked the bus and asks for it, it keeps the bus |
-
-</div>
+bus. The requirements are simplified from Bloem et al., "Specify, Compile,
+Run: Hardware from PSL" (COCV 2007). The viewpoints are written in
+[SystemVerilog Assertions](../tools/systemverilog.md): _Grant_ gives the bus
+to exactly one master, and no master waits forever (GR1 to GR3.2); _Lock_
+locks the bus for a master that asks for a locked access, and keeps it while
+that master asks (LK1 to LK2.2), assuming that a master that has locked the
+bus stops asking for it sooner or later (LA2). They are put together by
+[merging](../contracts/algebra.md#what-each-one-is-for), the operation for
+viewpoints of one component.
 
 ## The steps
 
-<div class="tbl-steps" markdown>
+**Step 1. Each viewpoint.** _Grant_ and _Lock_ are each realizable.
 
-| Step | Operation | Result |
-|---|---|---|
-| 1. Each viewpoint | `is_realizable(Grant)`, `is_realizable(Lock)` | each is realizable |
-| 2. The merge without LA2 | Grant • Lock′, with Lock′ = Lock without LA2; `is_realizable(..., core=True)` | unrealizable, with the core GR1, GR2, GR3.2, LK1, LK2.1 |
-| 3. The merge | Arbiter = Grant • Lock, with discharge; `synthesize`, `to_sva` | realizable: slugs gives a controller of 81 states, and _Arbiter_ is written as SVA |
-| 4. The controller | `is_implementation(Model.from_controller(...), Arbiter)` | valid |
+**Step 2. The merge without LA2.** Without the assumption LA2, the merge is
+unrealizable. When master 1 locks the bus and keeps asking for it, _Lock_
+says that master 1 keeps the bus (LK2.1), and _Grant_ says that master 2
+does not wait forever (GR3.2). The core names these two, with GR1, GR2, and
+LK1, which make the conflict possible.
 
-</div>
+[![Step 2: without LA2 the merge is unrealizable; its core on a red ground](../assets/diagram-ahb-2.png)](../assets/diagram-ahb-2.png)
+_Step 2: without LA2 the merge is unrealizable; its core on a red ground._
 
-Step 2 is the answer to the question. Each viewpoint alone has an arbiter,
-but together they conflict when master 1 locks the bus and keeps asking for
-it: _Lock_ says that master 1 keeps the bus (LK2.1), and _Grant_ says that
-master 2 does not wait forever (GR3.2). The core names these requirements,
-with the ones that make the conflict possible (GR1, GR2, LK1). The
-assumption LA2 of _Lock_, that a master releases a locked bus sooner or
-later, removes the conflict: with it, the merge is realizable (step 3). The
-merge with discharge keeps the terms of both viewpoints,
-(A1 & A2, G1 & G2), so it is in GR(1) and goes to slugs as it is.
+**Step 3. The merge.** With LA2, the merge _Arbiter_ (the diagram at the
+top) is realizable, and slugs synthesizes a controller of 81 states.
+_Arbiter_ is also written as SVA (`out/arbiter.sv`), for a model checker of
+the RTL of the arbiter.
 
-_Arbiter_ as SVA (`out/arbiter.sv`) is a checker module, with the
-assumptions as `assume property` and the guarantees as `assert property`,
-for a tool that reads SVA, such as a model checker of the RTL of the
-arbiter.
+**Step 4. The controller.** The synthesized controller implements
+_Arbiter_.
 
-[![Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)](../assets/diagram-ahb-1.png)](../assets/diagram-ahb-1.png)
-_Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)._
-
-[![Without LA2 the merge is unrealizable: the core, on a red ground, is GR1, GR2, GR3.2, LK1, and LK2.1 (master 1 can keep the lock, and master 2 waits forever)](../assets/diagram-ahb-2.png)](../assets/diagram-ahb-2.png)
-_Without LA2 the merge is unrealizable: the core, on a red ground, is GR1, GR2, GR3.2, LK1, and LK2.1 (master 1 can keep the lock, and master 2 waits forever)._
-
-[![The synthesized controller (81 states) implements Arbiter (M ⊨ C)](../assets/diagram-ahb-3.png)](../assets/diagram-ahb-3.png)
-_The synthesized controller (81 states) implements Arbiter (M ⊨ C)._
+[![Step 4: the controller implements Arbiter](../assets/diagram-ahb-3.png)](../assets/diagram-ahb-3.png)
+_Step 4: the controller implements Arbiter._
 
 ## Run it
 
@@ -77,8 +56,8 @@ $> chase-cps install nuxmv --accept-license && chase-cps install slugs
 $> python3 AHB/ahb.py
 ```
 
-The script also writes `out/arbiter.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
-
-The directory also has the requirements (`requirements.txt`) and the
-viewpoints in SVA (`sva/grant.sv`, `sva/lock.sv`, with the number of the
-requirement as the label of each assertion).
+The script prints the result of each step and writes `out/arbiter.html`,
+the diagrams above, to open in a browser: a click on a name opens a
+contract, and a click on a red tag shows its core. The viewpoints are in
+`AHB/sva/grant.sv` and `AHB/sva/lock.sv`, with the number of the
+requirement as the label of each assertion.
