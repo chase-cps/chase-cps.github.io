@@ -18,7 +18,6 @@ alike. Each joint guarantees that it stops the motor when it is done or not
 asked, that `done` holds exactly at the requested angle, and that it is done
 infinitely often, under assumptions on the motor and on the requests.
 
-
 - `verification.chase` composes the three joints and checks that the
   composition refines the contract of the arm (logics_tool writes the
   refinement for nuXmv).
@@ -27,8 +26,8 @@ infinitely often, under assumptions on the motor and on the requests.
 - `single_model.ltl` is the same arm as one contract, for comparison with the
   compositional model.
 
-[![Joint1 ∥ Joint2 ∥ Joint3 refines Joints, and each contract is realizable (R)](../assets/diagram-robotic-joints-1.png)](../assets/diagram-robotic-joints-1.png)
-_Joint1 ∥ Joint2 ∥ Joint3 refines Joints, and each contract is realizable (R)._
+[![Joint1 ∥ Joint2 ∥ Joint3 refines Joints, and each contract is realizable (R); Joint1 and Joints show what a joint and the arm assume and guarantee](../assets/diagram-robotic-joints-1.png)](../assets/diagram-robotic-joints-1.png)
+_Joint1 ∥ Joint2 ∥ Joint3 refines Joints, and each contract is realizable (R); Joint1 and Joints show what a joint and the arm assume and guarantee._
 
 ## Run it
 

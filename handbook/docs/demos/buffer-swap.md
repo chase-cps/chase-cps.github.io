@@ -52,11 +52,14 @@ the producer and of the consumer. Any buffer that refines it can take the
 place, and the new buffer does. Step 4 checks the same on the RTL, not only
 on the contracts.
 
-[![The old system: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System](../assets/diagram-buffer-swap-1.png)](../assets/diagram-buffer-swap-1.png)
-_The old system: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System._
+[![Step 1: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System](../assets/diagram-buffer-swap-1.png)](../assets/diagram-buffer-swap-1.png)
+_Step 1: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System._
 
-[![The place of the buffer, Slot = System / (Producer ∥ Consumer), holds OneFifo with the RTL of bsg_one_fifo: it refines Slot and its RTL implements it](../assets/diagram-buffer-swap-2.png)](../assets/diagram-buffer-swap-2.png)
-_The place of the buffer, Slot = System / (Producer ∥ Consumer), holds OneFifo with the RTL of bsg_one_fifo: it refines Slot and its RTL implements it._
+[![Step 2: OneFifo, with the RTL of bsg_one_fifo, does not refine TwoFifo, so its contract alone does not say that it can take the place](../assets/diagram-buffer-swap-2.png)](../assets/diagram-buffer-swap-2.png)
+_Step 2: OneFifo, with the RTL of bsg_one_fifo, does not refine TwoFifo, so its contract alone does not say that it can take the place._
+
+[![Step 3: the place of the buffer, Slot = System / (Producer ∥ Consumer), is the weakest contract with which the system meets its requirements; OneFifo refines it, and its RTL implements it](../assets/diagram-buffer-swap-3.png)](../assets/diagram-buffer-swap-3.png)
+_Step 3: the place of the buffer, Slot = System / (Producer ∥ Consumer), is the weakest contract with which the system meets its requirements; OneFifo refines it, and its RTL implements it._
 
 ## Run it
 

@@ -77,14 +77,14 @@ needed: when the sensor is in FAULT while the autopilot is in TRANSITION and
 the limits stay exceeded, each one waits for the other, and there is never a
 pullup.
 
-[![The contracts as first written are unrealizable; a click on R marks the requirements in conflict](../assets/diagram-lm-fsm-1.png)](../assets/diagram-lm-fsm-1.png)
-_The contracts as first written are unrealizable; a click on R marks the requirements in conflict._
+[![The contracts as first written are unrealizable; the cores, on a red ground, are the requirements in conflict, in the autopilot and in the sensor](../assets/diagram-lm-fsm-1.png)](../assets/diagram-lm-fsm-1.png)
+_The contracts as first written are unrealizable; the cores, on a red ground, are the requirements in conflict, in the autopilot and in the sensor._
 
-[![Autopilot ∥ Sensor does not refine System (FSM-001): the pullup does not come at once](../assets/diagram-lm-fsm-2.png)](../assets/diagram-lm-fsm-2.png)
-_Autopilot ∥ Sensor does not refine System (FSM-001): the pullup does not come at once._
+[![Autopilot ∥ Sensor does not refine System (FSM-001): the pullup does not come at the step the limits are exceeded](../assets/diagram-lm-fsm-2.png)](../assets/diagram-lm-fsm-2.png)
+_Autopilot ∥ Sensor does not refine System (FSM-001): the pullup does not come at the step the limits are exceeded._
 
-[![Autopilot ∥ Sensor refines SystemTimed (FSM-001t)](../assets/diagram-lm-fsm-3.png)](../assets/diagram-lm-fsm-3.png)
-_Autopilot ∥ Sensor refines SystemTimed (FSM-001t)._
+[![Autopilot ∥ Sensor refines SystemTimed (FSM-001t), which gives the pullup the steps it takes](../assets/diagram-lm-fsm-3.png)](../assets/diagram-lm-fsm-3.png)
+_Autopilot ∥ Sensor refines SystemTimed (FSM-001t), which gives the pullup the steps it takes._
 
 ## Run it
 

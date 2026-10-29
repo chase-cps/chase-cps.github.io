@@ -48,68 +48,12 @@ The parent splits the task among three sub-agents, in this order, and keeps
 the completion of the task. Each sub-agent gets the rules of the tools it
 holds, and the payment goes to the only one that holds Venmo:
 
-<div class="ctree">
-  <div class="cnode parent">
-    <h4>Parent</h4>
-    <p class="what">does not use the apps itself; keeps the completion of the task</p>
-    <p class="side">Guarantees (H)</p>
-    <div class="cols">
-      <ul>
-        <li>H1 <code>G (text3 -&gt; paid)</code></li>
-        <li>H2 <code>G (paid -&gt; G !tx2)</code></li>
-        <li>H3 <code>G (tx2 -&gt; desc_ok)</code></li>
-        <li>H4 <code>G (text3 -&gt; msg_ok)</code></li>
-      </ul>
-      <ul>
-        <li>H5 <code>G (!voice1 &amp; !voice3)</code></li>
-        <li>H6 <code>F tx2</code></li>
-        <li>H7 <code>F text3</code></li>
-        <li>H8 <code>F complete</code></li>
-      </ul>
-    </div>
-  </div>
-  <div class="stem"></div>
-  <div class="kids">
-    <div class="kid"><div class="cnode">
-      <h4>1 Messages</h4>
-      <p class="what">finds the amount in the text messages; holds the phone tools, voice messages among them</p>
-      <p class="side">Guarantees</p>
-      <ul><li><code>G !voice1</code></li></ul>
-    </div></div>
-    <div class="kid"><div class="cnode">
-      <h4>2 Payment</h4>
-      <p class="what">pays on Venmo; the only one with the Venmo tools</p>
-      <p class="side">Guarantees</p>
-      <ul>
-        <li><code>G (paid -&gt; G !tx2)</code></li>
-        <li><code>G (tx2 -&gt; desc_ok)</code></li>
-        <li><code>F tx2</code></li>
-        <li>and the Venmo tool writes <code>paid</code></li>
-      </ul>
-    </div></div>
-    <div class="kid"><div class="cnode">
-      <h4>3 Text</h4>
-      <p class="what">sends the text; holds the phone tools</p>
-      <p class="side">Assumes</p>
-      <ul class="q"><li class="q"><code>F paid</code></li></ul>
-      <p class="side">Guarantees</p>
-      <ul>
-        <li><code>G (text3 -&gt; paid)</code></li>
-        <li><code>G (text3 -&gt; msg_ok)</code></li>
-        <li><code>G !voice3</code></li>
-        <li class="q"><code>F text3</code></li>
-      </ul>
-    </div></div>
-    <div class="kid"><div class="cnode">
-      <h4>Keep</h4>
-      <p class="what">the part the parent keeps</p>
-      <p class="side">Guarantees</p>
-      <ul><li><code>F complete</code></li></ul>
-    </div></div>
-  </div>
-  <p class="legend">The clauses in yellow are not in the first contract of sub-agent 3, which has
-  only the rules of its tools: the quotient of step 2 asks for them.</p>
-</div>
+- _Messages_ (1) finds the amount in the text messages; it holds the tool
+  of voice messages, so it guarantees `G !voice1`.
+- _Payment_ (2) is the only one with Venmo: H2, H3, and the payment (H6).
+- _Text_ (3) sends the text: from the rules of its tools, H1, H4, and
+  `G !voice3`.
+- _Keep_: the parent marks the task complete (H8).
 
 ## The steps
 
@@ -138,11 +82,14 @@ calls at run time, for instance with
 [ContrAgent](https://arxiv.org/abs/2609.18128). The formulas are read on
 infinite traces, as CHASE reads them.
 
-[![The four sub-agents inside the contract of the parent: their composition refines it](../assets/diagram-ai-agents-1.png)](../assets/diagram-ai-agents-1.png)
-_The four sub-agents inside the contract of the parent: their composition refines it._
+[![Step 1: the plan inside the contract of the parent does not refine it (⪯, red). The parent asks for F text3 (H7); Text, with the rules of its tools only, does not promise it](../assets/diagram-ai-agents-1.png)](../assets/diagram-ai-agents-1.png)
+_Step 1: the plan inside the contract of the parent does not refine it (⪯, red). The parent asks for F text3 (H7); Text, with the rules of its tools only, does not promise it._
 
-[![Q3 = Parent / Rest, what sub-agent 3 must do: Text refines it](../assets/diagram-ai-agents-2.png)](../assets/diagram-ai-agents-2.png)
-_Q3 = Parent / Rest, what sub-agent 3 must do: Text refines it._
+[![Steps 2 and 3: Q3 = Parent / (Messages ∥ Payment ∥ Keep), the hole, is what sub-agent 3 must do: the rules of its tools and F text3. Text, which sends the text once the payment is done, refines it](../assets/diagram-ai-agents-2.png)](../assets/diagram-ai-agents-2.png)
+_Steps 2 and 3: Q3 = Parent / (Messages ∥ Payment ∥ Keep), the hole, is what sub-agent 3 must do: the rules of its tools and F text3. Text, which sends the text once the payment is done, refines it._
+
+[![Step 4: a parent that also says "never pay" is inconsistent (G, red); its core, on a red ground, is F tx2 and G !tx2](../assets/diagram-ai-agents-3.png)](../assets/diagram-ai-agents-3.png)
+_Step 4: a parent that also says "never pay" is inconsistent (G, red); its core, on a red ground, is F tx2 and G !tx2._
 
 ## Run it
 

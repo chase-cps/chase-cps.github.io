@@ -127,6 +127,8 @@ p { margin: 10px 0 15px; }
 #main_content ul, #main_content ol { padding-left: 22px; margin: 0 0 15px; }
 #main_content li { margin: 4px 0; }
 #main_content img { max-width: 100%; height: auto; }
+/* a picture linked to its full size, with its caption on the next line */
+#main_content p > a > img:only-child { display: block; }
 .headerlink { margin-left: 6px; color: #bbb; font-size: .8em; visibility: hidden; }
 h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink { visibility: visible; }
 

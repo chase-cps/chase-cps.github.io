@@ -62,11 +62,11 @@ arbiter.
 [![Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)](../assets/diagram-ahb-1.png)](../assets/diagram-ahb-1.png)
 _Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)._
 
-[![Without LA2 the merge is unrealizable; a click on R marks the core: GR1, GR2, GR3.2, LK1, LK2.1](../assets/diagram-ahb-2.png)](../assets/diagram-ahb-2.png)
-_Without LA2 the merge is unrealizable; a click on R marks the core: GR1, GR2, GR3.2, LK1, LK2.1._
+[![Without LA2 the merge is unrealizable: the core, on a red ground, is GR1, GR2, GR3.2, LK1, and LK2.1 (master 1 can keep the lock, and master 2 waits forever)](../assets/diagram-ahb-2.png)](../assets/diagram-ahb-2.png)
+_Without LA2 the merge is unrealizable: the core, on a red ground, is GR1, GR2, GR3.2, LK1, and LK2.1 (master 1 can keep the lock, and master 2 waits forever)._
 
-[![The synthesized controller implements Arbiter (M ⊨ C)](../assets/diagram-ahb-3.png)](../assets/diagram-ahb-3.png)
-_The synthesized controller implements Arbiter (M ⊨ C)._
+[![The synthesized controller (81 states) implements Arbiter (M ⊨ C)](../assets/diagram-ahb-3.png)](../assets/diagram-ahb-3.png)
+_The synthesized controller (81 states) implements Arbiter (M ⊨ C)._
 
 ## Run it
 

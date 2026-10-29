@@ -53,8 +53,8 @@ three modules together meet the requirements, with no check on the whole
 design. Step 3 checks the same on the whole RTL. Step 5 shows what the
 checks find when a module breaks its contract.
 
-[![The link inside Functional: the RTL of each module implements its contract (M ⊨ C), and the composition refines Functional (⪯)](../assets/diagram-escalation-1.png)](../assets/diagram-escalation-1.png)
-_The link inside Functional: the RTL of each module implements its contract (M ⊨ C), and the composition refines Functional (⪯)._
+[![The link inside Functional: the RTL of each module implements its contract (M ⊨ C), and the composition refines Functional (⪯); the receiver shows its contract and its four states](../assets/diagram-escalation-1.png)](../assets/diagram-escalation-1.png)
+_The link inside Functional: the RTL of each module implements its contract (M ⊨ C), and the composition refines Functional (⪯); the receiver shows its contract and its four states._
 
 ## Run it
 

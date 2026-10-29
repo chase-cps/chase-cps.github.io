@@ -58,10 +58,13 @@ flowchart TD
    the arbiter (R7.1, R7.2), no assumption is left, and the composition
    refines the system.
 
-[![The arbiters: Greedy is unrealizable, Fair is realizable and not vacuous, Pushy is not well separated, Polite is, and Trusting is vacuous](../assets/diagram-charger-1.png)](../assets/diagram-charger-1.png)
-_The arbiters: Greedy is unrealizable, Fair is realizable and not vacuous, Pushy is not well separated, Polite is, and Trusting is vacuous._
+[![The arbiters: Greedy is unrealizable (its core: R5, R6.1, R6.2), Fair is realizable and not vacuous, Pushy is not well separated (it can win by making the robots break A2 and A3), and Polite is](../assets/diagram-charger-1.png)](../assets/diagram-charger-1.png)
+_The arbiters: Greedy is unrealizable (its core: R5, R6.1, R6.2), Fair is realizable and not vacuous, Pushy is not well separated (it can win by making the robots break A2 and A3), and Polite is._
 
-[![Fair composed with the two robots, with discharge, refines System](../assets/diagram-charger-2.png)](../assets/diagram-charger-2.png)
+[![Trusting assumes that the robots stop asking on their own, G F !req1 and G F !req2, so it wins without any grant: it is vacuous, and these two assumptions are the core](../assets/diagram-charger-2.png)](../assets/diagram-charger-2.png)
+_Trusting assumes that the robots stop asking on their own, G F !req1 and G F !req2, so it wins without any grant: it is vacuous, and these two assumptions are the core._
+
+[![Fair composed with the two robots, with discharge, refines System](../assets/diagram-charger-3.png)](../assets/diagram-charger-3.png)
 _Fair composed with the two robots, with discharge, refines System._
 
 ## Run it

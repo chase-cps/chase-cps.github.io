@@ -62,14 +62,14 @@ the same two failures on the robot in simulation, and checks the
 refinements on finite sets of values; here they are checked on all the
 behaviors, with a counterexample when they fail.
 
-[![Q = System / (Perception ∥ Localization): MissionOnly does not refine it](../assets/diagram-warehouse-robot-1.png)](../assets/diagram-warehouse-robot-1.png)
-_Q = System / (Perception ∥ Localization): MissionOnly does not refine it._
+[![Q = System / (Perception ∥ Localization) guarantees the requirements and |w| <= 0.8, the assumption of perception; MissionOnly, the requirements written on what the controller sees, does not refine it](../assets/diagram-warehouse-robot-1.png)](../assets/diagram-warehouse-robot-1.png)
+_Q = System / (Perception ∥ Localization) guarantees the requirements and |w| <= 0.8, the assumption of perception; MissionOnly, the requirements written on what the controller sees, does not refine it._
 
-[![Margins does not refine Q](../assets/diagram-warehouse-robot-2.png)](../assets/diagram-warehouse-robot-2.png)
-_Margins does not refine Q._
+[![Margins, which adds the errors of perception and localization to the bounds, does not refine Q either: it does not bound the yaw rate](../assets/diagram-warehouse-robot-2.png)](../assets/diagram-warehouse-robot-2.png)
+_Margins, which adds the errors of perception and localization to the bounds, does not refine Q either: it does not bound the yaw rate._
 
-[![Dispatched refines Q](../assets/diagram-warehouse-robot-3.png)](../assets/diagram-warehouse-robot-3.png)
-_Dispatched refines Q._
+[![Dispatched, Margins with |w| <= 0.8, refines Q](../assets/diagram-warehouse-robot-3.png)](../assets/diagram-warehouse-robot-3.png)
+_Dispatched, Margins with |w| <= 0.8, refines Q._
 
 ## Run it
 

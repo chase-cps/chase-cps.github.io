@@ -76,23 +76,23 @@ stays semi thrust borne. With the hover control mode on below 20, every
 behavior hovers at step 12 (step 6). All the checks are on real variables,
 with the SMT engine of nuXmv (`reals: smt`).
 
-[![The requirements are consistent with the deadline of 12 s, not with 6 s; a click on the red G marks the 8 requirements in conflict](../assets/diagram-lift-plus-cruise-1.png)](../assets/diagram-lift-plus-cruise-1.png)
-_The requirements are consistent with the deadline of 12 s, not with 6 s; a click on the red G marks the 8 requirements in conflict._
+[![The requirements are consistent with the deadline of 12 s, not with 6 s: the core, on a red ground, is the 8 requirements in conflict (kias falls by 10 at most at each step, from 120)](../assets/diagram-lift-plus-cruise-1.png)](../assets/diagram-lift-plus-cruise-1.png)
+_The requirements are consistent with the deadline of 12 s, not with 6 s: the core, on a red ground, is the 8 requirements in conflict (kias falls by 10 at most at each step, from 120)._
 
 [![ModeLogic ∥ Pilot refines Vehicle](../assets/diagram-lift-plus-cruise-2.png)](../assets/diagram-lift-plus-cruise-2.png)
 _ModeLogic ∥ Pilot refines Vehicle._
 
-[![Q12 = Reach12 / ModeLogic: Pilot does not refine it](../assets/diagram-lift-plus-cruise-3.png)](../assets/diagram-lift-plus-cruise-3.png)
-_Q12 = Reach12 / ModeLogic: Pilot does not refine it._
+[![Q12 = Reach12 / ModeLogic, what the pilot must do to hover within 12 s; Pilot, with the requirements only, does not refine it (kias may stay at 120)](../assets/diagram-lift-plus-cruise-3.png)](../assets/diagram-lift-plus-cruise-3.png)
+_Q12 = Reach12 / ModeLogic, what the pilot must do to hover within 12 s; Pilot, with the requirements only, does not refine it (kias may stay at 120)._
 
-[![Slow does not refine Q12](../assets/diagram-lift-plus-cruise-4.png)](../assets/diagram-lift-plus-cruise-4.png)
-_Slow does not refine Q12._
+[![Slow, which slows down by 10 at each step, does not refine Q12: the hover control mode never comes](../assets/diagram-lift-plus-cruise-4.png)](../assets/diagram-lift-plus-cruise-4.png)
+_Slow, which slows down by 10 at each step, does not refine Q12: the hover control mode never comes._
 
-[![Decel refines Q12](../assets/diagram-lift-plus-cruise-5.png)](../assets/diagram-lift-plus-cruise-5.png)
-_Decel refines Q12._
+[![Decel, which also turns the hover control mode on when kgs < 20, refines Q12](../assets/diagram-lift-plus-cruise-5.png)](../assets/diagram-lift-plus-cruise-5.png)
+_Decel, which also turns the hover control mode on when kgs < 20, refines Q12._
 
-[![Decel does not refine Q06 = Reach06 / ModeLogic](../assets/diagram-lift-plus-cruise-6.png)](../assets/diagram-lift-plus-cruise-6.png)
-_Decel does not refine Q06 = Reach06 / ModeLogic._
+[![Decel does not refine Q06 = Reach06 / ModeLogic: no pilot can hover within 6 s](../assets/diagram-lift-plus-cruise-6.png)](../assets/diagram-lift-plus-cruise-6.png)
+_Decel does not refine Q06 = Reach06 / ModeLogic: no pilot can hover within 6 s._
 
 ## Run it
 
