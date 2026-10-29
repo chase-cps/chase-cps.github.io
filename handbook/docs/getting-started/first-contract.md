@@ -34,8 +34,8 @@ server = Contract.from_strings(
 
 Variables with the same name are connected: the output `fwd` of the queue is
 the input of the server. The composition is computed in closed form by the
-core library ([layer 1](../contracts/algebra.md)); the refinement is checked
-by nuXmv ([layer 2](../contracts/checks.md)).
+core library ([contract algebra](../contracts/algebra.md)); the refinement is
+checked by nuXmv ([contract-based verification](../contracts/checks.md)).
 
 ```python
 both = queue.compose(server)

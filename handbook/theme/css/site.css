@@ -1,25 +1,24 @@
-/* The handbook: header, sidebar of topics, content, and footer, in the
-   colors of UC Berkeley. */
+/* The handbook: header, sidebar of topics, content, and footer. */
 
-/* Colors: Berkeley Blue for the header and footer, California Gold as a
-   thin accent, white pages with light blue-grey surfaces. */
+/* Colors: a dark green-teal for the header and footer, a warm grey for the
+   page, lighter tints of it for code, tables, and notes. */
 :root {
-  --chase-blue: #002676;        /* Berkeley Blue */
-  --chase-blue-dark: #001a52;
-  --chase-gold: #fdb515;        /* California Gold */
-  --chase-ink: #1f2933;         /* text */
-  --chase-ink-soft: #52606d;    /* secondary text */
-  --chase-link: #1a5fb4;
-  --chase-page: #ffffff;
-  --chase-surface: #f3f6fa;     /* code, tables, notes */
-  --chase-border: #d9e1ea;
-  --chase-active: #e8eef8;      /* the current page in the sidebar */
+  --chase-header: #17393b;
+  --chase-header-dark: #0f2829;
+  --chase-accent: #d7ccc8;      /* the line under the header, the marks */
+  --chase-ink: #1e2a2b;         /* text */
+  --chase-ink-soft: #4e5a5b;    /* secondary text */
+  --chase-link: #1c5d61;
+  --chase-page: #d7ccc8;
+  --chase-surface: #efebe9;     /* code, tables, notes */
+  --chase-border: #bcaaa4;
+  --chase-active: #efebe9;      /* the current page in the sidebar */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
-  color: var(--chase-ink); background: var(--chase-blue-dark); font-size: 16px; line-height: 1.6;
+  color: var(--chase-ink); background: var(--chase-header-dark); font-size: 16px; line-height: 1.6;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -34,19 +33,19 @@ p { margin: 10px 0 15px; }
 
 /* Header (one line: the name, the tagline, the GitHub mark) and footer,
    in the colors of the home page of the site. */
-#header_wrap { background: var(--chase-blue); border-bottom: 4px solid var(--chase-gold); }
+#header_wrap { background: var(--chase-header); border-bottom: 4px solid var(--chase-accent); }
 .header-inner, .footer-inner { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 .header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 40px; padding-bottom: 24px; }
 .brand { min-width: 0; }
 #project_title { margin: 0; font-size: 42px; letter-spacing: -1px; }
 #project_title a { color: #fff; }
 #project_title a:hover { text-decoration: none; }
-#project_tagline { margin: 4px 0 0; color: #dfe7f5; font-size: 22px; font-weight: 300; letter-spacing: 0; }
+#project_tagline { margin: 4px 0 0; color: var(--chase-accent); font-size: 22px; font-weight: 300; letter-spacing: 0; }
 .github { color: #f2f2f2; display: flex; opacity: .85; align-self: flex-start; }
 .github:hover { opacity: 1; }
-#footer_wrap { background: var(--chase-blue-dark); }
+#footer_wrap { background: var(--chase-header-dark); }
 .footer-inner { padding-top: 18px; padding-bottom: 18px; }
-#footer_wrap p { margin: 0; color: #dfe7f5; font-size: 14px; }
+#footer_wrap p { margin: 0; color: var(--chase-accent); font-size: 14px; }
 #footer_wrap a { color: #ffffff; text-decoration: underline; }
 
 /* The content area: sidebar, page, and the table of the page. */
@@ -69,7 +68,7 @@ p { margin: 10px 0 15px; }
   color: var(--chase-ink); font-size: 16px;
 }
 .sidebar a:hover { color: var(--chase-link); text-decoration: none; }
-.sidebar a.active { color: var(--chase-blue); font-weight: 700; border-left-color: var(--chase-gold); background: var(--chase-active); }
+.sidebar a.active { color: var(--chase-header); font-weight: 700; border-left-color: var(--chase-header); background: var(--chase-active); }
 .page-toc a { display: block; padding: 3px 0; font-size: 14px; color: var(--chase-ink-soft); }
 .page-toc a:hover { color: var(--chase-link); }
 
@@ -120,11 +119,11 @@ button.copy.done { color: #2f7d3c; }
 pre.has-copy { padding-right: 44px; }
 
 /* Tables, as in slate: a dark header row. */
-table { border-collapse: collapse; margin: 0 0 20px; background: #fff; width: 100%; }
+table { border-collapse: collapse; margin: 0 0 20px; background: #f7f4f2; width: 100%; }
 .table-wrap { overflow-x: auto; }
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  padding: 9px 12px; background: var(--chase-active); color: var(--chase-blue); text-align: left; font-size: 14px; font-weight: 700; border: 1px solid var(--chase-border);
+  padding: 9px 12px; background: var(--chase-active); color: var(--chase-header); text-align: left; font-size: 14px; font-weight: 700; border: 1px solid var(--chase-border);
 }
 td { padding: 9px 12px; border: 1px solid var(--chase-border); vertical-align: top; }
 td code { white-space: nowrap; }
@@ -132,7 +131,7 @@ td.f, .f { font-family: Monaco, "Lucida Console", monospace; font-size: .85em; w
 
 /* Notes: a darker gray rounded block. */
 .admonition { background: var(--chase-surface); border-left: 4px solid var(--chase-link); border-radius: 6px; padding: 10px 16px; margin: 18px 0; }
-.admonition-title { font-weight: 700; margin: 0 0 4px; color: var(--chase-blue); }
+.admonition-title { font-weight: 700; margin: 0 0 4px; color: var(--chase-header); }
 .admonition p:last-child { margin-bottom: 4px; }
 
 /* Tabs (pymdownx.tabbed). */
@@ -145,7 +144,7 @@ td.f, .f { font-family: Monaco, "Lucida Console", monospace; font-size: .85em; w
 .tabbed-set > input:nth-child(1):checked ~ .tabbed-labels > :nth-child(1),
 .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels > :nth-child(2),
 .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels > :nth-child(3),
-.tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > :nth-child(4) { color: var(--chase-blue); border-bottom-color: var(--chase-gold); font-weight: 700; }
+.tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > :nth-child(4) { color: var(--chase-header); border-bottom-color: var(--chase-accent); font-weight: 700; }
 .tabbed-set > input:nth-child(1):checked ~ .tabbed-content > :nth-child(1),
 .tabbed-set > input:nth-child(2):checked ~ .tabbed-content > :nth-child(2),
 .tabbed-set > input:nth-child(3):checked ~ .tabbed-content > :nth-child(3),
@@ -154,7 +153,7 @@ td.f, .f { font-family: Monaco, "Lucida Console", monospace; font-size: .85em; w
 /* The three layers of CHASE (overview page), and the layer numbers of the
    table of the demos. */
 .layers { display: grid; gap: 10px; margin: 18px 0; }
-.layers .layer { padding: 12px 16px; background: var(--chase-surface); border: 1px solid var(--chase-border); border-left: 4px solid var(--chase-blue); border-radius: 6px; }
+.layers .layer { padding: 12px 16px; background: var(--chase-surface); border: 1px solid var(--chase-border); border-left: 4px solid var(--chase-header); border-radius: 6px; }
 .layers .layer p { margin: 2px 0; }
 .layers .base { font-size: 15px; color: var(--chase-ink-soft); padding: 4px 2px; }
 .tag { display: inline-block; min-width: 1.6em; text-align: center; font-size: 12px; font-weight: 700; padding: 0 6px; border-radius: 10px; color: #fff; background: #555; vertical-align: 1px; }
@@ -181,6 +180,9 @@ figcaption { font-size: 14px; color: var(--chase-ink-soft); margin-top: 4px; }
 }
 
 /* News */
-.news-item { border-left: 3px solid var(--chase-gold); padding: 2px 0 2px 14px; margin: 0 0 22px; }
+.news-item { border-left: 3px solid var(--chase-accent); padding: 2px 0 2px 14px; margin: 0 0 22px; }
 .news-item .news-date { color: var(--chase-ink-soft); font-size: 14px; }
 .news-item h2 { margin-top: 4px; }
+.tag.l1 { background: var(--chase-header); }
+.tag.l2 { background: var(--chase-link); }
+.tag.l3 { background: #8d6e63; }

@@ -1,4 +1,4 @@
-# 1. Contract algebra
+# Contract algebra
 
 The operations that build a contract from contracts. They hold for any
 assume-guarantee contracts, and the CHASE core library computes them in
@@ -97,7 +97,7 @@ valid invalid
 
 The server that answers each `fwd` at the next step can fill the gap; the lazy
 one, which may stop answering, cannot. The two refinement checks are
-[layer 2](checks.md).
+[contract-based verification](checks.md).
 
 ## Composition with discharge
 
@@ -112,7 +112,7 @@ contract that the other one guarantees (Incer, PhD thesis 2022, Algorithm 2):
   one that drops more assumptions;
 - then the terms implied by the others are dropped.
 
-!!! note "This variant uses layer 2"
+!!! note "This variant uses model checking"
     Each drop is decided by an implication check with nuXmv. The result is an
     abstraction of the composition: a refinement proved on it holds for the
     composition, one that fails on it may still hold. The

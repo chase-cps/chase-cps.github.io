@@ -34,11 +34,12 @@ nav:
   - Getting started:
       - Installation: getting-started/install.md
       - A first contract: getting-started/first-contract.md
-  - Contracts:
+  - Contract theory:
+      - Contract algebra: contracts/algebra.md
+      - Contract-based verification: contracts/checks.md
+  - Contracts in LTL:
       - Formulas: contracts/formulas.md
-      - "1. Contract algebra": contracts/algebra.md
-      - "2. Contract-based verification": contracts/checks.md
-      - "3. LTL contracts: GR(1) synthesis": contracts/synthesis.md
+      - GR(1) synthesis: contracts/synthesis.md
       - Back ends: contracts/back-ends.md
   - Interfaces:
       - Python package: interfaces/python.md

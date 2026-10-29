@@ -18,12 +18,12 @@ $> chase-cps check specs.ltl --implementation joint1.smv Joint1 --receptive join
 
 A contract argument is `NAME`, or `NAME+NAME+...` for the composition of the
 contracts. A model is a state machine in an SMV file, or in a JSON file (a
-state machine, or a controller of slugs synthesized from the contract). The options are grouped by layer:
+state machine, or a controller of slugs synthesized from the contract). The options are grouped as follows:
 
 | Group | Options |
 |---|---|
-| 2. contract-based verification (nuXmv) | `--verify` (the default: A ∧ G satisfiable), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT`, `--implementation MODEL C`, `--environment MODEL C`, `--receptive MODEL C` |
-| 3. GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C`, `--vacuous C` |
+| contract-based verification (nuXmv) | `--verify` (the default: A ∧ G satisfiable), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT`, `--implementation MODEL C`, `--environment MODEL C`, `--receptive MODEL C` |
+| GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C`, `--vacuous C` |
 | all | `--core` (a minimal set of terms that explains a failure), `--json`, `--timeout`, `--backend` |
 
 The exit status is 0 when every check passes, 1 when a check fails or does not

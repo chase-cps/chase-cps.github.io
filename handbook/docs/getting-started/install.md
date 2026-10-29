@@ -17,10 +17,10 @@ supported: use WSL or the Docker image.
 The package contains the CHASE library. The checks call external tools, which
 are installed separately:
 
-- [nuXmv](https://nuxmv.fbk.eu/) for the checks (layer 2) and for
+- [nuXmv](https://nuxmv.fbk.eu/) for contract-based verification and for
   `remove_redundant`. nuXmv is free for academic and non-commercial use.
 - [slugs](https://github.com/VerifiableRobotics/slugs) for the other analyses
-  of GR(1) synthesis (layer 3).
+  of GR(1) synthesis.
 
 `chase-cps install` downloads nuXmv from its site, and builds slugs from its
 sources, into `~/.chase`:

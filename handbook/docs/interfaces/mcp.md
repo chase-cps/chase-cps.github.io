@@ -9,15 +9,16 @@ agent how to use the tools.
 
 ## Tools
 
-The 30 tools follow the three layers; their names are those of the Python
-package.
+The 30 tools are grouped as the operations of CHASE (contract algebra,
+contract-based verification, GR(1) synthesis); their names are those of the
+Python package.
 
-| Layer | Tools |
+| Group | Tools |
 |---|---|
-| 1. Contract algebra | `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
-| 2. Contract-based verification | `refines`, `verify`, `is_compatible`, `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`, `remove_redundant` |
-| 2. Queries on formulas | `implies`, `is_satisfiable`, `unsat_core` |
-| 3. GR(1) synthesis | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant` with `synth` |
+| Contract algebra | `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
+| Contract-based verification | `refines`, `verify`, `is_compatible`, `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`, `remove_redundant` |
+| Queries on formulas | `implies`, `is_satisfiable`, `unsat_core` |
+| GR(1) synthesis | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant` with `synth` |
 | Specifications | `parse_spec`, `to_spec` |
 | SystemVerilog Assertions | `parse_sva`, `to_sva` |
 
@@ -85,7 +86,7 @@ the server entry.
 The skill is in `skills/chase-contracts` of the repository, in the
 [Agent Skills](https://agentskills.io) format. It tells the agent how to turn
 requirements into contracts (variables and who controls them, one pattern per
-requirement), which layer each tool belongs to, and how to explain a
+requirement), which group each tool belongs to, and how to explain a
 counterexample. It also works without the server: the agent then uses the
 Python package. Its examples are run by the tests of the repository, so the
 results they state are those CHASE returns.

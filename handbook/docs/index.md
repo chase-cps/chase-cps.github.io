@@ -30,34 +30,34 @@ impl = Contract.from_strings(inputs=["req"], outputs=["grant"],
 print(refines(impl, spec).status)    # valid
 ```
 
-## Three layers
+## Contract theory, and contracts in LTL
 
-The operations of CHASE are in three layers. Each layer builds on the one
-before and applies to fewer contracts: the algebra holds for any
-assume-guarantee contracts, the verification tasks for contracts in LTL,
-and the synthesis for contracts in the GR(1) fragment of LTL.
+CHASE separates what holds for any assume-guarantee contracts from what
+depends on the logic in which the contracts are written.
 
 <div class="layers" markdown>
-<div class="layer l1" markdown>
-**1. Contract algebra** (any assume-guarantee contracts). Composition,
-conjunction, merging, quotient, separation, implication, and the other
-operations that build a contract from contracts, computed in closed form,
-without a solver. [More](contracts/algebra.md)
+<div class="layer" markdown>
+**Contract theory** (any assume-guarantee contracts)
+
+- *Contract algebra*: composition, conjunction, merging, quotient,
+  separation, implication, and the other operations that build a contract
+  from contracts, computed in closed form, without a solver.
+  [More](contracts/algebra.md)
+- *Contract-based verification*: refinement, compatibility, consistency, and
+  whether a component is an implementation, or an environment, of a
+  contract. [More](contracts/checks.md)
 </div>
-<div class="layer l2" markdown>
-**2. Contract-based verification** (contracts in LTL). Refinement,
-compatibility, consistency, and whether a component is an implementation, or
-an environment, of a contract. Each task reduces to the validity or the
-satisfiability of a formula over Boolean, integer, real, and bit-vector
-variables, which a model checker decides. A failed task comes with a
-counterexample, and a core gives the requirements in conflict.
-[More](contracts/checks.md)
-</div>
-<div class="layer l3" markdown>
-**3. GR(1) synthesis** (contracts in the GR(1) fragment of LTL).
-Realizability, controllers, unrealizable cores, well-separation, and
-vacuity: can a component be synthesized from its contract?
-[More](contracts/synthesis.md)
+<div class="layer" markdown>
+**Contracts in LTL** (what CHASE decides)
+
+- The verification tasks reduce to the validity or the satisfiability of
+  [LTL formulas](contracts/formulas.md) over Boolean, integer, real, and
+  bit-vector variables, which a model checker decides. A failed task comes
+  with a counterexample, and a core gives the requirements in conflict.
+- *GR(1) synthesis*, for contracts in the GR(1) fragment of LTL:
+  realizability, controllers, unrealizable cores, well-separation, and
+  vacuity. Can a component be synthesized from its contract?
+  [More](contracts/synthesis.md)
 </div>
 <div class="base" markdown>
 Front ends: the specification language and console (logics_tool), domain

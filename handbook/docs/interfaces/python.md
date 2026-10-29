@@ -4,12 +4,12 @@
 [Installation](../getting-started/install.md)). Its modules follow the three
 layers:
 
-| Layer | Module | Names |
+| Group | Module | Names |
 |---|---|---|
-| 1. Contract algebra | `chase_cps.contract` | `Contract` and its methods: `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
-| 2. Contract-based verification | `chase_cps.checks`, `chase_cps.models` | `refines`, `verify`, `is_compatible`, `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`, `remove_redundant`; `Model` (state machines) |
-| 2. Queries on formulas | `chase_cps.logic` | `implies`, `is_satisfiable`, `unsat_core` |
-| 3. GR(1) synthesis | `chase_cps.gr1` | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant(c, synth=True)` |
+| Contract algebra | `chase_cps.contract` | `Contract` and its methods: `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
+| Contract-based verification | `chase_cps.checks`, `chase_cps.models` | `refines`, `verify`, `is_compatible`, `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`, `remove_redundant`; `Model` (state machines) |
+| Queries on formulas | `chase_cps.logic` | `implies`, `is_satisfiable`, `unsat_core` |
+| GR(1) synthesis | `chase_cps.gr1` | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant(c, synth=True)` |
 
 All the names are also in `chase_cps` itself, and the modules of version 0.3.0
 (`chase_cps.checks`, `chase_cps.cores`) still give them. `load_spec(path)`

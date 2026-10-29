@@ -1,4 +1,4 @@
-# 2. Contract-based verification
+# Contract-based verification
 
 The verification tasks on contracts ask whether one contract refines
 another, whether a contract can be met at all, and whether a component or an
@@ -29,8 +29,8 @@ may drop depends on what the contract is for next:
 
 | Next | Call | Keeps |
 |---|---|---|
-| the algebra and the checks | `remove_redundant(c)` | A → G |
-| synthesis ([layer 3](synthesis.md#redundancy-in-the-gr1-game)) | `remove_redundant(c, synth=True)` | realizability and the controllers |
+| the algebra and verification | `remove_redundant(c)` | A → G |
+| [GR(1) synthesis](synthesis.md#redundancy-in-the-gr1-game) | `remove_redundant(c, synth=True)` | realizability and the controllers |
 
 The two differ only when the assumptions are wrong, for instance
 unsatisfiable. With `core=True`, each removed term comes with the terms

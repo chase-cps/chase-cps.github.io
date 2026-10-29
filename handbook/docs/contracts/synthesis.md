@@ -1,4 +1,4 @@
-# 3. LTL contracts: GR(1) synthesis
+# GR(1) synthesis
 
 The algebra and the verification tasks hold for any contracts. This page is
 about contracts written in LTL, and in its GR(1) fragment, for which a
@@ -198,7 +198,7 @@ to nuXmv per term:
 
 ### With or without `synth`?
 
-Without `synth`, `remove_redundant` ([layer 2](checks.md)) keeps A → G
+Without `synth`, `remove_redundant` ([contract-based verification](checks.md)) keeps A → G
 instead. On *Fair* both remove R8. They differ when the assumptions are
 wrong:
 
