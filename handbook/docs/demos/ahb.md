@@ -1,4 +1,8 @@
-# AHB: two viewpoints of an arbiter
+---
+wide: true
+---
+
+# Bus arbiter: merging two viewpoints
 
 **The question.** Two teams wrote two viewpoints of the same arbiter of the
 AMBA AHB bus: one on how the bus is given to the masters, one on how a
@@ -22,12 +26,18 @@ flowchart LR
 
 ## The contracts
 
+<div class="tbl-ag" markdown>
+
 | Viewpoint | Assumes | Guarantees |
 |---|---|---|
 | _Grant_ | nothing | GR1: master 1 has the bus at the start; GR2: the bus is given to exactly one master; GR3.1, GR3.2: no master waits forever |
 | _Lock_ | LA1.1, LA1.2: a master asks for the bus when it asks for a locked access; LA2: a master that has locked the bus stops asking for it sooner or later | LK1: the bus is locked when its master asks for a locked access; LK2.1, LK2.2: while a master has locked the bus and asks for it, it keeps the bus |
 
+</div>
+
 ## The steps
+
+<div class="tbl-steps" markdown>
 
 | Step | Operation | Result |
 |---|---|---|
@@ -35,6 +45,8 @@ flowchart LR
 | 2. The merge without LA2 | Grant • Lock′, with Lock′ = Lock without LA2; `is_realizable(..., core=True)` | unrealizable, with the core GR1, GR2, GR3.2, LK1, LK2.1 |
 | 3. The merge | Arbiter = Grant • Lock, with discharge; `synthesize`, `to_sva` | realizable: slugs gives a controller of 81 states, and _Arbiter_ is written as SVA |
 | 4. The controller | `is_implementation(Model.from_controller(...), Arbiter)` | valid |
+
+</div>
 
 Step 2 is the answer to the question. Each viewpoint alone has an arbiter,
 but together they conflict when master 1 locks the bus and keeps asking for

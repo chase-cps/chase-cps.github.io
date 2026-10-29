@@ -1,3 +1,7 @@
+---
+wide: true
+---
+
 # Power systems and factories
 
 These demos write the requirements in a domain-specific language (DSL_tool)

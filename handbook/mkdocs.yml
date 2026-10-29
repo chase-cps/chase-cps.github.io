@@ -58,14 +58,14 @@ nav:
       - "Hardware: SVA and RTL": tools/systemverilog.md
   - Demos:
       - demos/index.md
-      - Charger: demos/charger.md
-      - Lift-Plus-Cruise: demos/lift-plus-cruise.md
+      - AI agents: demos/ai-agents.md
+      - "Aircraft (Lift-Plus-Cruise)": demos/lift-plus-cruise.md
+      - Bus arbiter (AMBA AHB): demos/ahb.md
+      - Circuit buffer swap: demos/buffer-swap.md
+      - Warehouse robot: demos/warehouse-robot.md
+      - Charging station (Charger): demos/charger.md
+      - Autopilot (Lockheed Martin): demos/lm-fsm.md
       - Robotic joints: demos/robotic-joints.md
-      - BufferSwap: demos/buffer-swap.md
-      - LMFSM: demos/lm-fsm.md
-      - AHB: demos/ahb.md
-      - Warehouse: demos/warehouse.md
-      - Delegation: demos/delegation.md
       - Power systems and factories: demos/power-systems.md
   - Contributing: contributing.md
   - Publications: publications.md

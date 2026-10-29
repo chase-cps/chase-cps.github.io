@@ -227,9 +227,12 @@ figcaption { font-size: 14px; color: var(--chase-ink-soft); margin-top: 4px; }
 /* Narrow screens: one column, the sidebar behind a button. */
 .nav-toggle { display: none; }
 .nav-toggle-label { display: none; }
-@media (max-width: 1100px) { .layout { grid-template-columns: 220px minmax(0, 1fr); } .page-toc { display: none; } }
+/* A wide page (wide: true in its front matter) has no table of contents on
+   the right, for its tables and figures. */
+.layout.wide { grid-template-columns: 230px minmax(0, 1fr); }
+@media (max-width: 1100px) { .layout, .layout.wide { grid-template-columns: 220px minmax(0, 1fr); } .page-toc { display: none; } }
 @media (max-width: 760px) {
-  .layout { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 16px; }
+  .layout, .layout.wide { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 16px; }
   .nav-toggle-label { display: block; font-weight: 700; color: var(--chase-link); cursor: pointer; }
   .sidebar { display: none; position: static; max-height: none; }
   .nav-toggle:checked ~ .sidebar { display: block; }
@@ -251,3 +254,44 @@ a.tag, a.tag:hover { color: #fff; text-decoration: none; margin: 1px 0; }
 .tag.t-gr1 { background: #8a6d3b; }
 .tag.t-hw { background: #4a5f8a; }
 .tag.t-data { background: #6b7280; }
+
+/* Tables of the demos: fixed column widths, so that the wide columns get
+   the room and the rows stay low. A table is wrapped in a div of one of
+   these classes. */
+.tbl-steps table, .tbl-ag table, .tbl-pairs table, .tbl-rules table, .tbl-three table, .tbl-demos table { table-layout: fixed; }
+.tbl-steps td code, .tbl-ag td code, .tbl-pairs td code, .tbl-rules td code, .tbl-three td code { white-space: normal; }
+.tbl-steps th:nth-child(1) { width: 19%; }
+.tbl-steps th:nth-child(2) { width: 45%; }
+.tbl-ag th:nth-child(1) { width: 16%; }
+.tbl-ag th:nth-child(2) { width: 34%; }
+.tbl-pairs th:nth-child(1) { width: 24%; }
+.tbl-rules th:nth-child(1) { width: 8%; }
+.tbl-rules th:nth-child(2) { width: 46%; }
+.tbl-three th:nth-child(1) { width: 26%; }
+.tbl-three th:nth-child(2) { width: 44%; }
+.tbl-demos th:nth-child(1) { width: 19%; }
+.tbl-demos th:nth-child(2) { width: 52%; }
+
+/* A tree of contracts: the parent above, its components below. */
+.ctree { margin: 8px 0 26px; }
+.cnode { border: 1.5px solid var(--chase-border); border-radius: 8px; padding: 10px 14px; background: #fff; min-width: 0; }
+.cnode.parent { border-color: var(--chase-header); background: var(--chase-surface); }
+.cnode h4 { margin: 0 0 2px; font-size: 15px; letter-spacing: 0; }
+.cnode .what { margin: 0 0 6px; font-size: 13px; color: var(--chase-ink-soft); }
+.cnode .side { margin: 6px 0 2px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--chase-ink-soft); }
+.cnode ul { list-style: none; margin: 0; padding: 0 !important; }
+.cnode li { margin: 2px 0 !important; font-size: 13px; }
+.cnode li code { font-size: 12px; white-space: nowrap; }
+.cnode li.q code { background: #fdf3d8; border: 1px solid #e6c870; }
+.cnode .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+.ctree .stem { width: 2px; height: 16px; margin: 0 auto; background: var(--chase-ink-soft); }
+.ctree .kids { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.ctree .kids::before { content: ""; position: absolute; top: -16px; left: 12.5%; right: 12.5%; border-top: 2px solid var(--chase-ink-soft); }
+.ctree .kid { position: relative; display: flex; min-width: 0; }
+.ctree .kid > .cnode { flex: 1; }
+.ctree .kid::before { content: ""; position: absolute; top: -16px; left: 50%; height: 16px; border-left: 2px solid var(--chase-ink-soft); }
+.ctree .legend { margin: 8px 0 0; font-size: 13px; color: var(--chase-ink-soft); }
+@media (max-width: 860px) {
+  .cnode .cols, .ctree .kids { grid-template-columns: 1fr; }
+  .ctree .kids::before, .ctree .kid::before { display: none; }
+}

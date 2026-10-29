@@ -1,4 +1,8 @@
-# Lift-Plus-Cruise: requirements over reals
+---
+wide: true
+---
+
+# Aircraft: what makes it hover in time
 
 **The question.** The requirements of an aircraft are consistent with a
 hover within 12 steps. What must the pilot do so that every flight hovers
@@ -28,6 +32,8 @@ flowchart LR
 
 ## The contracts
 
+<div class="tbl-pairs" markdown>
+
 | Contract | Guarantees |
 |---|---|
 | _Vehicle_ | all the requirements but the two LPC_REACH_HOVER ones |
@@ -37,16 +43,22 @@ flowchart LR
 | _Slow_ | _Pilot_, and `G(kias > 0 -> kias' = kias - 10)` |
 | _Decel_ | _Slow_, and `G(hover_control_mode <-> kgs < 20)` |
 
+</div>
+
 ## The steps
+
+<div class="tbl-steps" markdown>
 
 | Step | Operation | Result |
 |---|---|---|
 | 1. Hover within 12 steps | `is_consistent(Vehicle with Reach12)` | sat, with a behavior that hovers at step 11 |
 | 2. Hover within 6 steps | `is_consistent(Vehicle with Reach06, core=True)` | unsat, with the requirements in conflict |
-| 3. The split | `refines(ModeLogic ∥ Pilot, Vehicle)` | valid |
+| 3. The split | `refines(ModeLogic || Pilot, Vehicle)` | valid |
 | 4. What the pilot must do | Q12 = Reach12 / ModeLogic, with discharge; `refines(Pilot, Q12)` | invalid: `kias` may stay at 120 |
 | 5. A pilot that slows down | `refines(Slow, Q12)` | invalid: the hover control mode stays off |
-| 6. A pilot that slows down and turns on the hover control | `refines(Decel, Q12)`, `refines(ModeLogic ∥ Decel, Reach12)` | valid |
+| 6. A pilot that slows down and turns on the hover control | `refines(Decel, Q12)`, `refines(ModeLogic || Decel, Reach12)` | valid |
+
+</div>
 
 ![The Lift-Plus-Cruise demo run with chase-cps 0.3.1 (steps 1 and 2)](../assets/lift-plus-cruise.gif){ .recording }
 

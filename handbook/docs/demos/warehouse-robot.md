@@ -1,4 +1,8 @@
-# Warehouse: the contract of a controller to delegate
+---
+wide: true
+---
+
+# Warehouse robot: a controller to delegate
 
 **The question.** The local controller of a warehouse robot is given to a
 designer, a person or a language model, while perception and localization
@@ -26,6 +30,8 @@ flowchart LR
 
 ## The contracts
 
+<div class="tbl-ag" markdown>
+
 | Contract | Assumes | Guarantees |
 |---|---|---|
 | _Perception_ | `G (w <= 0.8 & w >= -0.8)`: the robot turns slowly enough for the camera and the lidar | `G (c_rep <= c_true + 0.3)` |
@@ -35,14 +41,20 @@ flowchart LR
 | _Margins_ | nothing | `G (c_rep >= 0.7)`, `F (rest & e_est <= 0.05)` |
 | _Dispatched_ | nothing | the guarantees of _Margins_, and `G (w <= 0.8 & w >= -0.8)` |
 
+</div>
+
 ## The steps
+
+<div class="tbl-steps" markdown>
 
 | Step | Operation | Result |
 |---|---|---|
 | 1. The contract of the controller | Q = System / (Perception ∥ Localization), with discharge | _Q_ guarantees the requirements of the system and `G (w <= 0.8 & w >= -0.8)` |
 | 2. The requirements of the mission | `refines(MissionOnly, Q)` | invalid: reported clearance 0.40, true clearance 0, `w` = 0.9 |
 | 3. With margins for the errors | `refines(Margins, Q)` | invalid: `w` = 1.2, true clearance 0 |
-| 4. With the yaw rate | `refines(Dispatched, Q)`, `refines(Perception ∥ Localization ∥ Dispatched, System)` | valid |
+| 4. With the yaw rate | `refines(Dispatched, Q)`, `refines(Perception || Localization || Dispatched, System)` | valid |
+
+</div>
 
 The quotient is the weakest contract of the controller with which the
 system meets its requirements, so it is the one to hand to the designer: it

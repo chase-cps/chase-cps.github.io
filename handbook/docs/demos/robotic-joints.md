@@ -1,3 +1,7 @@
+---
+wide: true
+---
+
 # Robotic joints
 
 The joints of a robotic arm, first presented at CPS-IoT Week 2022. Each

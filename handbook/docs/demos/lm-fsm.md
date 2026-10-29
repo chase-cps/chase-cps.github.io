@@ -1,4 +1,8 @@
-# LMFSM: conflicting requirements
+---
+wide: true
+---
+
+# Autopilot: conflicting requirements
 
 **The question.** Which requirements of a state machine, as first written,
 contradict each other, and does the pullup of the corrected system come
@@ -38,18 +42,24 @@ reads the autopilot of the same step.
 
 ## The steps
 
+<div class="tbl-steps" markdown>
+
 | Step | Operation | Result |
 |---|---|---|
 | 1. The first requirements | `is_realizable` with the unrealizable core | Four conflicts in the autopilot, fixed one at a time (FSM-003, FSM-004, FSM-008, FSM-007), one in the sensor (FSM-011) |
 | 2. The corrected requirements | `is_realizable` | _Autopilot_ and _Sensor_ are realizable |
 | 3. The system | Autopilot ∥ Sensor, with discharge; `refines(..., System)` | The composition does not refine FSM-001: the counterexample shows the pullup one step late |
-| 4. The system, with time | `refines(Autopilot ∥ Sensor, SystemTimed)` | The composition refines FSM-001t |
+| 4. The system, with time | `refines(Autopilot || Sensor, SystemTimed)` | The composition refines FSM-001t |
+
+</div>
 
 Step 1 answers the first part of the question. Each unrealizable core is a
 pair of requirements that send the machine from one state to two different
 states for the same inputs (with the initial state, and the requirements
 that lead to that state). The script replaces the first one by its
 corrected version and checks again, until the contract is realizable:
+
+<div class="tbl-three" markdown>
 
 | Core | The conflict | Fix |
 |---|---|---|
@@ -58,6 +68,8 @@ corrected version and checks again, until the contract is realizable:
 | FSM-002, FSM-008, FSM-009 | in STANDBY, the pilot not in control and a failure: TRANSITION or MANEUVER | FSM-008v2: only without a failure |
 | FSM-002, FSM-006, FSM-007, FSM-009 | in MANEUVER, the pilot in control, supported, good data: STANDBY or TRANSITION | FSM-007v2: only when the pilot is not in control |
 | FSM-010, FSM-011 (sensor) | in NOMINAL, the limits exceeded and no request: FAULT or TRANSITION | FSM-011v2: only when the limits are not exceeded |
+
+</div>
 
 The fixes are the corrected versions of FRET: CHASE finds each conflict
 from the formulas alone, in the order in which a designer would meet them.

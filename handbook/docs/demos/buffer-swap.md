@@ -1,4 +1,8 @@
-# BufferSwap: replacing a block of a circuit
+---
+wide: true
+---
+
+# Hardware: replacing the buffer of a circuit
 
 **The question.** A buffer of a circuit is replaced by a smaller one, whose
 contract does not refine the old one. Can it take its place, and what must
@@ -34,12 +38,16 @@ flowchart LR
 
 ## The steps
 
+<div class="tbl-steps" markdown>
+
 | Step | Operation | Result |
 |---|---|---|
 | 1. The old system | Producer ∥ TwoFifo ∥ Consumer, with discharge; `refines(..., System)` | valid |
 | 2. The new buffer against the old one | `refines(OneFifo, TwoFifo)` | invalid: with a value in, _OneFifo_ takes no other |
 | 3. What the place of the buffer needs | Slot = System / (Producer ∥ Consumer), with discharge; `refines(OneFifo, Slot)` | valid, and the new system refines _System_ |
 | 4. The contract for the RTL | `to_sva(Slot)`, `is_implementation(Model.from_rtl(...), Slot)` | `bsg_one_fifo` implements _Slot_; Jasper proves it too |
+
+</div>
 
 The new buffer is not a refinement of the old one, so its contract alone
 does not say that it can replace it (step 2). The quotient answers the

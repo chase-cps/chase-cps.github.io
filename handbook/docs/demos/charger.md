@@ -1,4 +1,8 @@
-# Charger: diagnosis of an arbiter
+---
+wide: true
+---
+
+# Charging station: designing an arbiter
 
 Two robots share a charging station, and an arbiter gives the station to the
 robots. The demo follows one design iteration of the arbiter: the
