@@ -2,21 +2,25 @@
 
 The demos are in the [demos](https://github.com/chase-cps/demos) repository,
 and in the `demos` directory of the Docker image. Each one follows a design
-problem; the recent ones use the contract algebra, verification, and
-synthesis in turn.
+problem from its requirements to a result. The tags say what each one uses,
+and link to its page: the [contract algebra](../contracts/algebra.md),
+[contract-based verification](../contracts/checks.md),
+[GR(1) synthesis](../tools/synthesis.md), contracts in
+[SystemVerilog Assertions](../tools/systemverilog.md), RTL read with Yosys,
+real variables, or a domain-specific language.
 
 | Demo | What it shows | Uses |
 |---|---|---|
-| [Charger](charger.md) | Two robots share a charging station through an arbiter: one design iteration of the arbiter, from an unrealizable contract to a composition that refines the system | <span class="tag l1">algebra</span> <span class="tag l2">verification</span> <span class="tag l3">synthesis</span> |
-| [Lift-Plus-Cruise](lift-plus-cruise.md) | The lift modes of a NASA aircraft, with real variables: consistency, a behavior, and the requirements in conflict | <span class="tag l1">algebra</span> <span class="tag l2">verification</span> |
-| [Robotic joints](robotic-joints.md) | The joints of a robotic arm: composition, refinement, synthesis of the joint controllers, and scaling with the number of joints | <span class="tag l1">algebra</span> <span class="tag l2">verification</span> <span class="tag l3">synthesis</span> |
-| [BufferSwap](buffer-swap.md) | A buffer of a circuit is replaced by a smaller one: the contracts in SVA, the quotient as the contract of the place of the buffer, and the RTL checked with Yosys and nuXmv, and with Jasper | <span class="tag l1">algebra</span> <span class="tag l2">verification</span> |
-| [LMFSM](lm-fsm.md) | The state machine of an autopilot and a sensor (Lockheed Martin challenge): the conflicts of the requirements found by unrealizable cores and fixed one at a time, and the time a pullup takes in the composition | <span class="tag l1">algebra</span> <span class="tag l2">verification</span> |
-| [AHB](ahb.md) | The arbiter of the AMBA AHB bus as two viewpoints: their merge is synthesized, and the controller does not implement their conjunction | <span class="tag l1">algebra</span> <span class="tag l2">verification</span> |
-| [Power systems and factories](power-systems.md) | Requirements written in a domain-specific language: the electrical power system of an aircraft (DATE 2018, DATE 2021) and a small factory (FDL 2024) | <span class="tag l3">synthesis</span> |
+| [Charger](charger.md) | Two robots share a charging station through an arbiter: one design iteration of the arbiter, from an unrealizable contract to a composition that refines the system | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> |
+| [Lift-Plus-Cruise](lift-plus-cruise.md) | The lift modes of a NASA aircraft, with real variables: the requirements are consistent with one deadline and in conflict with a shorter one, and the core names them | <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-data" href="../contracts/checks.md#real-variables">reals</a> |
+| [Robotic joints](robotic-joints.md) | The joints of a robotic arm: composition, refinement, synthesis of the joint controllers, and scaling with the number of joints | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> |
+| [BufferSwap](buffer-swap.md) | A buffer of a circuit is replaced by a smaller one: the contracts in SVA, the quotient as the contract of the place of the buffer, and the RTL checked with Yosys and nuXmv, and with Jasper | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> <a class="tag t-hw" href="../contracts/checks.md#rtl">RTL</a> |
+| [LMFSM](lm-fsm.md) | The state machine of an autopilot and a sensor (Lockheed Martin challenge): the conflicts of the requirements found by unrealizable cores and fixed one at a time, and the time a pullup takes in the composition | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> |
+| [AHB](ahb.md) | The arbiter of the AMBA AHB bus as two viewpoints in SVA: their merge is synthesized, and the controller does not implement their conjunction | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> |
+| [Power systems and factories](power-systems.md) | Requirements written in a domain-specific language: the electrical power system of an aircraft (DATE 2018, DATE 2021) and a small factory (FDL 2024) | <a class="tag t-data" href="power-systems.md">DSL</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> |
 
 All the demos are run and checked by the test suite of CHASE:
 
 ```
-$> docker run --rm chase /opt/chase/tests/demo-suite.sh
+$> docker run --rm ghcr.io/chase-cps/chase /opt/chase/tests/demo-suite.sh
 ```

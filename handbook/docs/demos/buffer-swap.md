@@ -44,8 +44,10 @@ requirements, here the guarantees of the system under the guarantees of the
 producer and of the consumer. The new buffer refines it.
 
 ```
+$> git clone https://github.com/chase-cps/demos && cd demos
 $> pip install chase-cps[rtl]
-$> python3 bufferswap.py --expect
+$> chase-cps install nuxmv --accept-license
+$> python3 BufferSwap/bufferswap.py
 ```
 
 `jasper/run.tcl` proves the contract of the place (`out/slot.sv`, written by

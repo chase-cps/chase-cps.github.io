@@ -239,6 +239,10 @@ figcaption { font-size: 14px; color: var(--chase-ink-soft); margin-top: 4px; }
 .news-item { border-left: 3px solid var(--chase-accent); padding: 2px 0 2px 14px; margin: 0 0 22px; }
 .news-item .news-date { color: var(--chase-ink-soft); font-size: 14px; }
 .news-item h2 { margin-top: 4px; }
-.tag.l1 { background: var(--chase-header); }
-.tag.l2 { background: var(--chase-link); }
-.tag.l3 { background: #8a7a74; }
+/* The tags of the demos: the theory, the tools, the kinds of input */
+a.tag, a.tag:hover { color: #fff; text-decoration: none; margin: 1px 0; }
+.tag.t-theory { background: var(--chase-header); }
+.tag.t-verif { background: var(--chase-link); }
+.tag.t-gr1 { background: #8a6d3b; }
+.tag.t-hw { background: #4a5f8a; }
+.tag.t-data { background: #6b7280; }
