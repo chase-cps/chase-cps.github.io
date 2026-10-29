@@ -15,9 +15,17 @@
       <h1 id="project_title"><a href="{{ nav.homepage.url | url }}">CHASE</a></h1>
       <h2 id="project_tagline">{{ config.site_description }}</h2>
     </div>
-    <a class="github" href="{{ config.repo_url }}" aria-label="CHASE on GitHub" title="CHASE on GitHub">
-      <svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-    </a>
+    <div class="header-links">
+      <form class="search" role="search" action="{{ 'search.html' | url }}" onsubmit="return false">
+        <input type="search" id="mkdocs-search-query" name="q" placeholder="Search" aria-label="Search the handbook" autocomplete="off">
+        <div id="mkdocs-search-results" class="search-results" aria-live="polite"></div>
+      </form>
+      <a class="header-link" href="{{ 'news.html' | url if not config.use_directory_urls else 'news/' | url }}" title="What each version brought">v{{ config.extra.version }}</a>
+      <a class="header-link" href="{{ config.extra.pypi }}" title="chase-cps on PyPI">PyPI</a>
+      <a class="github" href="{{ config.repo_url }}" aria-label="CHASE on GitHub" title="CHASE on GitHub">
+        <svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -28,12 +36,14 @@
     <nav class="sidebar" aria-label="Handbook">
       {% for item in nav %}
         {% if item.is_section %}
-          {# a section opens when one of its pages is shown; a section whose first
-             page is its index page has a title that links to it #}
+          {# a section is open when one of its pages is shown, or always for the
+             sections of extra.nav_open; the title of a section whose first page
+             is its index page links to it #}
           {% set first = item.children[0] %}
           {% set indexed = first.is_page and first.is_index %}
-          <details class="nav-group"{% if item.active %} open{% endif %}>
-            <summary>
+          {% set always = item.title in (config.extra.nav_open or []) %}
+          <details class="nav-group{% if always %} always{% endif %}"{% if item.active or always %} open{% endif %}>
+            <summary{% if always %} tabindex="-1"{% endif %}>
               {% if indexed %}
                 <a class="nav-group-title{% if first.active %} active{% endif %}" href="{{ first.url | url }}"{% if first.active %} aria-current="page"{% endif %}>{{ item.title }}</a>
               {% else %}
@@ -107,6 +117,8 @@
     wrap.appendChild(button);
   });
 </script>
+<script>var base_url = "{{ base_url }}";</script>
+<script src="{{ 'search/main.js' | url }}"></script>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
   mermaid.initialize({ startOnLoad: true, theme: "neutral", fontFamily: "'Myriad Pro', Calibri, Helvetica, Arial, sans-serif" });
