@@ -17,7 +17,7 @@ real variables, or a domain-specific language.
 
 | Demo | What it shows | Uses |
 |---|---|---|
-| [AI agents](ai-agents.md) | A task in natural language becomes the contract of an AI agent, decomposed among three sub-agents (AppWorld): the decomposition misses a deliverable, the quotient says which sub-agent must do it, and an unsat core finds a clause against the rules of the user | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> |
+| [Payment assistant (AppWorld)](payment-assistant.md) | A task in natural language becomes the contract of an assistant agent, decomposed among three sub-agents (AppWorld): the decomposition misses a deliverable, the quotient says which sub-agent must do it, and an unsat core finds a clause against the request of the user | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> |
 | [Aircraft (Lift-Plus-Cruise)](lift-plus-cruise.md) | The lift modes of a NASA aircraft, with real variables: the requirements are consistent with one deadline and in conflict with a shorter one, and the quotient by the mode logic says what the pilot must do to hover in time | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-data" href="../contracts/checks.md#real-variables">reals</a> |
 | [Bus arbiter (AMBA AHB)](ahb.md) | The arbiter of the AMBA AHB bus as two viewpoints in SVA: their merge is unrealizable until the masters release a locked bus, and then synthesized | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> |
 | [Circuit buffer swap](buffer-swap.md) | A buffer of a circuit is replaced by a smaller one: the contracts in SVA, the quotient as the contract of the place of the buffer, and the RTL checked with Yosys and nuXmv, and with Jasper | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> <a class="tag t-hw" href="../contracts/checks.md#rtl">RTL</a> |
@@ -29,6 +29,22 @@ real variables, or a domain-specific language.
 | [Power systems and factories](power-systems.md) | Requirements written in a domain-specific language: the electrical power system of an aircraft (DATE 2018, DATE 2021) and a small factory (FDL 2024) | <a class="tag t-data" href="power-systems.md">DSL</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> |
 
 </div>
+
+## Reading the diagrams
+
+- A rounded box is a contract; a square box also has a model (RTL, a state
+  machine, or a synthesized controller).
+- A box drawn inside another refines it. The note under its name says how
+  it is built: ⊗ composition (∥ in the text), • merging, / quotient.
+- A dashed box is a quotient: what the missing part must satisfy, with the
+  part that refines it drawn inside.
+- The tags are the results of the checks, green when the check holds and
+  red when it does not: ⪯ refinement, A compatible, G consistent,
+  R realizable, WS well separated, ¬V not vacuous, M ⊨ C the model
+  implements the contract. The lines highlighted in red are the core of a
+  failed check.
+- In the page that each script writes, a click on a name opens or closes a
+  contract, and a click on a red tag shows its core.
 
 All the demos are run and checked by the test suite of CHASE:
 

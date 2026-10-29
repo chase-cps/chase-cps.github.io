@@ -85,6 +85,7 @@ and the MCP server for AI agents (MCP).
 | [Specification language and console](logics-tool.md) | the `.ltl` files of CHASE and the console of logics_tool |
 | [SystemVerilog Assertions](../tools/systemverilog.md) | contracts read from and written as SVA (see Tool integrations) |
 | [MCP server for AI agents](mcp.md) | the operations as tools of an agent, with a skill that tells it how to use them |
+| [Diagrams](diagrams.md) | contracts, components, and systems drawn as a web page, with the results of the checks |
 
 The questions on contracts that external tools answer, model checking, GR(1)
 synthesis, and the tools that read SystemVerilog, are under

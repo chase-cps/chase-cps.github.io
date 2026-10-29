@@ -1,6 +1,28 @@
 # News
 
 <div class="news-item" markdown>
+<span class="news-date">October 29, 2026</span>
+
+## CHASE 0.5.0: diagrams
+
+CHASE now draws contracts, components, and systems as a web page
+([Diagrams](interfaces/diagrams.md)):
+
+- refinement is drawn as nesting, a quotient as a dashed box with the part
+  that refines it inside, and a model opens on its states;
+- the results of the checks are tags on the boxes, and a failed check
+  highlights its core;
+- `chase_cps.viz` in Python, `chase-cps view` for a specification file, and
+  the `visualize` tool of the MCP server;
+- every demo page now shows each step with its diagram, and the power
+  system demos are read in Python with `load_dsl`
+  ([Power systems](demos/power-systems.md)).
+
+Fixed: `R` (release) in a specification file, intervals such as `G[0,3]`,
+and negative constants in the operations of the C++ library.
+</div>
+
+<div class="news-item" markdown>
 <span class="news-date">October 28, 2026</span>
 
 ## CHASE 0.4.1: contracts for hardware

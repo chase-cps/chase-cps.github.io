@@ -2,7 +2,7 @@
 wide: true
 ---
 
-# Hardware: replacing the buffer of a circuit
+# Circuit buffer swap: a smaller buffer in its place
 
 **The question.** A buffer of a circuit is replaced by a smaller one, whose
 contract does not refine the old one. Can it take its place, and what must
@@ -11,7 +11,10 @@ any buffer in that place satisfy?
 [![The system: a producer, the buffer, and a consumer, with a ready/valid handshake](../assets/diagram-buffer-swap-system.png)](../assets/diagram-buffer-swap-system.png)
 _The system: a producer, the buffer, and a consumer, with a ready/valid handshake._
 
-A producer sends data to a consumer through a buffer. The buffer is
+A producer sends data to a consumer through a buffer, with a ready/valid
+handshake: the producer offers a value (`v_i`) and the buffer takes it when
+it is ready (`ready_o`); the buffer offers a value (`v_o`) and the consumer
+takes it (`yumi_i`). The buffer is
 `bsg_two_fifo` of BaseJump STL, a FIFO of two entries; the demo replaces it
 with `bsg_one_fifo`, a FIFO of one entry. The contracts are written in
 [SystemVerilog Assertions](../tools/systemverilog.md): every offer is taken
@@ -20,8 +23,8 @@ RTL is that of BaseJump STL.
 
 ## The steps
 
-**Step 1. The old system.** _Producer_, _TwoFifo_, and _Consumer_ refine
-_System_, and the RTL of `bsg_two_fifo` implements _TwoFifo_ (the diagram at
+**Step 1. The old system.** The composition of _Producer_, _TwoFifo_, and
+_Consumer_ refines _System_, and the RTL of `bsg_two_fifo` implements _TwoFifo_ (the diagram at
 the top).
 
 **Step 2. The new buffer against the old one.** _OneFifo_ does not refine
@@ -32,26 +35,26 @@ say that it can take the place.
 _Step 2: OneFifo does not refine TwoFifo._
 
 **Step 3. What the place of the buffer needs.** The quotient Slot = System /
-(Producer ∥ Consumer) is the weakest contract with which the system meets
+(Producer ∥ Consumer), drawn as a dashed box, is the weakest contract with which the system meets
 its requirements. Any buffer that refines it can take the place, and
 _OneFifo_ does.
 
 [![Step 3: OneFifo refines Slot, the contract of the place](../assets/diagram-buffer-swap-3.png)](../assets/diagram-buffer-swap-3.png)
 _Step 3: OneFifo refines Slot, the contract of the place._
 
-**Step 4. On the RTL.** The RTL of `bsg_one_fifo` implements _Slot_, checked
-with Yosys and nuXmv, and proved with Jasper from _Slot_ written as SVA.
+**Step 4. On the RTL.** The RTL of `bsg_one_fifo` implements _Slot_: Yosys
+reads the RTL and nuXmv checks it (M ⊨ C in the diagrams).
 
 ## Run it
 
 ```
 $> git clone https://github.com/chase-cps/demos && cd demos
-$> pip install chase-cps[rtl]
+$> pip install "chase-cps[rtl]"
 $> chase-cps install nuxmv --accept-license
 $> python3 BufferSwap/bufferswap.py
 ```
 
-The script prints the result of each step and writes `out/bufferswap.html`,
-the diagrams above, to open in a browser: a click on a name opens a
-contract. It also writes `out/slot.sv`, which `BufferSwap/jasper/run.tcl`
-proves on the RTL with Jasper.
+The script prints the result of each step and writes the diagrams above in
+`out/bufferswap.html`. It also writes _Slot_ as SVA in `out/slot.sv`; with Jasper (a
+commercial tool, optional here), `BufferSwap/jasper/run.tcl` proves it on
+the RTL as well.
