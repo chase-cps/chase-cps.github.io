@@ -1,8 +1,8 @@
 # Python package
 
 `chase_cps` is the Python interface to CHASE: `pip install chase-cps` (see
-[Installation](../getting-started/install.md)). Its modules follow the three
-layers:
+[Installation](../getting-started/install.md)). Its modules are grouped as
+follows:
 
 | Group | Module | Names |
 |---|---|---|

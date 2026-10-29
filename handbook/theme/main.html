@@ -28,11 +28,20 @@
     <nav class="sidebar" aria-label="Handbook">
       {% for item in nav %}
         {% if item.is_section %}
+          {# a section whose first page is its index page: the title links to it #}
+          {% set first = item.children[0] %}
+          {% set indexed = first.is_page and first.is_index %}
           <div class="nav-group">
-            <div class="nav-group-title">{{ item.title }}</div>
+            {% if indexed %}
+              <a class="nav-group-title{% if first.active %} active{% endif %}" href="{{ first.url | url }}"{% if first.active %} aria-current="page"{% endif %}>{{ item.title }}</a>
+            {% else %}
+              <div class="nav-group-title">{{ item.title }}</div>
+            {% endif %}
             <ul>
               {% for child in item.children %}
+                {% if not (indexed and loop.first) %}
                 <li><a href="{{ child.url | url }}"{% if child.active %} class="active" aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                {% endif %}
               {% endfor %}
             </ul>
           </div>

@@ -68,6 +68,12 @@ p { margin: 10px 0 15px; }
   display: block; padding: 5px 10px; margin-left: -10px; border-left: 3px solid transparent;
   color: var(--chase-ink); font-size: 16px;
 }
+/* A section title that links to the overview of the section */
+.sidebar a.nav-group-title {
+  padding: 0 0 6px; margin-left: 0; border-left: none; font-size: 13px; color: #222;
+}
+.sidebar a.nav-group-title:hover { color: var(--chase-link); }
+.sidebar a.nav-group-title.active { color: var(--chase-header); background: none; }
 .sidebar a:hover { color: var(--chase-link); text-decoration: none; }
 .sidebar a.active { color: var(--chase-header); font-weight: 700; border-left-color: var(--chase-header); background: var(--chase-active); }
 .page-toc a { display: block; padding: 3px 0; font-size: 14px; color: var(--chase-ink-soft); }

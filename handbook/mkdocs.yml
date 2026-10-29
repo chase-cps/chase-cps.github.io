@@ -32,14 +32,17 @@ markdown_extensions:
 nav:
   - Overview: index.md
   - Getting started:
+      - getting-started/index.md
       - Installation: getting-started/install.md
       - A first contract: getting-started/first-contract.md
   - Contract theory:
+      - contracts/index.md
       - Formulas: contracts/formulas.md
       - Contract algebra: contracts/algebra.md
       - Contract-based verification: contracts/checks.md
   - GR(1) synthesis: contracts/synthesis.md
   - Interfaces:
+      - interfaces/index.md
       - Python package: interfaces/python.md
       - Command line: interfaces/command-line.md
       - Specification language and console: interfaces/logics-tool.md
@@ -47,7 +50,7 @@ nav:
       - MCP server for AI agents: interfaces/mcp.md
       - Back ends: interfaces/back-ends.md
   - Demos:
-      - All demos: demos/index.md
+      - demos/index.md
       - Charger: demos/charger.md
       - Lift-Plus-Cruise: demos/lift-plus-cruise.md
       - Robotic joints: demos/robotic-joints.md
@@ -57,6 +60,7 @@ nav:
       - Power systems and factories: demos/power-systems.md
   - News: news.md
   - About:
+      - about/index.md
       - Publications: about/publications.md
       - Repositories: about/repositories.md
       - Contributing: about/contributing.md
