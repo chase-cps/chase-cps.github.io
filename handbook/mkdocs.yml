@@ -65,6 +65,7 @@ nav:
       - LMFSM: demos/lm-fsm.md
       - AHB: demos/ahb.md
       - Warehouse: demos/warehouse.md
+      - Delegation: demos/delegation.md
       - Power systems and factories: demos/power-systems.md
   - Contributing: contributing.md
   - Publications: publications.md
