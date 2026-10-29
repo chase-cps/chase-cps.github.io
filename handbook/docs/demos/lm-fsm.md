@@ -1,4 +1,4 @@
-# LMFSM: conflicting requirements of a state machine
+# LMFSM: conflicting requirements
 
 An autopilot commands a safety maneuver (pullup) when a sensor reports a
 hazard. The requirements are those of the finite state machine of the Ten

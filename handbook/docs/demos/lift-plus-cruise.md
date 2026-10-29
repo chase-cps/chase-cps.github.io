@@ -1,4 +1,4 @@
-# Lift-Plus-Cruise: requirements with real variables
+# Lift-Plus-Cruise: requirements over reals
 
 Lift-Plus-Cruise is an aircraft studied at NASA: lift rotors for the vertical
 take-off, the landing, and the hover, and a wing with a pusher propeller for

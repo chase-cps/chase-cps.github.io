@@ -119,9 +119,10 @@ p { margin: 10px 0 15px; }
 .page-toc a:hover { color: var(--chase-link); }
 
 #main_content { min-width: 0; }
-#main_content h1 { font-size: 34px; margin-top: 0; }
-#main_content h2 { font-size: 26px; margin-top: 36px; padding-bottom: 8px; border-bottom: 1px solid var(--chase-border); }
-#main_content h3 { font-size: 20px; margin-top: 26px; letter-spacing: -.5px; }
+#main_content h1 { font-size: 28px; margin-top: 0; }
+#main_content h2 { font-size: 22px; margin-top: 32px; padding-bottom: 8px; border-bottom: 1px solid var(--chase-border); }
+#main_content h3 { font-size: 18px; margin-top: 24px; letter-spacing: -.5px; }
+#main_content h4 { font-size: 16px; margin-top: 20px; letter-spacing: 0; }
 #main_content ul, #main_content ol { padding-left: 22px; margin: 0 0 15px; }
 #main_content li { margin: 4px 0; }
 #main_content img { max-width: 100%; height: auto; }
@@ -233,6 +234,8 @@ figcaption { font-size: 14px; color: var(--chase-ink-soft); margin-top: 4px; }
   .nav-toggle:checked ~ .sidebar { display: block; }
   #project_title { font-size: 32px; }
   #project_tagline { font-size: 17px; }
+  #main_content h1 { font-size: 24px; }
+  #main_content h2 { font-size: 20px; }
 }
 
 /* News */
