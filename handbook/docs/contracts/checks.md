@@ -6,7 +6,7 @@ environment satisfies a contract. They are defined on behaviors, for any
 assume-guarantee contracts. CHASE carries them out for contracts in LTL over
 Boolean, bounded integer, real, and word variables: each task reduces to the
 **validity** or the **satisfiability** of a formula, which a model checker
-decides ([back ends](back-ends.md)).
+decides ([back ends](../interfaces/back-ends.md)).
 
 ## Verification tasks
 

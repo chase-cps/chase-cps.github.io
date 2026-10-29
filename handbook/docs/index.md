@@ -30,40 +30,37 @@ impl = Contract.from_strings(inputs=["req"], outputs=["grant"],
 print(refines(impl, spec).status)    # valid
 ```
 
-## Contract theory, and contracts in LTL
-
-CHASE separates what holds for any assume-guarantee contracts from what
-depends on the logic in which the contracts are written.
+## Contract theory and GR(1) synthesis
 
 <div class="layers" markdown>
 <div class="layer" markdown>
-**Contract theory** (any assume-guarantee contracts)
+**Contract theory**
 
-- *Contract algebra*: composition, conjunction, merging, quotient,
-  separation, implication, and the other operations that build a contract
-  from contracts, computed in closed form, without a solver.
-  [More](contracts/algebra.md)
-- *Contract-based verification*: refinement, compatibility, consistency, and
-  whether a component is an implementation, or an environment, of a
-  contract. [More](contracts/checks.md)
+- [*Formulas*](contracts/formulas.md): the assumptions and the guarantees
+  are formulas of linear temporal logic over Boolean, integer, real, and
+  bit-vector variables.
+- [*Contract algebra*](contracts/algebra.md): composition, conjunction,
+  merging, quotient, separation, implication, and the other operations that
+  build a contract from contracts. They hold for any assume-guarantee
+  contracts and are computed in closed form, without a solver.
+- [*Contract-based verification*](contracts/checks.md): refinement,
+  compatibility, consistency, and whether a component is an implementation,
+  or an environment, of a contract. Each task reduces to the validity or
+  the satisfiability of a formula, which a model checker decides. A failed
+  task comes with a counterexample, and a core gives the requirements in
+  conflict.
 </div>
 <div class="layer" markdown>
-**Contracts in LTL** (what CHASE decides)
-
-- The verification tasks reduce to the validity or the satisfiability of
-  [LTL formulas](contracts/formulas.md) over Boolean, integer, real, and
-  bit-vector variables, which a model checker decides. A failed task comes
-  with a counterexample, and a core gives the requirements in conflict.
-- *GR(1) synthesis*, for contracts in the GR(1) fragment of LTL:
-  realizability, controllers, unrealizable cores, well-separation, and
-  vacuity. Can a component be synthesized from its contract?
-  [More](contracts/synthesis.md)
+**[GR(1) synthesis](contracts/synthesis.md)**, for contracts in the GR(1)
+fragment of LTL: realizability, controllers, unrealizable cores,
+well-separation, and vacuity. Can a component be synthesized from its
+contract?
 </div>
 <div class="base" markdown>
 Front ends: the specification language and console (logics_tool), domain
-languages (DSL_tool), SystemVerilog Assertions and RTL, Python, the command
-line, and the MCP server for AI agents. [Back ends](contracts/back-ends.md):
-nuXmv, NuSMV, slugs, gr1c, and Yosys.
+languages (DSL_tool), SystemVerilog Assertions, RTL (read with Yosys),
+Python, the command line, and the MCP server for AI agents.
+[Back ends](interfaces/back-ends.md): nuXmv, NuSMV, slugs, and gr1c.
 </div>
 </div>
 

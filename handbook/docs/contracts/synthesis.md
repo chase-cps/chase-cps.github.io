@@ -1,8 +1,8 @@
 # GR(1) synthesis
 
 The algebra and the verification tasks hold for any contracts. This page is
-about contracts written in LTL, and in its GR(1) fragment, for which a
-component can be synthesized. The analyses ask whether a **component can be
+about contracts in the GR(1) fragment of LTL, for which a component can be
+synthesized. The analyses ask whether a **component can be
 synthesized** from a contract: a controller that sets the outputs so that the guarantees
 hold against every environment that sets the inputs and meets the
 assumptions. This depends on the synthesis approach, here GR(1) with

@@ -10,10 +10,10 @@ answers it reads back:
 | [NuSMV](https://nusmv.fbk.eu) | the same without real variables, when nuXmv is not installed | `chase-cps install nusmv`; in the Docker image |
 | [slugs](https://github.com/VerifiableRobotics/slugs) | GR(1) realizability and synthesis | `chase-cps install slugs` |
 | [gr1c](https://github.com/tulip-control/gr1c) | GR(1) synthesis from the domain languages | in the Docker image |
-| [Yosys](https://yosyshq.net/yosys/) | reading RTL as state machines | `pip install chase-cps[rtl]` |
 
 With `backend="auto"` (the default) CHASE takes nuXmv when it is installed,
-and NuSMV otherwise.
+and NuSMV otherwise. Yosys, which reads RTL as state machines, is a front
+end: see [SystemVerilog Assertions and RTL](systemverilog.md).
 
 ## Engines of nuXmv
 

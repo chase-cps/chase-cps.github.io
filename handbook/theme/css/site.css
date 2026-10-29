@@ -1,18 +1,19 @@
 /* The handbook: header, sidebar of topics, content, and footer. */
 
-/* Colors: a dark green-teal for the header and footer, a warm grey for the
-   page, lighter tints of it for code, tables, and notes. */
+/* Colors: a dark green-teal header and footer, white pages (the figures
+   have white backgrounds), light neutral greys for code, tables, and notes,
+   and a warm grey line under the header. */
 :root {
   --chase-header: #17393b;
   --chase-header-dark: #0f2829;
-  --chase-accent: #d7ccc8;      /* the line under the header, the marks */
-  --chase-ink: #1e2a2b;         /* text */
-  --chase-ink-soft: #4e5a5b;    /* secondary text */
-  --chase-link: #1c5d61;
-  --chase-page: #d7ccc8;
-  --chase-surface: #efebe9;     /* code, tables, notes */
-  --chase-border: #bcaaa4;
-  --chase-active: #efebe9;      /* the current page in the sidebar */
+  --chase-accent: #d7ccc8;      /* the line under the header */
+  --chase-ink: #1f2728;         /* text */
+  --chase-ink-soft: #586566;    /* secondary text */
+  --chase-link: #1c6a6f;
+  --chase-page: #ffffff;
+  --chase-surface: #f4f6f6;     /* code, tables, notes */
+  --chase-border: #dde3e3;
+  --chase-active: #e8efef;      /* the current page in the sidebar */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -119,7 +120,7 @@ button.copy.done { color: #2f7d3c; }
 pre.has-copy { padding-right: 44px; }
 
 /* Tables, as in slate: a dark header row. */
-table { border-collapse: collapse; margin: 0 0 20px; background: #f7f4f2; width: 100%; }
+table { border-collapse: collapse; margin: 0 0 20px; background: #ffffff; width: 100%; }
 .table-wrap { overflow-x: auto; }
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -185,4 +186,4 @@ figcaption { font-size: 14px; color: var(--chase-ink-soft); margin-top: 4px; }
 .news-item h2 { margin-top: 4px; }
 .tag.l1 { background: var(--chase-header); }
 .tag.l2 { background: var(--chase-link); }
-.tag.l3 { background: #8d6e63; }
+.tag.l3 { background: #8a7a74; }

@@ -35,18 +35,17 @@ nav:
       - Installation: getting-started/install.md
       - A first contract: getting-started/first-contract.md
   - Contract theory:
+      - Formulas: contracts/formulas.md
       - Contract algebra: contracts/algebra.md
       - Contract-based verification: contracts/checks.md
-  - Contracts in LTL:
-      - Formulas: contracts/formulas.md
-      - GR(1) synthesis: contracts/synthesis.md
-      - Back ends: contracts/back-ends.md
+  - GR(1) synthesis: contracts/synthesis.md
   - Interfaces:
       - Python package: interfaces/python.md
       - Command line: interfaces/command-line.md
       - Specification language and console: interfaces/logics-tool.md
       - SystemVerilog Assertions and RTL: interfaces/systemverilog.md
       - MCP server for AI agents: interfaces/mcp.md
+      - Back ends: interfaces/back-ends.md
   - Demos:
       - All demos: demos/index.md
       - Charger: demos/charger.md
