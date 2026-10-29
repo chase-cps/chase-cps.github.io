@@ -1,21 +1,23 @@
-# 2. Checks
+# 2. Contract-based verification
 
-The checks answer questions about contracts: does one refine another, can it
-be met at all. Each one reduces to the **validity** or the **satisfiability**
-of a formula, which a model checker decides. In CHASE the formulas are LTL
-over Boolean, bounded integer, and real variables, and the model checker is
-nuXmv (or NuSMV).
+The verification tasks on contracts ask whether one contract refines
+another, whether a contract can be met at all, and whether a component or an
+environment satisfies a contract. They are defined on behaviors, for any
+assume-guarantee contracts. CHASE carries them out for contracts in LTL over
+Boolean, bounded integer, real, and word variables: each task reduces to the
+**validity** or the **satisfiability** of a formula, which a model checker
+decides ([back ends](back-ends.md)).
 
-## Checks on contracts
+## Verification tasks
 
-| Check | Holds when | Python |
+| Task | Holds when | Python |
 |---|---|---|
 | refinement C1 ⪯ C2 | A2 → A1 and (A1→G1) → (A2→G2) are valid | `refines(c1, c2)` |
 | compatibility | some environment satisfies A | `is_compatible(c)` |
 | consistency | some behavior satisfies A → G | `is_consistent(c)` |
 | assumptions and guarantees together | A ∧ G is satisfiable (so compatible and consistent) | `verify(c)` |
-| implementation M ⊨ C | M ∧ A → G is valid, or every behavior of the state machine M satisfies A → G | `implements(m, c)` |
-| acceptance of an environment E | E → A is valid, or every behavior of E satisfies A | `accepts(c, e)` |
+| implementation M ⊨<sub>M</sub> C | M ∧ A → G is valid, or every behavior of the state machine M satisfies A → G | `is_implementation(m, c)` |
+| environment E ⊨<sub>E</sub> C | E → A is valid, or every behavior of E satisfies A | `is_environment(e, c)` |
 | receptiveness of a state machine M | M refuses no input that the assumptions allow | `is_receptive(m, c)` |
 | no redundant terms | each term is not implied by the others | `remove_redundant(c)` |
 
@@ -53,7 +55,7 @@ The checks above are built on two queries, which can also be called directly:
 !!! note "A formula is satisfiable; a component satisfies a contract"
     `is_satisfiable` asks whether some behavior (a value of each variable at
     each step) satisfies a formula. Whether a component satisfies a contract
-    is `implements(m, c)`.
+    is `is_implementation(m, c)`.
 
 ## Cores: why a check fails
 
@@ -114,8 +116,8 @@ satisfies both guarantees. With the context, that behavior is left out.
     behavior that violates the context does not count at all.
 
 `context` is taken by `implies`, `is_satisfiable`, `is_compatible`,
-`is_consistent`, `verify`, `refines`, `remove_redundant`, `accepts`,
-`implements`, and `unsat_core` (the context is in every test, never in the
+`is_consistent`, `verify`, `refines`, `remove_redundant`, `is_environment`,
+`is_implementation`, and `unsat_core` (the context is in every test, never in the
 core). The [GR(1) synthesis](synthesis.md) checks do not take it.
 
 ## Real variables
@@ -146,18 +148,18 @@ values of words in the traces are integers. The operators are in
 
 A Verilog or SystemVerilog module is a state machine too:
 `Model.from_rtl(files, top)` reads it with Yosys
-(`pip install chase-cps[rtl]`), and `implements`, `accepts`, and
+(`pip install chase-cps[rtl]`), and `is_implementation`, `is_environment`, and
 `is_receptive` take it. The ports are the variables of the contracts (a
 1-bit port is a Boolean, a wider one a word), and one step is one cycle of
 the clock.
 
 ```
-from chase_cps import Model, implements
+from chase_cps import Model, is_implementation
 
 m = Model.from_rtl(["bsg_dff_reset.sv", "bsg_dff_en.sv", "bsg_one_fifo.sv"],
                    "bsg_one_fifo", parameters={"width_p": 4}, reset="reset_i",
                    names={"ready_and_o": "ready_o"})
-print(implements(m, slot).status)
+print(is_implementation(m, slot).status)
 ```
 
 `parameters` sets parameters of the top module, `names` renames ports, and
@@ -166,42 +168,11 @@ the contracts are checked from the step after it. The checks are those of
 nuXmv, for small and medium designs; the [BufferSwap demo](../demos/buffer-swap.md)
 checks the RTL of two FIFOs.
 
-## Engines
-
-nuXmv checks the formulas with IC3 and BDDs at the same time, and the first
-verdict is taken. Both engines prove and refute, so the verdict does not
-depend on which one answers; the counterexample may. One engine can be
-chosen with `engine`, or in the back end, as the results name it:
-
-| Engine | Proves | Finds counterexamples | Good for |
-|---|---|---|---|
-| `portfolio` (default) | yes | yes | IC3 and BDDs at the same time |
-| `ic3` | yes | yes | large state spaces, words, reals |
-| `bdd` | yes | yes | a counterexample that needs a long loop (a counter that goes around) |
-| `bmc` | no | up to `bmc_bound` steps | short counterexamples |
-
-```
-from chase_cps import implies
-
-r = implies("cnt = 254 & G (cnt' = cnt + 1)", "X (cnt = 0)", {"cnt": "word[8]"},
-            "nuxmv/bdd")
-print(r.status, r.backend)      # invalid nuxmv/bdd
-```
-
-On the command line the option is `--engine`. Formulas with `signed()` or
-`unsigned()` are checked with BDDs only: IC3 of nuXmv 2.2.0 gives wrong
-answers on them.
-
-!!! note "Integers out of range"
-    `load_spec` warns when an integer is compared with a constant outside its
-    range, for instance `credits >= 90` with `credits` declared without a
-    range (so 0 to 16): such a comparison has the same value at every step.
-
 ## Results
 
 | Check | Answers |
 |---|---|
-| `implies`, `refines`, `implements`, `accepts` | `valid`, `invalid` |
+| `implies`, `refines`, `is_implementation`, `is_environment` | `valid`, `invalid` |
 | `is_satisfiable`, `is_compatible`, `is_consistent`, `verify` | `sat`, `unsat` |
 | `is_receptive` | `receptive`, `not_receptive` |
 | any check | `unknown`, with a `reason` (time out, no tool installed) |

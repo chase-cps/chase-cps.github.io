@@ -13,7 +13,7 @@ contracts, or `{"contracts": [...]}`, each in the format of
 $> chase-cps check specs.ltl                                    # verify every contract
 $> chase-cps check specs.ltl --refines Joint1+Joint2 Joints      # the composition refines Joints
 $> chase-cps check specs.ltl --realizable Joint1 --json
-$> chase-cps check specs.ltl --implements joint1.smv Joint1 --receptive joint1.smv Joint1
+$> chase-cps check specs.ltl --implementation joint1.smv Joint1 --receptive joint1.smv Joint1
 ```
 
 A contract argument is `NAME`, or `NAME+NAME+...` for the composition of the
@@ -22,7 +22,7 @@ state machine, or a controller of slugs synthesized from the contract). The opti
 
 | Group | Options |
 |---|---|
-| 2. checks on contracts (nuXmv) | `--verify` (the default: A ∧ G satisfiable), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT`, `--implements MODEL C`, `--receptive MODEL C` |
+| 2. contract-based verification (nuXmv) | `--verify` (the default: A ∧ G satisfiable), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT`, `--implementation MODEL C`, `--environment MODEL C`, `--receptive MODEL C` |
 | 3. GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C`, `--vacuous C` |
 | all | `--core` (a minimal set of terms that explains a failure), `--json`, `--timeout`, `--backend` |
 

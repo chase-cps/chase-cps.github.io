@@ -2,14 +2,47 @@ site_name: CHASE
 site_description: Contract-based Heterogeneous Analysis and Systems Exploration
 site_url: https://chase-cps.github.io/
 repo_url: https://github.com/chase-cps/chase
+repo_name: chase-cps/chase
 edit_uri: ""
 
-# The theme follows the style of the CHASE site (GitHub Pages "slate").
 theme:
-  name: null
-  custom_dir: theme
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/handshake-outline
 
-plugins: []
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
 
 markdown_extensions:
   - admonition
@@ -20,29 +53,33 @@ markdown_extensions:
       permalink: "#"
   - pymdownx.highlight
   - pymdownx.inlinehilite
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_div_format
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
-  - Overview: index.md
-  - Getting started:
+  - Home: index.md
+  - Get started:
       - Installation: getting-started/install.md
       - A first contract: getting-started/first-contract.md
-  - Contracts:
+  - Theory:
       - Formulas: contracts/formulas.md
       - "1. Contract algebra": contracts/algebra.md
-      - "2. Checks": contracts/checks.md
-      - "3. GR(1) synthesis": contracts/synthesis.md
-  - Interfaces:
+      - "2. Contract-based verification": contracts/checks.md
+      - "3. LTL contracts: GR(1) synthesis": contracts/synthesis.md
+      - Back ends: contracts/back-ends.md
+  - Tools:
       - Python package: interfaces/python.md
       - Command line: interfaces/command-line.md
       - Specification language and console: interfaces/logics-tool.md
-      - SystemVerilog Assertions: interfaces/systemverilog.md
+      - SystemVerilog Assertions and RTL: interfaces/systemverilog.md
       - MCP server for AI agents: interfaces/mcp.md
   - Demos:
       - All demos: demos/index.md
@@ -53,6 +90,7 @@ nav:
       - LMFSM: demos/lm-fsm.md
       - AHB: demos/ahb.md
       - Power systems and factories: demos/power-systems.md
+  - News: news.md
   - About:
       - Publications: about/publications.md
       - Repositories: about/repositories.md

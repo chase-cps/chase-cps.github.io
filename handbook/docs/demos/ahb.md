@@ -31,7 +31,7 @@ flowchart LR
 | 1. The viewpoints | `is_realizable` | _Grant_ and _Lock_ are each realizable |
 | 2. The merge | `merge` with discharge, `synthesize`, `to_sva` | The merge keeps the terms of both viewpoints: _Arbiter_, which is realizable; slugs gives a controller, and _Arbiter_ is written as SVA |
 | 3. The conjunction | `conjoin`, `refines` | The conjunction refines _Arbiter_; _Arbiter_ does not refine it |
-| 4. The controller | `Model.from_controller`, `implements` | The controller implements _Arbiter_, not the conjunction |
+| 4. The controller | `Model.from_controller`, `is_implementation` | The controller implements _Arbiter_, not the conjunction |
 
 The conjunction, (A1 | A2, G1 & G2), asks for each viewpoint on its own: no
 master may wait forever even when a master keeps the bus locked and never

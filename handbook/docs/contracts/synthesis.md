@@ -1,7 +1,9 @@
-# 3. GR(1) synthesis
+# 3. LTL contracts: GR(1) synthesis
 
-The analyses of this layer ask whether a **component can be synthesized**
-from a contract: a controller that sets the outputs so that the guarantees
+The algebra and the verification tasks hold for any contracts. This page is
+about contracts written in LTL, and in its GR(1) fragment, for which a
+component can be synthesized. The analyses ask whether a **component can be
+synthesized** from a contract: a controller that sets the outputs so that the guarantees
 hold against every environment that sets the inputs and meets the
 assumptions. This depends on the synthesis approach, here GR(1) with
 [slugs](https://github.com/VerifiableRobotics/slugs); it is not a property of

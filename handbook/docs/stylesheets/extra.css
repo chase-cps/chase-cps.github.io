@@ -1,0 +1,66 @@
+/* Colors: a dark slate blue, as the header of the former CHASE site. */
+:root {
+  --md-primary-fg-color: #24364b;
+  --md-primary-fg-color--light: #3a5270;
+  --md-primary-fg-color--dark: #172433;
+  --md-accent-fg-color: #2f6fb3;
+  --chase-l1: #e8eef8;
+  --chase-l2: #e2efda;
+  --chase-l3: #fff2cc;
+  --chase-border: #c9d2de;
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1c2b3c;
+  --md-accent-fg-color: #6aa6e8;
+  --chase-l1: #24324a;
+  --chase-l2: #26392b;
+  --chase-l3: #3d3622;
+  --chase-border: #3c4a5e;
+}
+
+/* Home page */
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 2.2rem; align-items: center;
+        margin: 1.5rem 0 2.5rem; }
+.hero h1.hero-title { font-size: 3.2rem; font-weight: 700; margin: 0; letter-spacing: .02em;
+                      color: var(--md-primary-fg-color); }
+[data-md-color-scheme="slate"] .hero h1.hero-title { color: var(--md-default-fg-color); }
+.hero .hero-name { margin: .2rem 0 .8rem; color: var(--md-default-fg-color--light); font-size: .8rem; }
+.hero .hero-tagline { font-size: 1.35rem; font-weight: 600; margin: 0 0 .8rem; line-height: 1.35; }
+.hero .hero-lead { font-size: .85rem; margin: 0 0 1rem; }
+.hero .hero-install code { font-size: .85rem; padding: .35rem .7rem; }
+.hero .md-button { margin: .6rem .4rem 0 0; }
+.hero .hero-code { min-width: 0; }
+.hero .hero-code pre { margin: 0; }
+@media screen and (max-width: 60em) { .hero { grid-template-columns: 1fr; } }
+
+/* The three levels: each one is inside the one before. */
+.levels .level { border: 1px solid var(--chase-border); border-radius: .4rem;
+                 padding: .7rem 1rem .5rem; margin: .5rem 0 0; }
+.levels .level.l1 { background: var(--chase-l1); }
+.levels .level.l2 { background: var(--chase-l2); }
+.levels .level.l3 { background: var(--chase-l3); }
+.levels .level p { margin: .2rem 0 .4rem; }
+.levels .level .level-name { font-weight: 700; }
+.levels .level .level-scope { color: var(--md-default-fg-color--light); font-size: .75rem; }
+
+/* News */
+.news-item { border-left: 3px solid var(--md-accent-fg-color); padding: .1rem 0 .1rem .9rem;
+             margin: 0 0 1.2rem; }
+.news-item .news-date { color: var(--md-default-fg-color--light); font-size: .75rem; }
+.news-item h3 { margin: .1rem 0 .3rem; }
+
+/* Formulas in tables, layer tags of the demos table, recordings */
+td.f, .f { font-family: var(--md-code-font-family); font-size: .85em; white-space: nowrap; }
+.tag { display: inline-block; min-width: 1.6em; text-align: center; font-size: .65rem;
+       font-weight: 700; padding: 0 .35rem; border-radius: .6rem; color: #fff;
+       background: #555; vertical-align: .05rem; }
+.tag.l1 { background: #3a5a8c; }
+.tag.l2 { background: #4f7a3a; }
+.tag.l3 { background: #9a7a1f; }
+img.recording { border-radius: .2rem; box-shadow: 0 .1rem .5rem rgba(0, 0, 0, .3); }
+
+/* The four domains of the home page, two by two */
+.md-typeset .grid.cards.domains { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media screen and (max-width: 45em) {
+  .md-typeset .grid.cards.domains { grid-template-columns: 1fr; }
+}

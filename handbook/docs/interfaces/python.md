@@ -7,7 +7,7 @@ layers:
 | Layer | Module | Names |
 |---|---|---|
 | 1. Contract algebra | `chase_cps.contract` | `Contract` and its methods: `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
-| 2. Checks on contracts | `chase_cps.checks`, `chase_cps.models` | `refines`, `verify`, `is_compatible`, `is_consistent`, `implements`, `accepts`, `is_receptive`, `remove_redundant`; `Model` (state machines) |
+| 2. Contract-based verification | `chase_cps.checks`, `chase_cps.models` | `refines`, `verify`, `is_compatible`, `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`, `remove_redundant`; `Model` (state machines) |
 | 2. Queries on formulas | `chase_cps.logic` | `implies`, `is_satisfiable`, `unsat_core` |
 | 3. GR(1) synthesis | `chase_cps.gr1` | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant(c, synth=True)` |
 
