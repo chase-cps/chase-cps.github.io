@@ -4,7 +4,7 @@ A producer sends data to a consumer through a buffer, with a ready/valid
 handshake. The buffer is `bsg_two_fifo` of BaseJump STL, a FIFO of two
 entries. The demo replaces it with `bsg_one_fifo`, a FIFO of one entry,
 which is smaller, and checks that the system still meets its requirements.
-The contracts are written in [SystemVerilog Assertions](../interfaces/systemverilog.md),
+The contracts are written in [SystemVerilog Assertions](../tools/systemverilog.md),
 and the RTL is that of BaseJump STL.
 
 ```mermaid

@@ -17,7 +17,7 @@ and `parse_spec(text)` read the contracts of a
 [specification file](logics-tool.md), and `to_spec(contracts)` writes one.
 `parse_sva(text)` reads the assertions of SystemVerilog as a contract, and
 `to_sva(contract)` writes a contract as a checker module (see
-[SystemVerilog Assertions](systemverilog.md)).
+[SystemVerilog Assertions](../tools/systemverilog.md)).
 
 ## Formulas
 

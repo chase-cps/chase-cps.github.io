@@ -1,19 +1,17 @@
-# Back ends
+# Model checking
 
-The contract algebra needs no solver. The verification tasks and the
-synthesis go to external tools, the back ends, which CHASE runs and whose
-answers it reads back:
+The [contract-based verification](../contracts/checks.md) tasks reduce to the
+validity or the satisfiability of LTL formulas, which a model checker
+decides:
 
-| Back end | For | Installed with |
+| Model checker | For | Installed with |
 |---|---|---|
-| [nuXmv](https://nuxmv.fbk.eu) | verification tasks: LTL over Boolean, integer, real, and word variables | `chase-cps install nuxmv --accept-license` (academic and non-commercial use) |
+| [nuXmv](https://nuxmv.fbk.eu) | LTL over Boolean, integer, real, and word variables | `chase-cps install nuxmv --accept-license` (academic and non-commercial use) |
 | [NuSMV](https://nusmv.fbk.eu) | the same without real variables, when nuXmv is not installed | `chase-cps install nusmv`; in the Docker image |
-| [slugs](https://github.com/VerifiableRobotics/slugs) | GR(1) realizability and synthesis | `chase-cps install slugs` |
-| [gr1c](https://github.com/tulip-control/gr1c) | GR(1) synthesis from the domain languages | in the Docker image |
 
 With `backend="auto"` (the default) CHASE takes nuXmv when it is installed,
-and NuSMV otherwise. Yosys, which reads RTL as state machines, is a front
-end: see [SystemVerilog Assertions and RTL](systemverilog.md).
+and NuSMV otherwise. A failed check comes with a counterexample, read back
+from the trace of the model checker.
 
 ## Engines of nuXmv
 

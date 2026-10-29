@@ -9,7 +9,7 @@ CHASE now reads and checks hardware designs:
 
 - contracts are read from SystemVerilog Assertions and written back as a
   checker module, with a bind statement, for any tool that reads SVA
-  ([SystemVerilog](interfaces/systemverilog.md));
+  ([SystemVerilog](tools/systemverilog.md));
 - RTL in Verilog or SystemVerilog is read with Yosys as a state machine, and
   checked against contracts (`pip install chase-cps[rtl]`);
 - merging and quotient keep the terms of the contracts, so their results go

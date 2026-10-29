@@ -75,8 +75,7 @@ p { margin: 10px 0 15px; }
 .sidebar summary::-webkit-details-marker { display: none; }
 .sidebar .nav-group-title, .sidebar a.nav-group-title {
   display: block; flex: 1; padding: 0; margin: 0; border-left: none; background: none;
-  font-family: 'Lucida Grande', Calibri, Helvetica, Arial, sans-serif;
-  font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #222;
+  font-size: 16px; font-weight: 700; color: var(--chase-ink);
 }
 .sidebar a.nav-group-title:hover { color: var(--chase-link); }
 .sidebar a.nav-group-title.active { color: var(--chase-header); background: none; }

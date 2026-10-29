@@ -6,7 +6,7 @@ environment satisfies a contract. They are defined on behaviors, for any
 assume-guarantee contracts. CHASE carries them out for contracts in LTL over
 Boolean, bounded integer, real, and word variables: each task reduces to the
 **validity** or the **satisfiability** of a formula, which a model checker
-decides ([back ends](../interfaces/back-ends.md)).
+decides ([back ends](../tools/model-checking.md)).
 
 ## Verification tasks
 
@@ -30,7 +30,7 @@ may drop depends on what the contract is for next:
 | Next | Call | Keeps |
 |---|---|---|
 | the algebra and verification | `remove_redundant(c)` | A → G |
-| [GR(1) synthesis](synthesis.md#redundancy-in-the-gr1-game) | `remove_redundant(c, synth=True)` | realizability and the controllers |
+| [GR(1) synthesis](../tools/synthesis.md#redundancy-in-the-gr1-game) | `remove_redundant(c, synth=True)` | realizability and the controllers |
 
 The two differ only when the assumptions are wrong, for instance
 unsatisfiable. With `core=True`, each removed term comes with the terms
@@ -118,7 +118,7 @@ satisfies both guarantees. With the context, that behavior is left out.
 `context` is taken by `implies`, `is_satisfiable`, `is_compatible`,
 `is_consistent`, `verify`, `refines`, `remove_redundant`, `is_environment`,
 `is_implementation`, and `unsat_core` (the context is in every test, never in the
-core). The [GR(1) synthesis](synthesis.md) checks do not take it.
+core). The [GR(1) synthesis](../tools/synthesis.md) checks do not take it.
 
 ## Real variables
 

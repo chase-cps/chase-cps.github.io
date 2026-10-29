@@ -1,4 +1,4 @@
-# SystemVerilog Assertions
+# Hardware: SVA and RTL
 
 `parse_sva` reads the `assume property` and `assert property` statements of
 SystemVerilog as a contract: the assumptions and the guarantees. The text can

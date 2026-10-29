@@ -85,5 +85,5 @@ design questions:
   each reduced to the validity or the satisfiability of a formula, which a
   model checker decides, with counterexamples and cores.
 
-For contracts in the GR(1) fragment of LTL, [GR(1) synthesis](synthesis.md)
+For contracts in the GR(1) fragment of LTL, [GR(1) synthesis](../tools/synthesis.md)
 asks whether a component can be synthesized from its contract.

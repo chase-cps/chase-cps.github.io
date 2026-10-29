@@ -222,7 +222,7 @@ together: removing any of them makes the rest satisfiable.
 ### Next
 
 - The [contract algebra](contracts/algebra.md), the [checks](contracts/checks.md),
-  and [GR(1) synthesis](contracts/synthesis.md).
+  and [GR(1) synthesis](tools/synthesis.md).
 - The same operations from a [specification file](interfaces/logics-tool.md)
   with the [command line](interfaces/command-line.md), or from an AI agent
   with the [MCP server](interfaces/mcp.md).

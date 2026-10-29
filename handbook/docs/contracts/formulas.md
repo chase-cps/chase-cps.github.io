@@ -98,7 +98,7 @@ Parentheses give the same formula in both.
 The checks are exact for Booleans, integers, and words. For reals, the
 [checks](checks.md#real-variables) say how they are decided. Reals and words
 are not checked in the same formula. GR(1)
-synthesis needs [formulas in the GR(1) fragment](synthesis.md).
+synthesis needs [formulas in the GR(1) fragment](../tools/synthesis.md).
 
 ## SystemVerilog Assertions
 
@@ -116,4 +116,4 @@ a contract as SVA:
 
 The widths of Verilog are kept, sequences of bounded length are read
 exactly, and the statements that cannot be read are listed with the reason.
-The details are in [SystemVerilog Assertions](../interfaces/systemverilog.md).
+The details are in [SystemVerilog Assertions](../tools/systemverilog.md).

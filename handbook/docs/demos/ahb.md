@@ -5,7 +5,7 @@ master can lock the bus. The requirements are simplified from those of R.
 Bloem et al., "Specify, Compile, Run: Hardware from PSL" (COCV 2007), a case
 study of GR(1) synthesis: two masters, no bursts, and no HREADY. They are
 written as two viewpoints of the same arbiter, in [SystemVerilog
-Assertions](../interfaces/systemverilog.md), and the demo compares the two
+Assertions](../tools/systemverilog.md), and the demo compares the two
 ways to put them together: [merging and conjunction](../contracts/algebra.md#what-each-one-is-for).
 
 ```mermaid

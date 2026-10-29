@@ -30,11 +30,11 @@ impl = Contract.from_strings(inputs=["req"], outputs=["grant"],
 print(refines(impl, spec).status)    # valid
 ```
 
-## Contract theory and GR(1) synthesis
+## Contract theory, interfaces, and tool integrations
 
 <div class="layers" markdown>
 <div class="layer" markdown>
-**Contract theory**
+**[Contract theory](contracts/index.md)**
 
 - [*Formulas*](contracts/formulas.md): the assumptions and the guarantees
   are formulas of linear temporal logic over Boolean, integer, real, and
@@ -45,22 +45,25 @@ print(refines(impl, spec).status)    # valid
   contracts and are computed in closed form, without a solver.
 - [*Contract-based verification*](contracts/checks.md): refinement,
   compatibility, consistency, and whether a component is an implementation,
-  or an environment, of a contract. Each task reduces to the validity or
-  the satisfiability of a formula, which a model checker decides. A failed
-  task comes with a counterexample, and a core gives the requirements in
-  conflict.
+  or an environment, of a contract.
 </div>
 <div class="layer" markdown>
-**[GR(1) synthesis](contracts/synthesis.md)**, for contracts in the GR(1)
-fragment of LTL: realizability, controllers, unrealizable cores,
-well-separation, and vacuity. Can a component be synthesized from its
-contract?
+**[Tool integrations](tools/index.md)**: the questions on contracts that
+external tools answer.
+
+- [*Model checking*](tools/model-checking.md) with nuXmv or NuSMV decides the
+  verification tasks, with counterexamples and cores.
+- [*GR(1) synthesis*](tools/synthesis.md) with slugs or gr1c, for contracts in
+  the GR(1) fragment of LTL: realizability, controllers, unrealizable cores,
+  well-separation, and vacuity.
+- [*Hardware: SVA and RTL*](tools/systemverilog.md): contracts read from and
+  written as SystemVerilog Assertions for the tools that read SVA, and RTL
+  read with Yosys as state machines.
 </div>
 <div class="base" markdown>
-Front ends: the specification language and console (logics_tool), domain
-languages (DSL_tool), SystemVerilog Assertions, RTL (read with Yosys),
-Python, the command line, and the MCP server for AI agents.
-[Back ends](interfaces/back-ends.md): nuXmv, NuSMV, slugs, and gr1c.
+[Interfaces](interfaces/index.md): Python, the command line, the
+specification language and console (logics_tool), domain languages
+(DSL_tool), and the MCP server for AI agents.
 </div>
 </div>
 

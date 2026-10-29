@@ -198,7 +198,7 @@ to nuXmv per term:
 
 ### With or without `synth`?
 
-Without `synth`, `remove_redundant` ([contract-based verification](checks.md)) keeps A → G
+Without `synth`, `remove_redundant` ([contract-based verification](../contracts/checks.md)) keeps A → G
 instead. On *Fair* both remove R8. They differ when the assumptions are
 wrong:
 
