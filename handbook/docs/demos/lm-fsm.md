@@ -1,13 +1,15 @@
 # LMFSM: conflicting requirements
 
+**The question.** Which requirements of a state machine, as first written,
+contradict each other, and does the pullup of the corrected system come
+when the requirement of the system says?
+
 An autopilot commands a safety maneuver (pullup) when a sensor reports a
 hazard. The requirements are those of the finite state machine of the Ten
 Lockheed Martin Cyber-Physical Challenges (A. Mavridou et al., "The Ten
 Lockheed Martin Cyber-Physical Challenges: Formalized, Analyzed, and
-Explained", RE 2020), as in the FRET case study LMCPS. The demo finds the
-requirements in conflict, checks that the corrected ones can be realized,
-and checks the requirement of the whole system on the composition of the
-autopilot and the sensor.
+Explained", RE 2020), as in the FRET case study LMCPS, which gives a first
+version of each requirement and the corrected one (v2).
 
 ```mermaid
 flowchart LR
@@ -40,14 +42,25 @@ reads the autopilot of the same step.
 |---|---|---|
 | 1. The first requirements | `is_realizable` with the unrealizable core | Four conflicts in the autopilot, fixed one at a time (FSM-003, FSM-004, FSM-008, FSM-007), one in the sensor (FSM-011) |
 | 2. The corrected requirements | `is_realizable` | _Autopilot_ and _Sensor_ are realizable |
-| 3. The system | `compose` with discharge, `refines` | The composition does not refine FSM-001: the counterexample shows the pullup one step late |
-| 4. The system, with time | `refines` | The composition refines FSM-001t |
+| 3. The system | Autopilot ∥ Sensor, with discharge; `refines(..., System)` | The composition does not refine FSM-001: the counterexample shows the pullup one step late |
+| 4. The system, with time | `refines(Autopilot ∥ Sensor, SystemTimed)` | The composition refines FSM-001t |
 
-In step 1, the core of _AutopilotFirst_ is FSM-002 and FSM-003 (with the
-initial state): both apply in TRANSITION when the pilot is in control and
-the sensor data is good, and lead to two states. The script replaces
-FSM-003 by FSM-003v2, which adds "when the pilot is not in control", and
-checks again; the next core is the next conflict.
+Step 1 answers the first part of the question. Each unrealizable core is a
+pair of requirements that send the machine from one state to two different
+states for the same inputs (with the initial state, and the requirements
+that lead to that state). The script replaces the first one by its
+corrected version and checks again, until the contract is realizable:
+
+| Core | The conflict | Fix |
+|---|---|---|
+| FSM-002, FSM-003 | in TRANSITION, the pilot in control and good sensor data: STANDBY or NOMINAL | FSM-003v2: only when the pilot is not in control |
+| FSM-003v2, FSM-004, FSM-005 | in NOMINAL, the pilot in control and bad sensor data: MANEUVER or STANDBY | FSM-004v2: only when the pilot is not in control |
+| FSM-002, FSM-008, FSM-009 | in STANDBY, the pilot not in control and a failure: TRANSITION or MANEUVER | FSM-008v2: only without a failure |
+| FSM-002, FSM-006, FSM-007, FSM-009 | in MANEUVER, the pilot in control, supported, good data: STANDBY or TRANSITION | FSM-007v2: only when the pilot is not in control |
+| FSM-010, FSM-011 (sensor) | in NOMINAL, the limits exceeded and no request: FAULT or TRANSITION | FSM-011v2: only when the limits are not exceeded |
+
+The fixes are the corrected versions of FRET: CHASE finds each conflict
+from the formulas alone, in the order in which a designer would meet them.
 
 In step 4, the limits not exceeded for three steps and then exceeded, with
 the pilot not in control and no failure from the second step to the fifth,

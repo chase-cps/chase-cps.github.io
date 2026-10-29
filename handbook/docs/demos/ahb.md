@@ -1,46 +1,55 @@
 # AHB: two viewpoints of an arbiter
 
-The arbiter of the AMBA AHB bus gives the bus to one of two masters, and a
-master can lock the bus. The requirements are simplified from those of R.
-Bloem et al., "Specify, Compile, Run: Hardware from PSL" (COCV 2007), a case
-study of GR(1) synthesis: two masters, no bursts, and no HREADY. They are
-written as two viewpoints of the same arbiter, in [SystemVerilog
-Assertions](../tools/systemverilog.md), and the demo compares the two
-ways to put them together: [merging and conjunction](../contracts/algebra.md#what-each-one-is-for).
+**The question.** Two teams wrote two viewpoints of the same arbiter of the
+AMBA AHB bus: one on how the bus is given to the masters, one on how a
+master locks it. Is there an arbiter that meets both, and what must it
+assume of the masters?
+
+The arbiter gives the bus to one of two masters, and a master can lock the
+bus. The requirements are simplified from those of R. Bloem et al.,
+"Specify, Compile, Run: Hardware from PSL" (COCV 2007), a case study of
+GR(1) synthesis: two masters, no bursts, and no HREADY. The viewpoints are
+written in [SystemVerilog Assertions](../tools/systemverilog.md), and put
+together by [merging](../contracts/algebra.md#what-each-one-is-for), the
+operation for viewpoints of one component.
 
 ```mermaid
 flowchart LR
-    M1["Master 1"] -- "hbusreq1, hlock1" --> A["Arbiter: Grant and Lock"]
+    M1["Master 1"] -- "hbusreq1, hlock1" --> A["Arbiter = Grant • Lock"]
     M2["Master 2"] -- "hbusreq2, hlock2" --> A
     A -- "hgrant1, hgrant2, hmastlock" --> B["Bus"]
 ```
 
 ## The contracts
 
-- _Grant_ gives the bus to exactly one master, master 1 at the start, and no
-  master waits forever. It assumes nothing.
-- _Lock_: a master that has locked the bus keeps it while it asks for it. It
-  assumes that a master asks for the bus when it asks for a locked access,
-  and that a master that has locked the bus stops asking for it sooner or
-  later.
+| Viewpoint | Assumes | Guarantees |
+|---|---|---|
+| _Grant_ | nothing | GR1: master 1 has the bus at the start; GR2: the bus is given to exactly one master; GR3.1, GR3.2: no master waits forever |
+| _Lock_ | LA1.1, LA1.2: a master asks for the bus when it asks for a locked access; LA2: a master that has locked the bus stops asking for it sooner or later | LK1: the bus is locked when its master asks for a locked access; LK2.1, LK2.2: while a master has locked the bus and asks for it, it keeps the bus |
 
 ## The steps
 
 | Step | Operation | Result |
 |---|---|---|
-| 1. The viewpoints | `is_realizable` | _Grant_ and _Lock_ are each realizable |
-| 2. The merge | `merge` with discharge, `synthesize`, `to_sva` | The merge keeps the terms of both viewpoints: _Arbiter_, which is realizable; slugs gives a controller, and _Arbiter_ is written as SVA |
-| 3. The conjunction | `conjoin`, `refines` | The conjunction refines _Arbiter_; _Arbiter_ does not refine it |
-| 4. The controller | `Model.from_controller`, `is_implementation` | The controller implements _Arbiter_, not the conjunction |
+| 1. Each viewpoint | `is_realizable(Grant)`, `is_realizable(Lock)` | each is realizable |
+| 2. The merge without LA2 | Grant • Lock′, with Lock′ = Lock without LA2; `is_realizable(..., core=True)` | unrealizable, with the core GR1, GR2, GR3.2, LK1, LK2.1 |
+| 3. The merge | Arbiter = Grant • Lock, with discharge; `synthesize`, `to_sva` | realizable: slugs gives a controller of 81 states, and _Arbiter_ is written as SVA |
+| 4. The controller | `is_implementation(Model.from_controller(...), Arbiter)` | valid |
 
-The conjunction, (A1 | A2, G1 & G2), asks for each viewpoint on its own: no
-master may wait forever even when a master keeps the bus locked and never
-stops asking. The counterexample of step 4 is that case. No arbiter
-implements the conjunction: it cannot tell from the past whether the master
-will stop asking, so it would have to let it keep the bus and take the bus
-from it. The merge, (A1 & A2, (G1 & G2) | !(A1 & A2)), is for viewpoints
-that describe one component together: each viewpoint holds under the
-assumptions of both.
+Step 2 is the answer to the question. Each viewpoint alone has an arbiter,
+but together they conflict when master 1 locks the bus and keeps asking for
+it: _Lock_ says that master 1 keeps the bus (LK2.1), and _Grant_ says that
+master 2 does not wait forever (GR3.2). The core names these requirements,
+with the ones that make the conflict possible (GR1, GR2, LK1). The
+assumption LA2 of _Lock_, that a master releases a locked bus sooner or
+later, removes the conflict: with it, the merge is realizable (step 3). The
+merge with discharge keeps the terms of both viewpoints,
+(A1 & A2, G1 & G2), so it is in GR(1) and goes to slugs as it is.
+
+_Arbiter_ as SVA (`out/arbiter.sv`) is a checker module, with the
+assumptions as `assume property` and the guarantees as `assert property`,
+for a tool that reads SVA, such as a model checker of the RTL of the
+arbiter.
 
 ## Run it
 

@@ -1,5 +1,9 @@
 # BufferSwap: replacing a block of a circuit
 
+**The question.** A buffer of a circuit is replaced by a smaller one, whose
+contract does not refine the old one. Can it take its place, and what must
+any buffer in that place satisfy?
+
 A producer sends data to a consumer through a buffer, with a ready/valid
 handshake. The buffer is `bsg_two_fifo` of BaseJump STL, a FIFO of two
 entries. The demo replaces it with `bsg_one_fifo`, a FIFO of one entry,
@@ -32,16 +36,20 @@ flowchart LR
 
 | Step | Operation | Result |
 |---|---|---|
-| 1. The old system | `compose` with discharge, `refines` | _Producer_, _TwoFifo_, _Consumer_ refine _System_ |
-| 2. The new buffer against the old one | `refines` | _OneFifo_ does not refine _TwoFifo_: with a value in, it takes no other |
-| 3. What the place of the buffer needs | `divide` with discharge, `refines` | _OneFifo_ refines _Slot_ = _System_ / (_Producer_, _Consumer_), and the new system refines _System_ |
-| 4. The contract for the RTL | `to_sva`, `Model.from_rtl`, `is_implementation` | `bsg_one_fifo` implements _Slot_; Jasper proves it too |
+| 1. The old system | Producer ∥ TwoFifo ∥ Consumer, with discharge; `refines(..., System)` | valid |
+| 2. The new buffer against the old one | `refines(OneFifo, TwoFifo)` | invalid: with a value in, _OneFifo_ takes no other |
+| 3. What the place of the buffer needs | Slot = System / (Producer ∥ Consumer), with discharge; `refines(OneFifo, Slot)` | valid, and the new system refines _System_ |
+| 4. The contract for the RTL | `to_sva(Slot)`, `is_implementation(Model.from_rtl(...), Slot)` | `bsg_one_fifo` implements _Slot_; Jasper proves it too |
 
 The new buffer is not a refinement of the old one, so its contract alone
-does not say that it can replace it. The quotient says what the place of
-the buffer needs: the weakest contract with which the system meets its
-requirements, here the guarantees of the system under the guarantees of the
-producer and of the consumer. The new buffer refines it.
+does not say that it can replace it (step 2). The quotient answers the
+question (step 3): it is the weakest contract with which the system meets
+its requirements, here the guarantees of the system under the guarantees of
+the producer and of the consumer. Any buffer that refines it can take the
+place, and the new buffer does. Step 4 checks the same on the RTL, not only
+on the contracts.
+
+## Run it
 
 ```
 $> git clone https://github.com/chase-cps/demos && cd demos
