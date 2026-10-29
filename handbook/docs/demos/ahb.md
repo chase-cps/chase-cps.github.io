@@ -17,12 +17,8 @@ written in [SystemVerilog Assertions](../tools/systemverilog.md), and put
 together by [merging](../contracts/algebra.md#what-each-one-is-for), the
 operation for viewpoints of one component.
 
-```mermaid
-flowchart LR
-    M1["Master 1"] -- "hbusreq1, hlock1" --> A["Arbiter = Grant • Lock"]
-    M2["Master 2"] -- "hbusreq2, hlock2" --> A
-    A -- "hgrant1, hgrant2, hmastlock" --> B["Bus"]
-```
+[![The arbiter: the merge of the two viewpoints, Grant and Lock, over the requests and the locks of two masters](../assets/diagram-ahb-system.png)](../assets/diagram-ahb-system.png)
+_The arbiter: the merge of the two viewpoints, Grant and Lock, over the requests and the locks of two masters._
 
 ## The contracts
 
@@ -63,10 +59,6 @@ assumptions as `assume property` and the guarantees as `assert property`,
 for a tool that reads SVA, such as a model checker of the RTL of the
 arbiter.
 
-## Diagram
-
-`ahb.py` writes `out/arbiter.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
-
 [![Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)](../assets/diagram-ahb-1.png)](../assets/diagram-ahb-1.png)
 _Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)._
 
@@ -84,6 +76,8 @@ $> pip install chase-cps
 $> chase-cps install nuxmv --accept-license && chase-cps install slugs
 $> python3 AHB/ahb.py
 ```
+
+The script also writes `out/arbiter.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
 
 The directory also has the requirements (`requirements.txt`) and the
 viewpoints in SVA (`sva/grant.sv`, `sva/lock.sv`, with the number of the

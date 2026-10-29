@@ -16,13 +16,8 @@ the two wires of a pair equal, which the receiver and the sender detect. The
 contracts are written in [SystemVerilog Assertions](../tools/systemverilog.md),
 and each module has its RTL in Verilog.
 
-```mermaid
-flowchart LR
-    S["Sender"] -- "esc_p_tx, esc_n_tx" --> C["Channel"]
-    C -- "esc_p_rx, esc_n_rx" --> R["Receiver"]
-    R -- "resp_p_rx, resp_n_rx" --> C
-    C -- "resp_p_tx, resp_n_tx" --> S
-```
+[![The link: the sender, the channel, and the receiver, each with its RTL, inside the requirements](../assets/diagram-escalation-system.png)](../assets/diagram-escalation-system.png)
+_The link: the sender, the channel, and the receiver, each with its RTL, inside the requirements._
 
 ## The contracts
 
@@ -58,13 +53,6 @@ three modules together meet the requirements, with no check on the whole
 design. Step 3 checks the same on the whole RTL. Step 5 shows what the
 checks find when a module breaks its contract.
 
-## Diagram
-
-The script writes `out/escalation.html`, the diagram of the link inside
-_Functional_: the three modules with their RTL, wired by their ports, and
-the results of the checks (M ⊨ C on each module, ⪯ on _Functional_). A
-click on a name shows the contract, a click on the state icon the model.
-
 [![The link inside Functional: the RTL of each module implements its contract (M ⊨ C), and the composition refines Functional (⪯)](../assets/diagram-escalation-1.png)](../assets/diagram-escalation-1.png)
 _The link inside Functional: the RTL of each module implements its contract (M ⊨ C), and the composition refines Functional (⪯)._
 
@@ -76,3 +64,5 @@ $> pip install chase-cps[rtl]
 $> chase-cps install nuxmv --accept-license
 $> python3 Escalation/escalation.py
 ```
+
+The script also writes `out/escalation.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.

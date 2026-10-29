@@ -15,13 +15,8 @@ Lockheed Martin Cyber-Physical Challenges: Formalized, Analyzed, and
 Explained", RE 2020), as in the FRET case study LMCPS, which gives a first
 version of each requirement and the corrected one (v2).
 
-```mermaid
-flowchart LR
-    E["Pilot and environment"] -- "standby, apfail, supported" --> A["Autopilot: pullup"]
-    E -- "limits" --> S["Sensor"]
-    A -- "MODE, REQUEST" --> S
-    S -- "good (previous step)" --> A
-```
+[![The system: the autopilot and the sensor, which feed each other](../assets/diagram-lm-fsm-system.png)](../assets/diagram-lm-fsm-system.png)
+_The system: the autopilot and the sensor, which feed each other._
 
 ## The contracts
 
@@ -82,10 +77,6 @@ needed: when the sensor is in FAULT while the autopilot is in TRANSITION and
 the limits stay exceeded, each one waits for the other, and there is never a
 pullup.
 
-## Diagram
-
-`fsm.py` writes `out/fsm.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
-
 [![The contracts as first written are unrealizable; a click on R marks the requirements in conflict](../assets/diagram-lm-fsm-1.png)](../assets/diagram-lm-fsm-1.png)
 _The contracts as first written are unrealizable; a click on R marks the requirements in conflict._
 
@@ -103,6 +94,8 @@ $> pip install chase-cps
 $> chase-cps install nuxmv --accept-license && chase-cps install slugs
 $> python3 LMFSM/fsm.py
 ```
+
+The script also writes `out/fsm.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
 
 The directory also has the requirements (`requirements.txt`) and the
 contracts (`fsm.ltl`, with the number of the requirement on each line).

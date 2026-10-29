@@ -10,15 +10,8 @@ requirements of a first arbiter cannot be realized, a second one can be
 realized but for a bad reason, and a third one is composed with the robots and
 checked against the requirements of the whole system.
 
-```mermaid
-flowchart LR
-    env(("environment")) -- low1 --> R1["Robot1"]
-    env -- low2 --> R2["Robot2"]
-    R1 -- req1 --> A["Arbiter"]
-    R2 -- req2 --> A
-    A -- grant1 --> R1
-    A -- grant2 --> R2
-```
+[![The system: an arbiter and two robots, which feed each other with requests and grants](../assets/diagram-charger-system.png)](../assets/diagram-charger-system.png)
+_The system: an arbiter and two robots, which feed each other with requests and grants._
 
 A robot asks for the station (`req`) when its battery is low (`low`), and
 the arbiter gives it (`grant`). The robots and the arbiter feed each other:
@@ -65,10 +58,6 @@ flowchart TD
    the arbiter (R7.1, R7.2), no assumption is left, and the composition
    refines the system.
 
-## Diagram
-
-`charger.py` writes `out/charger.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
-
 [![The arbiters: Greedy is unrealizable, Fair is realizable and not vacuous, Pushy is not well separated, Polite is, and Trusting is vacuous](../assets/diagram-charger-1.png)](../assets/diagram-charger-1.png)
 _The arbiters: Greedy is unrealizable, Fair is realizable and not vacuous, Pushy is not well separated, Polite is, and Trusting is vacuous._
 
@@ -83,6 +72,8 @@ $> pip install chase-cps
 $> chase-cps install nuxmv --accept-license && chase-cps install slugs
 $> python3 Charger/charger.py
 ```
+
+The script also writes `out/charger.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
 
 The directory also has the requirements (`requirements.txt`), the contracts
 (`charger.ltl`, with the number of the requirement on each line), and the same

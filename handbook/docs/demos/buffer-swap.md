@@ -15,13 +15,8 @@ which is smaller, and checks that the system still meets its requirements.
 The contracts are written in [SystemVerilog Assertions](../tools/systemverilog.md),
 and the RTL is that of BaseJump STL.
 
-```mermaid
-flowchart LR
-    P["Producer"] -- "v_i, data_i" --> B["Buffer: bsg_two_fifo, then bsg_one_fifo"]
-    B -- "ready_o" --> P
-    B -- "v_o, data_o" --> C["Consumer"]
-    C -- "yumi_i" --> B
-```
+[![The system: a producer, the buffer (bsg_two_fifo, with its RTL), and a consumer, with a ready/valid handshake](../assets/diagram-buffer-swap-system.png)](../assets/diagram-buffer-swap-system.png)
+_The system: a producer, the buffer (bsg_two_fifo, with its RTL), and a consumer, with a ready/valid handshake._
 
 ## The contracts
 
@@ -57,10 +52,6 @@ the producer and of the consumer. Any buffer that refines it can take the
 place, and the new buffer does. Step 4 checks the same on the RTL, not only
 on the contracts.
 
-## Diagram
-
-`bufferswap.py` writes `out/bufferswap.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
-
 [![The old system: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System](../assets/diagram-buffer-swap-1.png)](../assets/diagram-buffer-swap-1.png)
 _The old system: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System._
 
@@ -75,6 +66,8 @@ $> pip install chase-cps[rtl]
 $> chase-cps install nuxmv --accept-license
 $> python3 BufferSwap/bufferswap.py
 ```
+
+The script also writes `out/bufferswap.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
 
 `jasper/run.tcl` proves the contract of the place (`out/slot.sv`, written by
 the script) on the RTL of `bsg_one_fifo` with Jasper.

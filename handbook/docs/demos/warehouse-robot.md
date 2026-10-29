@@ -17,16 +17,8 @@ a dock. The controller commands the yaw rate `w` and the rest; it sees the
 clearance to the worker and the distance to the dock only as perception and
 localization report them. All the variables but `rest` are real numbers.
 
-```mermaid
-flowchart LR
-    E["Worker and floor"] -- "c_true, e_true" --> P["Perception"]
-    E --> L["Localization"]
-    P -- "c_rep" --> K["Controller (delegated)"]
-    L -- "e_est" --> K
-    K -- "w" --> P
-    K -- "w" --> L
-    K -- "rest" --> O["Dock"]
-```
+[![The system with the place of the controller: the hole Q next to perception and localization](../assets/diagram-warehouse-robot-system.png)](../assets/diagram-warehouse-robot-system.png)
+_The system with the place of the controller: the hole Q next to perception and localization._
 
 ## The contracts
 
@@ -50,8 +42,8 @@ flowchart LR
 | Step | Operation | Result |
 |---|---|---|
 | 1. The contract of the controller | Q = System / (Perception ∥ Localization), with discharge | _Q_ guarantees the requirements of the system and `G (w <= 0.8 & w >= -0.8)` |
-| 2. The requirements of the mission | `refines(MissionOnly, Q)` | invalid: reported clearance 0.40, true clearance 0, `w` = 0.9 |
-| 3. With margins for the errors | `refines(Margins, Q)` | invalid: `w` = 1.2, true clearance 0 |
+| 2. The requirements of the mission | `refines(MissionOnly, Q)` | invalid: reported clearance 0.40, true clearance 0.10, then `w` = -0.82 |
+| 3. With margins for the errors | `refines(Margins, Q)` | invalid: `w` = -1.20, true clearance 0 |
 | 4. With the yaw rate | `refines(Dispatched, Q)`, `refines(Perception || Localization || Dispatched, System)` | valid |
 
 </div>
@@ -63,15 +55,12 @@ guarantees name what the neighbours assume of the controller: perception
 needs `|w| <= 0.8` (the bound of localization, 1.0, follows from it). A
 requirement written for the mission alone leaves this out (step 2), and so
 does one with margins for the errors of perception and localization
-(step 3): in both counterexamples the controller turns too fast, perception
-no longer bounds its error, and the true clearance is 0. The paper finds
+(step 3): in both counterexamples the controller turns faster than
+perception allows, so perception no longer bounds its error (step 2), and
+the robot reaches the worker (step 3). The paper finds
 the same two failures on the robot in simulation, and checks the
 refinements on finite sets of values; here they are checked on all the
 behaviors, with a counterexample when they fail.
-
-## Diagram
-
-`warehouse.py` writes `out/warehouse.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
 
 [![Q = System / (Perception ∥ Localization): MissionOnly does not refine it](../assets/diagram-warehouse-robot-1.png)](../assets/diagram-warehouse-robot-1.png)
 _Q = System / (Perception ∥ Localization): MissionOnly does not refine it._
@@ -90,6 +79,8 @@ $> pip install chase-cps
 $> chase-cps install nuxmv --accept-license
 $> python3 Warehouse/warehouse.py
 ```
+
+The script also writes `out/warehouse.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
 
 The directory also has the variables and the contracts in words
 (`requirements.txt`).

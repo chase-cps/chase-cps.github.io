@@ -24,11 +24,8 @@ FRET finds the requirements realizable with the first one and unrealizable
 with the second one. All the variables are outputs of the vehicle, so the
 requirements are realizable when they are consistent.
 
-```mermaid
-flowchart LR
-    P["Pilot"] -- "kias, kgs, hover_control_mode" --> M["ModeLogic"]
-    M -- "lift_mode" --> O["Vehicle"]
-```
+[![The vehicle: the mode logic and the pilot, wired by the speeds, the hover control, and the lift mode](../assets/diagram-lift-plus-cruise-system.png)](../assets/diagram-lift-plus-cruise-system.png)
+_The vehicle: the mode logic and the pilot, wired by the speeds, the hover control, and the lift mode._
 
 ## The contracts
 
@@ -79,10 +76,6 @@ stays semi thrust borne. With the hover control mode on below 20, every
 behavior hovers at step 12 (step 6). All the checks are on real variables,
 with the SMT engine of nuXmv (`reals: smt`).
 
-## Diagram
-
-`lpc.py` writes `out/lpc.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
-
 [![The requirements are consistent with the deadline of 12 s, not with 6 s; a click on the red G marks the 8 requirements in conflict](../assets/diagram-lift-plus-cruise-1.png)](../assets/diagram-lift-plus-cruise-1.png)
 _The requirements are consistent with the deadline of 12 s, not with 6 s; a click on the red G marks the 8 requirements in conflict._
 
@@ -108,6 +101,8 @@ $> pip install chase-cps
 $> chase-cps install nuxmv --accept-license
 $> python3 LiftPlusCruise/lpc.py
 ```
+
+The script also writes `out/lpc.html`, the diagram of the demo with the results of its checks. It opens in a browser: a click on a name shows a contract, and a click on a red tag marks its core.
 
 The directory also has the requirements in FRETish (`requirements.txt`), the
 contracts (`lpc.ltl`), and steps 1 and 2 with the console of logics_tool
