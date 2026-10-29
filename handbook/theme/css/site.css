@@ -37,7 +37,7 @@ p { margin: 10px 0 15px; }
 #header_wrap { background: var(--chase-header); border-bottom: 4px solid var(--chase-accent); }
 .header-inner, .footer-inner { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 .header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 40px; padding-bottom: 24px; }
-.brand { min-width: 0; }
+.brand { min-width: 0; padding-top: 18px; }
 #project_title { margin: 0; font-size: 42px; letter-spacing: -1px; }
 #project_title a { color: #fff; }
 #project_title a:hover { text-decoration: none; }
@@ -180,21 +180,31 @@ td.f, .f { font-family: Monaco, "Lucida Console", monospace; font-size: .85em; w
 .admonition-title { font-weight: 700; margin: 0 0 4px; color: var(--chase-header); }
 .admonition p:last-child { margin-bottom: 4px; }
 
-/* Tabs (pymdownx.tabbed). */
+/* Tabs (pymdownx.tabbed). The blocks of a set are stacked in one cell, so
+   the set keeps the height of its longest block when the tab changes. */
 .tabbed-set { display: flex; flex-wrap: wrap; margin: 12px 0 18px; }
 .tabbed-set > input { position: absolute; opacity: 0; }
 .tabbed-labels { display: flex; flex-wrap: wrap; width: 100%; border-bottom: 1px solid var(--chase-border); }
-.tabbed-labels > label { padding: 6px 14px; cursor: pointer; color: #555; font-size: 15px; border-bottom: 3px solid transparent; }
-.tabbed-content { width: 100%; }
-.tabbed-block { display: none; padding-top: 10px; }
+.tabbed-labels > label { padding: 6px 14px; cursor: pointer; color: var(--chase-ink-soft); font-size: 15px; border-bottom: 3px solid transparent; }
+.tabbed-labels > label:hover { color: var(--chase-link); }
+.tabbed-content { display: grid; width: 100%; }
+.tabbed-block { grid-area: 1 / 1; visibility: hidden; padding-top: 10px; min-width: 0; }
 .tabbed-set > input:nth-child(1):checked ~ .tabbed-labels > :nth-child(1),
 .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels > :nth-child(2),
 .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels > :nth-child(3),
-.tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > :nth-child(4) { color: var(--chase-header); border-bottom-color: var(--chase-accent); font-weight: 700; }
+.tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > :nth-child(4),
+.tabbed-set > input:nth-child(5):checked ~ .tabbed-labels > :nth-child(5),
+.tabbed-set > input:nth-child(6):checked ~ .tabbed-labels > :nth-child(6),
+.tabbed-set > input:nth-child(7):checked ~ .tabbed-labels > :nth-child(7),
+.tabbed-set > input:nth-child(8):checked ~ .tabbed-labels > :nth-child(8) { color: var(--chase-header); border-bottom-color: var(--chase-header); font-weight: 700; }
 .tabbed-set > input:nth-child(1):checked ~ .tabbed-content > :nth-child(1),
 .tabbed-set > input:nth-child(2):checked ~ .tabbed-content > :nth-child(2),
 .tabbed-set > input:nth-child(3):checked ~ .tabbed-content > :nth-child(3),
-.tabbed-set > input:nth-child(4):checked ~ .tabbed-content > :nth-child(4) { display: block; }
+.tabbed-set > input:nth-child(4):checked ~ .tabbed-content > :nth-child(4),
+.tabbed-set > input:nth-child(5):checked ~ .tabbed-content > :nth-child(5),
+.tabbed-set > input:nth-child(6):checked ~ .tabbed-content > :nth-child(6),
+.tabbed-set > input:nth-child(7):checked ~ .tabbed-content > :nth-child(7),
+.tabbed-set > input:nth-child(8):checked ~ .tabbed-content > :nth-child(8) { visibility: visible; }
 
 /* The three layers of CHASE (overview page), and the layer numbers of the
    table of the demos. */

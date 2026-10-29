@@ -3,7 +3,9 @@
 The operations of CHASE have the same names in every interface. Here is one
 contract, an arbiter that grants every request when the requests stop
 infinitely often, and the check that an implementation that grants at the
-next step refines it, in each interface:
+next step refines it, in each interface: Python, the CHASE specification
+language (Spec), the command line (CLI), SystemVerilog Assertions (SVA),
+and the MCP server for AI agents (MCP).
 
 === "Python"
 
@@ -18,7 +20,7 @@ next step refines it, in each interface:
     print(refines(impl, spec).status)    # valid
     ```
 
-=== "Specification language"
+=== "Spec"
 
     ```
     NAME: arbiter;
@@ -40,14 +42,14 @@ next step refines it, in each interface:
             G(req -> X(grant));
     ```
 
-=== "Command line"
+=== "CLI"
 
     ```
     $> chase-cps check arbiter.ltl --refines Impl Spec
     refines     Impl <= Spec                             valid           0.03 s
     ```
 
-=== "SystemVerilog Assertions"
+=== "SVA"
 
     ```systemverilog
     module spec (input logic clk, input logic req, output logic grant);
@@ -60,15 +62,20 @@ next step refines it, in each interface:
     inputs and the outputs, `assume` the assumptions, and `assert` the
     guarantees.
 
-=== "MCP (AI agents)"
+=== "MCP"
 
     ```json
     {"tool": "refines",
      "arguments": {
-       "refined":  {"name": "Impl", "inputs": {"req": "bool"}, "outputs": {"grant": "bool"},
-                    "guarantees": ["G (req -> X grant)"]},
-       "abstract": {"name": "Spec", "inputs": {"req": "bool"}, "outputs": {"grant": "bool"},
-                    "assumptions": ["G F !req"], "guarantees": ["G (req -> F grant)"]}}}
+       "refined": {
+         "name": "Impl",
+         "inputs": {"req": "bool"}, "outputs": {"grant": "bool"},
+         "guarantees": ["G (req -> X grant)"]},
+       "abstract": {
+         "name": "Spec",
+         "inputs": {"req": "bool"}, "outputs": {"grant": "bool"},
+         "assumptions": ["G F !req"],
+         "guarantees": ["G (req -> F grant)"]}}}
     ```
 
 | Interface | For |
