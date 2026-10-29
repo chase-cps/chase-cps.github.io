@@ -39,7 +39,8 @@ p { margin: 10px 0 15px; }
 .header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 40px; padding-bottom: 24px; }
 .brand { min-width: 0; padding-top: 18px; }
 #project_title { margin: 0; font-size: 42px; letter-spacing: -1px; }
-#project_title a { color: #fff; }
+#project_title a { color: #fff; display: inline-flex; align-items: center; gap: 12px; }
+#project_title .logo { height: 44px; width: auto; }
 #project_title a:hover { text-decoration: none; }
 #project_tagline { margin: 4px 0 0; color: var(--chase-accent); font-size: 22px; font-weight: 300; letter-spacing: 0; }
 .github { color: #f2f2f2; display: flex; opacity: .85; align-self: flex-start; }
@@ -233,6 +234,7 @@ figcaption { font-size: 14px; color: var(--chase-ink-soft); margin-top: 4px; }
   .sidebar { display: none; position: static; max-height: none; }
   .nav-toggle:checked ~ .sidebar { display: block; }
   #project_title { font-size: 32px; }
+  #project_title .logo { height: 34px; }
   #project_tagline { font-size: 17px; }
   #main_content h1 { font-size: 24px; }
   #main_content h2 { font-size: 20px; }
