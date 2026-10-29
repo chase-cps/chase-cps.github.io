@@ -59,3 +59,4 @@ nav:
   - About:
       - Publications: about/publications.md
       - Repositories: about/repositories.md
+      - Contributing: about/contributing.md
