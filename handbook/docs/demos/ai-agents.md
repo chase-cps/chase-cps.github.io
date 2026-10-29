@@ -135,6 +135,16 @@ calls at run time, for instance with
 [ContrAgent](https://arxiv.org/abs/2609.18128). The formulas are read on
 infinite traces, as CHASE reads them.
 
+## Diagram
+
+`agents.py` writes `out/agents.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
+
+[![The four sub-agents inside the contract of the parent: their composition refines it](../assets/diagram-ai-agents-1.png)](../assets/diagram-ai-agents-1.png)
+_The four sub-agents inside the contract of the parent: their composition refines it._
+
+[![Q3 = Parent / Rest, what sub-agent 3 must do: Text refines it](../assets/diagram-ai-agents-2.png)](../assets/diagram-ai-agents-2.png)
+_Q3 = Parent / Rest, what sub-agent 3 must do: Text refines it._
+
 ## Run it
 
 ```

@@ -82,6 +82,19 @@ needed: when the sensor is in FAULT while the autopilot is in TRANSITION and
 the limits stay exceeded, each one waits for the other, and there is never a
 pullup.
 
+## Diagram
+
+`fsm.py` writes `out/fsm.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
+
+[![The contracts as first written are unrealizable; a click on R marks the requirements in conflict](../assets/diagram-lm-fsm-1.png)](../assets/diagram-lm-fsm-1.png)
+_The contracts as first written are unrealizable; a click on R marks the requirements in conflict._
+
+[![Autopilot ∥ Sensor does not refine System (FSM-001): the pullup does not come at once](../assets/diagram-lm-fsm-2.png)](../assets/diagram-lm-fsm-2.png)
+_Autopilot ∥ Sensor does not refine System (FSM-001): the pullup does not come at once._
+
+[![Autopilot ∥ Sensor refines SystemTimed (FSM-001t)](../assets/diagram-lm-fsm-3.png)](../assets/diagram-lm-fsm-3.png)
+_Autopilot ∥ Sensor refines SystemTimed (FSM-001t)._
+
 ## Run it
 
 ```

@@ -57,6 +57,16 @@ the producer and of the consumer. Any buffer that refines it can take the
 place, and the new buffer does. Step 4 checks the same on the RTL, not only
 on the contracts.
 
+## Diagram
+
+`bufferswap.py` writes `out/bufferswap.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
+
+[![The old system: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System](../assets/diagram-buffer-swap-1.png)](../assets/diagram-buffer-swap-1.png)
+_The old system: Producer, TwoFifo with the RTL of bsg_two_fifo, and Consumer refine System._
+
+[![The place of the buffer, Slot = System / (Producer ∥ Consumer), holds OneFifo with the RTL of bsg_one_fifo: it refines Slot and its RTL implements it](../assets/diagram-buffer-swap-2.png)](../assets/diagram-buffer-swap-2.png)
+_The place of the buffer, Slot = System / (Producer ∥ Consumer), holds OneFifo with the RTL of bsg_one_fifo: it refines Slot and its RTL implements it._
+
 ## Run it
 
 ```

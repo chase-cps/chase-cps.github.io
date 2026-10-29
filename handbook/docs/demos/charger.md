@@ -65,6 +65,16 @@ flowchart TD
    the arbiter (R7.1, R7.2), no assumption is left, and the composition
    refines the system.
 
+## Diagram
+
+`charger.py` writes `out/charger.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
+
+[![The arbiters: Greedy is unrealizable, Fair is realizable and not vacuous, Pushy is not well separated, Polite is, and Trusting is vacuous](../assets/diagram-charger-1.png)](../assets/diagram-charger-1.png)
+_The arbiters: Greedy is unrealizable, Fair is realizable and not vacuous, Pushy is not well separated, Polite is, and Trusting is vacuous._
+
+[![Fair composed with the two robots, with discharge, refines System](../assets/diagram-charger-2.png)](../assets/diagram-charger-2.png)
+_Fair composed with the two robots, with discharge, refines System._
+
 ## Run it
 
 ```

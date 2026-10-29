@@ -69,6 +69,19 @@ the same two failures on the robot in simulation, and checks the
 refinements on finite sets of values; here they are checked on all the
 behaviors, with a counterexample when they fail.
 
+## Diagram
+
+`warehouse.py` writes `out/warehouse.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
+
+[![Q = System / (Perception ∥ Localization): MissionOnly does not refine it](../assets/diagram-warehouse-robot-1.png)](../assets/diagram-warehouse-robot-1.png)
+_Q = System / (Perception ∥ Localization): MissionOnly does not refine it._
+
+[![Margins does not refine Q](../assets/diagram-warehouse-robot-2.png)](../assets/diagram-warehouse-robot-2.png)
+_Margins does not refine Q._
+
+[![Dispatched refines Q](../assets/diagram-warehouse-robot-3.png)](../assets/diagram-warehouse-robot-3.png)
+_Dispatched refines Q._
+
 ## Run it
 
 ```

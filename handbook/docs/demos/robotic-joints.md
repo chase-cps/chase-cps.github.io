@@ -32,6 +32,13 @@ infinitely often, under assumptions on the motor and on the requests.
 - `single_model.ltl` is the same arm as one contract, for comparison with the
   compositional model.
 
+## Diagram
+
+`diagram.sh` writes `out/specs.html` with `chase-cps view`; the page opens in a browser, and a click on a name shows the contract.
+
+[![Joint1 ∥ Joint2 ∥ Joint3 refines Joints, and each contract is realizable (R)](../assets/diagram-robotic-joints-1.png)](../assets/diagram-robotic-joints-1.png)
+_Joint1 ∥ Joint2 ∥ Joint3 refines Joints, and each contract is realizable (R)._
+
 ## Run it
 
 ![The robotic joints run with chase-cps 0.3.1](../assets/robotic-joints.gif){ .recording }

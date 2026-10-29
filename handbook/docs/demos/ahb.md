@@ -63,6 +63,19 @@ assumptions as `assume property` and the guarantees as `assert property`,
 for a tool that reads SVA, such as a model checker of the RTL of the
 arbiter.
 
+## Diagram
+
+`ahb.py` writes `out/arbiter.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
+
+[![Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)](../assets/diagram-ahb-1.png)](../assets/diagram-ahb-1.png)
+_Grant and Lock merged into Arbiter: each viewpoint and the merge are realizable (R)._
+
+[![Without LA2 the merge is unrealizable; a click on R marks the core: GR1, GR2, GR3.2, LK1, LK2.1](../assets/diagram-ahb-2.png)](../assets/diagram-ahb-2.png)
+_Without LA2 the merge is unrealizable; a click on R marks the core: GR1, GR2, GR3.2, LK1, LK2.1._
+
+[![The synthesized controller implements Arbiter (M ⊨ C)](../assets/diagram-ahb-3.png)](../assets/diagram-ahb-3.png)
+_The synthesized controller implements Arbiter (M ⊨ C)._
+
 ## Run it
 
 ```

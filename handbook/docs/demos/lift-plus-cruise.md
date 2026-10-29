@@ -79,6 +79,28 @@ stays semi thrust borne. With the hover control mode on below 20, every
 behavior hovers at step 12 (step 6). All the checks are on real variables,
 with the SMT engine of nuXmv (`reals: smt`).
 
+## Diagram
+
+`lpc.py` writes `out/lpc.html`, the diagram of the demo, which opens in a browser: a click on a name shows the contract, and a click on a red tag marks its core.
+
+[![The requirements are consistent with the deadline of 12 s, not with 6 s; a click on the red G marks the 8 requirements in conflict](../assets/diagram-lift-plus-cruise-1.png)](../assets/diagram-lift-plus-cruise-1.png)
+_The requirements are consistent with the deadline of 12 s, not with 6 s; a click on the red G marks the 8 requirements in conflict._
+
+[![ModeLogic ∥ Pilot refines Vehicle](../assets/diagram-lift-plus-cruise-2.png)](../assets/diagram-lift-plus-cruise-2.png)
+_ModeLogic ∥ Pilot refines Vehicle._
+
+[![Q12 = Reach12 / ModeLogic: Pilot does not refine it](../assets/diagram-lift-plus-cruise-3.png)](../assets/diagram-lift-plus-cruise-3.png)
+_Q12 = Reach12 / ModeLogic: Pilot does not refine it._
+
+[![Slow does not refine Q12](../assets/diagram-lift-plus-cruise-4.png)](../assets/diagram-lift-plus-cruise-4.png)
+_Slow does not refine Q12._
+
+[![Decel refines Q12](../assets/diagram-lift-plus-cruise-5.png)](../assets/diagram-lift-plus-cruise-5.png)
+_Decel refines Q12._
+
+[![Decel does not refine Q06 = Reach06 / ModeLogic](../assets/diagram-lift-plus-cruise-6.png)](../assets/diagram-lift-plus-cruise-6.png)
+_Decel does not refine Q06 = Reach06 / ModeLogic._
+
 ## Run it
 
 ```
