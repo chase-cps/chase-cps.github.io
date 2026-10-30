@@ -1,7 +1,7 @@
 # News
 
 <div class="news-item" markdown>
-<span class="news-date">October 29, 2026</span>
+<span class="news-date">October 30, 2026</span>
 
 ## CHASE 0.5.0: diagrams
 
