@@ -26,33 +26,33 @@
   color-scheme: light;
 }
 
-/* Dark pages: the tones of Solarized Dark (a deep teal-blue ground, its
-   next tone for code and notes, cyan for the line under the header and
-   the links), so that the teal of the header goes on into the page; the
-   figures stay on white cards, since they are drawn on white. */
+/* Dark pages: the tones of Everforest Dark (a green-grey ground, a darker
+   one for the header, its aqua green for the line under the header and
+   the links, its colors for the code); the figures stay on white cards,
+   since they are drawn on white. */
 :root[data-theme="dark"] {
-  --chase-ink: #e3ece9; --chase-ink-soft: #93a1a1; --chase-link: #4cc3b8;
-  --chase-page: #002b36; --chase-surface: #073642; --chase-border: #174652; --chase-active: #0b3d4a;
-  --chase-header: #00212a; --chase-header-dark: #00212a; --chase-line: #2aa198;
-  --chase-tag-theory: #1d6b74; --chase-tag-verif: #24877f;
-  --chase-strong: #7fd6cc; --chase-code: #d9e3e0;
-  --chase-hl-comment: #8a9a9b; --chase-hl-keyword: #e6eded; --chase-hl-string: #f08b8b;
-  --chase-hl-number: #6fd0d0; --chase-hl-function: #f2a07a; --chase-hl-class: #9fb4f0;
-  --chase-hl-builtin: #6cbfe0; --chase-hl-output: #a6b4b5;
-  --chase-quotient: #3a3220; --chase-quotient-line: #8a7433;
+  --chase-ink: #e2e6df; --chase-ink-soft: #a3ad9f; --chase-link: #83c092;
+  --chase-page: #2d353b; --chase-surface: #343f44; --chase-border: #475258; --chase-active: #3d484d;
+  --chase-header: #232a2e; --chase-header-dark: #232a2e; --chase-line: #83c092;
+  --chase-tag-theory: #4a6e5d; --chase-tag-verif: #5b8a6e;
+  --chase-strong: #a7d7b0; --chase-code: #d8ddd3;
+  --chase-hl-comment: #859289; --chase-hl-keyword: #e69875; --chase-hl-string: #a7c080;
+  --chase-hl-number: #d699b6; --chase-hl-function: #dbbc7f; --chase-hl-class: #7fbbb3;
+  --chase-hl-builtin: #83c092; --chase-hl-output: #a3ad9f;
+  --chase-quotient: #4d4c43; --chase-quotient-line: #dbbc7f;
   color-scheme: dark;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --chase-ink: #e3ece9; --chase-ink-soft: #93a1a1; --chase-link: #4cc3b8;
-    --chase-page: #002b36; --chase-surface: #073642; --chase-border: #174652; --chase-active: #0b3d4a;
-    --chase-header: #00212a; --chase-header-dark: #00212a; --chase-line: #2aa198;
-    --chase-tag-theory: #1d6b74; --chase-tag-verif: #24877f;
-    --chase-strong: #7fd6cc; --chase-code: #d9e3e0;
-    --chase-hl-comment: #8a9a9b; --chase-hl-keyword: #e6eded; --chase-hl-string: #f08b8b;
-    --chase-hl-number: #6fd0d0; --chase-hl-function: #f2a07a; --chase-hl-class: #9fb4f0;
-    --chase-hl-builtin: #6cbfe0; --chase-hl-output: #a6b4b5;
-    --chase-quotient: #3a3220; --chase-quotient-line: #8a7433;
+    --chase-ink: #e2e6df; --chase-ink-soft: #a3ad9f; --chase-link: #83c092;
+    --chase-page: #2d353b; --chase-surface: #343f44; --chase-border: #475258; --chase-active: #3d484d;
+    --chase-header: #232a2e; --chase-header-dark: #232a2e; --chase-line: #83c092;
+    --chase-tag-theory: #4a6e5d; --chase-tag-verif: #5b8a6e;
+    --chase-strong: #a7d7b0; --chase-code: #d8ddd3;
+    --chase-hl-comment: #859289; --chase-hl-keyword: #e69875; --chase-hl-string: #a7c080;
+    --chase-hl-number: #d699b6; --chase-hl-function: #dbbc7f; --chase-hl-class: #7fbbb3;
+    --chase-hl-builtin: #83c092; --chase-hl-output: #a3ad9f;
+    --chase-quotient: #4d4c43; --chase-quotient-line: #dbbc7f;
     color-scheme: dark;
   }
 }
