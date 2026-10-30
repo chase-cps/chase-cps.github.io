@@ -17,8 +17,9 @@ Design" (arXiv 2610.33349, 2026). The robot keeps 0.40 m from a worker and
 rests (`rest`) at a dock. The controller commands the yaw rate `w`. It sees
 the clearance to the worker (`c_true`) only as perception reports it
 (`c_rep`, at most 0.3 too high), and the distance to the dock (`e_true`)
-only as localization reports it (`e_est`, at most 0.05 too low). Perception
-bounds its error only if the robot turns slowly, `|w| <= 0.8`. The variables
+only as localization reports it (`e_est`, at most 0.05 too low); it rests
+when `e_true <= 0.1`. Perception bounds its error only if the robot turns
+slowly, `|w| <= 0.8`, and localization only if `|w| <= 1.0`. The variables
 are real numbers, and the composition of perception and localization is
 called _Fixed_ in the diagrams.
 
@@ -64,5 +65,5 @@ $> python3 WarehouseRobot/warehouse.py
 ```
 
 The script prints the result of each step, with the counterexamples, and
-writes the diagrams above in `out/warehouse.html`. The contracts in words
+writes the diagrams above in `WarehouseRobot/out/warehouse.html`. The contracts in words
 are in `WarehouseRobot/requirements.txt`.

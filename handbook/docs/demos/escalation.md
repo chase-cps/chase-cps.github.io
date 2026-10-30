@@ -56,5 +56,5 @@ $> python3 Escalation/escalation.py
 ```
 
 The script prints the result of each step and writes the diagram above in
-`out/escalation.html`. The contracts are in `Escalation/sva/`, and the RTL
+`Escalation/out/escalation.html`. The contracts are in `Escalation/sva/`, and the RTL
 in `Escalation/rtl/`.

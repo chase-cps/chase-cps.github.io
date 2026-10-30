@@ -24,9 +24,10 @@ of the sensor (NOMINAL, TRANSITION, FAULT).
 **Step 1. The first requirements.** _AutopilotFirst_ and _SensorFirst_ are
 unrealizable. Each unrealizable core is two requirements that send the
 machine to two different states for the same inputs, with the initial
-state; for instance, in TRANSITION with the pilot in control (`standby`)
-and good sensor data (`good`), FSM-002 says STANDBY and FSM-003 says
-NOMINAL. The script replaces the requirement by
+state; for instance, in TRANSITION with the pilot in control (`standby`),
+the system supported (`supported`), and good sensor data (`good`), FSM-002
+says STANDBY and FSM-003 says NOMINAL. (A primed input is its value at the
+next step: the autopilot reads the inputs of the step it moves to.) The script replaces the requirement by
 its corrected version and checks again: four conflicts in the autopilot,
 one in the sensor, the same fixes as FRET.
 
@@ -40,9 +41,9 @@ counterexample gives the pullup one step after the limits are exceeded.
 [![Step 2: Autopilot ∥ Sensor does not refine System](../assets/diagram-lm-fsm-2.png)](../assets/diagram-lm-fsm-2.png)
 _Step 2: Autopilot ∥ Sensor does not refine System._
 
-**Step 3. The system, with time.** The pullup needs a few steps, since
-the sensor and the autopilot each take a step to react. _SystemTimed_
-(FSM-001t) says so: with the limits not exceeded for three steps and then
+**Step 3. The system, with time.** The sensor and the autopilot each take a
+step to react, and the autopilot must first reach NOMINAL from the start.
+_SystemTimed_ (FSM-001t) gives the pullup that time: with the limits not exceeded for three steps and then
 exceeded, the pilot not in control and no failure, the pullup comes at the
 fifth step. The composition refines it.
 
@@ -60,6 +61,6 @@ $> python3 LMFSM/fsm.py
 ```
 
 The script prints the result of each step, with the five conflicts and
-their fixes, and writes the diagrams above in `out/fsm.html`. The
+their fixes, and writes the diagrams above in `LMFSM/out/fsm.html`. The
 requirements are in `LMFSM/requirements.txt`, and the contracts in
 `LMFSM/fsm.ltl`.

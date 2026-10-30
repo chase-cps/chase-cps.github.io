@@ -59,7 +59,7 @@ nav:
       - "Hardware: SVA and RTL": tools/systemverilog.md
   - Demos:
       - demos/index.md
-      - Payment assistant (AppWorld): demos/payment-assistant.md
+      - Payment assistant agent: demos/payment-assistant.md
       - "Aircraft (Lift-Plus-Cruise)": demos/lift-plus-cruise.md
       - Bus arbiter (AMBA AHB): demos/ahb.md
       - Circuit buffer swap: demos/buffer-swap.md

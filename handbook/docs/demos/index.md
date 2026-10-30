@@ -17,10 +17,10 @@ real variables, or a domain-specific language.
 
 | Demo | What it shows | Uses |
 |---|---|---|
-| [Payment assistant (AppWorld)](payment-assistant.md) | A task in natural language becomes the contract of an assistant agent, decomposed among three sub-agents (AppWorld): the decomposition misses a deliverable, the quotient says which sub-agent must do it, and an unsat core finds a clause against the request of the user | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> |
+| [Payment assistant agent](payment-assistant.md) | A task in natural language becomes the contract of an assistant agent, decomposed among three sub-agents: the decomposition misses a deliverable, the quotient says which sub-agent must do it, and an unsat core finds a clause against the request of the user | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> |
 | [Aircraft (Lift-Plus-Cruise)](lift-plus-cruise.md) | The lift modes of a NASA aircraft, with real variables: the requirements are consistent with one deadline and in conflict with a shorter one, and the quotient by the mode logic says what the pilot must do to hover in time | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-data" href="../contracts/checks.md#real-variables">reals</a> |
 | [Bus arbiter (AMBA AHB)](ahb.md) | The arbiter of the AMBA AHB bus as two viewpoints in SVA: their merge is unrealizable until the masters release a locked bus, and then synthesized | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> |
-| [Circuit buffer swap](buffer-swap.md) | A buffer of a circuit is replaced by a smaller one: the contracts in SVA, the quotient as the contract of the place of the buffer, and the RTL checked with Yosys and nuXmv, and with Jasper | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> <a class="tag t-hw" href="../contracts/checks.md#rtl">RTL</a> |
+| [Circuit buffer swap](buffer-swap.md) | A buffer of a circuit is replaced by a smaller one: the contracts in SVA, the quotient as the contract of the buffer's place, and the RTL checked with Yosys and nuXmv, and with Jasper | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> <a class="tag t-hw" href="../contracts/checks.md#rtl">RTL</a> |
 | [Security chip (OpenTitan)](escalation.md) | The escalation link of a security chip, checked module by module: the RTL of each module implements its contract, and the composition refines the requirements with no check on the whole design; a faster sender breaks its contract | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-hw" href="../tools/systemverilog.md">SVA</a> <a class="tag t-hw" href="../contracts/checks.md#rtl">RTL</a> |
 | [Warehouse robot](warehouse-robot.md) | The controller of a warehouse robot is delegated: the quotient by perception and localization is its contract, with what they assume of it, and requirements written for the mission alone fail | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-data" href="../contracts/checks.md#real-variables">reals</a> |
 | [Charging station (Charger)](charger.md) | Two robots share a charging station through an arbiter: one design iteration of the arbiter, from an unrealizable contract to a composition that refines the system | <a class="tag t-theory" href="../contracts/algebra.md">algebra</a> <a class="tag t-verif" href="../contracts/checks.md">verification</a> <a class="tag t-gr1" href="../tools/synthesis.md">GR(1)</a> |
@@ -34,10 +34,14 @@ real variables, or a domain-specific language.
 
 - A rounded box is a contract; a square box also has a model (RTL, a state
   machine, or a synthesized controller).
-- A box drawn inside another refines it. The note under its name says how
-  it is built: ⊗ composition (∥ in the text), • merging, / quotient.
-- A dashed box is a quotient: what the missing part must satisfy, with the
-  part that refines it drawn inside.
+- A box drawn inside another is checked against it: the ⪯ tag says
+  whether it refines it. The note under a name says how the contract is
+  built: ⊗ composition (∥ in the text), • merging, / quotient; "contract X"
+  names the contract of a system.
+- Inside an open box, the dark A and G mark its assumptions and its
+  guarantees.
+- A dashed box is a quotient: what the missing part, written ? in the
+  note, must satisfy, with the part checked against it drawn inside.
 - The tags are the results of the checks, green when the check holds and
   red when it does not: ⪯ refinement, A compatible, G consistent,
   R realizable, WS well separated, ¬V not vacuous, M ⊨ C the model

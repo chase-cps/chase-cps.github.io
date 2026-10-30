@@ -37,13 +37,15 @@ _Step 2: OneFifo does not refine TwoFifo._
 **Step 3. What the place of the buffer needs.** The quotient Slot = System /
 (Producer ∥ Consumer), drawn as a dashed box, is the weakest contract with which the system meets
 its requirements. Any buffer that refines it can take the place, and
-_OneFifo_ does.
+_OneFifo_ does: _Slot_ may assume what the consumer guarantees, that an
+offer is taken sooner or later, so a buffer of one entry is enough.
 
 [![Step 3: OneFifo refines Slot, the contract of the place](../assets/diagram-buffer-swap-3.png)](../assets/diagram-buffer-swap-3.png)
 _Step 3: OneFifo refines Slot, the contract of the place._
 
 **Step 4. On the RTL.** The RTL of `bsg_one_fifo` implements _Slot_: Yosys
-reads the RTL and nuXmv checks it (M ⊨ C in the diagrams).
+reads the RTL and nuXmv checks it. (M ⊨ C in the diagrams is the check of
+each RTL against the contract of its box.)
 
 ## Run it
 
@@ -55,6 +57,6 @@ $> python3 BufferSwap/bufferswap.py
 ```
 
 The script prints the result of each step and writes the diagrams above in
-`out/bufferswap.html`. It also writes _Slot_ as SVA in `out/slot.sv`; with Jasper (a
+`BufferSwap/out/bufferswap.html`. It also writes _Slot_ as SVA in `BufferSwap/out/slot.sv`; with Jasper (a
 commercial tool, optional here), `BufferSwap/jasper/run.tcl` proves it on
 the RTL as well.

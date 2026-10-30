@@ -5,18 +5,22 @@ results of the checks on the boxes. The page opens in a browser and works
 offline with a local copy of ELK, the layout library.
 
 [![A quotient, drawn as a dashed box, with the part that refines it inside](../assets/diagram-payment-assistant-2.png)](../assets/diagram-payment-assistant-2.png)
-_A quotient, drawn as a dashed box, with the part that refines it inside ([Payment assistant](../demos/payment-assistant.md))._
+_A quotient, drawn as a dashed box, with the part that refines it inside ([Payment assistant agent](../demos/payment-assistant.md))._
 
 ## What is drawn
 
 - A rounded box is a contract; a square box also has a model: RTL read
   with Yosys, a state machine in JSON or SMV, or a controller synthesized
   by slugs. A model with few states opens on its state graph.
-- A box drawn inside another refines it, on as many levels as there are
-  refinements; the button at the top right of a box folds what is inside.
+- A box drawn inside another is checked against it, on as many levels as
+  there are refinements: the ⪯ tag says whether it refines it. The button
+  at the top right of a box folds what is inside.
+- Inside an open box, the dark A and G mark its assumptions and its
+  guarantees.
 - The note under a name says how the contract is built: ⊗ composition,
   ∧ conjunction, • merging (viewpoints of one component), / quotient.
-- A dashed box is a quotient, with the part that refines it inside.
+- A dashed box is a quotient (the missing part, ? in the note), with the
+  part checked against it inside.
 - An environment is a grey box on the left of what it drives.
 - The tags are the results of the checks, green when the check holds and
   red when it does not: ⪯ refinement, A compatible, G consistent, A∧G

@@ -33,11 +33,14 @@ _Steps 1 and 2: the joints refine the arm, and each one is realizable (R); the t
 **Step 3. More joints.** `scaling.py` builds the same contracts for N joints
 and checks the refinement, for a correct arm and for a broken one (a joint
 that may never be done). The plain composition gives one large formula
-(closed): the refinement of the correct arm is proved up to 5 joints (84 s),
-and the counterexample of the broken arm is found up to 8 joints (872 s).
-The composition with discharge keeps the terms of the joints and drops the
-assumptions they discharge: with 8 joints, the composition takes 21 s and
-the refinement 3.3 s.
+(closed in the plot): the refinement of the correct arm is proved up to 5
+joints (84 s), and the counterexample of the broken arm is found up to 8
+joints. The refinement is two checks, each stopped after 600 s (the empty
+circles); the counterexample at 8 joints takes 872 s in all. The
+composition with discharge keeps the terms of the joints and removes the
+redundant ones (the joints share no variable, so nothing is discharged
+here): with 8 joints, the composition takes 21 s and the refinement 3.3 s.
+The two series were measured with chase-cps 0.1.0 and 0.3.2.
 
 [![Step 3: refinement time against the number of joints](../assets/robotic-joints-scaling.png){ width="440" }](../assets/robotic-joints-scaling.png)
 _Step 3: refinement time against the number of joints._

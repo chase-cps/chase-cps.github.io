@@ -18,21 +18,23 @@ i.e. hover; 1 semi thrust borne; 2 semi wing borne; 3 wing borne) from the
 airspeed `kias` and the ground speed `kgs`, both real numbers. The pilot
 sets the speeds and the hover control mode `hover_control_mode`. The
 airspeed is 120 at the start and changes by at most 10 at each step.
+_Vehicle_ has all the requirements but the deadline of the hover;
+_Reach12_ and _Reach06_ add a hover within 12 or 6 steps.
 
 ## The steps
 
 **Step 1. Two deadlines.** The requirements with a hover within 12 steps
-(_Reach12_) are consistent; with a hover within 6 steps (_Reach06_) they are
-not. The unsat core gives the reason: the vehicle stays wing borne while
+(_Vehicle_ and _Reach12_) are consistent; with a hover within 6 steps they
+are not. The unsat core gives the reason: the vehicle stays wing borne while
 `kias` is above 90, then semi wing borne while it is above 30, and `kias`
 cannot fall from 120 to 30 by step 6. No pilot can hover within 6 steps.
 
-[![Step 1: consistent with 12 steps (G green), not with 6 (G red)](../assets/diagram-lift-plus-cruise-1.png)](../assets/diagram-lift-plus-cruise-1.png)
-_Step 1: consistent with 12 steps (G green), not with 6 (G red)._
+[![Step 1: consistent with 12 steps, not with 6; the core highlighted in red](../assets/diagram-lift-plus-cruise-1.png)](../assets/diagram-lift-plus-cruise-1.png)
+_Step 1: consistent with 12 steps, not with 6; the core highlighted in red._
 
 **Step 2. The split.** The vehicle is split into the mode logic and the
-pilot, as in the diagram at the top, and _ModeLogic_ ∥ _Pilot_ refines the
-requirements of the vehicle.
+pilot, as in the diagram at the top, and _ModeLogic_ ∥ _Pilot_ refines
+_Vehicle_, without the deadline.
 
 **Step 3. What the pilot must do.** The quotient Q12 = Reach12 / ModeLogic,
 drawn as a dashed box, is the weakest contract of the pilot with which
@@ -52,7 +54,7 @@ _Step 4: Slow does not refine Q12._
 **Step 5. A pilot that slows down and turns on the hover control.**
 _Decel_ also turns the hover control mode on when `kgs` is below 20. It
 refines Q12, so every flight hovers within 12 steps. As step 1 says, it
-does not refine Q06.
+does not refine Q06 = Reach06 / ModeLogic.
 
 [![Step 5: Decel refines Q12](../assets/diagram-lift-plus-cruise-5.png)](../assets/diagram-lift-plus-cruise-5.png)
 _Step 5: Decel refines Q12._
@@ -72,5 +74,5 @@ $> python3 LiftPlusCruise/lpc.py
 ```
 
 The script prints the result of each step, with the counterexamples, and
-writes the diagrams above in `out/lpc.html`. The requirements in FRETish are
+writes the diagrams above in `LiftPlusCruise/out/lpc.html`. The requirements in FRETish are
 in `LiftPlusCruise/requirements.txt`.

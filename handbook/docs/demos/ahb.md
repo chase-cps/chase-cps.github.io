@@ -43,7 +43,7 @@ _Step 2: the merge is unrealizable; the core highlighted in red._
 assumption: a master that has locked the bus stops asking for it sooner or
 later (LA2). With LA2 in _Lock_, the merge _Arbiter_ (the diagram at the
 top) is realizable, and slugs synthesizes a controller of 81 states.
-_Arbiter_ is also written as SVA (`out/arbiter.sv`).
+_Arbiter_ is also written as SVA (`AHB/out/arbiter.sv`).
 
 **Step 4. The controller.** The synthesized controller, read as a state
 machine, implements _Arbiter_ (M ⊨ C).
@@ -62,5 +62,5 @@ $> python3 AHB/ahb.py
 ```
 
 The script prints the result of each step and writes the diagrams above in
-`out/arbiter.html`. The viewpoints are in `AHB/sva/grant.sv` and
+`AHB/out/arbiter.html`. The viewpoints are in `AHB/sva/grant.sv` and
 `AHB/sva/lock.sv`, with the number of each requirement as its label.
