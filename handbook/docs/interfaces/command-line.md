@@ -81,7 +81,8 @@ without assertions), drawn with its state machine.
 >
 > What is drawn:
 >
-> - `--contracts C...` _The contracts drawn (default: all)._
+> - `--contracts C...` _The contracts drawn. By default, all the contracts of
+>   the file, but those drawn inside another box by `--refines`._
 > - `--refines R A` _Draws R inside A. It may be repeated._
 > - `--implementation MODEL C` _Draws C as a component with its model: SMV,
 >   JSON, or RTL read with Yosys (`FILE:MODULE` for a file with several
