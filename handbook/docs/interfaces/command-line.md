@@ -1,13 +1,60 @@
 # Command line
 
-The Python package installs the `chase-cps` command.
+The Python package installs the `chase-cps` command, with four commands:
+`check`, `view`, `install`, and `doctor`.
+
+In the options, a contract is `NAME`, or `NAME+NAME+...` for the
+composition of the contracts. A model is a state machine in an SMV file, or
+in a JSON file (a state machine, or a controller of slugs synthesized from
+the contract).
 
 ## Checking a specification
 
 `chase-cps check` checks the contracts of a [specification file](logics-tool.md)
 in the logics language of CHASE, or of a JSON file (one contract, a list of
 contracts, or `{"contracts": [...]}`, each in the format of
-`Contract.from_dict`), and prints the counterexamples:
+`Contract.from_dict`), and prints the counterexamples.
+
+>**Usage**
+>
+> `chase-cps check FILE [options]`
+
+> **Parameters:**
+>
+> Contract-based verification (nuXmv):
+>
+> - `--verify` _The assumptions and the guarantees can hold together (A ∧ G
+>   satisfiable). It is the default when no check is given._
+> - `--compatible` _Some environment satisfies the assumptions._
+> - `--consistent` _Some behavior satisfies A → G._
+> - `--contracts C...` _The contracts checked by the three options above
+>   (default: all)._
+> - `--refines R A` _R refines A. It may be repeated._
+> - `--implementation MODEL C` _The model is an implementation of C._
+> - `--environment MODEL C` _The behaviors of the model satisfy the
+>   assumptions of C._
+> - `--receptive MODEL C` _The model accepts every input that the
+>   assumptions of C allow._
+>
+> GR(1) synthesis (slugs):
+>
+> - `--realizable C` _C is realizable. It may be repeated._
+> - `--synthesize C` _Synthesizes a controller for C. It may be repeated._
+> - `--well-separated C` _The component cannot win by forcing the
+>   environment to violate its assumptions._
+> - `--vacuous C` _The component can win without an output that a liveness
+>   guarantee asks for._
+>
+> For every check:
+>
+> - `--core` _When a check fails, gives a minimal set of terms that explains
+>   it._
+> - `--json` _Prints the results as JSON._
+> - `--timeout S` _Seconds for each check._
+> - `--backend auto|nuxmv|nusmv` _The model checker._
+> - `--engine auto|ic3|bdd|bmc|portfolio` _The engine of the model checker._
+
+For instance:
 
 ```
 $> chase-cps check specs.ltl                                    # verify every contract
@@ -16,54 +63,73 @@ $> chase-cps check specs.ltl --realizable Joint1 --json
 $> chase-cps check specs.ltl --implementation joint1.smv Joint1 --receptive joint1.smv Joint1
 ```
 
-A contract argument is `NAME`, or `NAME+NAME+...` for the composition of the
-contracts. A model is a state machine in an SMV file, or in a JSON file (a
-state machine, or a controller of slugs synthesized from the contract). The options are grouped as follows:
-
-| Group | Options |
-|---|---|
-| contract-based verification (nuXmv) | `--verify` (the default: A ∧ G satisfiable), `--compatible`, `--consistent`, `--refines REFINED ABSTRACT`, `--implementation MODEL C`, `--environment MODEL C`, `--receptive MODEL C` |
-| GR(1) synthesis (slugs) | `--realizable C`, `--synthesize C`, `--well-separated C`, `--vacuous C` |
-| all | `--core` (a minimal set of terms that explains a failure), `--json`, `--timeout`, `--backend` |
-
-The exit status is 0 when every check passes, 1 when a check fails or does not
-finish, and 2 on an error in the input.
+The exit status is 0 when every check passes, 1 when a check fails or does
+not finish, and 2 on an error in the input.
 
 ## Drawing a specification
 
-`chase-cps view` writes the [diagram](diagrams.md) of a specification (the
-logics language, JSON, or SystemVerilog Assertions) as a web page, with the
-results of the checks it is asked for:
+`chase-cps view` writes the [diagram](diagrams.md) of a file as a web page.
+The file is a specification in the logics language, in JSON, or in
+SystemVerilog Assertions (`.sv`), or a Verilog module (`.v`, or `.sv`
+without assertions), drawn with its state machine.
+
+>**Usage**
+>
+> `chase-cps view FILE [options]`
+
+> **Parameters:**
+>
+> What is drawn:
+>
+> - `--contracts C...` _The contracts drawn (default: all)._
+> - `--refines R A` _Draws R inside A. It may be repeated._
+> - `--implementation MODEL C` _Draws C as a component with its model: SMV,
+>   JSON, or RTL read with Yosys (`FILE:MODULE` for a file with several
+>   modules). It may be repeated._
+> - `--environment MODEL C` _Draws the model as an environment of C, on its
+>   left. It may be repeated._
+> - `--open C...` _Draws these contracts open: their terms, and the core of
+>   a check that fails._
+>
+> The checks:
+>
+> - `--check` _Checks the refinements, the implementations, and the
+>   environments (nuXmv or NuSMV)._
+> - `--verify` _Checks that each contract drawn is compatible and
+>   consistent._
+> - `--realizable` _Checks that each contract drawn is realizable (slugs);
+>   when it is not, marks the guarantees of the core._
+> - `--timeout S` _Seconds for each check._
+> - `--no-checks` _Leaves the three checks above out._
+>
+> The page:
+>
+> - `-o PAGE` _The page written (default: FILE with `.html`)._
+> - `--format html|json` _The page, or the data of the diagram._
+> - `--elk PATH` _Puts a local `elk.bundled.js` in the page, which then
+>   works offline (default: ELK from a CDN)._
+> - `--serve` _Serves the page on this computer, and draws it again whenever
+>   the file changes. When the file cannot be drawn, the page keeps the last
+>   diagram and says why._
+> - `--host HOST`, `--port PORT` _Where the page is served._
+
+For instance:
 
 ```
 $> chase-cps view specs.ltl                                       # writes specs.html
 $> chase-cps view specs.ltl --refines Joint1+Joint2+Joint3 Joints --check --realizable
 $> chase-cps view specs.ltl --open Joints --serve                 # drawn again on each change
+$> chase-cps view arbiter.v                                       # the module and its states
 ```
 
-`--contracts C...` chooses the contracts drawn, `--refines R A` draws R inside
-A, `--environment MODEL C` draws an environment, `--check` checks the
-refinements and the environments, `--verify` and `--realizable` mark the
-checks of each contract, `--open C...` draws contracts open, and `-o PAGE`
-names the page. With `--serve` the page is served on this computer
-(`--host`, `--port`) and drawn again in place whenever the file changes;
-when the file cannot be drawn, the page keeps the last diagram and says
-why. `--format json` writes the data of the diagram, and `--no-checks`
-draws the structure only.
-
-`--implementation MODEL C` draws C as a component with its model (SMV,
-JSON, or RTL read with Yosys; `FILE:MODULE` for a file with several
-modules), checked against C with `--check`. A Verilog file with no
-assertions is drawn as its module. The options can also be written at the
-top of the file, so that the file says how it is drawn:
+The options can also be written at the top of the file, in comments
+(`// view:` in Verilog). The files named there are taken from the folder of
+the file:
 
 ```
 # view: --implementation models/arb.json Arb --check --open Arb
 CONTRACT Arb ...
 ```
-
-In Verilog the comment is `// view: ...`. The files named there are taken
-from the folder of the file.
 
 ## Installing the solvers
 

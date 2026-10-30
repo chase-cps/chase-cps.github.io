@@ -53,25 +53,28 @@ d = viz.diagram(s, q, refines=[(b, q)], open=[q])
 viz.save(d, "plan.html")           # viz.show(d) opens a browser
 ```
 
-Each check keeps its result on the contract it checks, with what the
-contract said then, and a diagram draws the results that still hold: there
-is nothing to pass. When a contract changes, its results no longer show.
-`environments` draws environments, and `open` lists the boxes drawn open
-when the page loads. In Jupyter, a system or a contract draws itself.
+The options of `viz.diagram`:
+
+- `refines` lists the pairs (R, A) where R is drawn inside A.
+- `environments` lists the environments, each with what it drives.
+- `open` lists the boxes drawn open when the page loads.
+- `checks` lists results of checks to draw. It is usually not needed: each
+  check keeps its result on the contract it checks, and the diagram draws
+  the results of the contracts that have not changed since.
+
+In Jupyter, a system or a contract draws itself.
 
 ## Command line, MCP, and VS Code
 
-`chase-cps view FILE` draws a specification file (the logics language,
-JSON, or SystemVerilog Assertions), or a Verilog module with its state
-machine: `--refines R A` draws R inside A, `--implementation MODEL C` draws
-C with its model, `--check`, `--verify`, and `--realizable` add the checks,
-`--open` names the contracts drawn open, and `--serve` draws the page again
-when the file changes. The options can be written at the top of the file
-(`# view: ...`); see the [command line](command-line.md). The `visualize`
-tool of the [MCP server](mcp.md) draws the same diagrams for an agent.
-
-An extension for VS Code will follow. It shows the diagram beside the
-editor and draws it again as you type, marks the errors in the text, and
-runs the checks on save. A double click on a box, or on a term (a red term
-of a core, for instance), goes to its line, and the cursor marks its box
-and its term in the diagram.
+- Command line: `chase-cps view FILE` draws a specification file, or a
+  Verilog module. Its options are listed in
+  [Command line](command-line.md#drawing-a-specification).
+- MCP: the `visualize` tool of the [MCP server](mcp.md) draws the same
+  diagrams for an AI agent.
+- VS Code: an extension, not released yet, shows the diagram beside the
+  editor:
+    - the diagram is drawn again as you type, without the checks; the
+      checks run when the file is saved;
+    - the errors are marked in the text;
+    - a double click on a box, or on a term, goes to its line in the file;
+    - the cursor marks its box, and its term, in the diagram.
