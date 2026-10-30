@@ -67,14 +67,17 @@ In Jupyter, a system or a contract draws itself.
 ## Command line, MCP, and VS Code
 
 - Command line: `chase-cps view FILE` draws a specification file, or a
-  Verilog module. Its options are listed in
-  [Command line](command-line.md#drawing-a-specification).
+  Verilog module. The contracts are put together by their ports: the
+  outputs and inputs of the same name are wired, and the parts whose
+  composition has the ports of another contract are drawn inside it. The
+  options are listed in [Command line](command-line.md#drawing-a-specification).
 - MCP: the `visualize` tool of the [MCP server](mcp.md) draws the same
   diagrams for an AI agent.
 - VS Code: an extension, not released yet, shows the diagram beside the
   editor:
     - the diagram is drawn again as you type, without the checks; the
-      checks run when the file is saved;
+      checks run when the file is saved, and a refinement drawn turns green
+      or red;
     - the errors are marked in the text;
     - a double click on a box, or on a term, goes to its line in the file;
     - the cursor marks its box, and its term, in the diagram.

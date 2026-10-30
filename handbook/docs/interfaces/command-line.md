@@ -82,7 +82,7 @@ without assertions), drawn with its state machine.
 > What is drawn:
 >
 > - `--contracts C...` _The contracts drawn. By default, all the contracts of
->   the file, but those drawn inside another box by `--refines`._
+>   the file, but those drawn inside another box._
 > - `--refines R A` _Draws R inside A. It may be repeated._
 > - `--implementation MODEL C` _Draws C as a component with its model: SMV,
 >   JSON, or RTL read with Yosys (`FILE:MODULE` for a file with several
@@ -122,6 +122,17 @@ $> chase-cps view specs.ltl --refines Joint1+Joint2+Joint3 Joints --check --real
 $> chase-cps view specs.ltl --open Joints --serve                 # drawn again on each change
 $> chase-cps view arbiter.v                                       # the module and its states
 ```
+
+Without `--refines` and `--contracts`, the contracts are put together by
+their ports:
+
+- an output and an input with the same name are wired;
+- contracts with the same inputs and outputs are versions of one part
+  (fixes, or candidates): the first one in the file is wired, the others
+  are drawn apart;
+- a contract whose outputs are driven by several parts, which read from
+  outside only its inputs, is the contract of their composition: the parts
+  are drawn inside it, and `--check` checks the refinement.
 
 The options can also be written at the top of the file, in comments
 (`// view:` in Verilog). The files named there are taken from the folder of
