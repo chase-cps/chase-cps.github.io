@@ -94,13 +94,21 @@ without assertions), drawn with its state machine.
 >
 > The checks:
 >
-> - `--check` _Checks the refinements, the implementations, and the
->   environments (nuXmv or NuSMV)._
+> - `--check` _Checks that the assumptions and the guarantees of each
+>   contract can hold together (A∧G, with the core when they cannot), and
+>   the refinements, the implementations, and the environments drawn (nuXmv
+>   or NuSMV)._
 > - `--verify` _Checks that each contract drawn is compatible and
 >   consistent._
 > - `--realizable` _Checks that each contract drawn is realizable (slugs);
 >   when it is not, marks the guarantees of the core._
 > - `--timeout S` _Seconds for each check._
+> - `--budget S` _No check starts after S seconds; the checks left are not
+>   marked._
+> - `--results FILE` _Where the results of `--check` are kept (default: next
+>   to the file, `charger.ltl` → `charger.results.json`). A check of
+>   contracts that have not changed is read from it, not run again._
+> - `--no-results` _Keeps no results._
 > - `--no-checks` _Leaves the three checks above out._
 >
 > The page:
