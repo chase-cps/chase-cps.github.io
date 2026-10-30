@@ -9,7 +9,7 @@ with a contract over its tool calls. Do the contracts of the sub-agents,
 together, refine the contract of the parent agent? If not, what is missing,
 and which sub-agent must do it?
 
-[![The plan: the sub-agents inside the contract of the parent](../assets/diagram-payment-assistant-system.png)](../assets/diagram-payment-assistant-system.png)
+[![The plan: the sub-agents inside the contract of the parent](../assets/demos/payment-assistant/plan-of-sub-agents.png)](../assets/demos/payment-assistant/plan-of-sub-agents.png)
 _The plan: the sub-agents inside the contract of the parent._
 
 The task comes from [AppWorld](https://arxiv.org/abs/2407.18901) (task
@@ -48,7 +48,7 @@ right words, and no voice message. Together the sub-agents do not refine
 the parent: the counterexample pays and never sends the text. No sub-agent
 promises `F text3`.
 
-[![Step 1: the plan does not refine the parent; Text does not promise F text3](../assets/diagram-payment-assistant-1.png)](../assets/diagram-payment-assistant-1.png)
+[![Step 1: the plan does not refine the parent; Text does not promise F text3](../assets/demos/payment-assistant/plan-does-not-refine-parent.png)](../assets/demos/payment-assistant/plan-does-not-refine-parent.png)
 _Step 1: the plan does not refine the parent; Text does not promise F text3._
 
 **Step 2. What sub-agent 3 must do.** Only sub-agent 3 can send the text
@@ -62,7 +62,7 @@ the plan refines the parent. It may assume that the payment is done sooner
 or later (`F paid`): Q3 assumes it from what the other sub-agents
 guarantee.
 
-[![Steps 2 and 3: Q3 asks for F text3; Text refines it](../assets/diagram-payment-assistant-2.png)](../assets/diagram-payment-assistant-2.png)
+[![Steps 2 and 3: Q3 asks for F text3; Text refines it](../assets/demos/payment-assistant/quotient-q3-text-refines.png)](../assets/demos/payment-assistant/quotient-q3-text-refines.png)
 _Steps 2 and 3: Q3 asks for F text3; Text refines it._
 
 **Step 4. A clause against the request.** If the parent also says "never
@@ -70,7 +70,7 @@ pay" (`G !tx2`, _ParentWithSlip_ in the picture), its contract is
 inconsistent, and the unsat core is the two
 clauses in conflict: `F tx2` and `G !tx2`.
 
-[![Step 4: the inconsistent parent, with the core highlighted in red](../assets/diagram-payment-assistant-3.png)](../assets/diagram-payment-assistant-3.png)
+[![Step 4: the inconsistent parent, with the core highlighted in red](../assets/demos/payment-assistant/parent-inconsistent-core.png)](../assets/demos/payment-assistant/parent-inconsistent-core.png)
 _Step 4: the inconsistent parent, with the core highlighted in red._
 
 ## Run it

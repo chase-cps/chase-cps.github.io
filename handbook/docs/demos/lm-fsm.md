@@ -8,7 +8,7 @@ wide: true
 contradict each other? Once they are corrected, does the system command
 the pullup when its requirement says?
 
-[![The system: the autopilot and the sensor, which feed each other](../assets/diagram-lm-fsm-system.png)](../assets/diagram-lm-fsm-system.png)
+[![The system: the autopilot and the sensor, which feed each other](../assets/demos/lm-fsm/autopilot-and-sensor.png)](../assets/demos/lm-fsm/autopilot-and-sensor.png)
 _The system: the autopilot and the sensor, which feed each other._
 
 An autopilot commands a safety maneuver (pullup) when a sensor reports a
@@ -36,7 +36,7 @@ The script replaces each requirement of a core by its corrected version,
 and checks again. It finds four conflicts in the autopilot and one in the
 sensor, with the same fixes as FRET.
 
-[![Step 1: the first requirements are unrealizable; the cores highlighted in red](../assets/diagram-lm-fsm-1.png)](../assets/diagram-lm-fsm-1.png)
+[![Step 1: the first requirements are unrealizable; the cores highlighted in red](../assets/demos/lm-fsm/first-requirements-unrealizable-cores.png)](../assets/demos/lm-fsm/first-requirements-unrealizable-cores.png)
 _Step 1: the first requirements are unrealizable; the cores highlighted in red._
 
 **Step 2. The system.** The corrected _Autopilot_ and _Sensor_ are
@@ -44,7 +44,7 @@ realizable, but together they do not refine _System_ (FSM-001): the
 counterexample the limits are exceeded and the pullup does not come at
 once.
 
-[![Step 2: Autopilot ∥ Sensor does not refine System](../assets/diagram-lm-fsm-2.png)](../assets/diagram-lm-fsm-2.png)
+[![Step 2: Autopilot ∥ Sensor does not refine System](../assets/demos/lm-fsm/composition-does-not-refine-system.png)](../assets/demos/lm-fsm/composition-does-not-refine-system.png)
 _Step 2: Autopilot ∥ Sensor does not refine System._
 
 **Step 3. The system, with time.** The sensor and the autopilot each take a
@@ -53,7 +53,7 @@ _SystemTimed_ (FSM-001t) gives the pullup that time: with the limits not exceede
 exceeded, the pilot not in control and no failure, the pullup comes at the
 fifth step. The composition refines it.
 
-[![Step 3: Autopilot ∥ Sensor refines SystemTimed](../assets/diagram-lm-fsm-3.png)](../assets/diagram-lm-fsm-3.png)
+[![Step 3: Autopilot ∥ Sensor refines SystemTimed](../assets/demos/lm-fsm/composition-refines-systemtimed.png)](../assets/demos/lm-fsm/composition-refines-systemtimed.png)
 _Step 3: Autopilot ∥ Sensor refines SystemTimed._
 
 ## Run it

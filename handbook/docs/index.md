@@ -41,54 +41,13 @@ impl = Contract.from_strings(inputs=["req"], outputs=["grant"],
 print(refines(impl, spec).status)    # valid
 ```
 
-## Contract theory, interfaces, and tool integrations
-
-<div class="layers" markdown>
-<div class="layer" markdown>
-**[Contract theory](contracts/index.md)**
-
-- [*Formulas*](contracts/formulas.md): the assumptions and the guarantees
-  are formulas of linear temporal logic over Boolean, integer, real, and
-  bit-vector variables.
-- [*Contract algebra*](contracts/algebra.md): composition, conjunction,
-  merging, quotient, separation, implication, and the other operations that
-  build a contract from contracts. They hold for any assume-guarantee
-  contracts and are computed in closed form, without a solver.
-- [*Contract-based verification*](contracts/checks.md): refinement,
-  compatibility, consistency, and whether a component is an implementation,
-  or an environment, of a contract.
-</div>
-<div class="layer" markdown>
-**[Tool integrations](tools/index.md)**: the questions on contracts that
-external tools answer.
-
-- [*Model checking*](tools/model-checking.md) with nuXmv or NuSMV decides the
-  verification tasks, with counterexamples and cores.
-- [*GR(1) synthesis*](tools/synthesis.md) with slugs or gr1c, for contracts in
-  the GR(1) fragment of LTL: realizability, controllers, unrealizable cores,
-  well-separation, and vacuity.
-- [*Hardware: SVA and RTL*](tools/systemverilog.md): contracts read from and
-  written as SystemVerilog Assertions for the tools that read SVA, and RTL
-  read with Yosys as state machines.
-</div>
-<div class="base" markdown>
-[Interfaces](interfaces/index.md): Python, the command line, the
-specification language and console (logics_tool), domain languages
-(DSL_tool), and the MCP server for AI agents.
-</div>
-</div>
-
 ## Where to start
 
-- [Getting started](getting-started.md): install CHASE (the Python package,
-  the solvers, the Docker image, or the sources), then write two contracts,
-  compose them, check a refinement, and read a counterexample.
-- [Demos](demos/index.md): design iterations on real examples, from the
-  buffer of a circuit and the arbiter of a bus to the lift modes of a NASA
-  aircraft and the autopilot of a Lockheed Martin challenge.
-- [MCP server](interfaces/mcp.md): the operations of CHASE as tools for AI
-  agents.
-- [News](news.md): the changes of each version.
+- [Getting started](getting-started.md): install CHASE, and write a first
+  contract.
+- [Demos](demos/index.md): design problems, from their requirements to a
+  result.
+- [MCP server](interfaces/mcp.md): CHASE for AI agents.
 
 CHASE started at the University of Southern California and the University
 of Verona, and is developed at the University of California, Berkeley. It is

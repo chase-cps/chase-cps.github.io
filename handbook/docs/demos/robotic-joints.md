@@ -8,7 +8,7 @@ wide: true
 own contract. Does the arm meet its contract, can each joint be
 synthesized, and how does the check grow with the number of joints?
 
-[![The arm: three joints inside the contract of the arm](../assets/diagram-robotic-joints-system.png)](../assets/diagram-robotic-joints-system.png)
+[![The arm: three joints inside the contract of the arm](../assets/demos/robotic-joints/arm-and-three-joints.png)](../assets/demos/robotic-joints/arm-and-three-joints.png)
 _The arm: three joints inside the contract of the arm._
 
 The demo was first presented at CPS-IoT Week 2022. The arm asks each joint
@@ -35,7 +35,7 @@ contract of the arm.
 **Step 2. The joints.** Each joint is realizable, and slugs synthesizes its
 controller.
 
-[![Steps 1 and 2: the joints refine the arm, and each one is realizable (R); the terms of Joint1 and of the arm](../assets/diagram-robotic-joints-1.png)](../assets/diagram-robotic-joints-1.png)
+[![Steps 1 and 2: the joints refine the arm, and each one is realizable (R); the terms of Joint1 and of the arm](../assets/demos/robotic-joints/joints-refine-arm-realizable.png)](../assets/demos/robotic-joints/joints-refine-arm-realizable.png)
 _Steps 1 and 2: the joints refine the arm, and each one is realizable (R); the terms of Joint1 and of the arm._
 
 **Step 3. More joints.** `scaling.py` builds the same contracts for N
@@ -54,7 +54,7 @@ after 600 s (the empty circles in the plot).
 
 The two series were measured with chase-cps 0.1.0 and 0.3.2.
 
-[![Step 3: refinement time against the number of joints](../assets/robotic-joints-scaling.png){ width="440" }](../assets/robotic-joints-scaling.png)
+[![Step 3: refinement time against the number of joints](../assets/demos/robotic-joints/refinement-time-vs-joints.png){ width="440" }](../assets/demos/robotic-joints/refinement-time-vs-joints.png)
 _Step 3: refinement time against the number of joints._
 
 ## Run it

@@ -8,7 +8,7 @@ wide: true
 sender, the wires, and a receiver. Does it meet its requirements, and can we
 show it by checking each module on its own?
 
-[![The link: the sender, the channel, and the receiver, each with its RTL, inside the requirements](../assets/diagram-escalation-system.png)](../assets/diagram-escalation-system.png)
+[![The link: the sender, the channel, and the receiver, each with its RTL, inside the requirements](../assets/demos/escalation/sender-channel-receiver.png)](../assets/demos/escalation/sender-channel-receiver.png)
 _The link: the sender, the channel, and the receiver, each with its RTL, inside the requirements._
 
 The link is a toy version of the escalation link of OpenTitan:
@@ -39,7 +39,7 @@ receiver implements its contract.
 _Functional_ and _Integrity_. So the three modules together meet the
 requirements, with no check on the whole design.
 
-[![Steps 1 and 2: each RTL implements its contract, and the composition refines Functional; the receiver with its four states](../assets/diagram-escalation-1.png)](../assets/diagram-escalation-1.png)
+[![Steps 1 and 2: each RTL implements its contract, and the composition refines Functional; the receiver with its four states](../assets/demos/escalation/rtl-implements-contracts.png)](../assets/demos/escalation/rtl-implements-contracts.png)
 _Steps 1 and 2: each RTL implements its contract, and the composition refines Functional; the receiver with its four states._
 
 **Step 3. A cross-check.** The whole RTL, checked directly, meets

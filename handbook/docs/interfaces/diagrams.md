@@ -4,7 +4,7 @@ CHASE draws contracts, components, and systems as a web page, with the
 results of the checks on the boxes. The page opens in a browser and works
 offline with a local copy of ELK, the layout library.
 
-[![A quotient, drawn as a dashed box, with the part that refines it inside](../assets/diagram-payment-assistant-2.png)](../assets/diagram-payment-assistant-2.png)
+[![A quotient, drawn as a dashed box, with the part that refines it inside](../assets/demos/payment-assistant/quotient-q3-text-refines.png)](../assets/demos/payment-assistant/quotient-q3-text-refines.png)
 _A quotient, drawn as a dashed box, with the part that refines it inside ([Payment assistant agent](../demos/payment-assistant.md))._
 
 ## What is drawn

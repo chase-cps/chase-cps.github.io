@@ -47,7 +47,7 @@ right generator: contactor 1 opens first, so that the generators are never
 connected, and then contactor 3 closes. Each takes up to 10 ms, so the bus
 may stay unpowered for more than 15 ms.
 
-[![Step 1: the contract of the controller is unrealizable; the 4 guarantees of the core highlighted in red](../assets/diagram-power-systems-1.png)](../assets/diagram-power-systems-1.png)
+[![Step 1: the contract of the controller is unrealizable; the 4 guarantees of the core highlighted in red](../assets/demos/power-systems/eps-controller-unrealizable-core.png)](../assets/demos/power-systems/eps-controller-unrealizable-core.png)
 _Step 1: the contract of the controller is unrealizable; the 4 guarantees of the core highlighted in red._
 
 **Step 2. Relaxed requirements.** The DATE 2018 paper relaxes the

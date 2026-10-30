@@ -8,7 +8,7 @@ wide: true
 contract does not refine the old one. Can it take its place, and what must
 any buffer in that place satisfy?
 
-[![The system: a producer, the buffer, and a consumer, with a ready/valid handshake](../assets/diagram-buffer-swap-system.png)](../assets/diagram-buffer-swap-system.png)
+[![The system: a producer, the buffer, and a consumer, with a ready/valid handshake](../assets/demos/buffer-swap/producer-buffer-consumer.png)](../assets/demos/buffer-swap/producer-buffer-consumer.png)
 _The system: a producer, the buffer, and a consumer, with a ready/valid handshake._
 
 A producer sends data to a consumer through a buffer, with a ready/valid
@@ -34,7 +34,7 @@ the top).
 _TwoFifo_: with a value in, it takes no other. Its contract alone does not
 say that it can take the place.
 
-[![Step 2: OneFifo does not refine TwoFifo](../assets/diagram-buffer-swap-2.png)](../assets/diagram-buffer-swap-2.png)
+[![Step 2: OneFifo does not refine TwoFifo](../assets/demos/buffer-swap/onefifo-does-not-refine-twofifo.png)](../assets/demos/buffer-swap/onefifo-does-not-refine-twofifo.png)
 _Step 2: OneFifo does not refine TwoFifo._
 
 **Step 3. What the place of the buffer needs.** The quotient Slot = System /
@@ -43,7 +43,7 @@ its requirements. Any buffer that refines it can take the place, and
 _OneFifo_ does: _Slot_ may assume what the consumer guarantees, that an
 offer is taken sooner or later, so a buffer of one entry is enough.
 
-[![Step 3: OneFifo refines Slot, the contract of the place](../assets/diagram-buffer-swap-3.png)](../assets/diagram-buffer-swap-3.png)
+[![Step 3: OneFifo refines Slot, the contract of the place](../assets/demos/buffer-swap/onefifo-refines-slot.png)](../assets/demos/buffer-swap/onefifo-refines-slot.png)
 _Step 3: OneFifo refines Slot, the contract of the place._
 
 **Step 4. On the RTL.** The RTL of `bsg_one_fifo` implements _Slot_: Yosys

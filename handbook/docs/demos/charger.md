@@ -8,7 +8,7 @@ wide: true
 Which checks catch the problems of the first contracts of the arbiter, and
 which contract works with the robots?
 
-[![The system: an arbiter and two robots, which feed each other with requests and grants](../assets/diagram-charger-system.png)](../assets/diagram-charger-system.png)
+[![The system: an arbiter and two robots, which feed each other with requests and grants](../assets/demos/charger/arbiter-and-two-robots.png)](../assets/demos/charger/arbiter-and-two-robots.png)
 _The system: an arbiter and two robots, which feed each other with requests and grants._
 
 The variables of each robot are:
@@ -30,7 +30,7 @@ robots (R5). The requirements are numbered as in
 at the next step after its request (R6.1, R6.2). When both robots ask at
 once, it cannot serve both: the unrealizable core is R5, R6.1, and R6.2.
 
-[![Step 1: Greedy is unrealizable; the core highlighted in red](../assets/diagram-charger-1.png)](../assets/diagram-charger-1.png)
+[![Step 1: Greedy is unrealizable; the core highlighted in red](../assets/demos/charger/greedy-unrealizable-core.png)](../assets/demos/charger/greedy-unrealizable-core.png)
 _Step 1: Greedy is unrealizable; the core highlighted in red._
 
 **Step 2. Fair: realizable.** _Fair_ gives the station to each robot, or
@@ -38,7 +38,7 @@ the robot stops asking, infinitely often (R7.1, R7.2), and assumes
 nothing. It is realizable, and slugs synthesizes a controller of 18 states.
 Its guarantee R8 is implied by R7.1 and is removed.
 
-[![Step 2: Fair is realizable](../assets/diagram-charger-2.png)](../assets/diagram-charger-2.png)
+[![Step 2: Fair is realizable](../assets/demos/charger/fair-realizable.png)](../assets/demos/charger/fair-realizable.png)
 _Step 2: Fair is realizable._
 
 **Step 3. Realizable for a bad reason.** _Pushy_ assumes that robot 1 asks
@@ -51,7 +51,7 @@ break its assumptions; _Pushy_ is not, with A2 and A3 as the core.
 _Polite_ assumes A4 instead of A3 (after a grant it asked for, robot 1 does
 not ask at the next step), and is well separated.
 
-[![Step 3: Pushy is not well separated (the core: A2, A3); Polite is](../assets/diagram-charger-3.png)](../assets/diagram-charger-3.png)
+[![Step 3: Pushy is not well separated (the core: A2, A3); Polite is](../assets/demos/charger/pushy-not-well-separated.png)](../assets/demos/charger/pushy-not-well-separated.png)
 _Step 3: Pushy is not well separated (the core: A2, A3); Polite is._
 
 **Step 4. An arbiter that never grants.** _Trusting_ assumes that each robot
@@ -60,7 +60,7 @@ then hold without any grant: it is vacuous, since it can win without
 setting its outputs. The core is the two assumptions
 and the three guarantees they make true. _Fair_ is not vacuous.
 
-[![Step 4: Trusting is vacuous; the core highlighted in red](../assets/diagram-charger-4.png)](../assets/diagram-charger-4.png)
+[![Step 4: Trusting is vacuous; the core highlighted in red](../assets/demos/charger/trusting-vacuous-core.png)](../assets/demos/charger/trusting-vacuous-core.png)
 _Step 4: Trusting is vacuous; the core highlighted in red._
 
 **Step 5. The arbiter with the robots.** _Fair_ and the robots are composed

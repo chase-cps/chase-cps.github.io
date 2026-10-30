@@ -9,7 +9,7 @@ AMBA AHB bus: one on how the bus is given to the masters, one on how a
 master locks it. Is there an arbiter that meets both, and what must it
 assume of the masters?
 
-[![The arbiter: the merge of the two viewpoints, Grant and Lock](../assets/diagram-ahb-system.png)](../assets/diagram-ahb-system.png)
+[![The arbiter: the merge of the two viewpoints, Grant and Lock](../assets/demos/ahb/merge-of-grant-and-lock.png)](../assets/demos/ahb/merge-of-grant-and-lock.png)
 _The arbiter: the merge of the two viewpoints, Grant and Lock._
 
 The arbiter gives the bus to one of two masters. The requirements are
@@ -45,7 +45,7 @@ bus and keeps asking for it, _Lock_ says that master 1 keeps the bus
 core is these two, with GR1, GR2, and LK1, which make the conflict
 possible.
 
-[![Step 2: the merge is unrealizable; the core highlighted in red](../assets/diagram-ahb-2.png)](../assets/diagram-ahb-2.png)
+[![Step 2: the merge is unrealizable; the core highlighted in red](../assets/demos/ahb/merge-unrealizable-core.png)](../assets/demos/ahb/merge-unrealizable-core.png)
 _Step 2: the merge is unrealizable; the core highlighted in red._
 
 **Step 3. What the arbiter must assume.** The core points to the missing
@@ -57,7 +57,7 @@ _Arbiter_ is also written as SVA (`AHB/out/arbiter.sv`).
 **Step 4. The controller.** The synthesized controller, read as a state
 machine, implements _Arbiter_ (M ⊨ C).
 
-[![Step 4: the controller implements Arbiter](../assets/diagram-ahb-3.png)](../assets/diagram-ahb-3.png)
+[![Step 4: the controller implements Arbiter](../assets/demos/ahb/controller-implements-arbiter.png)](../assets/demos/ahb/controller-implements-arbiter.png)
 _Step 4: the controller implements Arbiter._
 
 ## Run it
