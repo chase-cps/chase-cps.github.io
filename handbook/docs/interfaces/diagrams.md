@@ -45,20 +45,26 @@ top = Contract.from_strings(name="Top", inputs=["x"], outputs=["y", "z"],
 s = System("S", [Component("a", a), Component("b", b)], contract=top)
 s.check()                          # the composition against Top
 q = top.divide(a, name="Q")        # what the part next to a must do
-d = viz.diagram(s, q, refines=[(b, q, refines(b, q))], open=[q])
+refines(b, q)                      # the result is kept on b
+d = viz.diagram(s, q, refines=[(b, q)], open=[q])
 viz.save(d, "plan.html")           # viz.show(d) opens a browser
 ```
 
-`checks` adds the results of `verify`, `is_realizable`,
-`is_well_separated`, and `is_vacuous` to a box, `environments` draws
-environments, and `open` lists the boxes drawn open when the page loads.
-In Jupyter, a system or a contract draws itself.
+Each check keeps its result on the contract it checks, with what the
+contract said then, and a diagram draws the results that still hold: there
+is nothing to pass. When a contract changes, its results no longer show.
+`environments` draws environments, and `open` lists the boxes drawn open
+when the page loads. In Jupyter, a system or a contract draws itself.
 
 ## Command line, MCP, and VS Code
 
 `chase-cps view FILE` draws a specification file: `--refines R A` draws R
-inside A, `--check`, `--verify`, and `--realizable` add the checks, `--open`
-names the contracts drawn open, and `--serve` draws the page again when the
-file changes. The `visualize` tool of the [MCP server](mcp.md) draws the
-same diagrams for an agent. An extension for VS Code, which shows the
-diagram beside the editor, will follow.
+inside A, `--implementation MODEL C` draws C with its model, `--check`,
+`--verify`, and `--realizable` add the checks, `--open` names the contracts
+drawn open, and `--serve` draws the page again when the file changes. The
+options can be written at the top of the file (`# view: ...`); see the
+[command line](command-line.md). The button with an arrow saves the diagram
+as SVG, PNG, or PDF. The `visualize` tool of the [MCP server](mcp.md) draws
+the same diagrams for an agent. An extension for VS Code, which shows the
+diagram beside the editor as you type and goes from a box to its text and
+back, will follow.

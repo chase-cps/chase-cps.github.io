@@ -51,6 +51,20 @@ when the file cannot be drawn, the page keeps the last diagram and says
 why. `--format json` writes the data of the diagram, and `--no-checks`
 draws the structure only.
 
+`--implementation MODEL C` draws C as a component with its model (SMV,
+JSON, or RTL read with Yosys; `FILE:MODULE` for a file with several
+modules), checked against C with `--check`. A Verilog file with no
+assertions is drawn as its module. The options can also be written at the
+top of the file, so that the file says how it is drawn:
+
+```
+# view: --implementation models/arb.json Arb --check --open Arb
+CONTRACT Arb ...
+```
+
+In Verilog the comment is `// view: ...`. The files named there are taken
+from the folder of the file.
+
 ## Installing the solvers
 
 ```
