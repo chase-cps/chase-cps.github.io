@@ -61,44 +61,15 @@ CHASE now reads and checks hardware designs:
   Martin cyber-physical challenges ([LMFSM](demos/lm-fsm.md)).
 </div>
 
-<div class="news-item" markdown>
-<span class="news-date">October 28, 2026</span>
+## Earlier versions
 
-## CHASE 0.4.0: bit vectors and engines
+- October 28, 2026, **0.4.0**: bit vectors (words), `past(x, n)`, and the
+  choice of the engine of nuXmv.
+- October 27, 2026, **0.3**: implementations and environments as state
+  machines, receptiveness, vacuity in GR(1) synthesis.
+- October 26, 2026, **0.2**: real variables, unsat and unrealizable cores,
+  composition with discharge.
+- October 25, 2026, **0.1**: the Python package on PyPI and the MCP server.
 
-Words (unsigned and signed bit vectors, as in nuXmv and SystemVerilog), the
-value of a variable n steps before (`past(x, n)`), and the choice of the
-engine of nuXmv (IC3 and BDDs at the same time by default).
-</div>
-
-<div class="news-item" markdown>
-<span class="news-date">October 27, 2026</span>
-
-## CHASE 0.3: state machines and vacuity
-
-Implementations and environments given as state machines (SMV, JSON, or a
-synthesized controller), receptiveness, vacuity in GR(1) synthesis, and
-well-separation that keeps the guarantees of the component. The operations
-are organized in three levels: contract algebra, contract-based
-verification, and GR(1) synthesis.
-</div>
-
-<div class="news-item" markdown>
-<span class="news-date">October 26, 2026</span>
-
-## CHASE 0.2: reals, cores, and discharge
-
-Real variables, unsat and unrealizable cores, composition that keeps the
-terms of the contracts and drops the assumptions discharged by the other
-components, implication and coimplication of contracts, and well-separation.
-</div>
-
-<div class="news-item" markdown>
-<span class="news-date">October 25, 2026</span>
-
-## CHASE 0.1: a Python package and an MCP server
-
-CHASE is on PyPI (`pip install chase-cps`), with its back ends installed by
-`chase-cps install`, and its operations are available to AI agents through
-an MCP server (`chase-mcp`).
-</div>
+Every change of each version is in the
+[changelog](https://github.com/chase-cps/chase/blob/master/CHANGELOG.md).
