@@ -67,7 +67,7 @@ is developed in its own repository, and can be built on its own.
 |---|---|
 | [chase](https://github.com/chase-cps/chase) | The entry point: the modules, the build, the Docker image, the Python package `chase-cps`, the documentation |
 | [core-library](https://github.com/chase-cps/core-library) | The classes that represent design problems, systems, and contracts, the contract algebra, and their Python bindings |
-| [chase-backends](https://github.com/chase-cps/chase-backends) | The back ends: slugs, gr1c, the SMV language of nuXmv and NuSMV, and PySTL |
+| [chase-backends](https://github.com/chase-cps/chase-backends) | The back ends: slugs, gr1c, and the SMV language of nuXmv and NuSMV (a printer for PySTL, for an early version of PyCASSE, is kept but does not run with the current one) |
 | [logics_tool](https://github.com/chase-cps/logics_tool) | The logics language of CHASE and its console |
 | [DSL_tool](https://github.com/chase-cps/DSL_tool) | A domain-specific language for discrete timed problems over architectures modeled as graphs |
 | [third_party](https://github.com/chase-cps/third_party) | The ANTLR4 C++ runtime |

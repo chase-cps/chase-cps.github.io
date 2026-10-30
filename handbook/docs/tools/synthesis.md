@@ -54,22 +54,24 @@ is_realizable(cs["Greedy"]).status      # unrealizable
 r = synthesize(cs["Fair"])              # realizable, a controller with 18 states
 ```
 
-## Other GR(1) solvers
+## Writing the specification for a GR(1) solver
 
-slugs is the solver that CHASE runs. For another one, `to_gr1c(c)` writes
-the contract as the input of [gr1c](https://github.com/tulip-control/gr1c),
-as `to_sva` writes it for the tools of SystemVerilog:
+slugs is the solver that CHASE runs. To run one yourself, `to_gr1(c,
+format=...)` writes the contract as its input, as `to_sva` writes it for the
+tools of SystemVerilog: `format="slugs"` (the default) is the file that
+chase-cps gives to slugs, and `format="gr1c"` the input of
+[gr1c](https://github.com/tulip-control/gr1c).
 
 ```python
-open("fair.spc", "w").write(to_gr1c(cs["Fair"]))
+open("fair.structuredSlugs", "w").write(to_gr1(cs["Fair"]))
+open("fair.spc", "w").write(to_gr1(cs["Fair"], format="gr1c"))
 # gr1c -r fair.spc      realizability
-# gr1c fair.spc         a controller
 ```
 
 The inputs of the contract are the variables of the environment, its
 outputs those of the system. gr1c compares an integer only with a constant,
-so a relation with arithmetic or between variables (`x' = x + 1`) is
-written as the values that satisfy it.
+so for gr1c a relation with arithmetic or between variables (`x' = x + 1`)
+is written as the values that satisfy it.
 
 ## Unrealizable cores
 
