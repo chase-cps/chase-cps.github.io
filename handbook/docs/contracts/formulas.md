@@ -5,7 +5,7 @@ temporal logic (LTL) over variables of four types. The Python package, the
 command line (JSON files), and the MCP server read them in the standard LTL
 syntax described here; the specification files of `logics_tool` use the
 [logics language](../interfaces/logics-tool.md), with the same operators and
-another precedence. Assertions written in SystemVerilog are read as the same
+the same precedence. Assertions written in SystemVerilog are read as the same
 formulas (see [SystemVerilog Assertions](#systemverilog-assertions) below).
 
 ## Variables
@@ -83,12 +83,14 @@ the contract is built, with the reason.
 
 From the loosest to the tightest: `<->`, `->`, `|` `xor`, `&`, `U R W`, the
 unary operators (`! G F X`), the relations, `<< >>`, `+ -`, `* / mod`, `::`,
-the bits `x[7:0]`. `->` groups to the right, the other binary operators to
-the left. So `G a -> b` is `(G a) -> b`; write `G (a -> b)`.
+the bits `x[7:0]`. `->` and `U R W` group to the right, the other binary
+operators to the left. So `G a -> b` is `(G a) -> b`; write `G (a -> b)`.
+This is the precedence of LTL tools such as Spot, NuSMV, and nuXmv.
 
-In the logics language all the binary operators have the same precedence,
-and `G`, `F`, `X` bind looser than them: `G a -> b` is `G (a -> b)` there.
-Parentheses give the same formula in both.
+The logics language has the same precedence since chase-cps 0.5.1. Before,
+all its binary operators had the same precedence, and `G`, `F`, `X` bound
+looser than them (`G a -> b` was `G (a -> b)`); parentheses give the same
+formula in every version.
 
 ## What takes which formulas
 

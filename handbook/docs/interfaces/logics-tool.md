@@ -37,8 +37,11 @@ CONTRACT Spec:
   `= != < <= > >=`, the arithmetic `+ - * /`, and `x'` for the value of `x`
   in the next step. `#` starts a comment.
 
-All the binary operators have the same precedence, and `G`, `F`, `X` bind
-looser than them: `G a -> b` is `G (a -> b)`. Parentheses avoid surprises.
+The precedence is that of LTL tools (Spot, NuSMV, nuXmv), from the
+tightest: `! G F X`, then `U R`, `&`, `|`, `->`, `<->`. So `G a -> b` is
+`(G a) -> b`; write `G (a -> b)`. Before chase-cps 0.5.1 all the binary
+operators had the same precedence and `G`, `F`, `X` bound looser than them;
+parentheses give the same formula in every version.
 
 
 ## The console of logics_tool
