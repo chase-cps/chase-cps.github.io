@@ -46,11 +46,15 @@ tank = Contract.from_dict({"name": "Tank", "inputs": {"flow": "real"},
 | `x'` | the value of x at the next step |
 | `past(x, n)` | the value of x n steps before (any value in the first n steps) |
 
-`[]` and `<>` are aliases of `G` and `F`, and `&&`, `\|\|`, `=>`, `<=>`, `==`
-of `&`, `\|`, `->`, `<->`, `=`. The temporal operators apply to formulas:
-inside a relation or an arithmetic expression, the value at the next step is
-written `x'`, not `X x`. `G X X (y = past(x, 2))` says that y is x delayed by
-two steps; `past` is written under `X` so that it never reads before the
+The aliases are:
+
+- `[]` and `<>` for `G` and `F`;
+- `&&`, `||`, `=>`, `<=>`, and `==` for `&`, `|`, `->`, `<->`, and `=`.
+
+The temporal operators apply to formulas. Inside a relation or an
+arithmetic expression, the value at the next step is written `x'`, not
+`X x`. For instance, `G X X (y = past(x, 2))` says that y is x delayed by
+two steps; `past` is written under `X`, so that it never reads before the
 first step.
 
 ## Relations and arithmetic

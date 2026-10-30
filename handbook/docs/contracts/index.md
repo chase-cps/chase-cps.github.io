@@ -64,12 +64,12 @@ components themselves violate them. If M1 implements C1 and M2 implements
 C2, then M1 ∥ M2 implements C1 ∥ C2. The other operations answer other
 design questions:
 
-| Operation | Question |
-|---|---|
-| quotient C / C1 | what must the missing component of a system satisfy? |
-| conjunction C1 ∧ C2 | what satisfies two specifications at once? |
-| merging C1 • C2 | what are two viewpoints of the same component together? |
-| separation, implication, coimplication | the adjoints of merging, conjunction, and disjunction |
+- The quotient C / C1: what must the missing component of a system satisfy?
+- The conjunction C1 ∧ C2: what satisfies two specifications at once?
+- The merging C1 • C2: what are two viewpoints of the same component,
+  together?
+- The separation, the implication, and the coimplication are the adjoints
+  of merging, conjunction, and disjunction.
 
 [Contract algebra](algebra.md) gives their definitions and sources.
 

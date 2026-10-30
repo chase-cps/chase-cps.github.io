@@ -50,22 +50,27 @@ from a script:
 $> logics_tool -i specs.ltl -o out/ -c script.chase
 ```
 
-The commands have the names of the operations of the
-[contract algebra](../contracts/algebra.md) (`compose C1 C2 R`,
-`conjoin C1 C2 R`, `divide C1 C2 R`, ...), plus `saturate C`, `simplify C`,
-`show C`, `verify C file`, `refines C1 C2 file`, and
-`synthesize C file solver`. The console also accepts the names of its first
-version: `conjunction` for `conjoin`, `quotient` for `divide`, and
-`refinement` for `refines`.
+The commands are:
 
-In the console, the variables of two contracts are matched by name (the
-default), by a map entered by hand (`manual` as last argument), or by a map
-read from a file (its name as last argument).
+- the operations of the [contract algebra](../contracts/algebra.md), with
+  their names: `compose C1 C2 R`, `conjoin C1 C2 R`, `divide C1 C2 R`, ...;
+- `saturate C`, `simplify C`, and `show C`;
+- `verify C file` and `refines C1 C2 file`, which write an SMV model;
+- `synthesize C file solver`, which writes a specification for slugs or
+  gr1c.
 
-The console writes the input files of the external tools, to be run by hand:
-an SMV model for `verify` and `refines`, a slugs or gr1c specification for
-`synthesize`. The Python package, the command line, and the MCP server run
-the tools and return the result. When the SMV file has real variables or
+The console also accepts the names of its first version: `conjunction` for
+`conjoin`, `quotient` for `divide`, and `refinement` for `refines`.
+
+The variables of two contracts are matched:
+
+- by name (the default);
+- by a map entered by hand (`manual` as last argument);
+- by a map read from a file (its name as last argument).
+
+The console writes the input files of the external tools, which are run by
+hand. The Python package, the command line, and the MCP server run the
+tools and return the result. When the SMV file has real variables or
 real numbers, the console says so: NuSMV cannot read it, and nuXmv checks it
 with its SMT engine:
 

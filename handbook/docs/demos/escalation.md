@@ -11,15 +11,22 @@ show it by checking each module on its own?
 [![The link: the sender, the channel, and the receiver, each with its RTL, inside the requirements](../assets/diagram-escalation-system.png)](../assets/diagram-escalation-system.png)
 _The link: the sender, the channel, and the receiver, each with its RTL, inside the requirements._
 
-The link is a toy version of the escalation link of OpenTitan. The sender
-raises a differential pair to make the receiver escalate, and pings the
-receiver with one-cycle pulses; the receiver answers on a response pair. A
-pulse that lasts two cycles means an escalation. The error inputs of the
-channel (`err_*`) flip a wire, as a fault would; the two wires of the pair
-are then equal, which the receiver and the sender detect. The requirements
-follow the end-to-end assertions of OpenTitan: _Functional_ (escalation and
-ping, without wire errors) and _Integrity_ (a single wrong wire is
-detected). The contracts are written in
+The link is a toy version of the escalation link of OpenTitan:
+
+- the sender raises a differential pair to make the receiver escalate, and
+  pings the receiver with one-cycle pulses;
+- the receiver answers on a response pair;
+- a pulse that lasts two cycles means an escalation;
+- the error inputs of the channel (`err_*`) flip a wire, as a fault would.
+  The two wires of the pair are then equal, which the receiver and the
+  sender detect.
+
+The requirements follow the end-to-end assertions of OpenTitan:
+
+- _Functional_: escalation and ping, without wire errors;
+- _Integrity_: a single wrong wire is detected.
+
+The contracts are written in
 [SystemVerilog Assertions](../tools/systemverilog.md), and each module has
 its RTL in Verilog.
 

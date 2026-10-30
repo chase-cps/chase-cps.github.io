@@ -1,14 +1,25 @@
 # Overview
 
 CHASE (Contract-based Heterogeneous Analysis and Systems Exploration) is a
-framework for the design of systems with assume-guarantee contracts, from
-circuits to cyber-physical systems. The requirements of the components and
-of the system are written as contracts; CHASE composes them, checks that the
-components refine the system, finds the requirements that conflict, checks
-implementations (formulas, state machines, RTL) against them, and
-synthesizes controllers. The contracts come from Python, the CHASE
-specification language, SystemVerilog Assertions, or an AI agent through an
-MCP server.
+framework for requirement capture, formalization, and validation for
+cyber-physical systems. It features a modular and extensible software
+infrastructure that can support different domain-specific languages,
+modeling formalisms, and analysis tools. It has been applied to industrial
+design examples, including the control of aircraft power distribution
+networks and the arbitration of a mixed-criticality automotive bus.
+
+The requirements of the components and of the system are written as
+assume-guarantee contracts. With them, CHASE:
+
+- composes the contracts, and checks that the components refine the system;
+- finds the requirements that are in conflict;
+- checks implementations (formulas, state machines, RTL) against the
+  contracts;
+- synthesizes controllers.
+
+The contracts are written in Python, in the specification language of
+CHASE, or in SystemVerilog Assertions, or by an AI agent through the MCP
+server.
 
 <figure markdown>
 ![The CHASE framework: front ends, libraries, back ends](assets/chase-framework.png){ width="600" }
@@ -77,8 +88,7 @@ specification language and console (logics_tool), domain languages
   aircraft and the autopilot of a Lockheed Martin challenge.
 - [MCP server](interfaces/mcp.md): the operations of CHASE as tools for AI
   agents.
-- [News](news.md): what each version brought, from 0.1 (October 2026) to
-  contracts for hardware.
+- [News](news.md): the changes of each version.
 
 CHASE started at the University of Southern California and the University
 of Verona, and is developed at the University of California, Berkeley. It is

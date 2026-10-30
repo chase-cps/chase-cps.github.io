@@ -115,10 +115,15 @@ satisfies both guarantees. With the context, that behavior is left out.
     violates an assumption satisfies the contract, since A → G holds. A
     behavior that violates the context does not count at all.
 
-`context` is taken by `implies`, `is_satisfiable`, `is_compatible`,
-`is_consistent`, `verify`, `refines`, `remove_redundant`, `is_environment`,
-`is_implementation`, and `unsat_core` (the context is in every test, never in the
-core). The [GR(1) synthesis](../tools/synthesis.md) checks do not take it.
+The checks that take a `context` are:
+
+- the queries `implies` and `is_satisfiable`;
+- `is_compatible`, `is_consistent`, `verify`, and `refines`;
+- `is_implementation` and `is_environment`;
+- `remove_redundant` and `unsat_core`. The context is in every test of the
+  core, and never in the core.
+
+The [GR(1) synthesis](../tools/synthesis.md) checks do not take it.
 
 ## Real variables
 
@@ -162,11 +167,16 @@ m = Model.from_rtl(["bsg_dff_reset.sv", "bsg_dff_en.sv", "bsg_one_fifo.sv"],
 print(is_implementation(m, slot).status)
 ```
 
-`parameters` sets parameters of the top module, `names` renames ports, and
-`defines` gives macros. With `reset`, the reset holds in the first step and
-the contracts are checked from the step after it. The checks are those of
-nuXmv, for small and medium designs; the [BufferSwap demo](../demos/buffer-swap.md)
-checks the RTL of two FIFOs.
+The options of `Model.from_rtl`:
+
+- `parameters`: the parameters of the top module.
+- `names`: new names for the ports.
+- `defines`: macros.
+- `reset`: the reset holds in the first step, and the contracts are checked
+  from the step after it.
+
+The checks are those of nuXmv, for small and medium designs. The
+[BufferSwap demo](../demos/buffer-swap.md) checks the RTL of two FIFOs.
 
 ## Results
 

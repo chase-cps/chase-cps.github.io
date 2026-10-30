@@ -43,14 +43,20 @@ first, so in `count == $past(count) + 1` the sum has 32 bits (as the
 constant 1) and does not wrap around; the property fails when `count` goes
 from 255 to 0.
 
-The properties read: `not and or implies iff |-> |=> #-# #=# if/else nexttime
-always s_always eventually s_eventually until s_until until_with
-s_until_with strong weak`; the sequences of bounded length (`##n`,
-`##[m:n]`, `[*m:n]`, `and`, `or`, `intersect`, `throughout`, `within`,
-`first_match`); `##[m:$]` in an antecedent and in a strong sequence;
-`$past`, `$rose`, `$fell`, `$stable`, `$changed`, `$onehot`, `$onehot0`,
-`$countones`; `disable iff`, `default clocking`, `default disable iff`;
-named properties and sequences with arguments; `assign` and `wire x = e`.
+What is read:
+
+- The property operators: `not`, `and`, `or`, `implies`, `iff`, `|->`,
+  `|=>`, `#-#`, `#=#`, `if`/`else`, `nexttime`, `always`, `s_always`,
+  `eventually`, `s_eventually`, `until`, `s_until`, `until_with`,
+  `s_until_with`, `strong`, `weak`.
+- The sequences of bounded length: `##n`, `##[m:n]`, `[*m:n]`, `and`, `or`,
+  `intersect`, `throughout`, `within`, `first_match`. `##[m:$]` is read in
+  an antecedent and in a strong sequence.
+- The system functions `$past`, `$rose`, `$fell`, `$stable`, `$changed`,
+  `$onehot`, `$onehot0`, `$countones`.
+- `disable iff`, `default clocking`, and `default disable iff`.
+- Named properties and sequences, with arguments.
+- `assign` and `wire x = e`.
 
 - A property that looks before the first cycle is checked from the cycle
   where the past exists (`from_cycle`): `x == $past(x)` from cycle 1.
@@ -64,9 +70,13 @@ named properties and sequences with arguments; `assign` and `wire x = e`.
   the module. Signals without a declaration are read as 1-bit signals and
   listed in `undeclared`.
 
-Not read, and listed in `skipped` with the reason: local variables, `[->n]`
-and `[=n]`, unbounded repetition, unpacked arrays, `x` and `z` digits,
-immediate assertions.
+What is not read, and listed in `skipped` with the reason:
+
+- local variables;
+- `[->n]` and `[=n]`, and unbounded repetition;
+- unpacked arrays;
+- the digits `x` and `z`;
+- immediate assertions.
 
 ## Writing
 
@@ -81,13 +91,22 @@ c = Contract.from_dict({"name": "Arb", "inputs": {"req": "bool"},
 print(to_sva(c, reset="rst", bind="arbiter"))
 ```
 
-A formula `G p` is checked at every cycle, any other formula once, at the
-first cycle (`initial`). Words are vectors, integer ranges `int` with their
-range assumed (inputs) or asserted (outputs); real variables cannot be
-written. `reset` disables the properties while it holds, and `bind` adds a
-bind statement that puts the checker in a design module, its ports
-connected by name. The attribute `(* chase = "output" *)` keeps the role of
-each signal for `parse_sva`; tools ignore it.
+A formula `G p` is checked at every cycle. Any other formula is checked
+once, at the first cycle (`initial`). The variables are written as follows:
+
+- a word is a vector;
+- an integer range is an `int`, with its range assumed (an input) or
+  asserted (an output);
+- a real variable cannot be written.
+
+The options of `to_sva`:
+
+- `reset`: the properties are disabled while it holds.
+- `bind`: adds a bind statement that puts the checker in a design module,
+  with its ports connected by name.
+
+The attribute `(* chase = "output" *)` keeps the role of each signal for
+`parse_sva`; the tools ignore it.
 
 ## Meaning
 

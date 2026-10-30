@@ -21,14 +21,21 @@ _The architecture of the power system: the controller opens and closes the conta
 The problem is written in the domain-specific language of CHASE: the
 components, their types, how they are connected, and patterns such as
 `never-connect(generator, generator, AC bus)`. CHASE turns the patterns into
-one contract in GR(1) for the controller of the contactors: its inputs are
-the states of the generators and of the contactors, its outputs the
-commands of the contactors, and the timings become counters. The requirements are those of the DATE 2018
-paper (Nuzzo et al.): a DC bus is powered by the generator on its side if
-possible, a failed generator is disconnected within 15 ms, two generators
-are never connected in parallel, and a DC bus is never unpowered for more
-than 15 ms. The contactors open and close within 10 ms, and at most one
-generator fails.
+one contract in GR(1) for the controller of the contactors:
+
+- its inputs are the states of the generators and of the contactors;
+- its outputs are the commands of the contactors;
+- the timings become counters.
+
+The requirements are those of the DATE 2018 paper (Nuzzo et al.):
+
+- a DC bus is powered by the generator on its side, if possible;
+- a failed generator is disconnected within 15 ms;
+- two generators are never connected in parallel;
+- a DC bus is never unpowered for more than 15 ms.
+
+The contactors open and close within 10 ms, and at most one generator
+fails.
 
 ## The steps
 

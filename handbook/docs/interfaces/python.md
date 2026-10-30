@@ -1,27 +1,40 @@
 # Python package
 
-`chase_cps` is the Python interface to CHASE: `pip install chase-cps` (see
-[Installation](../getting-started.md#installation)). Its modules are grouped as
-follows:
+`chase_cps` is the Python interface to CHASE. It is installed with
+`pip install chase-cps` (see [Installation](../getting-started.md#installation)).
+Its modules are grouped as follows:
 
-| Group | Module | Names |
-|---|---|---|
-| Contract algebra | `chase_cps.contract` | `Contract` and its methods: `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
-| Contract-based verification | `chase_cps.checks`, `chase_cps.models` | `refines`, `verify`, `is_compatible`, `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`, `remove_redundant`; `Model` (state machines) |
-| Queries on formulas | `chase_cps.logic` | `implies`, `is_satisfiable`, `unsat_core` |
-| GR(1) synthesis | `chase_cps.gr1` | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant(c, synth=True)` |
+- **Contract algebra** (`chase_cps.contract`): the class `Contract`, with the
+  methods `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`,
+  `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, and
+  `simplify`.
+- **Contract-based verification** (`chase_cps.checks`, `chase_cps.models`):
+  `refines`, `verify`, `is_compatible`, `is_consistent`,
+  `is_implementation`, `is_environment`, `is_receptive`, and
+  `remove_redundant`; the class `Model`, for state machines.
+- **Queries on formulas** (`chase_cps.logic`): `implies`, `is_satisfiable`,
+  and `unsat_core`.
+- **GR(1) synthesis** (`chase_cps.gr1`): `is_realizable`, `synthesize`,
+  `unrealizable_core`, `is_well_separated`, `is_vacuous`, and
+  `remove_redundant(c, synth=True)`.
 
-All the names are also in `chase_cps` itself, and the modules of version 0.3.0
-(`chase_cps.checks`, `chase_cps.cores`) still give them. `load_spec(path)`
-and `parse_spec(text)` read the contracts of a
-[specification file](logics-tool.md), and `to_spec(contracts)` writes one.
-`parse_sva(text)` reads the assertions of SystemVerilog as a contract, and
-`to_sva(contract)` writes a contract as a checker module (see
-[SystemVerilog Assertions](../tools/systemverilog.md)). `to_gr1(contract,
-format=...)` writes a GR(1) contract for slugs or gr1c (see
-[GR(1) synthesis](../tools/synthesis.md)), and `load_dsl(path)` reads a
-problem written in the domain-specific language of CHASE. `chase_cps.viz`
-draws contracts, components, and systems (see [Diagrams](diagrams.md)).
+All the names are also in `chase_cps` itself. The modules of version 0.3.0
+(`chase_cps.checks`, `chase_cps.cores`) still give them.
+
+The contracts are read and written in other formats with:
+
+- `load_spec(path)`, `parse_spec(text)`: read the contracts of a
+  [specification file](logics-tool.md); `to_spec(contracts)` writes one.
+- `parse_sva(text)`: reads SystemVerilog Assertions as a contract;
+  `to_sva(contract)` writes a contract as a checker module (see
+  [SystemVerilog Assertions](../tools/systemverilog.md)).
+- `to_gr1(contract, format=...)`: writes a GR(1) contract for slugs or gr1c
+  (see [GR(1) synthesis](../tools/synthesis.md)).
+- `load_dsl(path)`: reads a problem written in the domain-specific language
+  of CHASE.
+
+`chase_cps.viz` draws contracts, components, and systems (see
+[Diagrams](diagrams.md)).
 
 ## Formulas
 

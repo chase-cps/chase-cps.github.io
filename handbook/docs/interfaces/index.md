@@ -78,15 +78,20 @@ and the MCP server for AI agents (MCP).
          "guarantees": ["G (req -> F grant)"]}}}
     ```
 
-| Interface | For |
-|---|---|
-| [Python package](python.md) | scripts and notebooks: `pip install chase-cps` |
-| [Command line](command-line.md) | checking a specification file: `chase-cps check` |
-| [Specification language and console](logics-tool.md) | the `.ltl` files of CHASE and the console of logics_tool |
-| [SystemVerilog Assertions](../tools/systemverilog.md) | contracts read from and written as SVA (see Tool integrations) |
-| [MCP server for AI agents](mcp.md) | the operations as tools of an agent, with a skill that tells it how to use them |
-| [Diagrams](diagrams.md) | contracts, components, and systems drawn as a web page, with the results of the checks |
+The interfaces are:
 
-The questions on contracts that external tools answer, model checking, GR(1)
-synthesis, and the tools that read SystemVerilog, are under
-[Tool integrations](../tools/index.md).
+- [Python package](python.md): for scripts and notebooks
+  (`pip install chase-cps`).
+- [Command line](command-line.md): to check or draw a specification file
+  (`chase-cps check`, `chase-cps view`).
+- [Specification language and console](logics-tool.md): the `.ltl` files of
+  CHASE, and the console of logics_tool.
+- [SystemVerilog Assertions](../tools/systemverilog.md): contracts read from
+  SVA, and written back as SVA.
+- [MCP server for AI agents](mcp.md): the operations as tools of an agent,
+  with a skill that tells the agent how to use them.
+- [Diagrams](diagrams.md): contracts, components, and systems drawn as a web
+  page, with the results of the checks.
+
+Model checking, GR(1) synthesis, and the tools that read SystemVerilog are
+described in [Tool integrations](../tools/index.md).

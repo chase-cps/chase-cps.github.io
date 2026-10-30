@@ -121,11 +121,15 @@ repository builds and installs the Python package from the sources.
 
 ## A first contract
 
-This page writes a system contract and two component contracts, composes the
-components, checks that they refine the system, reads a counterexample, and
-finds requirements in conflict. It needs `pip install chase-cps` and nuXmv
+This part writes a system contract and two component contracts. Then it:
+
+- composes the components, and checks that they refine the system;
+- reads a counterexample;
+- finds requirements in conflict.
+
+It needs `pip install chase-cps` and nuXmv
 (`chase-cps install nuxmv --accept-license`). The outputs below are those of
-chase-cps 0.3.1.
+chase-cps 0.5.0.
 
 ### The contracts
 
@@ -182,14 +186,16 @@ print(r.guarantees.trace)
 
 ```
 invalid guarantees
-  0: req=True, fwd=True, grant=False
-  1: req=False, fwd=True, grant=False  <- loop starts
+  0: req=True, fwd=False, grant=True
+  1: req=True, fwd=True, grant=False
   2: req=False, fwd=True, grant=False
+  3: req=False, fwd=True, grant=False  <- loop starts
 ```
 
-The guarantees fail: at step 0 there is a request, and `grant` stays false
-forever in the loop, which the lazy server allows (`F G !grant`) and the
-system forbids. A trace is a prefix followed by a loop repeated forever.
+The guarantees fail. The request at step 1 is never granted: `grant` stays
+false from step 1 on. The lazy server allows it (`F G !grant`), and the
+system forbids it. A trace is a prefix followed by a loop repeated forever.
+Another engine of nuXmv may give another trace.
 
 ### Requirements in conflict
 
@@ -230,9 +236,12 @@ together: removing any of them makes the rest satisfiable.
 ## Where the code is
 
 CHASE is developed in the [chase-cps](https://github.com/chase-cps)
-organization on GitHub. [chase](https://github.com/chase-cps/chase) holds the
-Python package, the build of the C++ modules, the Docker image, and the
-documentation; [chase-mcp](https://github.com/chase-cps/chase-mcp) the MCP
-server; [demos](https://github.com/chase-cps/demos) the demos. The other
-repositories and how to contribute are on the [Contributing](contributing.md)
-page.
+organization on GitHub:
+
+- [chase](https://github.com/chase-cps/chase): the Python package, the build
+  of the C++ modules, the Docker image, and the documentation.
+- [chase-mcp](https://github.com/chase-cps/chase-mcp): the MCP server.
+- [demos](https://github.com/chase-cps/demos): the demos.
+
+The other repositories, and how to contribute, are on the
+[Contributing](contributing.md) page.

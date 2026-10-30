@@ -2,25 +2,30 @@
 
 [chase-mcp](https://github.com/chase-cps/chase-mcp) is a
 [Model Context Protocol](https://modelcontextprotocol.io) server that gives the
-operations of CHASE to AI agents as tools. An agent can write
-assume-guarantee contracts, compose them, check refinement, and use the
+operations of CHASE to AI agents as tools. With them, an agent writes
+assume-guarantee contracts, composes them, checks refinement, and uses the
 counterexamples and the cores to fix the specification. A skill tells the
 agent how to use the tools.
 
 ## Tools
 
-The 30 tools are grouped as the operations of CHASE (contract algebra,
-contract-based verification, GR(1) synthesis); their names are those of the
-Python package.
+The tools have the names of the Python package. They are grouped as
+follows:
 
-| Group | Tools |
-|---|---|
-| Contract algebra | `compose`, `conjoin`, `disjoin`, `merge`, `divide`, `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`, `simplify` |
-| Contract-based verification | `refines`, `verify`, `is_compatible`, `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`, `remove_redundant` |
-| Queries on formulas | `implies`, `is_satisfiable`, `unsat_core` |
-| GR(1) synthesis | `is_realizable`, `synthesize`, `unrealizable_core`, `is_well_separated`, `is_vacuous`; `remove_redundant` with `synth` |
-| Specifications | `parse_spec`, `to_spec` |
-| SystemVerilog Assertions | `parse_sva`, `to_sva` |
+- **Contract algebra**: `compose`, `conjoin`, `disjoin`, `merge`, `divide`,
+  `separate`, `imply`, `coimply`, `invert`, `assume`, `ensure`, `saturate`,
+  `simplify`.
+- **Contract-based verification**: `refines`, `verify`, `is_compatible`,
+  `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`,
+  `remove_redundant`.
+- **Queries on formulas**: `implies`, `is_satisfiable`, `unsat_core`.
+- **GR(1) synthesis**: `is_realizable`, `synthesize`, `unrealizable_core`,
+  `is_well_separated`, `is_vacuous`, and `remove_redundant` with `synth`.
+- **Formats**: `parse_spec` and `to_spec` (specification files),
+  `parse_sva` and `to_sva` (SystemVerilog Assertions), `rtl_ports` (the
+  ports of RTL read with Yosys; RTL is given to `is_implementation` and the
+  other checks of state machines).
+- **Diagrams**: `visualize`.
 
 A contract is given in JSON:
 
@@ -84,9 +89,13 @@ the server entry.
 ## Skill
 
 The skill is in `skills/chase-contracts` of the repository, in the
-[Agent Skills](https://agentskills.io) format. It tells the agent how to turn
-requirements into contracts (variables and who controls them, one pattern per
-requirement), which group each tool belongs to, and how to explain a
-counterexample. It also works without the server: the agent then uses the
-Python package. Its examples are run by the tests of the repository, so the
-results they state are those CHASE returns.
+[Agent Skills](https://agentskills.io) format. It tells the agent:
+
+- how to turn requirements into contracts: the variables and who controls
+  them, and one pattern for each requirement;
+- which group each tool belongs to;
+- how to explain a counterexample.
+
+The skill also works without the server: the agent then uses the Python
+package. Its examples are run by the tests of the repository, so the
+results they state are those that CHASE returns.

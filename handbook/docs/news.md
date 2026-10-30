@@ -8,26 +8,32 @@
 CHASE now draws contracts, components, and systems as a web page
 ([Diagrams](interfaces/diagrams.md)):
 
-- a box drawn inside another is checked against it, a quotient is a dashed
-  box with the part checked against it inside, and a model opens on its
-  states;
+- a box drawn inside another is checked against it;
+- a quotient is a dashed box, with the part checked against it inside;
+- a model opens on its states;
 - the results of the checks are tags on the boxes, and a failed check
   highlights its core;
-- `chase_cps.viz` in Python, `chase-cps view` for a specification file or
-  a Verilog module, and the `visualize` tool of the MCP server; each term
-  drawn from a file knows its line, and the diagram is saved as SVG, PNG,
-  or PDF;
-- every demo page now shows each step with its diagram, and the power
-  system demos are read in Python with `load_dsl`
-  ([Power systems](demos/power-systems.md)).
+- the diagrams are drawn by `chase_cps.viz` in Python, by `chase-cps view`
+  for a specification file or a Verilog module, and by the `visualize` tool
+  of the MCP server;
+- each term drawn from a file knows its line, and the diagram is saved as
+  SVG, PNG, or PDF.
 
-`to_gr1(c, format="slugs" | "gr1c")` writes a GR(1) contract for a solver
-that you run yourself ([GR(1) synthesis](tools/synthesis.md)).
+Also in this version:
 
-Fixed: `R` (release) in a specification file, intervals such as `G[0,3]`
-(dropped when read, and lost by the operations of the console), negative
-constants in the operations of the C++ library, and two crashes of the
-console.
+- every demo page shows each step with its diagram;
+- the power system demos are read in Python with `load_dsl`
+  ([Power systems](demos/power-systems.md));
+- `to_gr1(c, format="slugs" | "gr1c")` writes a GR(1) contract for a solver
+  that you run yourself ([GR(1) synthesis](tools/synthesis.md)).
+
+Fixed:
+
+- `R` (release) in a specification file;
+- intervals such as `G[0,3]`, which were dropped when read, and lost by the
+  operations of the console;
+- negative constants in the operations of the C++ library;
+- two crashes of the console.
 </div>
 
 <div class="news-item" markdown>
@@ -35,11 +41,11 @@ console.
 
 ## CHASE 0.4.2: names after the theory, and a Docker image
 
-`is_implementation(m, c)` and `is_environment(e, c)` are the new names of
-`implements` and `accepts` (the old names still work, with a warning);
-conjunction can keep the terms of the contracts (`discharge=True`); and the
-Docker image is published at each release (`docker pull
-ghcr.io/chase-cps/chase`), with NuSMV and Yosys.
+- `is_implementation(m, c)` and `is_environment(e, c)` are the new names of
+  `implements` and `accepts`. The old names still work, with a warning.
+- Conjunction can keep the terms of the contracts (`discharge=True`).
+- The Docker image is published at each release, with NuSMV and Yosys:
+  `docker pull ghcr.io/chase-cps/chase`.
 </div>
 
 <div class="news-item" markdown>
@@ -56,11 +62,14 @@ CHASE now reads and checks hardware designs:
   checked against contracts (`pip install chase-cps[rtl]`);
 - merging and quotient keep the terms of the contracts, so their results go
   straight to realizability and synthesis;
-- three demos: a buffer of BaseJump STL replaced by a smaller one, with the
-  contract of its place proven on the RTL with Jasper
-  ([BufferSwap](demos/buffer-swap.md)); the arbiter of the AMBA AHB bus as
-  two viewpoints ([AHB](demos/ahb.md)); the state machine of the Lockheed
-  Martin cyber-physical challenges ([LMFSM](demos/lm-fsm.md)).
+- three demos:
+    - [BufferSwap](demos/buffer-swap.md): a buffer of BaseJump STL replaced
+      by a smaller one, with the contract of its place proven on the RTL
+      with Jasper;
+    - [AHB](demos/ahb.md): the arbiter of the AMBA AHB bus as two
+      viewpoints;
+    - [LMFSM](demos/lm-fsm.md): the state machine of the Lockheed Martin
+      cyber-physical challenges.
 </div>
 
 ## Earlier versions
