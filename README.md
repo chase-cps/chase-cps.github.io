@@ -113,8 +113,9 @@ repositories:
 \
 [Link to the repository](https://github.com/chase-cps/core-library)
 - **chase-backends**: collection of backends encoding CHASE problems into
-  different external tools, *i.e.*, Slugs, GR1C, the SMV language of nuXmv,
-  and PySTL.
+  different external tools, *i.e.*, Slugs, GR1C, and the SMV language of
+  nuXmv (a printer for PySTL, written for an early version of PyCASSE, does
+  not run with the current one).
 \
 [Link to the repository](https://github.com/chase-cps/chase-backends)
 - **DSL_tool**: tool using a Domain Specific Language to specify discrete

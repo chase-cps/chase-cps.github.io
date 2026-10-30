@@ -17,7 +17,11 @@ and `parse_spec(text)` read the contracts of a
 [specification file](logics-tool.md), and `to_spec(contracts)` writes one.
 `parse_sva(text)` reads the assertions of SystemVerilog as a contract, and
 `to_sva(contract)` writes a contract as a checker module (see
-[SystemVerilog Assertions](../tools/systemverilog.md)).
+[SystemVerilog Assertions](../tools/systemverilog.md)). `to_gr1(contract,
+format=...)` writes a GR(1) contract for slugs or gr1c (see
+[GR(1) synthesis](../tools/synthesis.md)), and `load_dsl(path)` reads a
+problem written in the domain-specific language of CHASE. `chase_cps.viz`
+draws contracts, components, and systems (see [Diagrams](diagrams.md)).
 
 ## Formulas
 

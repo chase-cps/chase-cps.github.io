@@ -29,6 +29,24 @@ state machine, or a controller of slugs synthesized from the contract). The opti
 The exit status is 0 when every check passes, 1 when a check fails or does not
 finish, and 2 on an error in the input.
 
+## Drawing a specification
+
+`chase-cps view` writes the [diagram](diagrams.md) of a specification as a
+web page, with the results of the checks it is asked for:
+
+```
+$> chase-cps view specs.ltl                                       # writes specs.html
+$> chase-cps view specs.ltl --refines Joint1+Joint2+Joint3 Joints --check --realizable
+$> chase-cps view specs.ltl --open Joints --serve                 # drawn again on each change
+```
+
+`--contracts C...` chooses the contracts drawn, `--refines R A` draws R inside
+A, `--environment MODEL C` draws an environment, `--check` checks the
+refinements and the environments, `--verify` and `--realizable` mark the
+checks of each contract, `--open C...` draws contracts open, and `-o PAGE`
+names the page. With `--serve` the page is served on this computer
+(`--host`, `--port`) and drawn again whenever the file changes.
+
 ## Installing the solvers
 
 ```
