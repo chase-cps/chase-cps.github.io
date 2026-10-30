@@ -15,6 +15,9 @@
   --chase-border: #dde3e3;
   --chase-active: #e8efef;      /* the current page in the sidebar */
   --chase-strong: #17393b;      /* text in the color of the header */
+  --chase-line: #d7ccc8;        /* the line under the header */
+  --chase-tag-theory: #17393b;  /* the tags "algebra" and "verification" of the demos */
+  --chase-tag-verif: #1c6a6f;
   --chase-code: #222222;        /* the text of code */
   --chase-hl-comment: #777772; --chase-hl-keyword: #000000; --chase-hl-string: #d14;
   --chase-hl-number: #009999; --chase-hl-function: #990000; --chase-hl-class: #445588;
@@ -23,13 +26,14 @@
   color-scheme: light;
 }
 
-/* Dark pages: a charcoal with a little of the teal of the header, which
-   stays green above it; the figures stay on white cards, since they are
-   drawn on white. Chosen with the button of the
+/* Dark pages: a charcoal with a little teal, the header a darker
+   charcoal over a teal line (the line of the light pages is warm grey);
+   the figures stay on white cards, since they are drawn on white. Chosen with the button of the
    header, or by the system when it was never pressed. */
 :root[data-theme="dark"] {
   --chase-ink: #dde6e6; --chase-ink-soft: #9db0b1; --chase-link: #74c4c9;
   --chase-page: #263234; --chase-surface: #2d3a3c; --chase-border: #3b4a4c; --chase-active: #30403f;
+  --chase-header: #1b2527; --chase-header-dark: #1b2527; --chase-line: #4f9ea3; --chase-tag-theory: #2f6f73; --chase-tag-verif: #3a7f84;
   --chase-strong: #9ed6d9; --chase-code: #d6dfdf;
   --chase-hl-comment: #8a9a9b; --chase-hl-keyword: #e6eded; --chase-hl-string: #f08b8b;
   --chase-hl-number: #6fd0d0; --chase-hl-function: #f2a07a; --chase-hl-class: #9fb4f0;
@@ -41,6 +45,7 @@
   :root:not([data-theme="light"]) {
     --chase-ink: #dde6e6; --chase-ink-soft: #9db0b1; --chase-link: #74c4c9;
     --chase-page: #263234; --chase-surface: #2d3a3c; --chase-border: #3b4a4c; --chase-active: #30403f;
+  --chase-header: #1b2527; --chase-header-dark: #1b2527; --chase-line: #4f9ea3; --chase-tag-theory: #2f6f73; --chase-tag-verif: #3a7f84;
     --chase-strong: #9ed6d9; --chase-code: #d6dfdf;
     --chase-hl-comment: #8a9a9b; --chase-hl-keyword: #e6eded; --chase-hl-string: #f08b8b;
     --chase-hl-number: #6fd0d0; --chase-hl-function: #f2a07a; --chase-hl-class: #9fb4f0;
@@ -68,7 +73,7 @@ p { margin: 10px 0 15px; }
 
 /* Header (one line: the name, the tagline, the GitHub mark) and footer,
    in the colors of the home page of the site. */
-#header_wrap { background: var(--chase-header); border-bottom: 4px solid var(--chase-accent); }
+#header_wrap { background: var(--chase-header); border-bottom: 4px solid var(--chase-line); }
 .header-inner, .footer-inner { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 .header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 40px; padding-bottom: 24px; }
 .brand { min-width: 0; padding-top: 18px; }
@@ -304,8 +309,8 @@ figcaption { font-size: 14px; color: var(--chase-ink-soft); margin-top: 4px; }
 .news-item h2 { margin-top: 4px; }
 /* The tags of the demos: the theory, the tools, the kinds of input */
 a.tag, a.tag:hover { color: #fff; text-decoration: none; margin: 1px 0; }
-.tag.t-theory { background: var(--chase-header); }
-.tag.t-verif { background: var(--chase-link); }
+.tag.t-theory { background: var(--chase-tag-theory); }
+.tag.t-verif { background: var(--chase-tag-verif); }
 .tag.t-gr1 { background: #8a6d3b; }
 .tag.t-hw { background: #4a5f8a; }
 .tag.t-data { background: #6b7280; }
