@@ -109,6 +109,8 @@ without assertions), drawn with its state machine.
 >   to the file, `charger.ltl` → `charger.results.json`). A check of
 >   contracts that have not changed is read from it, not run again._
 > - `--no-results` _Keeps no results._
+> - `--progress` _Writes each result on the standard error as soon as it is
+>   known, for an editor that shows them one by one._
 > - `--no-checks` _Leaves the three checks above out._
 >
 > The page:
