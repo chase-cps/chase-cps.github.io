@@ -140,7 +140,10 @@ their ports:
   are drawn apart;
 - a contract whose outputs are driven by several parts, which read from
   outside only its inputs, is the contract of their composition: the parts
-  are drawn inside it, and `--check` checks the refinement.
+  are drawn inside it, and `--check` checks the refinement;
+- when two parts or more are written but some outputs of the contract are
+  driven by none, the part not written yet is drawn as a hole: the
+  quotient of the contract by the parts.
 
 The options can also be written at the top of the file, in comments
 (`// view:` in Verilog). The files named there are taken from the folder of
