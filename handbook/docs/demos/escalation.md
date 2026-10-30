@@ -43,8 +43,9 @@ _Functional_ and _Integrity_ too.
 link; the contract of the sender refines it.
 
 **Step 5. A faster sender.** A sender that pings at every cycle of a ping
-request does not implement the contract of the sender: its ping pulses last
-two cycles, which the receiver reads as an escalation.
+request does not implement the contract of the sender: its ping pulses last as long as
+the ping request, two cycles or more, which the receiver reads as an
+escalation.
 
 ## Run it
 

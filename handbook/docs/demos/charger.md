@@ -31,7 +31,7 @@ _Step 1: Greedy is unrealizable; the core highlighted in red._
 **Step 2. Fair: realizable.** _Fair_ gives the station to each robot, or
 the robot stops asking, infinitely often (R7.1, R7.2), and assumes
 nothing. It is realizable, and slugs synthesizes a controller of 18 states.
-Its third guarantee, R8, is implied by R7.1 and is removed.
+Its guarantee R8 is implied by R7.1 and is removed.
 
 [![Step 2: Fair is realizable](../assets/diagram-charger-2.png)](../assets/diagram-charger-2.png)
 _Step 2: Fair is realizable._
@@ -73,5 +73,5 @@ $> python3 Charger/charger.py
 ```
 
 The script prints the result of each step and writes the diagrams above in
-`Charger/out/charger.html`. The same steps with the console of logics_tool are in
+`Charger/out/charger.html`. Steps 1, 2, and 5 with the console of logics_tool are in
 `Charger/charger.chase`.

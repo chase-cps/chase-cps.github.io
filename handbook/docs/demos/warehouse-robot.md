@@ -33,15 +33,15 @@ what perception assumes of the controller: `|w| <= 0.8`.
 
 **Step 2. The requirements of the mission.** _MissionOnly_, the
 requirements written on what the controller sees, does not refine Q: in the
-counterexample the reported clearance is 0.40 while the true one is 0.10.
+counterexample the reported clearance is 0.40 while the true one is
+lower, and the robot turns faster than perception allows.
 
 [![Step 2: MissionOnly does not refine Q](../assets/diagram-warehouse-robot-1.png)](../assets/diagram-warehouse-robot-1.png)
 _Step 2: MissionOnly does not refine Q._
 
 **Step 3. With margins for the errors.** _Margins_ adds the errors of
 perception and localization to the bounds, and does not refine Q either: it
-turns faster than perception allows (`w` = -1.20), and the robot reaches the
-worker.
+turns faster than perception allows, and the robot reaches the worker.
 
 [![Step 3: Margins does not refine Q](../assets/diagram-warehouse-robot-2.png)](../assets/diagram-warehouse-robot-2.png)
 _Step 3: Margins does not refine Q._

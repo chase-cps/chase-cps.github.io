@@ -22,7 +22,7 @@ of the sensor (NOMINAL, TRANSITION, FAULT).
 ## The steps
 
 **Step 1. The first requirements.** _AutopilotFirst_ and _SensorFirst_ are
-unrealizable. Each unrealizable core is two requirements that send the
+unrealizable. Each unrealizable core is the requirements that send the
 machine to two different states for the same inputs, with the initial
 state; for instance, in TRANSITION with the pilot in control (`standby`),
 the system supported (`supported`), and good sensor data (`good`), FSM-002
@@ -36,7 +36,8 @@ _Step 1: the first requirements are unrealizable; the cores highlighted in red._
 
 **Step 2. The system.** The corrected _Autopilot_ and _Sensor_ are
 realizable, but together they do not refine _System_ (FSM-001): the
-counterexample gives the pullup one step after the limits are exceeded.
+counterexample the limits are exceeded and the pullup does not come at
+once.
 
 [![Step 2: Autopilot ∥ Sensor does not refine System](../assets/diagram-lm-fsm-2.png)](../assets/diagram-lm-fsm-2.png)
 _Step 2: Autopilot ∥ Sensor does not refine System._
