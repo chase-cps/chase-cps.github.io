@@ -357,3 +357,16 @@ a.tag, a.tag:hover { color: #fff; text-decoration: none; margin: 1px 0; }
   .cnode .cols, .ctree .kids { grid-template-columns: 1fr; }
   .ctree .kids::before, .ctree .kid::before { display: none; }
 }
+
+/* The legend of the diagrams (Diagrams, What is drawn): the symbols of the
+   page, on white in both themes, as the figures. */
+#main_content .dlegend { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 6px 28px;
+  background: #fff; color: #1d2526; border: 1px solid #d6dddd; border-radius: 6px; padding: 14px 18px; margin: 12px 0 18px; }
+#main_content .dlegend .lg-title { font-weight: 600; font-size: 13px; color: #17393b; margin: 4px 0 6px; }
+#main_content .dlegend .lg-row { display: flex; align-items: center; gap: 12px; margin: 5px 0; font-size: 14px; line-height: 1.35; }
+#main_content .dlegend .lg-sym { flex: 0 0 112px; display: flex; justify-content: center; }
+#main_content .dlegend .lg-text { color: #1d2526; }
+#main_content .dlegend svg { display: block; background: none; padding: 0; }
+#main_content .dlegend .lg-two { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+#main_content .dlegend .lg-two .lg-title { grid-column: 1 / -1; }
+@media (max-width: 600px) { #main_content .dlegend .lg-two { grid-template-columns: 1fr; } #main_content .dlegend .lg-sym { flex-basis: 84px; } }

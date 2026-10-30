@@ -26,25 +26,7 @@ it uses, and link to the page that describes it.
 - **[Power systems and factories](power-systems.md)**: requirements written in a domain-specific language: the electrical power system of an aircraft (DATE 2018, DATE 2021) and a small factory (FDL 2024).
   [DSL](power-systems.md){ .tag .t-data } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
 
-## Reading the diagrams
-
-- A rounded box is a contract; a square box also has a model (RTL, a state
-  machine, or a synthesized controller).
-- A box drawn inside another is checked against it: the ⪯ tag says
-  whether it refines it. The note under a name says how the contract is
-  built: ⊗ composition (∥ in the text), • merging, / quotient; "Contract X"
-  names the contract of a system.
-- Inside an open box, the dark A and G mark its assumptions and its
-  guarantees.
-- A dashed box is a quotient: what the missing part, written ? in the
-  note, must satisfy, with the part checked against it drawn inside.
-- The tags are the results of the checks, green when the check holds and
-  red when it does not: ⪯ refinement, A compatible, G consistent,
-  R realizable, WS well separated, ¬V not vacuous, M ⊨ C the model
-  implements the contract. The lines highlighted in red are the core of a
-  failed check.
-- In the page that each script writes, a click on a name opens or closes a
-  contract, and a click on a red tag shows its core.
+The [Diagrams](../interfaces/diagrams.md#what-is-drawn) page says what the boxes and the tags of the figures mean.
 
 All the demos are run and checked by the test suite of CHASE:
 
