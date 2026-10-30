@@ -60,10 +60,10 @@ nav:
   - Demos:
       - demos/index.md
       - Payment assistant agent: demos/payment-assistant.md
+      - Security chip (OpenTitan): demos/escalation.md
       - "Aircraft (Lift-Plus-Cruise)": demos/lift-plus-cruise.md
       - Bus arbiter (AMBA AHB): demos/ahb.md
       - Circuit buffer swap: demos/buffer-swap.md
-      - Security chip (OpenTitan): demos/escalation.md
       - Warehouse robot: demos/warehouse-robot.md
       - Charging station (Charger): demos/charger.md
       - Autopilot (Lockheed Martin): demos/lm-fsm.md

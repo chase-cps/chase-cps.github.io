@@ -31,8 +31,9 @@ finish, and 2 on an error in the input.
 
 ## Drawing a specification
 
-`chase-cps view` writes the [diagram](diagrams.md) of a specification as a
-web page, with the results of the checks it is asked for:
+`chase-cps view` writes the [diagram](diagrams.md) of a specification (the
+logics language, JSON, or SystemVerilog Assertions) as a web page, with the
+results of the checks it is asked for:
 
 ```
 $> chase-cps view specs.ltl                                       # writes specs.html
@@ -45,7 +46,10 @@ A, `--environment MODEL C` draws an environment, `--check` checks the
 refinements and the environments, `--verify` and `--realizable` mark the
 checks of each contract, `--open C...` draws contracts open, and `-o PAGE`
 names the page. With `--serve` the page is served on this computer
-(`--host`, `--port`) and drawn again whenever the file changes.
+(`--host`, `--port`) and drawn again in place whenever the file changes;
+when the file cannot be drawn, the page keeps the last diagram and says
+why. `--format json` writes the data of the diagram, and `--no-checks`
+draws the structure only.
 
 ## Installing the solvers
 
