@@ -8,8 +8,9 @@
 CHASE now draws contracts, components, and systems as a web page
 ([Diagrams](interfaces/diagrams.md)):
 
-- refinement is drawn as nesting, a quotient as a dashed box with the part
-  that refines it inside, and a model opens on its states;
+- a box drawn inside another is checked against it, a quotient is a dashed
+  box with the part checked against it inside, and a model opens on its
+  states;
 - the results of the checks are tags on the boxes, and a failed check
   highlights its core;
 - `chase_cps.viz` in Python, `chase-cps view` for a specification file, and
@@ -18,8 +19,25 @@ CHASE now draws contracts, components, and systems as a web page
   system demos are read in Python with `load_dsl`
   ([Power systems](demos/power-systems.md)).
 
-Fixed: `R` (release) in a specification file, intervals such as `G[0,3]`,
-and negative constants in the operations of the C++ library.
+`to_gr1(c, format="slugs" | "gr1c")` writes a GR(1) contract for a solver
+that you run yourself ([GR(1) synthesis](tools/synthesis.md)).
+
+Fixed: `R` (release) in a specification file, intervals such as `G[0,3]`
+(dropped when read, and lost by the operations of the console), negative
+constants in the operations of the C++ library, and two crashes of the
+console.
+</div>
+
+<div class="news-item" markdown>
+<span class="news-date">October 28, 2026</span>
+
+## CHASE 0.4.2: names after the theory, and a Docker image
+
+`is_implementation(m, c)` and `is_environment(e, c)` are the new names of
+`implements` and `accepts` (the old names still work, with a warning);
+conjunction can keep the terms of the contracts (`discharge=True`); and the
+Docker image is published at each release (`docker pull
+ghcr.io/chase-cps/chase`), with NuSMV and Yosys.
 </div>
 
 <div class="news-item" markdown>
