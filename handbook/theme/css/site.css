@@ -23,12 +23,13 @@
   color-scheme: light;
 }
 
-/* Dark pages: the greens of the header, darker; the figures stay on white
-   cards, since they are drawn on white. Chosen with the button of the
+/* Dark pages: a charcoal with a little of the teal of the header, which
+   stays green above it; the figures stay on white cards, since they are
+   drawn on white. Chosen with the button of the
    header, or by the system when it was never pressed. */
 :root[data-theme="dark"] {
   --chase-ink: #dde6e6; --chase-ink-soft: #9db0b1; --chase-link: #74c4c9;
-  --chase-page: #121b1c; --chase-surface: #1a2627; --chase-border: #2d3d3e; --chase-active: #1f3334;
+  --chase-page: #263234; --chase-surface: #2d3a3c; --chase-border: #3b4a4c; --chase-active: #30403f;
   --chase-strong: #9ed6d9; --chase-code: #d6dfdf;
   --chase-hl-comment: #8a9a9b; --chase-hl-keyword: #e6eded; --chase-hl-string: #f08b8b;
   --chase-hl-number: #6fd0d0; --chase-hl-function: #f2a07a; --chase-hl-class: #9fb4f0;
@@ -39,7 +40,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --chase-ink: #dde6e6; --chase-ink-soft: #9db0b1; --chase-link: #74c4c9;
-    --chase-page: #121b1c; --chase-surface: #1a2627; --chase-border: #2d3d3e; --chase-active: #1f3334;
+    --chase-page: #263234; --chase-surface: #2d3a3c; --chase-border: #3b4a4c; --chase-active: #30403f;
     --chase-strong: #9ed6d9; --chase-code: #d6dfdf;
     --chase-hl-comment: #8a9a9b; --chase-hl-keyword: #e6eded; --chase-hl-string: #f08b8b;
     --chase-hl-number: #6fd0d0; --chase-hl-function: #f2a07a; --chase-hl-class: #9fb4f0;
