@@ -55,9 +55,39 @@ requirement in the core to 30 ms without power for a DC bus, and the one
 to disconnect a failed generator to 20 ms. The requirements are then
 realizable, and slugs synthesizes the controller of the contactors.
 
-**Step 3. A small factory.** The same language describes a factory (FDL
-2024): a warehouse, conveyors, machines that turn iron into coins, pipes,
-output bays, and gates. Its requirements are realizable.
+## A small factory
+
+The same language describes the factory of the FDL 2024 paper: a
+warehouse, conveyors, machines that turn iron into coins, pipes, output
+bays, and the gates between them.
+
+```mermaid
+flowchart LR
+    CW["Central warehouse"] --- G1(["gate 1"]) --- MC1["Main conveyor 1"] --- G5(["gate 5"]) --- M1["Main machine 1"]
+    CW --- G3(["gate 3"]) --- SC1["Secondary conveyor 1"] --- G7(["gate 7"]) --- M1
+    M1 --- G9(["gate 9"]) --- MP1["Main pipe 1"] --- B1["Output bay 1"]
+    CW --- G2(["gate 2"]) --- MC2["Main conveyor 2"] --- G6(["gate 6"]) --- M2["Main machine 2"]
+    CW --- G4(["gate 4"]) --- SC2["Secondary conveyor 2"] --- G8(["gate 8"]) --- M2
+    M2 --- G10(["gate 10"]) --- MP2["Main pipe 2"] --- B2["Output bay 2"]
+```
+
+_The architecture of the factory: the controller opens and closes the gates._
+
+The requirements are:
+
+- no two conveyors are connected through the central warehouse, or through
+  a main machine;
+- no two machines are connected through a pipe;
+- a failed main conveyor is disconnected within 20 ms;
+- an output bay is never cut off from the warehouse for more than 30 ms.
+
+The gates open and close within 10 ms. Only the main conveyors may fail, at
+most two of them. CHASE turns the patterns into one contract for the
+controller of the gates, and the requirements are realizable: when a main
+conveyor fails, the secondary conveyor next to it takes its place.
+
+[![The contract of the controller of the gates is realizable](../assets/demos/power-systems/factory-controller-realizable.png)](../assets/demos/power-systems/factory-controller-realizable.png)
+_The contract of the controller of the gates is realizable._
 
 ## Run it
 
@@ -66,10 +96,11 @@ $> git clone https://github.com/chase-cps/demos && cd demos
 $> pip install chase-cps
 $> chase-cps install slugs
 $> python3 DATE18/eps.py
+$> python3 FDL2024/factory.py
 ```
 
-The script prints the result of each step, with the core, and writes the
-diagram above in `DATE18/out/eps.html`. In Python, `load_dsl` reads a file of the
+The scripts print the result of each step, with the core, and write the
+diagrams above in `DATE18/out/eps.html` and `FDL2024/out/factory.html`. In Python, `load_dsl` reads a file of the
 domain-specific language into a contract. The same steps with the console
 tools of CHASE (`dsl_tool` and slugs) are in `DATE21/DATE21.md`, the
 walkthrough of the DATE 2021 University Booth.
