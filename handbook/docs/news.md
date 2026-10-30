@@ -13,8 +13,10 @@ CHASE now draws contracts, components, and systems as a web page
   states;
 - the results of the checks are tags on the boxes, and a failed check
   highlights its core;
-- `chase_cps.viz` in Python, `chase-cps view` for a specification file, and
-  the `visualize` tool of the MCP server;
+- `chase_cps.viz` in Python, `chase-cps view` for a specification file or
+  a Verilog module, and the `visualize` tool of the MCP server; each term
+  drawn from a file knows its line, and the diagram is saved as SVG, PNG,
+  or PDF;
 - every demo page now shows each step with its diagram, and the power
   system demos are read in Python with `load_dsl`
   ([Power systems](demos/power-systems.md)).

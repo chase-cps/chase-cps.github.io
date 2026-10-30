@@ -27,9 +27,12 @@ _A quotient, drawn as a dashed box, with the part that refines it inside ([Payme
   feasible, R realizable, WS well separated, ¬V not vacuous, M ⊨ C the
   model implements the contract, E ⊨ A the environment meets the
   assumptions. A click on a red tag highlights its core in red.
+- A term of a specification file shows its line when the pointer rests on
+  it.
 
 Drag to move the diagram, and use the wheel (or a pinch) to zoom; the key 0
-fits it to the window.
+fits it to the window. A box keeps its row when a box is opened. The button
+with an arrow saves the whole diagram as SVG, PNG, or PDF.
 
 ## Python
 
@@ -58,13 +61,17 @@ when the page loads. In Jupyter, a system or a contract draws itself.
 
 ## Command line, MCP, and VS Code
 
-`chase-cps view FILE` draws a specification file: `--refines R A` draws R
-inside A, `--implementation MODEL C` draws C with its model, `--check`,
-`--verify`, and `--realizable` add the checks, `--open` names the contracts
-drawn open, and `--serve` draws the page again when the file changes. The
-options can be written at the top of the file (`# view: ...`); see the
-[command line](command-line.md). The button with an arrow saves the diagram
-as SVG, PNG, or PDF. The `visualize` tool of the [MCP server](mcp.md) draws
-the same diagrams for an agent. An extension for VS Code, which shows the
-diagram beside the editor as you type and goes from a box to its text and
-back, will follow.
+`chase-cps view FILE` draws a specification file (the logics language,
+JSON, or SystemVerilog Assertions), or a Verilog module with its state
+machine: `--refines R A` draws R inside A, `--implementation MODEL C` draws
+C with its model, `--check`, `--verify`, and `--realizable` add the checks,
+`--open` names the contracts drawn open, and `--serve` draws the page again
+when the file changes. The options can be written at the top of the file
+(`# view: ...`); see the [command line](command-line.md). The `visualize`
+tool of the [MCP server](mcp.md) draws the same diagrams for an agent.
+
+An extension for VS Code will follow. It shows the diagram beside the
+editor and draws it again as you type, marks the errors in the text, and
+runs the checks on save. A double click on a box, or on a term (a red term
+of a core, for instance), goes to its line, and the cursor marks its box
+and its term in the diagram.
