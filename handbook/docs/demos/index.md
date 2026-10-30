@@ -32,7 +32,7 @@ it uses, and link to the page that describes it.
   machine, or a synthesized controller).
 - A box drawn inside another is checked against it: the ⪯ tag says
   whether it refines it. The note under a name says how the contract is
-  built: ⊗ composition (∥ in the text), • merging, / quotient; "contract X"
+  built: ⊗ composition (∥ in the text), • merging, / quotient; "Contract X"
   names the contract of a system.
 - Inside an open box, the dark A and G mark its assumptions and its
   guarantees.
