@@ -53,6 +53,14 @@ contracts, or `{"contracts": [...]}`, each in the format of
 > - `--timeout S` _Seconds for each check._
 > - `--backend auto|nuxmv|nusmv` _The model checker._
 > - `--engine auto|ic3|bdd|bmc|portfolio` _The engine of the model checker._
+>
+> Continuous time (a step is a sample):
+>
+> - `--period S` _The time between two steps. The intervals may then be
+>   written with times: `G[0s,2s]`, `F[0ms,500ms]`._
+> - `--lipschitz VAR=RATE...` _How fast each variable changes, per second
+>   (or one `RATE` for every variable). `--refines` then holds in continuous
+>   time, between the samples too ([sampled signals](../contracts/checks.md#sampled-signals-from-steps-to-continuous-time))._
 
 For instance:
 
@@ -61,6 +69,7 @@ $> chase-cps check specs.ltl                                    # verify every c
 $> chase-cps check specs.ltl --refines Joint1+Joint2 Joints      # the composition refines Joints
 $> chase-cps check specs.ltl --realizable Joint1 --json
 $> chase-cps check specs.ltl --implementation joint1.smv Joint1 --receptive joint1.smv Joint1
+$> chase-cps check plant.ltl --period 0.1 --lipschitz x=2 --refines Plant Req
 ```
 
 The exit status is 0 when every check passes, 1 when a check fails or does

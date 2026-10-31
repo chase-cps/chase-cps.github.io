@@ -17,14 +17,21 @@ follows:
   `simplify`.
 - **Contract-based verification**: `refines`, `verify`, `is_compatible`,
   `is_consistent`, `is_implementation`, `is_environment`, `is_receptive`,
-  `remove_redundant`.
+  `remove_redundant`. `refines` takes `period` and `lipschitz` to check a
+  refinement in continuous time.
+- **Repair**: `repair`, the values of named constants that make a check
+  pass.
 - **Queries on formulas**: `implies`, `is_satisfiable`, `unsat_core`.
 - **GR(1) synthesis**: `is_realizable`, `synthesize`, `unrealizable_core`,
   `is_well_separated`, `is_vacuous`, and `remove_redundant` with `synth`.
 - **Formats**: `parse_spec` and `to_spec` (specification files),
   `parse_sva` and `to_sva` (SystemVerilog Assertions), `rtl_ports` (the
   ports of RTL read with Yosys; RTL is given to `is_implementation` and the
-  other checks of state machines).
+  other checks of state machines), `parse_smv` (an SMV model with its
+  `LTLSPEC` and `INVARSPEC`).
+- **C programs**: `parse_c` (the contracts written in a C file: clauses of
+  ESBMC, CBMC, or ACSL) and `check_c` (each function against its own
+  contract, with ESBMC or CBMC).
 - **Diagrams**: `visualize`.
 
 A contract is given in JSON:

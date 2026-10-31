@@ -297,29 +297,44 @@ The formulas count steps. When a step is a sample of a continuous signal,
 taken every `period` seconds, and each variable changes at most its
 Lipschitz constant per second, `chase_cps.sampled` says when a formula that
 holds at the samples holds at every instant (Fainekos and Pappas, TCS
-2009, Corollary 44). `strengthen(formula, lipschitz, period)` gives the
-stricter formula: under `F` and `U` each interval is one step narrower at
-each end, under `G` and `R` one step wider, and each comparison holds with
-the margin `(|a1| L1 + ... + |an| Ln) period` (`x <= c` becomes
-`x + E < c`). If the stricter formula holds at the samples, the formula
-holds in continuous time; if not, nothing is concluded.
+2009, Corollary 44). `sampled(formula, lipschitz, period)` gives the
+stricter formula to check at the samples: under `F` and `U` each interval
+is one step narrower at each end, under `G` and `R` one step wider, and each
+comparison holds with the margin `(|a1| L1 + ... + |an| Ln) period`
+(`x <= c` becomes `x + E < c`). If the stricter formula holds at the
+samples, the formula holds in continuous time; if not, nothing is
+concluded.
 
 ````
-from chase_cps import ltl
 from chase_cps.queries import Trace
-from chase_cps.sampled import continuous, strengthen
+from chase_cps.sampled import continuous, sampled
 
-s = strengthen("G[0,8] (x <= 11)", {"x": 1}, 0.5)
-print(ltl.to_str(s))    # x + 0.5 < 11 & X (x + 0.5 < 11) & ...: G[0,9] (x + 0.5 < 11)
+print(sampled("G[0,8] (x <= 11)", {"x": 1}, 0.5))     # G[0,9] (x + 0.5 < 11)
 t = Trace([{"x": i} for i in range(10)], [])
 print(continuous("G[0,8] (x <= 11)", t, {"x": 1}, 1).holds)   # True
 ````
 
 The intervals must span more than 3 steps, and the formula must not use
 `X`, a primed variable, `past(x, n)`, `<->`, a Boolean variable, or a
-comparison that is not linear (the error says which). The stricter formula
-is a formula like any other: a refinement or a verification with it shows
-the property in continuous time for every behavior.
+comparison that is not linear (the error says which).
+
+`sampled(formula, lipschitz, period, known=True)` gives the other side:
+what the samples hold when the formula is known to hold in continuous
+time. The intervals stay, and a comparison under `F`, or on the right of
+`U`, is weaker by the margin: the instant that holds it may fall between
+two samples.
+
+With a period, the intervals may be written with times: with a period of
+0.1 s, `G[0s,2s] p` is `G[0,20] p`. The command line checks a refinement
+in continuous time:
+
+`$> chase-cps check plant.ltl --period 1 --lipschitz x=1 --refines Plant Req`
+
+For `R <= S`, CHASE checks at the samples the assumptions of `R` and the
+guarantees of `S` made stricter, against the guarantees of `R` and the
+assumptions of `S` made weaker. A term that speaks of the samples
+themselves (`x' = x + u`, the model of a plant in steps) stays as it is.
+The MCP tool `refines` takes `period` and `lipschitz` too.
 
 `chase-cps view FILE --period SECONDS` (or `# view: --period SECONDS` in the
 file) draws the steps of a counterexample as times, `t = step x SECONDS`.
