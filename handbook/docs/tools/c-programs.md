@@ -49,6 +49,15 @@ satisfies every such `phi`: the checker checks one call, and a call that
 breaks one, repeated at every step, is the counterexample.
 
 ````
+from chase_cps import CFunction, is_implementation, parse_spec
+
+open("heater.c", "w").write("""
+int thermostat(int T) {
+    if (T < 74)
+        return 3;
+    return 0;
+}
+""")
 c = parse_spec("""NAME: t;
 CONTRACT Thermostat:
     input integer (0:200) variable T;
@@ -73,7 +82,7 @@ body, `__ESBMC_return_value`) or of CBMC (`__CPROVER_requires(...)`,
 `__CPROVER_return_value`), or in ACSL, the language of Frama-C (a comment
 `/*@ requires ...; ensures ...; */` just before the function, with
 `\result`, `==>`, `<==>`, and chains such as `0 <= T <= 200`; `\old`,
-`\at`, the quantifiers, and behaviors are not read). `load_c` reads each function of the file as a
+`\at`, the quantifiers, and behaviors are not read). `load_c` (it gives `{name: (contract, function)}`) reads each function of the file as a
 contract and the function as its implementation: the requires clauses are
 the assumptions, the ensures clauses the guarantees, the parameters the
 inputs, the return value the output `FUNCTION_out`, and `*p` the output

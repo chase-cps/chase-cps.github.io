@@ -54,7 +54,7 @@ cannot fall from 120 to 30 by step 6. No pilot can hover within 6 steps.
 _Step 1: consistent with 12 steps, not with 6; the core highlighted in red._
 
 **Step 2. The split.** The vehicle is split into the mode logic and the
-pilot, and _ModeLogic_ ∥ _Pilot_ refines _Vehicle_, without the deadline.
+pilot, and _ModeLogic_ ⊗ _Pilot_ refines _Vehicle_, without the deadline.
 
 [![Step 2: Vehicle with Pilot and ModeLogic inside; the refinement tag is green](../assets/demos/lift-plus-cruise/step2-mode-logic-and-pilot.png)](../assets/demos/lift-plus-cruise/step2-mode-logic-and-pilot.png)
 _Step 2: the vehicle, the mode logic and the pilot._
@@ -76,7 +76,7 @@ _Step 4: <em>Slow</em> does not refine Q12: it slows down, but never turns the h
 
 **Step 5. A pilot that slows down and turns on the hover control.**
 _Decel_ also turns the hover control mode on when `kgs` is below 20. It
-refines Q12, so every flight hovers within 12 steps: _ModeLogic_ ∥ _Decel_
+refines Q12, so every flight hovers within 12 steps: _ModeLogic_ ⊗ _Decel_
 refines _Reach12_.
 
 [![Step 5: Decel inside Q12, with G (hover_control_mode <-> kgs < 20); the refinement tag of Q12 is green](../assets/demos/lift-plus-cruise/step5-decel-refines-q12.png)](../assets/demos/lift-plus-cruise/step5-decel-refines-q12.png)

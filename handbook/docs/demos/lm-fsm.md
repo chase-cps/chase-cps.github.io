@@ -68,8 +68,8 @@ control, and the system is supported without failure, there is a pullup).
 The counterexample: at step 1 the limits are exceeded, the pilot is not in
 control, and there is no pullup, since the autopilot is still in NOMINAL.
 
-[![Step 2: Autopilot ∥ Sensor does not refine System; the panel shows the counterexample, and the diagram its values at step 1](../assets/demos/lm-fsm/step2-does-not-refine-system.png)](../assets/demos/lm-fsm/step2-does-not-refine-system.png)
-_Step 2: Autopilot ∥ Sensor does not refine System; the values of the counterexample at step 1._
+[![Step 2: Autopilot ⊗ Sensor does not refine System; the panel shows the counterexample, and the diagram its values at step 1](../assets/demos/lm-fsm/step2-does-not-refine-system.png)](../assets/demos/lm-fsm/step2-does-not-refine-system.png)
+_Step 2: Autopilot ⊗ Sensor does not refine System; the values of the counterexample at step 1._
 
 **Step 3. The system, with time.** The sensor and the autopilot each take a
 step to react, and the autopilot must first reach NOMINAL from the start.
@@ -78,7 +78,7 @@ exceeded for three steps and then exceeded, the pilot not in control and no
 failure, the pullup comes at the fifth step. The composition refines it.
 
 [![Step 3: Autopilot and Sensor inside SystemTimed; the refinement holds](../assets/demos/lm-fsm/step3-refines-systemtimed.png)](../assets/demos/lm-fsm/step3-refines-systemtimed.png)
-_Step 3: Autopilot ∥ Sensor refines SystemTimed (⪯ green)._
+_Step 3: Autopilot ⊗ Sensor refines SystemTimed (⪯ green)._
 
 ## Content of the directory
 The directory of the demo contains:

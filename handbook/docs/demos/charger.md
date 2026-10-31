@@ -2,7 +2,7 @@
 wide: true
 ---
 
-# Charging station: four arbiters, and the check that catches each
+# Charging station: five arbiters, and the check that catches each
 
 **The question.** Two robots share a charging station through an arbiter.
 The first contracts written for the arbiter look reasonable, but each has a
@@ -28,7 +28,7 @@ with the robots?
 - The whole script runs in about 2 s.
 
 [![The page of the demo: Greedy (R red), Fair (R and not vacuous, green), Pushy (WS red), Polite (WS green), Trusting (vacuous, red), and Fair with the two robots inside System (refinement green)](../assets/demos/charger/overview-all-checks.png)](../assets/demos/charger/overview-all-checks.png)
-_The page of the demo: the four arbiters, Trusting, and the arbiter with the robots inside System._
+_The page of the demo: the five arbiters, and Fair with the robots inside System._
 
 The variables of each robot are:
 
@@ -93,14 +93,14 @@ the assumptions of the robots on the grants, and no assumption is left.
 The composition (11 guarantees) refines _System_.
 
 [![Step 5: Fair, Robot1, and Robot2 wired inside System; the refinement holds](../assets/demos/charger/step5-arbiter-and-robots.png)](../assets/demos/charger/step5-arbiter-and-robots.png)
-_Step 5: Fair ∥ Robot1 ∥ Robot2 refines System (⪯ green)._
+_Step 5: Fair ⊗ Robot1 ⊗ Robot2 refines System (⪯ green)._
 
 ## Content of the directory
 The directory of the demo contains:
 
 - `requirements.txt`: the requirements, numbered;
-- `charger.ltl`: the contracts of the robots (_Robot1_, _Robot2_), of four
-  arbiters (_Greedy_, _Fair_, _Pushy_, _Polite_), and of the system
+- `charger.ltl`: the contracts of the robots (_Robot1_, _Robot2_), of five
+  arbiters (_Greedy_, _Fair_, _Pushy_, _Polite_, _Trusting_), and of the system
   (_System_). The comment at the end of each line is the number of the
   requirement;
 - `charger.results.json`: the results kept by `chase-cps view charger.ltl --check`;

@@ -47,7 +47,8 @@ answers on them.
 ## SMV models with their specifications
 
 An SMV file of nuXmv or NuSMV with `LTLSPEC` or `INVARSPEC` is read as a
-component: `load_smv(path)` (in `chase_cps.smvspec`) gives its contract,
+component: `load_smv(path)` (in `chase_cps.smvspec`) gives
+`{name: (contract, model)}`: the contract,
 with no assumption and a guarantee for each specification (`LTLSPEC p` is
 `p`, `INVARSPEC p` is `G p`, `next(x)` is `x'`, `V` is `R`), and the model
 without the specifications as its implementation. The inputs are the IVAR

@@ -377,3 +377,8 @@ a.tag, a.tag:hover { color: #fff; text-decoration: none; margin: 1px 0; }
 #main_content .dlegend .lg-two { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
 #main_content .dlegend .lg-two .lg-title { grid-column: 1 / -1; }
 @media (max-width: 600px) { #main_content .dlegend .lg-two { grid-template-columns: 1fr; } #main_content .dlegend .lg-sym { flex-basis: 84px; } }
+
+/* a wide table scrolls in itself, not the page (phones) */
+@media (max-width: 760px) { #main_content table { display: block; max-width: 100%; overflow-x: auto; } }
+/* a screenshot links to itself, full size */
+#main_content a > img { cursor: zoom-in; }

@@ -3,7 +3,8 @@
 The demos are in the [demos](https://github.com/chase-cps/demos) repository,
 and in the `demos` directory of the Docker image. Each one follows a design
 problem from its requirements to a result, with the same parts: the
-question, what it shows, the steps with their diagrams, and how to run it.
+question, what it shows, the steps with their diagrams (click one to see it
+full size), the content of the directory, and how to run it.
 The tags after each demo say what it uses, and link to the page that
 describes it.
 
@@ -59,7 +60,7 @@ Requirements of real systems, with real variables, and what each part must do.
 
 GR(1) contracts: realizability, cores, and the controllers slugs synthesizes.
 
-- **[Charging station](charger.md)**: four arbiters for two robots, each problem caught by another check: unrealizable, not well separated, vacuous.
+- **[Charging station](charger.md)**: five arbiters for two robots, each problem caught by another check: unrealizable, not well separated, vacuous.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
 - **[Robotic joints](robotic-joints.md)**: three joints refine the contract of an arm and are synthesized one at a time; the refinement scales to 8 joints in 5 s.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
@@ -68,7 +69,7 @@ GR(1) contracts: realizability, cores, and the controllers slugs synthesizes.
 
 Requirements written from patterns of a domain (dsl_tool).
 
-- **[Power system (DATE 2018)](date18.md)**: the power system of an aircraft: the requirements as written are unrealizable, and the core says which bound to relax.
+- **[Power system (DATE 2018)](date18.md)**: the power system of an aircraft: the requirements as written are unrealizable, and the core points to the 15 ms bound of a DC bus; with longer bounds they are realizable.
   [DSL](date18.md){ .tag .t-data } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
 - **[Factory (FDL 2024)](fdl2024.md)**: a small factory: the controller of its gates is realizable, with slugs and with gr1c.
   [DSL](date18.md){ .tag .t-data } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }

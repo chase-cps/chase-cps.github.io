@@ -12,7 +12,7 @@ the check grow with the number of joints?
 
 **What it shows.**
 
-- Composition and refinement (nuXmv): Joint1 ∥ Joint2 ∥ Joint3 refines
+- Composition and refinement (nuXmv): Joint1 ⊗ Joint2 ⊗ Joint3 refines
   _Joints_, the contract of the arm (2 s with the console, both formulas
   true).
 - Realizability and synthesis (slugs, GR(1)): each joint is realizable, and

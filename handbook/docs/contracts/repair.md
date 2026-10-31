@@ -31,7 +31,7 @@ itself, with its usual back end. The method is chosen by the formulas:
 |---|---|---|
 | `projection` | formulas over a bounded number of steps, real parameters | the values for which the check fails are computed at once by eliminating the other variables (z3); one optimization |
 | `counterexamples` | the other checks of every behavior: LTL (nuXmv), C (ESBMC), integers | optimize the cost under the conditions that the counterexamples found so far are no longer counterexamples, check, add the new counterexample, until the check passes |
-| `witnesses` | checks of some behavior (`verify`, `compat`, `consist`) on bounded formulas | the parameters and a behavior for each question, in one optimization |
+| `witnesses` | checks of some behavior (`verify`, `compat`, `consist`) on bounded formulas (chosen by `auto`; not a value of `method=`) | the parameters and a behavior for each question, in one optimization |
 | `enumeration` | checks of some behavior on other formulas, integer parameters | the values in the order of their cost, until one passes |
 
 The conditions of `counterexamples` only remove values that cannot repair,
@@ -50,7 +50,7 @@ On the command line, with the checks of `chase-cps check` and
 $> chase-cps repair heater.ltl --refines Room+Thermostat Comfort --param theta=60..90:int
 repair      repaired  (counterexamples, 4 rounds, 0.11 s)
   theta = 74
-  cost 2 (optimal)
+  change 2 (optimal)
 ````
 
 The demos Braking, Heater, and Deadline repair a braking system (the bounds
