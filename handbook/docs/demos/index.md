@@ -26,7 +26,7 @@ Requirements over time on numbers, a check that fails, and the least change of a
 
 Contracts on code: C functions checked one at a time, and the plan of an AI agent.
 
-- **[Contracts in C](contracts-in-c.md)**: the contract written in the C file (ESBMC, CBMC, ACSL clauses), drawn and checked function by function; code with no contract checked for overflow and division by zero.
+- **[Contracts in C](contracts-in-c.md)**: the contract written in the C file (ESBMC, CBMC, or ACSL clauses), drawn and checked function by function; code with no contract checked for overflow and division by zero.
   [verification](../contracts/checks.md){ .tag .t-verif } [C](../tools/c-programs.md){ .tag .t-code }
 - **[Drones in C](drone-grid.md)**: the step of two drones, checked one C function at a time: the contracts find that two drones can end in the same cell.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [C](../tools/c-programs.md){ .tag .t-code }
