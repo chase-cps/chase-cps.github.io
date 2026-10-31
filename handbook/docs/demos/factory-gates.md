@@ -46,7 +46,8 @@ _Step 1: the contract of the controller of the gates is realizable (R)._
 **Step 2. Without the secondary conveyors.** The script leaves out the
 lines of gates 3, 4, 7, and 8. The contract is then unrealizable; its
 core is the 3 terms of the counter of bay 2: when main conveyor 2 fails,
-nothing else feeds its machine (the core takes about 4 minutes).
+nothing else feeds its machine. This step takes about 4 minutes: it runs
+with `python factory.py --all`.
 
 The same language describes a [power system](aircraft-power.md).
 
