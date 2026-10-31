@@ -2,20 +2,34 @@
 wide: true
 ---
 
-# Bus arbiter: merging two viewpoints
+# Bus arbiter: two viewpoints that cannot be merged, and the assumption that fixes them
 
 **The question.** Two teams wrote two viewpoints of the same arbiter of the
 AMBA AHB bus: one on how the bus is given to the masters, one on how a
 master locks it. Is there an arbiter that meets both, and what must it
 assume of the masters?
 
-[![The arbiter: the merge of the two viewpoints, Grant and Lock](../assets/demos/ahb/merge-of-grant-and-lock.png)](../assets/demos/ahb/merge-of-grant-and-lock.png)
-_The arbiter: the merge of the two viewpoints, Grant and Lock._
+**What it shows.**
+
+- SystemVerilog Assertions as contracts: the two viewpoints are read from
+  `sva/`, with the number of each requirement as the label of its assertion.
+- Merging (•): the two viewpoints of one component are put together as one
+  contract.
+- Realizability (slugs, GR(1)): each viewpoint is realizable; their merge is
+  not.
+- Unrealizable core: 5 of the 7 guarantees of the merge (GR1, GR2, GR3.2,
+  LK1, LK2.1), found in under a second, which point to the missing
+  assumption LA2.
+- Synthesis: with LA2, slugs synthesizes a controller of 81 states.
+- Export: the merge is written back as SVA (`out/arbiter.sv`).
+- Implementation (nuXmv): the controller implements the merge (M ⊨ C).
+
+[![The page of the demo: Arbiter, the merge of Grant and Lock, realizable; the merge without LA2, unrealizable, with its core in red; and the synthesized controller](../assets/demos/ahb/overview-arbiter.png)](../assets/demos/ahb/overview-arbiter.png)
+_The page of the demo: the merge with LA2 (R green), the merge without it (R red, its core in red), and the controller (M ⊨ C)._
 
 The arbiter gives the bus to one of two masters. The requirements are
 simplified from Bloem et al., "Specify, Compile, Run: Hardware from PSL"
-(COCV 2007), and written in
-[SystemVerilog Assertions](../tools/systemverilog.md). The variables are:
+(COCV 2007), and written in SystemVerilog Assertions. The variables are:
 
 - `hbusreq`: a master asks for the bus;
 - `hlock`: a master asks for a locked access;
@@ -29,47 +43,71 @@ The requirements are written as two viewpoints:
 - _Lock_ locks the bus for a master that asks for a locked access (LK1),
   and keeps it while that master asks (LK2.1, LK2.2). It assumes that a
   master that asks for a locked access also asks for the bus (LA1.1,
-  LA1.2).
+  LA1.2), and that a master that has locked the bus stops asking for it
+  sooner or later (LA2).
 
-The two viewpoints are put together by
-[merging](../contracts/algebra.md#what-each-one-is-for) (•), the operation
-for viewpoints of one component.
+The two viewpoints are put together by merging (•), the operation for
+viewpoints of one component.
 
 ## The steps
 
 **Step 1. Each viewpoint.** _Grant_ and _Lock_ are each realizable.
 
-**Step 2. The merge.** The merge is unrealizable. When master 1 locks the
-bus and keeps asking for it, _Lock_ says that master 1 keeps the bus
-(LK2.1), and _Grant_ says that master 2 does not wait forever (GR3.2). The
-core is these two, with GR1, GR2, and LK1, which make the conflict
-possible.
+[![Step 1: Grant and Lock, open inside Arbiter, each realizable](../assets/demos/ahb/step1-viewpoints.png)](../assets/demos/ahb/step1-viewpoints.png)
+_Step 1: Grant and Lock, each realizable (R)._
 
-[![Step 2: the merge is unrealizable; the core highlighted in red](../assets/demos/ahb/merge-unrealizable-core.png)](../assets/demos/ahb/merge-unrealizable-core.png)
-_Step 2: the merge is unrealizable; the core highlighted in red._
+**Step 2. The merge without LA2.** Without LA2, the merge is unrealizable.
+When master 1 locks the bus and keeps asking for it, _Lock_ says that
+master 1 keeps the bus (LK2.1), and _Grant_ says that master 2 does not
+wait forever (GR3.2). The core is these two, with GR1, GR2, and LK1, which
+make the conflict possible.
+
+[![Step 2: the merge without LA2 is unrealizable; the core in red, and the panel of the check](../assets/demos/ahb/step2-merge-core.png)](../assets/demos/ahb/step2-merge-core.png)
+_Step 2: the merge without LA2 is unrealizable; the terms of the core are red._
 
 **Step 3. What the arbiter must assume.** The core points to the missing
 assumption: a master that has locked the bus stops asking for it sooner or
-later (LA2). With LA2 in _Lock_, the merge _Arbiter_ (the diagram at the
-top) is realizable, and slugs synthesizes a controller of 81 states.
-_Arbiter_ is also written as SVA (`AHB/out/arbiter.sv`).
+later (LA2). With LA2 in _Lock_, the merge _Arbiter_ (3 assumptions, 7
+guarantees) is realizable, and slugs synthesizes a controller of 81
+states. _Arbiter_ is also written as SVA (`out/arbiter.sv`).
+
+[![Step 3: Arbiter, the merge with LA2, open: its assumptions and guarantees, realizable](../assets/demos/ahb/step3-arbiter.png)](../assets/demos/ahb/step3-arbiter.png)
+_Step 3: Arbiter, the merge with LA2, is realizable._
 
 **Step 4. The controller.** The synthesized controller, read as a state
 machine, implements _Arbiter_ (M ⊨ C).
 
-[![Step 4: the controller implements Arbiter](../assets/demos/ahb/controller-implements-arbiter.png)](../assets/demos/ahb/controller-implements-arbiter.png)
-_Step 4: the controller implements Arbiter._
+[![Step 4: Arbiter and the synthesized controller, which implements it](../assets/demos/ahb/step4-controller.png)](../assets/demos/ahb/step4-controller.png)
+_Step 4: the controller implements Arbiter (M ⊨ C)._
+
+## Content of the directory
+The directory of the demo contains:
+
+- `requirements.txt`: the requirements, numbered;
+- `sva/`: the two viewpoints in SystemVerilog Assertions, one module each,
+  whose ports give the inputs and the outputs: _Grant_ (`grant.sv`) and
+  _Lock_ (`lock.sv`). The label of each assertion is the number of the
+  requirement;
+- `sva/*.results.json`: the results kept by `chase-cps view --check` on
+  each file;
+- `ahb.py`: the steps with the CHASE Python package;
+- `out/arbiter.sv`: the merge of the viewpoints as SVA, written by
+  `ahb.py`;
+- `out/arbiter.html`: the diagrams above, written by `ahb.py`.
 
 ## Run it
 
 ```
-$> git clone https://github.com/chase-cps/demos && cd demos
-$> pip install chase-cps
-$> chase-cps install nuxmv --accept-license
-$> chase-cps install slugs
-$> python3 AHB/ahb.py
+pip install chase-cps                       # version 0.5.0 or later
+chase-cps install nuxmv --accept-license
+chase-cps install slugs
+python ahb.py --expect
+chase-cps view sva/lock.sv --check --realizable -o out/lock-view.html
 ```
 
-The script prints the result of each step and writes the diagrams above in
-`AHB/out/arbiter.html`. The viewpoints are in `AHB/sva/grant.sv` and
-`AHB/sva/lock.sv`, with the number of each requirement as its label.
+The script prints the result of each step and writes `out/arbiter.html`, a
+page to open in a browser: a click on a name opens or closes the contract,
+a click on a red tag shows or hides its core, and the button of the
+problems lists the check that fails. With `--expect` the script exits with
+code 1 when a result is not the expected one. `chase-cps view` draws one
+viewpoint on its own, with its checks.

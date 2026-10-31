@@ -43,3 +43,18 @@ answers on them.
     `load_spec` warns when an integer is compared with a constant outside its
     range, for instance `credits >= 90` with `credits` declared without a
     range (so 0 to 16): such a comparison has the same value at every step.
+
+## SMV models with their specifications
+
+An SMV file of nuXmv or NuSMV with `LTLSPEC` or `INVARSPEC` is read as a
+component: `load_smv(path)` (in `chase_cps.smvspec`) gives its contract,
+with no assumption and a guarantee for each specification (`LTLSPEC p` is
+`p`, `INVARSPEC p` is `G p`, `next(x)` is `x'`, `V` is `R`), and the model
+without the specifications as its implementation. The inputs are the IVAR
+variables, the outputs the VAR and FROZENVAR ones. `chase-cps view
+FILE.smv --check` (and VS Code) draws it as a component: each
+specification is a term, and the one that a counterexample breaks is red.
+CTL (`SPEC`, `CTLSPEC`), past operators, and specifications over a `DEFINE`
+are not read. An SMV file with no specification is a model, not a
+contract: it is drawn as the implementation of a contract
+(`--implementation FILE.smv CONTRACT`).

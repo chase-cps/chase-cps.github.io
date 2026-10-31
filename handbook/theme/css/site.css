@@ -141,6 +141,11 @@ button.theme .sun { display: none; }
 .sidebar details.always > summary a { pointer-events: auto; }
 .sidebar details.always > summary::after { display: none; }
 .sidebar details > ul { margin: 0 0 4px 2px; padding-left: 10px; border-left: 1px solid var(--chase-border); }
+/* a group inside a section (the demos by kind): a small title, its pages under it */
+.sidebar .nav-sub { margin: 8px 0 2px; }
+.sidebar .nav-sub-title { display: block; padding: 2px 8px; font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--chase-ink-soft); }
+.sidebar .nav-sub ul { margin: 0; padding: 0; }
 .sidebar details > ul a { font-size: 15px; padding: 4px 10px; }
 @media (prefers-reduced-motion: reduce) { .sidebar summary::after { transition: none; } }
 
@@ -316,6 +321,8 @@ a.tag, a.tag:hover { color: #fff; text-decoration: none; margin: 1px 0; }
 .tag.t-gr1 { background: #8a6d3b; }
 .tag.t-hw { background: #4a5f8a; }
 .tag.t-data { background: #6b7280; }
+.tag.t-repair { background: #9a5b2e; }
+.tag.t-code { background: #5b4a8a; }
 
 /* Tables of the demos: fixed column widths, so that the wide columns get
    the room and the rows stay low. A table is wrapped in a div of one of

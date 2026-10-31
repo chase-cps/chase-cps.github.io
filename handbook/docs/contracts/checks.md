@@ -189,3 +189,137 @@ The checks are those of nuXmv, for small and medium designs. The
 
 A trace is a list of states, `prefix` then `loop`, the loop repeated forever.
 `to_dict()` gives the result as JSON.
+
+## Formulas over a bounded number of steps
+
+A formula with no `G`, `F`, `U`, `R` reads a bounded number of steps: `X`,
+`x'`, and `past(x, n)` move by one step or by n, and the intervals of
+steps (`G[0,10] p`, `F[1,3] p`, `p U[0,2] q`) are written with `X`. A
+formula without any of them says something about one step: it is a
+constraint, and a contract made of such formulas is a static contract (a
+budget, a sizing, a choice of parts). When z3 is installed
+(`pip install chase-cps[z3]`), the checks of such formulas go to z3
+instead of nuXmv: `verify`, `refines`, `implies`, `is_satisfiable`, and the
+others built on them. The result names `z3` as its back end; its trace has
+the steps that the formulas read, the last one repeated. z3 is exact for
+linear arithmetic over the integers and the reals, with any Boolean
+structure (`a <= 1 | b <= 1` is not a polyhedron, and is checked as
+written); words stay with nuXmv. `backend="nuxmv"` still sends them to
+nuXmv, and `CHASE_BACKEND` too.
+
+`minimize(objective, constraints)` and `maximize(objective, constraints)`
+give the best value of a term where the constraints hold, and the values
+of the variables that reach it. The constraints are a formula, a list of
+formulas, or a contract (A & G):
+
+```python
+from chase_cps import Contract, maximize, minimize
+
+gen = Contract.from_strings(name="Gen", inputs={"n": (0, 20)}, outputs={"p": "real"},
+                            assumptions=["n <= 4"], guarantees=["p >= 2.5 * n", "p <= 30"])
+best = maximize("n", gen)            # optimal, 4, with n = 4, p = 10
+margin = minimize("p - 2.5 * n", gen)  # 0: the guarantee p >= 2.5 n is tight
+print(best.status, best.value, best.to_dict().get("values"))
+```
+
+The status is `optimal`, `not_attained` (the bound of a strict inequality:
+`minimize("x", "x > 1")` is 1), `unbounded`, `infeasible`, or `unknown`
+with the reason.
+
+When the objective is a formula, its robustness (see Robustness below) is
+the objective. The smallest robustness of a property under the
+constraints is its worst case: above 0, every behavior that the
+constraints allow satisfies the property with that margin; below 0, the
+trace of the result violates it. The atoms of the formula compare numbers.
+
+```python
+from chase_cps import minimize
+
+# a heater: on (u up to 3) while T <= 70; the room loses 1 per step
+heater = ["T = 60", "G[0,9] (u >= 0 & u <= 3)", "G[0,9] (T' = T + u - 1)",
+          "G[0,9] (T > 70 -> u = 0)"]
+worst = minimize("G[0,10] (T <= 75)", heater, {"T": "real", "u": "real"})
+print(worst.status, worst.value)     # optimal 3: T reaches 72 at most
+```
+
+## Robustness
+
+The robustness of a formula on a trace says how much the trace satisfies
+it (a positive number) or violates it (a negative number), in the unit of
+the terms. It is the quantitative semantics of signal temporal logic, in
+discrete time, on the traces of the checks:
+
+- a comparison is the distance to its boundary: `x <= 30` is `30 - x`,
+  `x >= 10` is `x - 10`, `x = c` is `-|x - c|`, and `x != c` is
+  `|x - c|`;
+- `!` is the opposite, `&` the minimum, `|` the maximum;
+- `X` is the value at the next step, `G` the minimum over the steps to
+  come, `F` the maximum, and `U` the maximum over the steps j of the
+  right side at j, bounded by the left side before j.
+
+0 is the boundary: the formula may hold or not (`holds` says which). A
+Boolean variable is `inf` when true and `-inf` when false. So the
+robustness is useful only for formulas that compare numbers (integers,
+reals, words): for a contract over Booleans it says no more than whether
+the formula holds.
+
+```python
+from chase_cps import Contract
+from chase_cps.queries import Trace
+from chase_cps.robustness import holds, robustness, violated
+
+trace = Trace(prefix=[{"p": 20}], loop=[{"p": 27.5}, {"p": 25}])  # 20, then 27.5, 25, ...
+assert robustness("G (p <= 30)", trace) == 2.5      # p stays 2.5 below 30
+assert robustness("F[0,1] (p >= 27.5)", trace) == 0  # reached, on the boundary
+assert holds("F[0,1] (p >= 27.5)", trace)
+c = Contract.from_strings(inputs={"n": (0, 9)}, outputs={"p": "real"},
+                          guarantees=["G (p <= 26)", "G (p >= 10)"])
+c.robustness(trace)                          # the assumptions, the guarantees, A -> G
+assert violated(c.guarantees, trace, c.variables) == [{"term": "G (p <= 26)", "robustness": -1.5}]
+```
+
+A refinement that fails gives the terms that its counterexample violates
+(`violated` in the result): the assumptions of the refined contract, or
+the guarantees of the abstract one, each with its robustness when it
+compares numbers (`None` otherwise). For instance a guarantee `G (p >= 12)`
+violated with `-4` is missed by 4 at some step of the trace.
+
+A trace whose loop is empty repeats its last state. `past(x, n)` is the
+history variable of nuXmv in the trace (`chase_past2_x`) when it is there,
+else the value n steps before; it has none in the first n steps.
+`minimize` and `maximize` find the smallest and the largest robustness of
+a formula over the behaviors that some constraints allow (see Formulas over
+a bounded number of steps).
+
+## Sampled signals: from steps to continuous time
+
+The formulas count steps. When a step is a sample of a continuous signal,
+taken every `period` seconds, and each variable changes at most its
+Lipschitz constant per second, `chase_cps.sampled` says when a formula that
+holds at the samples holds at every instant (Fainekos and Pappas, TCS
+2009, Corollary 44). `strengthen(formula, lipschitz, period)` gives the
+stricter formula: under `F` and `U` each interval is one step narrower at
+each end, under `G` and `R` one step wider, and each comparison holds with
+the margin `(|a1| L1 + ... + |an| Ln) period` (`x <= c` becomes
+`x + E < c`). If the stricter formula holds at the samples, the formula
+holds in continuous time; if not, nothing is concluded.
+
+````
+from chase_cps import ltl
+from chase_cps.queries import Trace
+from chase_cps.sampled import continuous, strengthen
+
+s = strengthen("G[0,8] (x <= 11)", {"x": 1}, 0.5)
+print(ltl.to_str(s))    # x + 0.5 < 11 & X (x + 0.5 < 11) & ...: G[0,9] (x + 0.5 < 11)
+t = Trace([{"x": i} for i in range(10)], [])
+print(continuous("G[0,8] (x <= 11)", t, {"x": 1}, 1).holds)   # True
+````
+
+The intervals must span more than 3 steps, and the formula must not use
+`X`, a primed variable, `past(x, n)`, `<->`, a Boolean variable, or a
+comparison that is not linear (the error says which). The stricter formula
+is a formula like any other: a refinement or a verification with it shows
+the property in continuous time for every behavior.
+
+`chase-cps view FILE --period SECONDS` (or `# view: --period SECONDS` in the
+file) draws the steps of a counterexample as times, `t = step x SECONDS`.

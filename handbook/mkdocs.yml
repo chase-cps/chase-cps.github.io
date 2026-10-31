@@ -45,6 +45,7 @@ nav:
       - Formulas: contracts/formulas.md
       - Contract algebra: contracts/algebra.md
       - Contract-based verification: contracts/checks.md
+      - Repair: contracts/repair.md
   - Interfaces:
       - interfaces/index.md
       - Inputs and outputs: interfaces/inputs-outputs.md
@@ -58,17 +59,33 @@ nav:
       - Model checking: tools/model-checking.md
       - GR(1) synthesis: tools/synthesis.md
       - "Hardware: SVA and RTL": tools/systemverilog.md
+      - C programs: tools/c-programs.md
   - Demos:
       - demos/index.md
-      - Payment assistant agent: demos/payment-assistant.md
-      - Security chip (OpenTitan): demos/escalation.md
-      - "Aircraft (Lift-Plus-Cruise)": demos/lift-plus-cruise.md
-      - Bus arbiter (AMBA AHB): demos/ahb.md
-      - Circuit buffer swap: demos/buffer-swap.md
-      - Warehouse robot: demos/warehouse-robot.md
-      - Charging station (Charger): demos/charger.md
-      - Autopilot (Lockheed Martin): demos/lm-fsm.md
-      - Robotic joints: demos/robotic-joints.md
-      - Power systems and factories: demos/power-systems.md
+      - Repair and signals:
+          - "Room heating (Heater)": demos/heater.md
+          - "Emergency braking (Braking)": demos/braking.md
+          - "Drone climb (DroneAltitude)": demos/drone-altitude.md
+          - "Drone timing (DroneTiming)": demos/drone-timing.md
+          - "Waiting time (Deadline)": demos/deadline.md
+      - Code and agents:
+          - Contracts in C: demos/contracts-in-c.md
+          - "Drones in C (DroneGrid)": demos/drone-grid.md
+          - Payment assistant agent: demos/payment-assistant.md
+      - Hardware:
+          - Security chip (OpenTitan): demos/escalation.md
+          - Bus arbiter (AMBA AHB): demos/ahb.md
+          - Circuit buffer swap: demos/buffer-swap.md
+      - Aircraft and robots:
+          - "Aircraft (Lift-Plus-Cruise)": demos/lift-plus-cruise.md
+          - Warehouse robot: demos/warehouse-robot.md
+          - Autopilot (Lockheed Martin): demos/lm-fsm.md
+      - Controller synthesis:
+          - Charging station (Charger): demos/charger.md
+          - Robotic joints: demos/robotic-joints.md
+      - Domain-specific language:
+          - "Power system (DATE 2018)": demos/date18.md
+          - "Factory (FDL 2024)": demos/fdl2024.md
+          - "Tutorial (DATE 2021)": demos/date21.md
   - Contributing: contributing.md
   - Publications: publications.md
