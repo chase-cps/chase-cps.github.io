@@ -44,7 +44,7 @@ system (`c_true >= 0.4`, and a rest at the dock) and what perception
 assumes: `|w| <= 0.8`.
 
 [![Step 1: the system with perception, localization, and the dashed box Q open](../assets/demos/warehouse-robot/step1-quotient-q.png)](../assets/demos/warehouse-robot/step1-quotient-q.png)
-_Step 1: Q, the place of the controller, between perception and localization._
+_Step 1: Q, the place of the controller, next to perception and localization._
 
 **Step 2. The requirements of the mission.** _MissionOnly_, the
 requirements written on what the controller sees, does not refine Q: in
