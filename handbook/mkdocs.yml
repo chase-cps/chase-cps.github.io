@@ -47,6 +47,7 @@ nav:
       - Contract-based verification: contracts/checks.md
   - Interfaces:
       - interfaces/index.md
+      - Inputs and outputs: interfaces/inputs-outputs.md
       - Python package: interfaces/python.md
       - Command line: interfaces/command-line.md
       - Specification language and console: interfaces/logics-tool.md
