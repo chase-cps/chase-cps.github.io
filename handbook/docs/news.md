@@ -23,7 +23,7 @@ Also in this version:
 
 - every demo page shows each step with its diagram;
 - the power system demos are read in Python with `load_dsl`
-  ([Power systems](demos/date18.md));
+  ([Power systems](demos/aircraft-power.md));
 - `to_gr1(c, format="slugs" | "gr1c")` writes a GR(1) contract for a solver
   that you run yourself ([GR(1) synthesis](tools/synthesis.md)).
 
