@@ -66,14 +66,16 @@
             <ul>
               {% for child in item.children %}
                 {% if child.is_section %}
-                {# a group inside a section (the demos by kind): its title, then its pages #}
-                <li class="nav-sub"><span class="nav-sub-title">{{ child.title }}</span>
+                {# a group inside a section (the demos by kind): closed, but open
+                   when one of its pages is shown; the number of its pages at the right #}
+                <li class="nav-sub"><details{% if child.active %} open{% endif %}>
+                  <summary><span class="nav-sub-title">{{ child.title }}</span><span class="nav-count">{{ child.children | length }}</span></summary>
                   <ul>
                     {% for page in child.children %}
                     <li><a href="{{ page.url | url }}"{% if page.active %} class="active" aria-current="page"{% endif %}>{{ page.title }}</a></li>
                     {% endfor %}
                   </ul>
-                </li>
+                </details></li>
                 {% elif not (indexed and loop.first) %}
                 <li><a href="{{ child.url | url }}"{% if child.active %} class="active" aria-current="page"{% endif %}>{{ child.title }}</a></li>
                 {% endif %}

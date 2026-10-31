@@ -62,30 +62,30 @@ nav:
       - C programs: tools/c-programs.md
   - Demos:
       - demos/index.md
-      - Repair and signals:
-          - "Room heating (Heater)": demos/heater.md
-          - "Emergency braking (Braking)": demos/braking.md
-          - "Drone climb (DroneAltitude)": demos/drone-altitude.md
-          - "Drone timing (DroneTiming)": demos/drone-timing.md
-          - "Waiting time (Deadline)": demos/deadline.md
-      - Code and agents:
-          - Contracts in C: demos/contracts-in-c.md
-          - "Drones in C (DroneGrid)": demos/drone-grid.md
+      - AI agents and code:
           - Payment assistant agent: demos/payment-assistant.md
+          - Contracts in C: demos/contracts-in-c.md
+          - Drones in C: demos/drone-grid.md
+      - Repair and signals:
+          - Room heating: demos/heater.md
+          - Emergency braking: demos/braking.md
+          - Drone climb: demos/drone-altitude.md
+          - Drone timing: demos/drone-timing.md
+          - Waiting time: demos/deadline.md
       - Hardware:
-          - Security chip (OpenTitan): demos/escalation.md
-          - Bus arbiter (AMBA AHB): demos/ahb.md
+          - OpenTitan security chip: demos/escalation.md
+          - AMBA AHB bus arbiter: demos/ahb.md
           - Circuit buffer swap: demos/buffer-swap.md
       - Aircraft and robots:
-          - "Aircraft (Lift-Plus-Cruise)": demos/lift-plus-cruise.md
+          - NASA Lift-Plus-Cruise: demos/lift-plus-cruise.md
           - Warehouse robot: demos/warehouse-robot.md
-          - Autopilot (Lockheed Martin): demos/lm-fsm.md
+          - Lockheed Martin autopilot: demos/lm-fsm.md
       - Controller synthesis:
-          - Charging station (Charger): demos/charger.md
+          - Charging station: demos/charger.md
           - Robotic joints: demos/robotic-joints.md
       - Domain-specific language:
-          - "Power system (DATE 2018)": demos/date18.md
-          - "Factory (FDL 2024)": demos/fdl2024.md
-          - "Tutorial (DATE 2021)": demos/date21.md
+          - Aircraft power system: demos/date18.md
+          - Factory gates: demos/fdl2024.md
+          - DATE 2021 tutorial: demos/date21.md
   - Contributing: contributing.md
   - Publications: publications.md
