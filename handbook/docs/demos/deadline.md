@@ -19,7 +19,7 @@ more than `k` steps?
   and takes every request (receptive); a client in SMV is checked as its
   environment.
 
-[![Before the repair (k = 1, red) and after it (k = 2, green)](../assets/demos/deadline/before-and-after-repair.png)](../assets/demos/deadline/before-and-after-repair.png)
+[![Before the repair (k = 1, red) and after it (k = 2, green)](../assets/demos/deadline/before-and-after-repair.png){ width="634" }](../assets/demos/deadline/before-and-after-repair.png)
 _Before the repair (k = 1, ⪯ red) and after it (k = 2, green)._
 
 The contracts are in `deadline.ltl`. _Client_ keeps asking (`req`) until
@@ -60,7 +60,7 @@ implements _Arbiter_, but only because it refuses a request after
 which may stop asking before the grant, is not: its counterexample asks
 at step 0 and stops at step 1.
 
-[![The arbiter with its state machine, receptive and M ⊨ C green; client E ⊨ A green, impatient E ⊨ A red](../assets/demos/deadline/step3-arbiter-and-clients.png)](../assets/demos/deadline/step3-arbiter-and-clients.png)
+[![The arbiter with its state machine, receptive and M ⊨ C green; client E ⊨ A green, impatient E ⊨ A red](../assets/demos/deadline/step3-arbiter-and-clients.png){ width="681" }](../assets/demos/deadline/step3-arbiter-and-clients.png)
 _Step 3: the arbiter as a state machine, and the two clients._
 
 ## Run it

@@ -17,7 +17,7 @@ can the coordinator be synthesized?
 - The coordinator is realizable, and slugs synthesizes a controller of 128
   states.
 
-[![Mission inside Target (refinement green), and Target inside Mission (refinement red)](../assets/demos/pick-and-place/overview-all-checks.png)](../assets/demos/pick-and-place/overview-all-checks.png)
+[![Mission inside Target (refinement green), and Target inside Mission (refinement red)](../assets/demos/pick-and-place/overview-all-checks.png){ width="870" }](../assets/demos/pick-and-place/overview-all-checks.png)
 _The two refinements: Mission refines Target (⪯ green), Target does not refine Mission (⪯ red)._
 
 The arm is the second part of a tutorial at the DATE 2021 University Booth;
@@ -40,7 +40,7 @@ $> nuXmv /tmp/MT.smv
 Both formulas are true: _Mission_ refines _Target_ (it assumes no more
 and guarantees at least as much).
 
-[![Step 1: Mission inside Target; Mission refines Target](../assets/demos/pick-and-place/step3-mission-refines-target.png)](../assets/demos/pick-and-place/step3-mission-refines-target.png)
+[![Step 1: Mission inside Target; Mission refines Target](../assets/demos/pick-and-place/step3-mission-refines-target.png){ width="578" }](../assets/demos/pick-and-place/step3-mission-refines-target.png)
 _Step 1: Mission refines Target (⪯ green)._
 
 **Step 2. The target does not refine the mission.** In `/tmp/TM.smv` the
@@ -56,7 +56,7 @@ contracts, and `verify` writes the negation of its assumptions, of its
 guarantees, and of both. `nuXmv -bmc /tmp/system.smv` finds a run for
 each: the system is compatible and consistent.
 
-[![Step 3: Mission, Coordinator, Move, Turn, Pick, and Place wired by their variables, with their checks](../assets/demos/pick-and-place/step4-whole-system.png)](../assets/demos/pick-and-place/step4-whole-system.png)
+[![Step 3: Mission, Coordinator, Move, Turn, Pick, and Place wired by their variables, with their checks](../assets/demos/pick-and-place/step4-whole-system.png){ width="870" }](../assets/demos/pick-and-place/step4-whole-system.png)
 _Step 3: the whole system; the coordinator and the four actions are compatible (A), consistent (G), and realizable (R)._
 
 **Step 4. The coordinator.** `synthesize Coordinator coordinator slugs`

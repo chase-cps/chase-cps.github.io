@@ -33,7 +33,7 @@ are on the page https://chase-cps.github.io/tools/c-programs/.
 pump of a water tank for one call, runs at full speed from a level of 80
 and is off below 20. It meets its contract.
 
-[![pump open, its tag M ⊨ C green](../assets/demos/contracts-in-c/step1-pump-meets-contract.png)](../assets/demos/contracts-in-c/step1-pump-meets-contract.png)
+[![pump open, its tag M ⊨ C green](../assets/demos/contracts-in-c/step1-pump-meets-contract.png){ width="322" }](../assets/demos/contracts-in-c/step1-pump-meets-contract.png)
 _Step 1: <code>pump</code> meets the contract read from its clauses._
 
 **Step 2. Code with no clause.** `flow` is checked for overflow, division

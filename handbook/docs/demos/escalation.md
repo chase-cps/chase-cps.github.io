@@ -17,7 +17,7 @@ we show it by checking each module on its own?
 - A counterexample on the RTL: a faster sender breaks its contract in 4
   steps; in the whole link, a ping makes the receiver escalate.
 
-[![The link: Sender and Channel, M ⊨ C green, and the receiver open on the right](../assets/demos/escalation/overview-link.png)](../assets/demos/escalation/overview-link.png)
+[![The link: Sender and Channel, M ⊨ C green, and the receiver open on the right](../assets/demos/escalation/overview-link.png){ width="870" }](../assets/demos/escalation/overview-link.png)
 _The link, the composition of the three modules, with its assumptions and guarantees; each module with its RTL (M ⊨ C)._
 
 The link is a small version of the escalation link of OpenTitan. To
@@ -34,7 +34,7 @@ an escalation. The requirements follow the assertions of OpenTitan
 the receiver implements its contract. The receiver is drawn open: its
 contract and its state machine of 4 states, read from the RTL.
 
-[![Step 1: the receiver open, M ⊨ C green, with its contract and its four states](../assets/demos/escalation/step1-modules.png)](../assets/demos/escalation/step1-modules.png)
+[![Step 1: the receiver open, M ⊨ C green, with its contract and its four states](../assets/demos/escalation/step1-modules.png){ width="870" }](../assets/demos/escalation/step1-modules.png)
 _Step 1: the receiver implements its contract (M ⊨ C); its state machine of four states._
 
 **Step 2. The composition.** _Sender_ ⊗ _Channel_ ⊗ _Receiver_ refines

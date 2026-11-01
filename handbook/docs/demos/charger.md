@@ -19,7 +19,7 @@ which, and which arbiter works with the robots?
 - _Fair_ is realizable, with a controller of 18 states. With the robots, it
   refines _ChargingStation_ with no assumption left.
 
-[![The five arbiters, and Fair with the robots inside ChargingStation](../assets/demos/charger/overview-all-checks.png)](../assets/demos/charger/overview-all-checks.png)
+[![The five arbiters, and Fair with the robots inside ChargingStation](../assets/demos/charger/overview-all-checks.png){ width="723" }](../assets/demos/charger/overview-all-checks.png)
 _The five arbiters, and Fair with the robots inside ChargingStation._
 
 Each robot asks for the station (`req`) when its battery is low, and
@@ -42,7 +42,7 @@ the robot stops asking, infinitely often (R7.1, R7.2): it is realizable,
 with a controller of 18 states, and not vacuous (¬V: it cannot win without
 setting its outputs). `remove_redundant` removes R8, implied by R7.1.
 
-[![Step 2: Fair, open, realizable and not vacuous](../assets/demos/charger/step2-fair-realizable.png)](../assets/demos/charger/step2-fair-realizable.png)
+[![Step 2: Fair, open, realizable and not vacuous](../assets/demos/charger/step2-fair-realizable.png){ width="192" }](../assets/demos/charger/step2-fair-realizable.png)
 _Step 2: Fair is realizable (R) and not vacuous (¬V)._
 
 **Step 3. Realizable for a bad reason.** _Pushy_ assumes that robot 1 asks
@@ -67,7 +67,7 @@ _Step 4: Trusting is vacuous (¬V red)._
 feed each other. Composed with discharge, they leave no assumption, and
 refine _ChargingStation_.
 
-[![Step 5: Fair, Robot1, and Robot2 inside ChargingStation](../assets/demos/charger/step5-arbiter-and-robots.png)](../assets/demos/charger/step5-arbiter-and-robots.png)
+[![Step 5: Fair, Robot1, and Robot2 inside ChargingStation](../assets/demos/charger/step5-arbiter-and-robots.png){ width="532" }](../assets/demos/charger/step5-arbiter-and-robots.png)
 _Step 5: the composition refines ChargingStation._
 
 ## Run it

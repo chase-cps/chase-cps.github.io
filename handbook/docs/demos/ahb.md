@@ -17,7 +17,7 @@ there an arbiter that meets both, and what must it assume of the masters?
   realizable, and slugs synthesizes a controller of 81 states.
 - The controller implements the merge (M ⊨ C).
 
-[![Arbiter, the merge of Grant and Lock, realizable; the merge without LA2, unrealizable, with its core in red; and the controller](../assets/demos/ahb/overview-arbiter.png)](../assets/demos/ahb/overview-arbiter.png)
+[![Arbiter, the merge of Grant and Lock, realizable; the merge without LA2, unrealizable, with its core in red; and the controller](../assets/demos/ahb/overview-arbiter.png){ width="757" }](../assets/demos/ahb/overview-arbiter.png)
 _The merge with LA2 (R green), the merge without it (R red, its core in red), and the controller (M ⊨ C)._
 
 The arbiter gives the bus to one of two masters (simplified from Bloem et
@@ -31,7 +31,7 @@ puts together two viewpoints of one component.
 **Step 1. Each viewpoint.** _Grant_ and _Lock_, read from the
 SystemVerilog Assertions (SVA) of `sva/`, are each realizable.
 
-[![Step 1: Grant and Lock, open inside Arbiter, each realizable](../assets/demos/ahb/step1-viewpoints.png)](../assets/demos/ahb/step1-viewpoints.png)
+[![Step 1: Grant and Lock, open inside Arbiter, each realizable](../assets/demos/ahb/step1-viewpoints.png){ width="508" }](../assets/demos/ahb/step1-viewpoints.png)
 _Step 1: Grant and Lock, each realizable (R)._
 
 **Step 2. The merge without LA2.** Without LA2, the merge is unrealizable.
@@ -47,13 +47,13 @@ the bus stops asking for it sooner or later. With LA2 in _Lock_, the merge
 _Arbiter_ is realizable, and slugs synthesizes a controller. _Arbiter_ is
 also written as SVA in `out/arbiter.sv`.
 
-[![Step 3: Arbiter, the merge with LA2, open: its assumptions and guarantees, realizable](../assets/demos/ahb/step3-arbiter.png)](../assets/demos/ahb/step3-arbiter.png)
+[![Step 3: Arbiter, the merge with LA2, open: its assumptions and guarantees, realizable](../assets/demos/ahb/step3-arbiter.png){ width="465" }](../assets/demos/ahb/step3-arbiter.png)
 _Step 3: Arbiter, the merge with LA2, is realizable._
 
 **Step 4. The controller.** The controller, read as a state machine,
 implements _Arbiter_ (M ⊨ C).
 
-[![Step 4: Arbiter and the synthesized controller, which implements it](../assets/demos/ahb/step4-controller.png)](../assets/demos/ahb/step4-controller.png)
+[![Step 4: Arbiter and the synthesized controller, which implements it](../assets/demos/ahb/step4-controller.png){ width="268" }](../assets/demos/ahb/step4-controller.png)
 _Step 4: the controller implements Arbiter (M ⊨ C)._
 
 ## Run it

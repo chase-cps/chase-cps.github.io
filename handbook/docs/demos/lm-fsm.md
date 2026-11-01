@@ -18,7 +18,7 @@ corrected, does the pullup come when its requirement says?
   system requirement: the counterexample has three steps.
 - They refine FSM-001t, its timed version.
 
-[![The first requirements, unrealizable; the corrected ones inside Pullup (red) and PullupTimed (green)](../assets/demos/lm-fsm/overview-all-checks.png)](../assets/demos/lm-fsm/overview-all-checks.png)
+[![The first requirements, unrealizable; the corrected ones inside Pullup (red) and PullupTimed (green)](../assets/demos/lm-fsm/overview-all-checks.png){ width="870" }](../assets/demos/lm-fsm/overview-all-checks.png)
 _The first requirements (R red), and the corrected ones inside Pullup (⪯ red) and PullupTimed (⪯ green)._
 
 The requirements come from the Ten Lockheed Martin Cyber-Physical
@@ -56,7 +56,7 @@ step to react, and the autopilot must first reach NOMINAL. _PullupTimed_
 and one beyond, with the pilot not in control and no failure, the pullup
 comes at the fifth step. The composition refines it.
 
-[![Step 3: Autopilot and Sensor inside PullupTimed; the refinement holds](../assets/demos/lm-fsm/step3-refines-pulluptimed.png)](../assets/demos/lm-fsm/step3-refines-pulluptimed.png)
+[![Step 3: Autopilot and Sensor inside PullupTimed; the refinement holds](../assets/demos/lm-fsm/step3-refines-pulluptimed.png){ width="662" }](../assets/demos/lm-fsm/step3-refines-pulluptimed.png)
 _Step 3: the composition refines PullupTimed._
 
 ## Run it

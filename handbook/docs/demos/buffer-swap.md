@@ -18,7 +18,7 @@ what must any buffer in that place satisfy?
 - RTL against contracts (Yosys and nuXmv): the RTL of `bsg_one_fifo`
   implements _OneFifo_ and _Slot_, not _TwoFifo_.
 
-[![The old system (⪯ green), OneFifo against TwoFifo (⪯ red), and OneFifo in Slot (⪯ green)](../assets/demos/buffer-swap/overview-buffer-swap.png)](../assets/demos/buffer-swap/overview-buffer-swap.png)
+[![The old system (⪯ green), OneFifo against TwoFifo (⪯ red), and OneFifo in Slot (⪯ green)](../assets/demos/buffer-swap/overview-buffer-swap.png){ width="839" }](../assets/demos/buffer-swap/overview-buffer-swap.png)
 _The old system, OneFifo against TwoFifo, and OneFifo in Slot, the place of the buffer._
 
 A producer sends data to a consumer through a buffer, with a ready/valid
@@ -32,7 +32,7 @@ contracts are written in SystemVerilog Assertions.
 composed, refine _Pipeline_, and the RTL of `bsg_two_fifo` implements
 _TwoFifo_.
 
-[![Step 1: Producer, TwoFifo, and Consumer refine Pipeline; TwoFifo M ⊨ C green](../assets/demos/buffer-swap/step1-old-system.png)](../assets/demos/buffer-swap/step1-old-system.png)
+[![Step 1: Producer, TwoFifo, and Consumer refine Pipeline; TwoFifo M ⊨ C green](../assets/demos/buffer-swap/step1-old-system.png){ width="834" }](../assets/demos/buffer-swap/step1-old-system.png)
 _Step 1: the old system refines Pipeline; the RTL implements TwoFifo._
 
 **Step 2. The new buffer against the old one.** _OneFifo_ does not refine
@@ -49,7 +49,7 @@ may assume what the consumer guarantees, that an offer is taken sooner or
 later, so one entry is enough: _OneFifo_ refines _Slot_, and the system
 with _OneFifo_ refines _Pipeline_.
 
-[![Step 3: Slot, the quotient, with OneFifo inside; the tag ⪯ green](../assets/demos/buffer-swap/step3-slot.png)](../assets/demos/buffer-swap/step3-slot.png)
+[![Step 3: Slot, the quotient, with OneFifo inside; the tag ⪯ green](../assets/demos/buffer-swap/step3-slot.png){ width="823" }](../assets/demos/buffer-swap/step3-slot.png)
 _Step 3: OneFifo refines Slot, the contract of the place._
 
 **Step 4. On the RTL.** Yosys reads the RTL, and nuXmv checks it: the RTL
@@ -57,7 +57,7 @@ of `bsg_one_fifo` implements _OneFifo_ and _Slot_, and does not implement
 _TwoFifo_. The script also writes _Slot_ as SVA (`out/slot.sv`), for
 Jasper (`jasper/run.tcl`, not run by the script).
 
-[![Step 4: the RTL of bsg_one_fifo in Slot, M ⊨ C green](../assets/demos/buffer-swap/step4-rtl-onefifo.png)](../assets/demos/buffer-swap/step4-rtl-onefifo.png)
+[![Step 4: the RTL of bsg_one_fifo in Slot, M ⊨ C green](../assets/demos/buffer-swap/step4-rtl-onefifo.png){ width="463" }](../assets/demos/buffer-swap/step4-rtl-onefifo.png)
 _Step 4: the RTL of bsg_one_fifo implements its contract (M ⊨ C)._
 
 ## Run it

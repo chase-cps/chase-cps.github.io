@@ -17,7 +17,7 @@ long enough? If not, is it the controller to change, or the requirement?
   2 m, the strongest wind `wmax = 17/21`, about 0.81 m per step.
 - Both constants at once: a cost that weighs the two changes picks one.
 
-[![The drone inside Hover, before and after the repair](../assets/demos/drone-altitude/climb-before-and-after.png)](../assets/demos/drone-altitude/climb-before-and-after.png)
+[![The drone inside Hover, before and after the repair](../assets/demos/drone-altitude/climb-before-and-after.png){ width="844" }](../assets/demos/drone-altitude/climb-before-and-after.png)
 _The drone inside Hover in a wind of 1 (red), and with eps = 2.5 (green)._
 
 The drone is part of the fire-suppression mission of ContrACT (Xiao, Lutz,

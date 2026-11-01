@@ -19,7 +19,7 @@ the number of joints?
   to 5 s for 8. When Joint1 drops its liveness guarantee, nuXmv finds a
   counterexample for every number of joints.
 
-[![The arm: Joint1, Joint2, and Joint3 inside Joints, each joint with its own ports; every check green](../assets/demos/robotic-joints/overview-three-joints.png)](../assets/demos/robotic-joints/overview-three-joints.png)
+[![The arm: Joint1, Joint2, and Joint3 inside Joints, each joint with its own ports; every check green](../assets/demos/robotic-joints/overview-three-joints.png){ width="764" }](../assets/demos/robotic-joints/overview-three-joints.png)
 _The three joints inside the contract of the arm: each one's assumptions and guarantees can hold together (A∧G), and it is realizable (R); together they refine Joints (⪯)._
 
 The example was shown at CPS-IoT Week 2022 ([CPSWeek22](https://github.com/chase-cps/demos/blob/main/CPSWeek22/CPSWeek22.md)).
@@ -36,7 +36,7 @@ three joint contracts and writes the refinement check in `refinement.smv`
 much). nuXmv proves both formulas. `diagram.sh` draws the same check: all
 green.
 
-[![Step 1: Joints and Joint1 open: the assumptions and the guarantees of one joint and of the arm; the refinement holds](../assets/demos/robotic-joints/step1-joints-refine-arm.png)](../assets/demos/robotic-joints/step1-joints-refine-arm.png)
+[![Step 1: Joints and Joint1 open: the assumptions and the guarantees of one joint and of the arm; the refinement holds](../assets/demos/robotic-joints/step1-joints-refine-arm.png){ width="518" }](../assets/demos/robotic-joints/step1-joints-refine-arm.png)
 _Step 1: Joint1 and Joints open: what one joint and the arm assume and guarantee._
 
 **Step 2. One controller per joint, not one for the arm.**

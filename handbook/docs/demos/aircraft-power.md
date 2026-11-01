@@ -19,7 +19,7 @@ are in conflict?
 - With 20 ms to disconnect a failed generator and 30 ms for a DC bus, the
   contract is realizable, and slugs synthesizes a controller of 97 states.
 
-[![The page of the demo: EPS_15ms, open, unrealizable with its core in red; EPS_30ms, realizable](../assets/demos/aircraft-power/overview-two-versions.png)](../assets/demos/aircraft-power/overview-two-versions.png)
+[![The page of the demo: EPS_15ms, open, unrealizable with its core in red; EPS_30ms, realizable](../assets/demos/aircraft-power/overview-two-versions.png){ width="870" }](../assets/demos/aircraft-power/overview-two-versions.png)
 _The two versions of the requirements: as written (R red, the core in red) and relaxed (R green)._
 
 The system is that of Nuzzo et al., "CHASE: Contract-based requirement
@@ -50,7 +50,7 @@ The contract (24 assumptions, 26
 guarantees) is realizable, and with `solution.sh` slugs synthesizes a
 controller of 97 states.
 
-[![Step 2: EPS_30ms, realizable, with the states of the generators and contactors as inputs and the commands of the contactors as outputs](../assets/demos/aircraft-power/step2-relaxed-realizable.png)](../assets/demos/aircraft-power/step2-relaxed-realizable.png)
+[![Step 2: EPS_30ms, realizable, with the states of the generators and contactors as inputs and the commands of the contactors as outputs](../assets/demos/aircraft-power/step2-relaxed-realizable.png){ width="521" }](../assets/demos/aircraft-power/step2-relaxed-realizable.png)
 _Step 2: the relaxed requirements are realizable (R)._
 
 The same language describes a [factory](https://github.com/chase-cps/demos/blob/main/FDL2024/FDL2024.md).

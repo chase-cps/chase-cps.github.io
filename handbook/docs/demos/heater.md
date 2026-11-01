@@ -19,7 +19,7 @@ threshold works, and does the C code of the thermostat implement it?
 - Between the samples: with 20 s a step, `theta = 74` is not shown to
   hold at every instant; `theta = 71` is.
 
-[![Before the repair (red) and after it (green)](../assets/demos/heater/before-and-after-repair.png)](../assets/demos/heater/before-and-after-repair.png)
+[![Before the repair (red) and after it (green)](../assets/demos/heater/before-and-after-repair.png){ width="650" }](../assets/demos/heater/before-and-after-repair.png)
 _Before the repair (red) and after it (green): the thermostat with its C code._
 
 The contracts in `heater.ltl` cover 10 steps, in signal temporal logic in

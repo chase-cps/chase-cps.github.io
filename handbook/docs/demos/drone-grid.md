@@ -21,7 +21,7 @@ function be checked alone, not the whole program?
   contracts, in about 0.1 s each; `grant` does not implement
   _CoordinatorSafe_, and `grant_safe` does.
 
-[![The step before the fix (Fleet, ⪯ red) and after it (Fleet_safe, ⪯ green)](../assets/demos/drone-grid/overview-step-before-and-after.png)](../assets/demos/drone-grid/overview-step-before-and-after.png)
+[![The step before the fix (Fleet, ⪯ red) and after it (Fleet_safe, ⪯ green)](../assets/demos/drone-grid/overview-step-before-and-after.png){ width="870" }](../assets/demos/drone-grid/overview-step-before-and-after.png)
 _The step before the fix (⪯ red) and after it (green); each function implements its contract (M ⊨ C)._
 
 The drones are those of the fire suppression (MDFS) of ContrACT (Xiao et
@@ -46,7 +46,7 @@ _CoordinatorSafe_ grants a move only into a cell that is free after the
 step; it refines the quotient, and the parts with it refine _Fleet_. The
 code is not looked at yet.
 
-[![Step 2: Fleet_safe, the parts with CoordinatorSafe, the tag ⪯ green](../assets/demos/drone-grid/step3-coordinator-safe-refines.png)](../assets/demos/drone-grid/step3-coordinator-safe-refines.png)
+[![Step 2: Fleet_safe, the parts with CoordinatorSafe, the tag ⪯ green](../assets/demos/drone-grid/step3-coordinator-safe-refines.png){ width="870" }](../assets/demos/drone-grid/step3-coordinator-safe-refines.png)
 _Step 2: the parts with <code>CoordinatorSafe</code> refine <code>Fleet</code>._
 
 **Step 3. The code.** ESBMC checks each function against its contract.

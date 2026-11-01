@@ -20,7 +20,7 @@ what fails, and what is the least change that fixes it?
 - The margins under 400 ms: the planner may take up to 192 ms, and the
   mission may delay the drones by up to 179 ms.
 
-[![The end of the pipeline of a drone inside Fast: Plan with x_plan = 72, red; with x_plan = 42, green](../assets/demos/drone-timing/before-and-after-repair.png)](../assets/demos/drone-timing/before-and-after-repair.png)
+[![The end of the pipeline of a drone inside Fast: Plan with x_plan = 72, red; with x_plan = 42, green](../assets/demos/drone-timing/before-and-after-repair.png){ width="870" }](../assets/demos/drone-timing/before-and-after-repair.png)
 _The end of the pipeline of a drone inside Fast (250 ms): with <code>x_plan = 72</code> (⪯ red), and with the faster planner, <code>x_plan = 42</code> (⪯ green)._
 
 This is the multi-drone fire suppression of ContrACT (Xiao, Lutz,
@@ -39,7 +39,7 @@ pipeline gives the bound of each.
 spreading, the coordinator reading the fire) refines _Mission_. Its worst
 case is 59 ms: the offset of the drones.
 
-[![The mission subgraph inside Mission, the refinement green](../assets/demos/drone-timing/mission-refines-mission.png)](../assets/demos/drone-timing/mission-refines-mission.png)
+[![The mission subgraph inside Mission, the refinement green](../assets/demos/drone-timing/mission-refines-mission.png){ width="786" }](../assets/demos/drone-timing/mission-refines-mission.png)
 _Step 1: the mission subgraph inside Mission (y0 = 59): ⪯ green._
 
 **Step 2. The bound holds.** The pipeline of a drone refines _Available_
