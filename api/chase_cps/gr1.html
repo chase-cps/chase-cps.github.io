@@ -108,7 +108,6 @@
     </ul>
 
 
-            <footer>chase-cps 0.5.0</footer>
 
         <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
             built with <span class="visually-hidden">pdoc</span><img
@@ -659,6 +658,15 @@ vacuity of Maoz and Shalom, ESEC/FSE 2020).</li>
 </span><span id="L-502"><a href="#L-502"><span class="linenos">502</span></a>        <span class="k">return</span> <span class="n">Core</span><span class="p">(</span><span class="n">FOUND</span><span class="p">,</span> <span class="n">core</span><span class="p">,</span> <span class="n">checks</span><span class="o">=</span><span class="n">search</span><span class="o">.</span><span class="n">checks</span><span class="p">)</span>
 </span><span id="L-503"><a href="#L-503"><span class="linenos">503</span></a>    <span class="k">return</span> <span class="n">Core</span><span class="p">(</span><span class="n">FOUND</span><span class="p">,</span> <span class="n">Contract</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_core"</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">inputs</span><span class="p">),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">outputs</span><span class="p">),</span>
 </span><span id="L-504"><a href="#L-504"><span class="linenos">504</span></a>                                <span class="nb">list</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">assumptions</span><span class="p">),</span> <span class="n">core</span><span class="p">),</span> <span class="n">checks</span><span class="o">=</span><span class="n">search</span><span class="o">.</span><span class="n">checks</span><span class="p">)</span>
+</span><span id="L-505"><a href="#L-505"><span class="linenos">505</span></a>
+</span><span id="L-506"><a href="#L-506"><span class="linenos">506</span></a>
+</span><span id="L-507"><a href="#L-507"><span class="linenos">507</span></a><span class="c1"># The results are kept on the contracts checked, for the diagrams (chase_cps.viz).</span>
+</span><span id="L-508"><a href="#L-508"><span class="linenos">508</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.contract</span><span class="w"> </span><span class="kn">import</span> <span class="n">_remembered</span>  <span class="c1"># noqa: E402</span>
+</span><span id="L-509"><a href="#L-509"><span class="linenos">509</span></a>
+</span><span id="L-510"><a href="#L-510"><span class="linenos">510</span></a><span class="n">is_realizable</span> <span class="o">=</span> <span class="n">_remembered</span><span class="p">(</span><span class="s2">"realizable"</span><span class="p">)(</span><span class="n">is_realizable</span><span class="p">)</span>
+</span><span id="L-511"><a href="#L-511"><span class="linenos">511</span></a><span class="n">synthesize</span> <span class="o">=</span> <span class="n">_remembered</span><span class="p">(</span><span class="s2">"realizable"</span><span class="p">)(</span><span class="n">synthesize</span><span class="p">)</span>
+</span><span id="L-512"><a href="#L-512"><span class="linenos">512</span></a><span class="n">is_well_separated</span> <span class="o">=</span> <span class="n">_remembered</span><span class="p">(</span><span class="s2">"well_separated"</span><span class="p">)(</span><span class="n">is_well_separated</span><span class="p">)</span>
+</span><span id="L-513"><a href="#L-513"><span class="linenos">513</span></a><span class="n">is_vacuous</span> <span class="o">=</span> <span class="n">_remembered</span><span class="p">(</span><span class="s2">"vacuous"</span><span class="p">)(</span><span class="n">is_vacuous</span><span class="p">)</span>
 </span></pre></div>
 
 

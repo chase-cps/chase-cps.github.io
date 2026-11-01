@@ -76,4 +76,5 @@ Every check returns a result with a `status` (`valid`, `invalid`, `sat`,
 [Checks](../contracts/checks.md#results).
 
 The full API is in the docstrings: `help(chase_cps.refines)`,
-`help(chase_cps.repair)`, and so on.
+`help(chase_cps.repair)`, and so on, and in the
+[API reference](https://chase-cps.github.io/api/chase_cps.html) made from them.
