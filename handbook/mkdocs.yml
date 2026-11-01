@@ -40,6 +40,7 @@ nav:
   - Overview: index.md
   - News: news.md
   - Getting started: getting-started.md
+  - Installation: installation.md
   - Contract theory:
       - contracts/index.md
       - Formulas: contracts/formulas.md

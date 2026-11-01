@@ -1,7 +1,7 @@
 # Python package
 
 `chase_cps` is the Python interface to CHASE. It is installed with
-`pip install chase-cps` (see [Installation](../getting-started.md#installation)).
+`pip install chase-cps` (see [Installation](../installation.md)).
 Its modules are grouped as follows:
 
 - **Contract algebra** (`chase_cps.contract`): the class `Contract`, with the

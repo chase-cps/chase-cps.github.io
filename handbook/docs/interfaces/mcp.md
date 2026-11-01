@@ -49,7 +49,7 @@ A contract is given in JSON:
 With [uv](https://docs.astral.sh/uv/) there is nothing to install:
 `uvx chase-mcp` downloads and runs the server. Otherwise `pip install
 chase-mcp`, and use `chase-mcp` in place of `uvx chase-mcp`. The checks need
-nuXmv, and slugs for GR(1) synthesis (see [Installation](../getting-started.md#installation)).
+nuXmv, and slugs for GR(1) synthesis (see [Installation](../installation.md#the-tools-that-run-the-checks)).
 
 === "Claude Code"
 

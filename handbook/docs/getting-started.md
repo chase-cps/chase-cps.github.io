@@ -1,135 +1,71 @@
 # Getting started
 
-This page installs CHASE, then writes a first contract: a system contract and
-two component contracts, composed and checked.
+This page installs CHASE in two commands, checks a first specification from
+the command line, then writes the same contracts in Python. Other ways to
+install CHASE (Docker, the sources, the optional tools) are on the
+[Installation](installation.md) page.
 
-## Installation
-
-There are three ways to install CHASE: the Python package (the quickest), the
-Docker image (everything, including the demos and all the solvers), or the
-sources.
-
-### Python package
+## Install
 
 ```
 $> pip install chase-cps
+$> chase-cps install nuxmv --accept-license
+$> chase-cps doctor
 ```
 
-Wheels are available for Python 3.10 to 3.15 on Linux (x86_64 and aarch64,
-glibc 2.28 or later) and macOS 11 or later (arm64 and x86_64). Windows is not
-supported: use WSL or the Docker image.
+The first command installs the Python package and the `chase-cps` command
+(Linux and macOS, Python 3.10 or later). The checks call the model checker
+nuXmv, which the second command downloads into `~/.chase`; nuXmv is free for
+academic and non-commercial use only (see [Installation](installation.md)
+otherwise). `chase-cps doctor` lists the tools found and how to install the
+others.
 
-The package contains the CHASE library. The checks call external tools, which
-are installed separately:
+## A first check
 
-- [nuXmv](https://nuxmv.fbk.eu/) for contract-based verification and for
-  `remove_redundant`. nuXmv is free for academic and non-commercial use.
-- [slugs](https://github.com/VerifiableRobotics/slugs) for the other analyses
-  of GR(1) synthesis.
-
-`chase-cps install` downloads nuXmv from its site, and builds slugs from its
-sources, into `~/.chase`:
+A specification file holds contracts: here a system that answers every
+request, and two components, a queue that forwards each request and a server
+that answers it.
 
 ```
-$> chase-cps install nuxmv --accept-license    # Linux x86_64, macOS arm64
-$> chase-cps install slugs                     # needs a C++ compiler, make, and Boost
-$> chase-cps doctor                            # the tools found, and how to install the others
+NAME: first;
+
+CONTRACT System:
+    input boolean variable req;
+    output boolean variable grant;
+    Assumptions:
+        G(F(!(req)));
+    Guarantees:
+        G(req -> F(grant));
+
+CONTRACT Queue:
+    input boolean variable req;
+    output boolean variable fwd;
+    Guarantees:
+        G(req -> X(fwd));
+
+CONTRACT Server:
+    input boolean variable fwd;
+    output boolean variable grant;
+    Guarantees:
+        G(fwd -> X(grant));
 ```
 
-On macOS, nuXmv needs the libraries of Homebrew (`brew install libxml2 gmp
-libedit`). On Linux it needs `libxml2` and `libedit2`, and the C++ library of
-GCC 13 or later (Ubuntu 24.04, Debian 13, Fedora 39, or newer). The tools can
-also be installed by hand: they are looked up in the `PATH` and in
-`~/.chase/bin`, or given with the environment variables `CHASE_NUXMV` and
-`CHASE_SLUGS`.
-
-!!! note "Without nuXmv"
-    Where nuXmv cannot be used (e.g. for commercial purposes), the checks run
-    with [NuSMV](https://nusmv.fbk.eu/) (LGPL) instead: `chase-cps install
-    nusmv` installs it on Linux x86_64, or set `CHASE_NUSMV`. NuSMV has no
-    real type: the real variables are then checked with exact regions when
-    they are only compared with constants, and with predicate abstraction
-    otherwise.
-
-z3 (`pip install chase-cps[z3]`) checks the formulas over a bounded number
-of steps and the real variables, and is needed for repair and optimization.
-Yosys (`pip install chase-cps[rtl]`) reads Verilog.
-
-### Docker image
-
-The image has the whole toolchain: the CHASE tools, the Python package, the
-demos, gr1c, slugs, NuSMV, and Yosys. It has no nuXmv, whose license does
-not allow redistribution; in a container, `chase-cps install nuxmv
---accept-license` installs it (x86_64 only).
+Saved as `first.ltl`, it is checked with:
 
 ```
-$> docker pull ghcr.io/chase-cps/chase
-$> docker run --rm -it ghcr.io/chase-cps/chase
+$> chase-cps check first.ltl --refines Queue+Server System
+refines     Queue+Server <= System                   valid           0.03 s
 ```
 
-The container starts in the directory of the demos. All the demos are run and
-checked with:
+The queue and the server, composed, refine the system: together they do what
+the system must do. The [command line](interfaces/command-line.md) page has
+the other checks, and the [specification files](interfaces/logics-tool.md)
+page the language.
 
-```
-$> docker run --rm ghcr.io/chase-cps/chase /opt/chase/tests/demo-suite.sh
-```
+## The same in Python
 
-The image is built for x86_64; on ARM machines (e.g. Apple Silicon), add
-`--platform linux/amd64` to `docker run`. It can also be built from the
-sources, with nuXmv when its license is accepted:
-
-```
-$> git clone --recursive https://github.com/chase-cps/chase
-$> cd chase
-$> docker build --build-arg ACCEPT_NUXMV_LICENSE=yes -t chase .
-```
-
-### From the sources
-
-CHASE requires CMake 3.18 or later, a C++17 compiler, Python 3 with its
-development files, and pybind11:
-
-=== "Ubuntu"
-
-    ```
-    $> sudo apt-get install build-essential cmake git python3-dev pybind11-dev uuid-dev
-    ```
-
-=== "macOS"
-
-    ```
-    $> brew install cmake pybind11
-    ```
-
-Then clone the repository with its submodules and run the installation script:
-
-```
-$> git clone --recursive https://github.com/chase-cps/chase
-$> cd chase
-$> ./install.sh /path/to/install/directory
-```
-
-At the end, the script prints the lines to add to the shell configuration:
-
-```
-export PATH="/path/to/install/directory/chase/bin:$PATH"
-export PYTHONPATH="/path/to/install/directory/chase/lib:$PYTHONPATH"
-```
-
-The Python modules are built for the interpreter given by the `PYTHON`
-environment variable (by default `python3`). `pip install .` in the
-repository builds and installs the Python package from the sources.
-
-## A first contract
-
-This part writes a system contract and two component contracts. Then it:
-
-- composes the components, and checks that they refine the system;
-- reads a counterexample;
-- finds requirements in conflict.
-
-It needs `pip install chase-cps` and nuXmv
-(`chase-cps install nuxmv --accept-license`).
+The same contracts in Python: their composition, a counterexample, and
+requirements in conflict.
 
 ### The contracts
 
@@ -225,19 +161,12 @@ CONTRACT Bad_core
 guarantees cannot hold together. `unsat_core` gives a minimal set of terms that cannot hold
 together: removing any of them makes the rest satisfiable.
 
-### Next
+## Next
 
+- The [demos](demos/index.md): CHASE on aircraft, hardware, C code, drones,
+  and AI agents.
 - The [contract algebra](contracts/algebra.md), the [checks](contracts/checks.md),
   and [GR(1) synthesis](tools/synthesis.md).
 - The same operations from a [specification file](interfaces/logics-tool.md)
   with the [command line](interfaces/command-line.md), or from an AI agent
   with the [MCP server](interfaces/mcp.md).
-
-## Where the code is
-
-CHASE is on GitHub, in the [chase-cps](https://github.com/chase-cps)
-organization: the Python package in
-[chase](https://github.com/chase-cps/chase), the MCP server in
-[chase-mcp](https://github.com/chase-cps/chase-mcp), and the demos in
-[demos](https://github.com/chase-cps/demos). The others are on the
-[Contributing](contributing.md) page.
