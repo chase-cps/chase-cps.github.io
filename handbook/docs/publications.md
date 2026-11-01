@@ -40,8 +40,9 @@ To cite CHASE, please use the DATE 2018 paper:
 - Yifeng Xiao, Charles D. Lutz, Mauricio Castillo-Effen, Pierluigi Nuzzo.
   *Contract-Based Consistency and Availability Analysis for Distributed
   Cyber-Physical Systems*. International Symposium on Formal Methods and
-  Models for System Design (MEMOCODE), 2026. In CHASE: the timing contracts are
-  formalized with the Python interface of CHASE.
+  Models for System Design (MEMOCODE), 2026.
+  [Program](https://memocode2026.github.io/program.html). In CHASE: the timing
+  contracts are formalized with the Python interface of CHASE.
 - Yifeng Xiao, Pierluigi Nuzzo. *Contract-Based Architecture Exploration of
   Cyber-Physical Systems via Satisfiability Modulo Convex Programming*.
   Design, Automation and Test in Europe (DATE), 2026.
