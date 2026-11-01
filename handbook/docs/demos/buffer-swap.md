@@ -4,61 +4,69 @@ wide: true
 
 # Circuit buffer swap: the new buffer fails the old contract, but the quotient shows it fits
 
-**The question.** A buffer of a circuit is replaced by a smaller one,
-whose contract does not refine the old one. Can it take its place, and
-what must any buffer in that place satisfy?
+**The system.** In a circuit, a producer sends data to a consumer through
+a buffer, with a ready/valid handshake: the producer offers a value
+(`v_i`) and keeps it until the buffer is ready (`ready_o`); the buffer
+offers a value to the consumer (`v_o`, `data_o`) until the consumer takes
+it (`yumi_i`). The buffer is `bsg_two_fifo`, a FIFO of two entries from
+[BaseJump STL](https://github.com/bespoke-silicon-group/basejump_stl), an
+open library of hardware blocks in SystemVerilog. The requirement of the
+whole, _Pipeline_, says that every offer is taken sooner or later, and
+that an offered value stays until it is taken. Each part has a contract
+written in SystemVerilog Assertions (SVA); Yosys reads the Verilog of the
+buffers into state machines, and nuXmv checks them.
 
-**The result.**
+**The question.** The designer wants to replace the buffer with
+`bsg_one_fifo`, a FIFO of one entry, which is smaller. Its contract does
+not refine the old one. Can it still take the place of the old buffer,
+and what must any buffer in that place satisfy? Answering from the
+contracts avoids checking the whole circuit again for every candidate.
 
-- Refinement: the new buffer does not refine the old one; the
-  counterexample has 4 steps.
-- Quotient (the weakest contract a missing part must meet): _Slot_, the
-  contract of the place of the buffer, has 3 assumptions and 3
-  guarantees; the new buffer refines it.
-- RTL against contracts (Yosys and nuXmv): the RTL of `bsg_one_fifo`
-  implements _OneFifo_ and _Slot_, not _TwoFifo_.
-
-[![The old system (⪯ green), OneFifo against TwoFifo (⪯ red), and OneFifo in Slot (⪯ green)](../assets/demos/buffer-swap/overview-buffer-swap.png){ width="839" }](../assets/demos/buffer-swap/overview-buffer-swap.png)
-_The old system, OneFifo against TwoFifo, and OneFifo in Slot, the place of the buffer._
-
-A producer sends data to a consumer through a buffer, with a ready/valid
-handshake. The buffer is `bsg_two_fifo` of BaseJump STL, a FIFO of two
-entries; the demo replaces it with `bsg_one_fifo`, of one entry. The
-contracts are written in SystemVerilog Assertions.
+[![The pipeline: Producer, TwoFifo with its Verilog, and Consumer, inside the requirement Pipeline](../assets/demos/buffer-swap/system-pipeline.png){ width="838" }](../assets/demos/buffer-swap/system-pipeline.png)
+_The system: the producer, the buffer, and the consumer, inside the requirement Pipeline._
 
 ## The steps
 
+The tags on the boxes give the results of the checks: green holds, red
+fails; [Diagrams](../interfaces/diagrams.md) says
+how to read them.
+
 **Step 1. The old system.** _Producer_, _TwoFifo_, and _Consumer_,
-composed, refine _Pipeline_, and the RTL of `bsg_two_fifo` implements
-_TwoFifo_.
+composed,
+[refine](../contracts/checks.md#verification-tasks)
+_Pipeline_, and the Verilog of `bsg_two_fifo` implements _TwoFifo_ (M ⊨ C).
 
 [![Step 1: Producer, TwoFifo, and Consumer refine Pipeline; TwoFifo M ⊨ C green](../assets/demos/buffer-swap/step1-old-system.png){ width="834" }](../assets/demos/buffer-swap/step1-old-system.png)
-_Step 1: the old system refines Pipeline; the RTL implements TwoFifo._
+_Step 1: the old system refines Pipeline; the Verilog implements TwoFifo._
 
 **Step 2. The new buffer against the old one.** _OneFifo_ does not refine
-_TwoFifo_. In the counterexample of 4 steps, the empty buffer takes a
-value at step 1 and is not ready at step 2, where _TwoFifo_ guarantees
-that it is.
+_TwoFifo_, so it cannot replace it on the strength of its contract alone.
+In the counterexample of 4 steps, the empty buffer takes a value at step
+1 and is not ready at step 2, where _TwoFifo_ guarantees that it is.
 
 [![Step 2: OneFifo does not refine TwoFifo; the counterexample in the panel, the broken guarantee in red](../assets/demos/buffer-swap/step2-onefifo-counterexample.png)](../assets/demos/buffer-swap/step2-onefifo-counterexample.png)
 _Step 2: OneFifo does not refine TwoFifo; the guarantee it breaks in red._
 
-**Step 3. What the place needs.** The quotient Slot = Pipeline / (Producer
-⊗ Consumer), the dashed box, has 3 assumptions and 3 guarantees. _Slot_
-may assume what the consumer guarantees, that an offer is taken sooner or
-later, so one entry is enough: _OneFifo_ refines _Slot_, and the system
-with _OneFifo_ refines _Pipeline_.
+**Step 3. What the place needs.** CHASE computes the
+[quotient](../contracts/algebra.md#example-the-contract-of-a-missing-component)
+Slot = Pipeline / (Producer ⊗ Consumer), the dashed box: the weakest
+contract any buffer in that place must meet, derived from the contracts.
+It has 3 assumptions and 3 guarantees. _Slot_ may assume what the
+consumer guarantees, that an offer is taken sooner or later
+(`G (v_o -> F yumi_i)`), so one entry is enough: _OneFifo_ refines _Slot_,
+and the system with _OneFifo_ refines _Pipeline_.
 
 [![Step 3: Slot, the quotient, with OneFifo inside; the tag ⪯ green](../assets/demos/buffer-swap/step3-slot.png){ width="823" }](../assets/demos/buffer-swap/step3-slot.png)
 _Step 3: OneFifo refines Slot, the contract of the place._
 
-**Step 4. On the RTL.** Yosys reads the RTL, and nuXmv checks it: the RTL
-of `bsg_one_fifo` implements _OneFifo_ and _Slot_, and does not implement
-_TwoFifo_. The script also writes _Slot_ as SVA (`out/slot.sv`), for
-Jasper (`jasper/run.tcl`, not run by the script).
+**Step 4. On the Verilog.** The Verilog of `bsg_one_fifo` implements
+_OneFifo_ and _Slot_, and does not implement _TwoFifo_. The script also
+writes _Slot_ as SVA (`out/slot.sv`), so that a commercial tool such as
+Jasper can check any new buffer against it (`jasper/run.tcl`, not run by
+the script).
 
 [![Step 4: the RTL of bsg_one_fifo in Slot, M ⊨ C green](../assets/demos/buffer-swap/step4-rtl-onefifo.png){ width="463" }](../assets/demos/buffer-swap/step4-rtl-onefifo.png)
-_Step 4: the RTL of bsg_one_fifo implements its contract (M ⊨ C)._
+_Step 4: the Verilog of bsg_one_fifo implements its contract (M ⊨ C)._
 
 ## Run it
 
