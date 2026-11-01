@@ -55,9 +55,11 @@ method is chosen by the formulas:
   term and the first one. The question is written on that many copies of
   the state, with the constants shared and no temporal operator, and z3
   finds the least cost exactly. This is the small-model property of the
-  fragment of LTL with `F` and `G` only (Sistla and Clarke, 1985). It
-  takes contracts only: with a state machine the states cannot be chosen
-  freely.
+  formulas of temporal height one (Demri and Schnoebelen, Information and
+  Computation 2002, Proposition 7.2; for `F` and `G`, Sistla and Clarke,
+  JACM 1985, Theorem 3.4). It takes contracts only: with a state machine,
+  or a term that links two steps (`X`, `x'`), the states cannot be chosen
+  freely, and a nested term (`G F p`) depends on the order of the states.
 - `projection`, on formulas over a bounded number of steps with real
   parameters: the values for which the check fails are computed at once
   by eliminating the other variables (z3), then one optimization.
