@@ -8,6 +8,11 @@ modeling formalisms, and analysis tools. It has been applied to industrial
 design examples, including the control of aircraft power distribution
 networks and the arbitration of a mixed-criticality automotive bus.
 
+<figure markdown>
+![The CHASE framework: front ends, libraries, back ends](assets/chase-framework.png){ width="600" }
+<figcaption>The front ends build the CHASE representation of a design problem, the libraries manipulate systems and contracts, and the back ends translate the problems for the verification and synthesis tools.</figcaption>
+</figure>
+
 The requirements of the components and of the system are written as
 assume-guarantee contracts. With them, CHASE:
 
@@ -21,11 +26,6 @@ assume-guarantee contracts. With them, CHASE:
 The contracts are written in Python, in the specification language of
 CHASE, in SystemVerilog Assertions, in the clauses of a C file, or by an
 AI agent through the MCP server.
-
-<figure markdown>
-![The CHASE framework: front ends, libraries, back ends](assets/chase-framework.png){ width="600" }
-<figcaption>The front ends build the CHASE representation of a design problem, the libraries manipulate systems and contracts, and the back ends translate the problems for the verification and synthesis tools.</figcaption>
-</figure>
 
 ```
 $> pip install chase-cps
