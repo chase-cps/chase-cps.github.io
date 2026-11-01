@@ -15,15 +15,17 @@ To cite CHASE, please use the DATE 2018 paper:
 }
 ```
 
-## Papers about CHASE
+## Papers
+
+### The framework
 
 - Pierluigi Nuzzo, Michele Lora, Yishai A. Feldman, Alberto
   Sangiovanni-Vincentelli. *CHASE: Contract-Based Requirement Engineering for
   Cyber-Physical System Design*. Design, Automation and Test in Europe
   (DATE), 2018.
   [PDF](https://past.date-conference.com/proceedings-archive/2018/pdf/0451.pdf)
-  In CHASE: the `DATE18` directory of the [demos](https://github.com/chase-cps/demos)
-  has the specification files of its experiments.
+  The specification files of its experiments are in the `DATE18` directory
+  of the [demos](https://github.com/chase-cps/demos).
 - Michele Lora, Pierluigi Nuzzo. *A Contract-Based Requirement Engineering
   Framework for the Design of Industrial Cyber-Physical Systems*.
   Work-in-Progress, ACM/IEEE International Conference on Cyber-Physical
@@ -31,39 +33,50 @@ To cite CHASE, please use the DATE 2018 paper:
   project. [DOI](https://doi.org/10.1109/ICCPS54341.2022.00046)
   [PDF](https://iris.univr.it/bitstream/11562/1077207/1/ICCPS_22_WiP_CHASE.pdf)
 
-## Work that uses CHASE
+### Design-space exploration
 
-- Yifeng Xiao, Pierluigi Nuzzo. *Symbolic Temporal Supervision of LLM Agents
-  Using Contracts*. arXiv 2609.18128, 2026.
-  [arXiv](https://arxiv.org/abs/2609.18128). In CHASE: ContrAgent exports its
-  contract libraries to CHASE for design-time analysis.
+- Yifeng Xiao, Pierluigi Nuzzo. *Contract-Based Architecture Exploration of
+  Cyber-Physical Systems via Satisfiability Modulo Convex Programming*.
+  Design, Automation and Test in Europe (DATE), 2026.
+  [DOI](https://doi.org/10.23919/DATE69613.2026.11539305). The contracts are
+  written and composed with CHASE.
+- Yifeng Xiao, Chanwook Oh, Michele Lora, Pierluigi Nuzzo. *Efficient
+  Exploration of Cyber-Physical System Architectures Using Contracts and
+  Subgraph Isomorphism*. Design, Automation and Test in Europe (DATE), 2024.
+  Best Paper Award. [IEEE](https://ieeexplore.ieee.org/document/10546764).
+  The exploration tool, ContrArc, is built on the CHASE library.
+- Christopher Leet, Chanwook Oh, Michele Lora, Sven Koenig, Pierluigi Nuzzo.
+  *Co-Design of Topology, Scheduling, and Path Planning in Automated
+  Warehouses*. Design, Automation and Test in Europe (DATE), 2023.
+  [DOI](https://doi.org/10.23919/DATE56975.2023.10137069). The contracts of
+  the components and of the workload are compiled and composed with CHASE.
+
+### Timing of distributed systems
+
 - Yifeng Xiao, Charles D. Lutz, Mauricio Castillo-Effen, Pierluigi Nuzzo.
   *Contract-Based Consistency and Availability Analysis for Distributed
   Cyber-Physical Systems*. International Symposium on Formal Methods and
   Models for System Design (MEMOCODE), 2026.
-  [Program](https://memocode2026.github.io/program.html). In CHASE: the timing
-  contracts are formalized with the Python interface of CHASE.
-- Yifeng Xiao, Pierluigi Nuzzo. *Contract-Based Architecture Exploration of
-  Cyber-Physical Systems via Satisfiability Modulo Convex Programming*.
-  Design, Automation and Test in Europe (DATE), 2026.
-  [DOI](https://doi.org/10.23919/DATE69613.2026.11539305). In CHASE: the contracts are
-  formalized and modeled with CHASE.
+  [Program](https://memocode2026.github.io/program.html). The timing
+  contracts are written with the Python interface of CHASE; the demos
+  [Drone timing](demos/drone-timing.md) and
+  [Fire-suppression drones in C](demos/drone-grid.md) follow it.
+
+### AI agents
+
+- Yifeng Xiao, Pierluigi Nuzzo. *Symbolic Temporal Supervision of LLM Agents
+  Using Contracts*. arXiv 2609.18128, 2026.
+  [arXiv](https://arxiv.org/abs/2609.18128). The contract libraries of its
+  supervisor, ContrAgent, are exported to CHASE for analysis at design time.
+
+### Industrial systems
+
 - Michele Lora, Sebastiano Gaiardelli, Chanwook Oh, Stefano Spellini,
   Pierluigi Nuzzo, Franco Fummi. *Design Automation for Cyber-Physical
   Production Systems: Lessons Learned from the DeFacto Project*. Design,
   Automation and Test in Europe (DATE), 2024.
-  [DOI](https://doi.org/10.23919/DATE58400.2024.10546563). In CHASE: the methods of the
+  [DOI](https://doi.org/10.23919/DATE58400.2024.10546563). The methods of the
   project are implemented in CHASE.
-- Yifeng Xiao, Chanwook Oh, Michele Lora, Pierluigi Nuzzo. *Efficient
-  Exploration of Cyber-Physical System Architectures Using Contracts and
-  Subgraph Isomorphism*. Design, Automation and Test in Europe (DATE), 2024.
-  Best Paper Award. [IEEE](https://ieeexplore.ieee.org/document/10546764). In CHASE:
-  The architecture exploration tool (ContrArc) is built on the CHASE library.
-- Christopher Leet, Chanwook Oh, Michele Lora, Sven Koenig, Pierluigi Nuzzo.
-  *Co-Design of Topology, Scheduling, and Path Planning in Automated
-  Warehouses*. Design, Automation and Test in Europe (DATE), 2023.
-  [DOI](https://doi.org/10.23919/DATE56975.2023.10137069). In CHASE: the component and
-  workload contracts are compiled and composed with CHASE.
 
 ## Demonstrations
 
