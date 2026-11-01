@@ -39,8 +39,8 @@ print(r.status, r.backend)      # invalid nuxmv/bdd
 ```
 
 On the command line the option is `--engine`. Formulas with `signed()` or
-`unsigned()` are checked with BDDs only: IC3 of nuXmv 2.2.0 gives wrong
-answers on them.
+`unsigned()` are checked with BDDs only: in our tests, IC3 of nuXmv 2.2.0
+did not give the same answers as BDDs on them.
 
 ## SMV models with their specifications
 

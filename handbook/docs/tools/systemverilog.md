@@ -118,8 +118,8 @@ The meaning is that of the standard, IEEE 1800-2017 (chapter 16, and Annex
 F for `disable iff`), not that of a tool. Tools may differ in corner cases:
 when the failure of an attempt is already decided by the values before a
 reset, but a sequence of the attempt is still running when the reset comes,
-the standard gives a failure and some tools (Jasper) a disabled attempt. To
-compare with a tool, run its checks on the SVA.
+the standard gives a failure and some tools a disabled attempt. To compare
+with a tool, run its checks on the SVA.
 
 ## RTL
 
