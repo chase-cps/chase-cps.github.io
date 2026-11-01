@@ -92,9 +92,8 @@ G !(grant1 & grant2)
 ```
 
 The two initial guarantees of *Greedy* (`!grant1`, `!grant2`) are not in the
-core: they play no part in the conflict. The search shrinks the justice
-guarantees first, then the safety ones, then the initial ones (QuickCore,
-Maoz and Shalom, ICSE 2021), one call to slugs per test.
+core: they play no part in the conflict. The search follows QuickCore
+(Maoz and Shalom, ICSE 2021).
 
 ## Well-separation
 
@@ -125,14 +124,10 @@ is_well_separated(cs["Polite"]).status     # separated
 asking only after a grant it asked for. The arbiter can no longer force a
 violation, and the contract is well-separated.
 
-The check is one realizability check with slugs, with the goal of the
-controller replaced by `G F false` (Klein and Pnueli, HVC 2010; Maoz and
-Ringert, FSE 2016): if the controller can still win, it can only win by
-breaking the assumptions. The controller must keep its initial and safety
-guarantees while it does so (Def. 4 of Maoz and Ringert): a violation it can
-force only by breaking its own guarantees is not a defect of the
-assumptions. `with_guarantees=False` leaves the guarantees out (Def. 2).
-Only violations that can be forced from every initial state are detected.
+The check asks whether the controller can still win with the goal
+`G F false` (Klein and Pnueli, HVC 2010; Maoz and Ringert, FSE 2016): if it
+can, it wins only by breaking the assumptions, while keeping its own initial
+and safety guarantees.
 
 ## Vacuity
 
@@ -171,14 +166,6 @@ grant2 never ['G F !req2']
 With G F !req1, the guarantee G F (grant1 | !req1) holds without any grant.
 The core is the assumption that makes it so; it is too strong.
 
-!!! note "Two weaker tests are not used"
-    The test on a controller M, M ∧ A → φ[y ← false], and the rewrite
-    Real(A, G[y ← false]) both call a good controller vacuous when an
-    assumption ties the release of the environment to y, such as
-    G ((req ∧ grant) → X !req): the controller grants, the request is
-    released, and φ[grant ← false] holds because it granted. Forcing y false
-    in the behavior asks the right question.
-
 ## Redundancy in the GR(1) game
 
 A term is redundant in the game when removing it does not change the
@@ -206,28 +193,9 @@ for t in v.removed:
 guarantee justice G F (grant1 | !req1 | grant2) ['G F (grant1 | !req1)']
 ```
 
-Each term is compared with a premise set that depends on its kind, one call
-to nuXmv per term:
-
-| Kind | Premise set |
-|---|---|
-| initial | the other initial terms of its side; for a guarantee, also the initial assumptions |
-| safety `G t` | the bodies of the other safety terms of its side (for a guarantee, also of the safety assumptions), as a propositional implication over the current and next values |
-| justice `G F j` | the initial and safety terms of both sides, and the other justice terms of its side; for a guarantee, also the justice assumptions |
-
-### With or without `synth`?
-
-Without `synth`, `remove_redundant` ([contract-based verification](../contracts/checks.md)) keeps A → G
-instead. On *Fair* both remove R8. They differ when the assumptions are
-wrong:
-
-| Contract | `remove_redundant(c)` | `remove_redundant(c, synth=True)` |
-|---|---|---|
-| A: G F (x ∧ !x); G: G g, G !g | drops both guarantees, since A cannot hold: now realizable | drops nothing: unrealizable, as before |
-| A: G F g; G: G g | drops nothing | drops G F g: the component keeps G g anyway, but the contract is stronger |
-
-In the game, the component must keep its safety guarantees even when the
-environment breaks its justice assumptions; and an assumption that the
-guarantees make hold does not matter in the game, but it does for A → G.
-Use `synth=True` before synthesis, and the default before the algebra and
-the checks.
+Without `synth`, `remove_redundant` ([contract-based
+verification](../contracts/checks.md)) keeps A → G instead. The two differ
+only when the assumptions are wrong: in the game, the component must keep
+its safety guarantees even when the environment breaks its justice
+assumptions. Use `synth=True` before synthesis, and the default before the
+algebra and the checks.

@@ -114,7 +114,6 @@ other. A function with no clause has a contract with no term: its check
 is that of the code alone (overflow, division by zero, access out of
 bounds, failed assert).
 
-`chase-cps view FILE.c` (and the CHASE button of VS Code on a `.c` file)
-draws each function as a component with its code, checked: the tag
+`chase-cps view FILE.c` draws each function as a component with its code, checked: the tag
 `M ⊨ C` for a function with clauses, and `safe` for one with none. A
 failure shows the call that breaks it, and the term it breaks in red.

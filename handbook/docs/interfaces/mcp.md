@@ -104,5 +104,4 @@ The skill is in `skills/chase-contracts` of the repository, in the
 - how to explain a counterexample.
 
 The skill also works without the server: the agent then uses the Python
-package. Its examples are run by the tests of the repository, so the
-results they state are those that CHASE returns.
+package.

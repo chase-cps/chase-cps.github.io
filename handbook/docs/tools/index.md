@@ -10,6 +10,8 @@ input of a tool, and reads its answer back:
 - [GR(1) synthesis](synthesis.md), with slugs or gr1c: whether a component
   can be synthesized from a contract in the GR(1) fragment, the controllers,
   and the explanation of an unrealizable contract.
+- [C programs](c-programs.md), with ESBMC or CBMC: C functions checked
+  against contracts, written in Python or in the clauses of the C file.
 - [Hardware: SVA and RTL](systemverilog.md), with any tool that reads SVA
   (Jasper, simulators) and with Yosys: contracts read from SystemVerilog
   Assertions and written back as checker modules, and RTL read as state

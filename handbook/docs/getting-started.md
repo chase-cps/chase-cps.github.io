@@ -51,8 +51,9 @@ also be installed by hand: they are looked up in the `PATH` and in
     they are only compared with constants, and with predicate abstraction
     otherwise.
 
-For the real variables, z3 refines the predicate abstraction when it is
-installed: `pip install chase-cps[reals]`.
+z3 (`pip install chase-cps[z3]`) checks the formulas over a bounded number
+of steps and the real variables, and is needed for repair and optimization.
+Yosys (`pip install chase-cps[rtl]`) reads Verilog.
 
 ### Docker image
 
@@ -128,8 +129,7 @@ This part writes a system contract and two component contracts. Then it:
 - finds requirements in conflict.
 
 It needs `pip install chase-cps` and nuXmv
-(`chase-cps install nuxmv --accept-license`). The outputs below are those of
-chase-cps 0.5.0.
+(`chase-cps install nuxmv --accept-license`).
 
 ### The contracts
 
@@ -235,13 +235,9 @@ together: removing any of them makes the rest satisfiable.
 
 ## Where the code is
 
-CHASE is developed in the [chase-cps](https://github.com/chase-cps)
-organization on GitHub:
-
-- [chase](https://github.com/chase-cps/chase): the Python package, the build
-  of the C++ modules, the Docker image, and the documentation.
-- [chase-mcp](https://github.com/chase-cps/chase-mcp): the MCP server.
-- [demos](https://github.com/chase-cps/demos): the demos.
-
-The other repositories, and how to contribute, are on the
+CHASE is on GitHub, in the [chase-cps](https://github.com/chase-cps)
+organization: the Python package in
+[chase](https://github.com/chase-cps/chase), the MCP server in
+[chase-mcp](https://github.com/chase-cps/chase-mcp), and the demos in
+[demos](https://github.com/chase-cps/demos). The others are on the
 [Contributing](contributing.md) page.

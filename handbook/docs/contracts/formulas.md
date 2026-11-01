@@ -43,6 +43,7 @@ tank = Contract.from_dict({"name": "Tank", "inputs": {"flow": "real"},
 | `X p` | p holds at the next step |
 | `G p`, `F p` | p holds at every step, at some step |
 | `p U q`, `p R q`, `p W q` | until, release, weak until |
+| `G[a,b] p`, `F[a,b] p`, `p U[a,b] q` | the same over the steps a to b |
 | `x'` | the value of x at the next step |
 | `past(x, n)` | the value of x n steps before (any value in the first n steps) |
 
@@ -85,12 +86,8 @@ From the loosest to the tightest: `<->`, `->`, `|` `xor`, `&`, `U R W`, the
 unary operators (`! G F X`), the relations, `<< >>`, `+ -`, `* / mod`, `::`,
 the bits `x[7:0]`. `->` and `U R W` group to the right, the other binary
 operators to the left. So `G a -> b` is `(G a) -> b`; write `G (a -> b)`.
-This is the precedence of LTL tools such as Spot, NuSMV, and nuXmv.
-
-The logics language has the same precedence since chase-cps 0.5.1. Before,
-all its binary operators had the same precedence, and `G`, `F`, `X` bound
-looser than them (`G a -> b` was `G (a -> b)`); parentheses give the same
-formula in every version.
+This is the precedence of LTL tools such as Spot, NuSMV, and nuXmv, and of
+the logics language.
 
 ## What takes which formulas
 
@@ -109,17 +106,6 @@ synthesis needs [formulas in the GR(1) fragment](../tools/synthesis.md).
 ## SystemVerilog Assertions
 
 `parse_sva` reads the `assume property` and `assert property` statements of
-SystemVerilog as formulas of a contract, and `to_sva` writes the formulas of
-a contract as SVA:
-
-| SVA | Formula |
-|---|---|
-| `assert property (a \|=> b)` | the guarantee `G (a -> X b)` |
-| `assume property (req \|-> ##[1:2] gnt)` | the assumption `G (req -> X gnt \| X X gnt)` |
-| `logic [7:0] x` | a variable `word[8]` |
-| `x == $past(x)` | `G x' = x`, from the second cycle |
-| `y == $past(x, 2)` | `G X X y = past(x, 2)` |
-
-The widths of Verilog are kept, sequences of bounded length are read
-exactly, and the statements that cannot be read are listed with the reason.
-The details are in [SystemVerilog Assertions](../tools/systemverilog.md).
+SystemVerilog as the assumptions and the guarantees of a contract, and
+`to_sva` writes a contract back as a checker module: see
+[Hardware: SVA and RTL](../tools/systemverilog.md).

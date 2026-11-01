@@ -58,16 +58,5 @@ In Jupyter, a system or a contract draws itself.
   options are listed in [Command line](command-line.md#drawing-a-specification).
 - MCP: the `visualize` tool of the [MCP server](mcp.md) draws the same
   diagrams for an AI agent.
-- VS Code: an extension, not released yet, shows the diagram beside the
-  editor:
-    - the diagram is drawn again as you type, without the checks;
-    - when the file opens and when it is saved, the checks run for a few
-      seconds: A∧G of each contract, and the refinements drawn, green or
-      red; the Check button runs the rest, and three dots mark the results
-      being checked;
-    - the results are kept next to the file (`charger.results.json`): a
-      contract that has not changed is not checked again, and whoever
-      opens the file sees them;
-    - the errors are marked in the text;
-    - a double click on a box, or on a term, goes to its line in the file;
-    - the cursor marks its box, and its term, in the diagram.
+- VS Code: an extension that shows the diagram beside the editor is in
+  preparation.

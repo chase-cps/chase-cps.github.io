@@ -1,7 +1,7 @@
 # Command line
 
-The Python package installs the `chase-cps` command, with four commands:
-`check`, `view`, `install`, and `doctor`.
+The Python package installs the `chase-cps` command, with the commands
+`check`, `repair`, `view`, `export`, `install`, and `doctor`.
 
 In the options, a contract is `NAME`, or `NAME+NAME+...` for the
 composition of the contracts. A model is a state machine in an SMV file, or
@@ -118,8 +118,6 @@ without assertions), drawn with its state machine.
 >   to the file, `charger.ltl` → `charger.results.json`). A check of
 >   contracts that have not changed is read from it, not run again._
 > - `--no-results` _Keeps no results._
-> - `--progress` _Writes each result on the standard error as soon as it is
->   known, for an editor that shows them one by one._
 > - `--no-checks` _Leaves the three checks above out._
 >
 > The page:
@@ -164,6 +162,17 @@ the file:
 # view: --implementation models/arb.json Arb --check --open Arb
 CONTRACT Arb ...
 ```
+
+## Repairing and exporting
+
+`chase-cps repair FILE` takes the checks of `chase-cps check` and
+`--param NAME=LOW..HIGH` (`:int` for an integer), and finds the values of
+the constants that make the check pass ([Repair](../contracts/repair.md)).
+
+`chase-cps export FILE --to smv|smt|gr1|sva|c|spec|json` writes a check, or
+the contracts, as the input of a tool you run yourself: nuXmv or NuSMV
+(`smv`), z3 or cvc5 (`smt`), slugs or gr1c (`gr1`), an SVA checker, ESBMC
+or CBMC (`c`).
 
 ## Installing the solvers
 

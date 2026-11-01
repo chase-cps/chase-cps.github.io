@@ -17,9 +17,10 @@ Its modules are grouped as follows:
 - **GR(1) synthesis** (`chase_cps.gr1`): `is_realizable`, `synthesize`,
   `unrealizable_core`, `is_well_separated`, `is_vacuous`, and
   `remove_redundant(c, synth=True)`.
+- **Repair and optimization** (`chase_cps.repair`, `chase_cps.optimize`):
+  `repair`, `minimize`, `maximize` ([Repair](../contracts/repair.md)).
 
-All the names are also in `chase_cps` itself. The modules of version 0.3.0
-(`chase_cps.checks`, `chase_cps.cores`) still give them.
+All the names are also in `chase_cps` itself.
 
 The contracts are read and written in other formats with:
 
@@ -32,6 +33,10 @@ The contracts are read and written in other formats with:
   (see [GR(1) synthesis](../tools/synthesis.md)).
 - `load_dsl(path)`: reads a problem written in the domain-specific language
   of CHASE.
+- `load_smv(path)` and `load_c(path)`: read an SMV model with its
+  specifications, and the functions of a C file with their clauses, as
+  contracts with their implementations ([Model
+  checking](../tools/model-checking.md), [C programs](../tools/c-programs.md)).
 
 `chase_cps.viz` draws contracts, components, and systems (see
 [Diagrams](diagrams.md)).
@@ -66,5 +71,5 @@ Every check returns a result with a `status` (`valid`, `invalid`, `sat`,
 `trace` of a failed check, and `to_dict()` for JSON. The details are in
 [Checks](../contracts/checks.md#results).
 
-The full API, generated from the docstrings, is in the
-[API reference](https://chase-cps.github.io/api/).
+The full API is in the docstrings: `help(chase_cps.refines)`,
+`help(chase_cps.repair)`, and so on.

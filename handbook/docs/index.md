@@ -13,13 +13,14 @@ assume-guarantee contracts. With them, CHASE:
 
 - composes the contracts, and checks that the components refine the system;
 - finds the requirements that are in conflict;
-- checks implementations (formulas, state machines, RTL) against the
+- checks implementations (state machines, RTL, C functions) against the
   contracts;
-- synthesizes controllers.
+- repairs the constants of a check that fails, and synthesizes controllers;
+- draws all of it as a diagram.
 
 The contracts are written in Python, in the specification language of
-CHASE, or in SystemVerilog Assertions, or by an AI agent through the MCP
-server.
+CHASE, in SystemVerilog Assertions, in the clauses of a C file, or by an
+AI agent through the MCP server.
 
 <figure markdown>
 ![The CHASE framework: front ends, libraries, back ends](assets/chase-framework.png){ width="600" }

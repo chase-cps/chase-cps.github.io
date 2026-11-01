@@ -39,11 +39,6 @@ On the command line the option is `--engine`. Formulas with `signed()` or
 `unsigned()` are checked with BDDs only: IC3 of nuXmv 2.2.0 gives wrong
 answers on them.
 
-!!! note "Integers out of range"
-    `load_spec` warns when an integer is compared with a constant outside its
-    range, for instance `credits >= 90` with `credits` declared without a
-    range (so 0 to 16): such a comparison has the same value at every step.
-
 ## SMV models with their specifications
 
 An SMV file of nuXmv or NuSMV with `LTLSPEC` or `INVARSPEC` is read as a
@@ -53,7 +48,7 @@ with no assumption and a guarantee for each specification (`LTLSPEC p` is
 `p`, `INVARSPEC p` is `G p`, `next(x)` is `x'`, `V` is `R`), and the model
 without the specifications as its implementation. The inputs are the IVAR
 variables, the outputs the VAR and FROZENVAR ones. `chase-cps view
-FILE.smv --check` (and VS Code) draws it as a component: each
+FILE.smv --check` draws it as a component: each
 specification is a term, and the one that a counterexample breaks is red.
 An enumerated type (`{idle, busy}`) is read as the integers 0, 1, ... in
 the order written, in the contract and in the model (the traces show the

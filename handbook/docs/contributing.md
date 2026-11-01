@@ -22,8 +22,8 @@ most serious kind of bug: please report it even if you are not sure.
    algebra or to a check, a property test that compares it with its
    definition.
 3. Update the documentation and the changelog, and open a pull request. The
-   CI builds and tests CHASE on Ubuntu and macOS, with AddressSanitizer, and
-   runs the demos; it must pass.
+   CI builds and tests CHASE on Ubuntu and macOS, and runs the demos; it
+   must pass.
 
 The operations follow their definitions in the literature, and the names
 are the terms of contract theory.
@@ -57,39 +57,9 @@ pull request to `chase` does).
 
 ## Repositories
 
-CHASE is developed in the [chase-cps](https://github.com/chase-cps)
-organization on GitHub. CHASE is organized in the following components,
-available at the corresponding repositories. Each module is developed in its
-own repository, and can be built on its own.
-
-- **chase**: the entry point. It collects all the components as git
-  submodules, with the scripts to build and install them, the Docker image,
-  the Python package `chase-cps`, and the documentation.
-  [Link to the repository](https://github.com/chase-cps/chase)
-- **core-library**: the library providing the classes and structures
-  required to represent design problems, systems, and contracts using
-  CHASE, the contract algebra, and their Python bindings. It is the main
-  component of the CHASE framework.
-  [Link to the repository](https://github.com/chase-cps/core-library)
-- **chase-backends**: collection of backends encoding CHASE problems into
-  different external tools, *i.e.*, slugs, gr1c, and the SMV language of
-  nuXmv and NuSMV. A printer for PySTL, written for an early version of
-  PyCASSE, is kept but does not run with the current one.
-  [Link to the repository](https://github.com/chase-cps/chase-backends)
-- **logics_tool**: tool providing a console to manipulate assume-guarantee
-  contracts expressed using a logics-based language.
-  [Link to the repository](https://github.com/chase-cps/logics_tool)
-- **DSL_tool**: tool using a Domain Specific Language to specify discrete
-  timed problems defined over architectures modeled using graphs.
-  [Link to the repository](https://github.com/chase-cps/DSL_tool)
-- **third_party**: third-party libraries required to build CHASE (ANTLR4 C++
-  runtime).
-  [Link to the repository](https://github.com/chase-cps/third_party)
-- **demos**: demonstrations and benchmarks of CHASE.
-  [Link to the repository](https://github.com/chase-cps/demos)
-- **chase-mcp**: the MCP server and the skill for AI agents.
-  [Link to the repository](https://github.com/chase-cps/chase-mcp)
-
+The repositories are those of the table above, in the
+[chase-cps](https://github.com/chase-cps) organization on GitHub; `chase`
+collects the others as git submodules, with the scripts to build them.
 The releases are listed in the
 [changelog](https://github.com/chase-cps/chase/blob/master/CHANGELOG.md). The
 Python packages are [chase-cps](https://pypi.org/project/chase-cps/) and

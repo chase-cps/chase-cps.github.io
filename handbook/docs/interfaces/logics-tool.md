@@ -37,11 +37,8 @@ CONTRACT Spec:
   `= != < <= > >=`, the arithmetic `+ - * /`, and `x'` for the value of `x`
   in the next step. `#` starts a comment.
 
-The precedence is that of LTL tools (Spot, NuSMV, nuXmv), from the
-tightest: `! G F X`, then `U R`, `&`, `|`, `->`, `<->`. So `G a -> b` is
-`(G a) -> b`; write `G (a -> b)`. Before chase-cps 0.5.1 all the binary
-operators had the same precedence and `G`, `F`, `X` bound looser than them;
-parentheses give the same formula in every version.
+The precedence is that of the [formulas](../contracts/formulas.md#precedence):
+`G a -> b` is `(G a) -> b`; write `G (a -> b)`.
 
 
 ## The console of logics_tool
@@ -61,9 +58,6 @@ The commands are:
 - `verify C file` and `refines C1 C2 file`, which write an SMV model;
 - `synthesize C file solver`, which writes a specification for slugs or
   gr1c.
-
-The console also accepts the names of its first version: `conjunction` for
-`conjoin`, `quotient` for `divide`, and `refinement` for `refines`.
 
 The variables of two contracts are matched:
 

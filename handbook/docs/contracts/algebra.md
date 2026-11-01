@@ -5,18 +5,10 @@ assume-guarantee contracts, and the CHASE core library computes them in
 closed form, without a solver. In Python they are methods of `Contract`, and
 each one returns a new contract.
 
-## Assume-guarantee contracts
-
-A contract C = (A, G) describes a component by what it **assumes** of its
-environment (A) and what it **guarantees** when the assumptions hold (G). In
-CHASE, A and G are LTL formulas over the variables of the component: the
-inputs are set by the environment, the outputs by the component. The contract
-allows the behaviors of A → G, and (A, A → G) is its **saturated** form, with
-the same behaviors; CHASE reads every contract saturated.
-
 ## The operations
 
-C1 = (A1, G1) and C2 = (A2, G2) are saturated contracts.
+C1 = (A1, G1) and C2 = (A2, G2) are saturated contracts: G stands for
+A → G ([contract theory](index.md)).
 
 | Operation | Result (A, G) | Python |
 |---|---|---|
@@ -136,10 +128,6 @@ two viewpoints, and the [BufferSwap demo](../demos/buffer-swap.md) divides
 the system by the neighbours of a buffer. Conjunction, disjunction, and
 separation have no such form: their assumption or guarantee is a
 disjunction.
-
-Pacti computes the quotient of polyhedral terms the same way when A1 implies
-A2. Otherwise it assumes A1 alone, since A2 → g is not a polyhedron: the
-result refines the quotient, so it is correct but smaller.
 
 ## Sources
 

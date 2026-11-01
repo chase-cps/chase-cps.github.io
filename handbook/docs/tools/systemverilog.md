@@ -117,6 +117,25 @@ reset, but a sequence of the attempt is still running when the reset comes,
 the standard gives a failure and some tools (Jasper) a disabled attempt. To
 compare with a tool, run its checks on the SVA.
 
-The reading is tested against a reference interpreter of the standard on
-random properties and traces, against Verilator, and against Jasper: each
-property and the SVA written back from its contract were proved equivalent.
+## RTL
+
+A Verilog or SystemVerilog module is a state machine:
+`Model.from_rtl(files, top)` reads it with Yosys
+(`pip install chase-cps[rtl]`), and `is_implementation`, `is_environment`,
+and `is_receptive` take it. The ports are the variables of the contracts (a
+1-bit port is a Boolean, a wider one a word), and one step is one cycle.
+
+```
+from chase_cps import Model, is_implementation
+
+m = Model.from_rtl(["bsg_dff_reset.sv", "bsg_dff_en.sv", "bsg_one_fifo.sv"],
+                   "bsg_one_fifo", parameters={"width_p": 4}, reset="reset_i",
+                   names={"ready_and_o": "ready_o"})
+print(is_implementation(m, slot).status)
+```
+
+`parameters` sets the parameters of the top module, `names` renames ports,
+`defines` gives macros, and `reset` holds the reset in the first step and
+checks the contracts from the step after it. The checks are those of nuXmv,
+for small and medium designs. The [Buffer swap demo](../demos/buffer-swap.md)
+checks the RTL of two FIFOs.
