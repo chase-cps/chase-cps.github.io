@@ -15,9 +15,7 @@ To cite CHASE, please use the DATE 2018 paper:
 }
 ```
 
-## Papers
-
-### The framework
+## Papers about CHASE
 
 - Pierluigi Nuzzo, Michele Lora, Yishai A. Feldman, Alberto
   Sangiovanni-Vincentelli. *CHASE: Contract-Based Requirement Engineering for
@@ -33,50 +31,26 @@ To cite CHASE, please use the DATE 2018 paper:
   project. [DOI](https://doi.org/10.1109/ICCPS54341.2022.00046)
   [PDF](https://iris.univr.it/bitstream/11562/1077207/1/ICCPS_22_WiP_CHASE.pdf)
 
-### Design-space exploration
-
-- Yifeng Xiao, Pierluigi Nuzzo. *Contract-Based Architecture Exploration of
-  Cyber-Physical Systems via Satisfiability Modulo Convex Programming*.
-  Design, Automation and Test in Europe (DATE), 2026.
-  [DOI](https://doi.org/10.23919/DATE69613.2026.11539305). The contracts are
-  written and composed with CHASE.
-- Yifeng Xiao, Chanwook Oh, Michele Lora, Pierluigi Nuzzo. *Efficient
-  Exploration of Cyber-Physical System Architectures Using Contracts and
-  Subgraph Isomorphism*. Design, Automation and Test in Europe (DATE), 2024.
-  Best Paper Award. [IEEE](https://ieeexplore.ieee.org/document/10546764).
-  The exploration tool, ContrArc, is built on the CHASE library.
-- Christopher Leet, Chanwook Oh, Michele Lora, Sven Koenig, Pierluigi Nuzzo.
-  *Co-Design of Topology, Scheduling, and Path Planning in Automated
-  Warehouses*. Design, Automation and Test in Europe (DATE), 2023.
-  [DOI](https://doi.org/10.23919/DATE56975.2023.10137069). The contracts of
-  the components and of the workload are compiled and composed with CHASE.
-
-### Timing of distributed systems
+## Selected work built on CHASE
 
 - Yifeng Xiao, Charles D. Lutz, Mauricio Castillo-Effen, Pierluigi Nuzzo.
   *Contract-Based Consistency and Availability Analysis for Distributed
   Cyber-Physical Systems*. International Symposium on Formal Methods and
   Models for System Design (MEMOCODE), 2026.
-  [Program](https://memocode2026.github.io/program.html). The timing
-  contracts are written with the Python interface of CHASE; the demos
-  [Drone timing](demos/drone-timing.md) and
-  [Fire-suppression drones in C](demos/drone-grid.md) follow it.
-
-### AI agents
-
-- Yifeng Xiao, Pierluigi Nuzzo. *Symbolic Temporal Supervision of LLM Agents
-  Using Contracts*. arXiv 2609.18128, 2026.
-  [arXiv](https://arxiv.org/abs/2609.18128). The contract libraries of its
-  supervisor, ContrAgent, are exported to CHASE for analysis at design time.
-
-### Industrial systems
-
+  [Program](https://memocode2026.github.io/program.html)
 - Michele Lora, Sebastiano Gaiardelli, Chanwook Oh, Stefano Spellini,
   Pierluigi Nuzzo, Franco Fummi. *Design Automation for Cyber-Physical
   Production Systems: Lessons Learned from the DeFacto Project*. Design,
   Automation and Test in Europe (DATE), 2024.
-  [DOI](https://doi.org/10.23919/DATE58400.2024.10546563). The methods of the
-  project are implemented in CHASE.
+  [DOI](https://doi.org/10.23919/DATE58400.2024.10546563)
+- Yifeng Xiao, Chanwook Oh, Michele Lora, Pierluigi Nuzzo. *Efficient
+  Exploration of Cyber-Physical System Architectures Using Contracts and
+  Subgraph Isomorphism*. Design, Automation and Test in Europe (DATE), 2024.
+  [IEEE](https://ieeexplore.ieee.org/document/10546764)
+- Christopher Leet, Chanwook Oh, Michele Lora, Sven Koenig, Pierluigi Nuzzo.
+  *Co-Design of Topology, Scheduling, and Path Planning in Automated
+  Warehouses*. Design, Automation and Test in Europe (DATE), 2023.
+  [DOI](https://doi.org/10.23919/DATE56975.2023.10137069)
 
 ## Demonstrations
 
