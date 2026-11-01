@@ -1,4 +1,4 @@
-> **CHASE2, a new version of CHASE and of this website, is in preparation**,
+> **CHASE 2, a new version of CHASE and of this website, is in preparation**,
 > with the CHASE Python package, its demos, and its tools.
 
 CHASE is a framework for requirement capture, formalization, and validation
