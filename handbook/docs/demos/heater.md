@@ -29,34 +29,26 @@ and heats again to 77 at step 10. CHASE also computes the robustness of
 `T <= 75`, the margin by which it holds in the worst case: -2, two
 degrees too hot.
 
-[![The counterexample step by step, T from 60 to 77](../assets/demos/heater/overshoot-counterexample.png)](../assets/demos/heater/overshoot-counterexample.png)
-_Step 1: the counterexample; the slider puts step 10 on the ports._
+[![The counterexample, T from 60 to 77, and the two repairs: theta 76 to 74, or tmax 75 to 77](../assets/demos/heater/repair-theta-or-tmax.png)](../assets/demos/heater/repair-theta-or-tmax.png)
+_Steps 1 and 2: the counterexample at the top (the slider puts step 8 on the ports), the two repairs at the bottom._
 
-**Step 2. Repair the threshold.** `repair` changes a named constant as
-little as possible so that the check passes. It gives `theta = 74`, a
-change of 2, and shows that no smaller change works. The worst case is
-then 0: the room reaches 75 and no more.
-
-[![Find repairs: theta 76 to 74, optimal, change 2](../assets/demos/heater/repair-theta.png)](../assets/demos/heater/repair-theta.png)
-_Step 2: theta 76 to 74, optimal._
-
-**Step 3. Or repair the requirement.** Changing `tmax` instead gives 77:
+**Step 2. Repair.** `repair` changes a named constant as little as
+possible so that the check passes, and shows that no smaller change
+works. On the thermostat it gives `theta = 74`, a change of 2: the room
+then reaches 75 and no more. On the requirement it gives `tmax = 77`:
 the requirement accepts the overshoot. In the viewer, `tmax` belongs to
 the requirement and is picked only by hand.
 
-[![Find repairs with theta and tmax picked: two repairs, both optimal](../assets/demos/heater/repair-theta-or-tmax.png)](../assets/demos/heater/repair-theta-or-tmax.png)
-_Step 3: both constants picked, two repairs._
-
-**Step 4. The code.** Each step of _Thermostat_ is one call of the C
+**Step 3. The code.** Each step of _Thermostat_ is one call of the C
 function, so ESBMC checks one call against one step of the formula
 (the tag M ⊨ C). With `theta = 76` it fails: the call with `T = 75`
 returns 0 where the contract asks for 3. `repair` finds the threshold
 that the code implements: 74.
 
 [![The panel of M ⊨ C: counterexample T = 75, u = 0, and the repair of theta](../assets/demos/heater/code-repair-theta.png)](../assets/demos/heater/code-repair-theta.png)
-_Step 4: M ⊨ C fails on T = 75._
+_Step 3: M ⊨ C fails on T = 75._
 
-**Step 5. Between the samples.** A step is a sample taken every 20 s,
+**Step 4. Between the samples.** A step is a sample taken every 20 s,
 and the temperature changes at most 0.1 degree per second (its Lipschitz
 constant: a bound on how fast it changes). Between two samples it can
 then move by 2 degrees, so CHASE checks `T + 2 < 75` at the samples
@@ -80,4 +72,4 @@ python heater.py --expect
 chase-cps view heater.ltl --check --serve
 ```
 
-The files of the demo are in the [repository](https://github.com/chase-cps/demos/tree/main/Heater); [Running the demos](running.md) says what the scripts print and how to use the diagrams.
+The files of the demo are in the [repository](https://github.com/chase-cps/demos/tree/main//Users/yifengxiao/Documents/dependencies/demos/Heater); [Running the demos](running.md) says what the scripts print and how to use the diagrams.

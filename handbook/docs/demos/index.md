@@ -44,6 +44,8 @@ C functions checked one at a time against contracts written in the C file.
   [verification](../contracts/checks.md){ .tag .t-verif } [C](../tools/c-programs.md){ .tag .t-code }
 - **[Fire-suppression drones in C](drone-grid.md)**: two drones on a grid; a collision found on the contracts, the rule of the coordinator fixed with the quotient, then each C function checked alone.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [C](../tools/c-programs.md){ .tag .t-code }
+- **[Room thermostat](heater.md)**: a thermostat overshoots by 2 degrees; repair finds the threshold, ESBMC checks that its C code implements it, and the check between the samples says which threshold holds in continuous time.
+  [verification](../contracts/checks.md){ .tag .t-verif } [signals](../contracts/checks.md#formulas-over-a-bounded-number-of-steps){ .tag .t-data } [robustness](../contracts/checks.md#robustness){ .tag .t-data } [continuous time](../contracts/checks.md#sampled-signals-from-steps-to-continuous-time){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair } [C](../tools/c-programs.md){ .tag .t-code }
 
 ## Drones and robots
 
@@ -59,13 +61,6 @@ Drones, robots, and their controllers, checked and synthesized.
   [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
 - **[Drone timing](drone-timing.md)**: the timing of fire-suppression drones, reaction by reaction: the bound of 400 ms holds with 120 ms to spare, a timer of 250 ms fails, and repair finds the least change.
   [verification](../contracts/checks.md){ .tag .t-verif } [reals](../contracts/checks.md#real-variables){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair }
-
-## Buildings
-
-A room, from the requirement to the controller and its code.
-
-- **[Room thermostat](heater.md)**: a thermostat overshoots by 2 degrees; repair finds the threshold, ESBMC checks that its C code implements it, and the check between the samples says which threshold holds in continuous time.
-  [verification](../contracts/checks.md){ .tag .t-verif } [signals](../contracts/checks.md#formulas-over-a-bounded-number-of-steps){ .tag .t-data } [robustness](../contracts/checks.md#robustness){ .tag .t-data } [continuous time](../contracts/checks.md#sampled-signals-from-steps-to-continuous-time){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair } [C](../tools/c-programs.md){ .tag .t-code }
 
 The [Diagrams](../interfaces/diagrams.md#what-is-drawn) page says what the boxes and the tags of the figures mean.
 

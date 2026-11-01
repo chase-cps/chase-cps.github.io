@@ -78,13 +78,12 @@ nav:
       - Software:
           - Contracts in C: demos/contracts-in-c.md
           - Fire-suppression drones in C: demos/drone-grid.md
+          - Room thermostat: demos/heater.md
       - Drones and robots:
           - Drone climb: demos/drone-altitude.md
           - Robot charging station: demos/charger.md
           - Robotic arm joints: demos/robotic-joints.md
           - Pick-and-place arm: demos/pick-and-place.md
           - Drone timing: demos/drone-timing.md
-      - Buildings:
-          - Room thermostat: demos/heater.md
   - Contributing: contributing.md
   - Publications: publications.md
