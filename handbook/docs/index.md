@@ -4,9 +4,11 @@ CHASE (Contract-based Heterogeneous Analysis and Systems Exploration) is a
 framework for requirement capture, formalization, and validation for
 cyber-physical systems. It features a modular and extensible software
 infrastructure that can support different domain-specific languages,
-modeling formalisms, and analysis tools. It has been applied to industrial
-design examples, including the control of aircraft power distribution
-networks and the arbitration of a mixed-criticality automotive bus.
+modeling formalisms, and analysis tools. It has been applied to aircraft (a
+NASA lift-plus-cruise vehicle, a Lockheed Martin autopilot, an aircraft
+power system), to hardware (an OpenTitan security chip, an AMBA bus
+arbiter), to C code, to drones and robots, and to AI agents; the
+[demos](demos/index.md) show each of them.
 
 <figure markdown>
 ![The CHASE framework: front ends, libraries, back ends](assets/chase-framework.png){ width="600" }
