@@ -4,14 +4,17 @@ The [contract-based verification](../contracts/checks.md) tasks reduce to the
 validity or the satisfiability of LTL formulas, which a model checker
 decides:
 
-| Model checker | For | Installed with |
-|---|---|---|
-| [nuXmv](https://nuxmv.fbk.eu) | LTL over Boolean, integer, real, and word variables | `chase-cps install nuxmv --accept-license` (academic and non-commercial use) |
-| [NuSMV](https://nusmv.fbk.eu) | the same without real variables, when nuXmv is not installed | `chase-cps install nusmv`; in the Docker image |
+- [nuXmv](https://nuxmv.fbk.eu): LTL over Boolean, integer, real, and word
+  variables. Free for academic and non-commercial use.
+- [NuSMV](https://nusmv.fbk.eu): the same without real variables, used when
+  nuXmv is not installed. It is in the Docker image.
+
+Both are installed with `chase-cps install` ([Installation](../installation.md#the-tools-that-run-the-checks)).
 
 With `backend="auto"` (the default) CHASE takes nuXmv when it is installed,
-and NuSMV otherwise. A failed check comes with a counterexample, read back
-from the trace of the model checker.
+and NuSMV otherwise; the formulas over a bounded number of steps go to z3
+when it is installed ([SMT and optimization](smt.md)). A failed check comes
+with a counterexample, read back from the trace of the model checker.
 
 ## Engines of nuXmv
 
@@ -20,12 +23,12 @@ verdict is taken. Both engines prove and refute, so the verdict does not
 depend on which one answers; the counterexample may. One engine can be
 chosen with `engine`, or in the back end, as the results name it:
 
-| Engine | Proves | Finds counterexamples | Good for |
-|---|---|---|---|
-| `portfolio` (default) | yes | yes | IC3 and BDDs at the same time |
-| `ic3` | yes | yes | large state spaces, words, reals |
-| `bdd` | yes | yes | a counterexample that needs a long loop (a counter that goes around) |
-| `bmc` | no | up to `bmc_bound` steps | short counterexamples |
+- `portfolio` (the default): IC3 and BDDs at the same time.
+- `ic3`: proves and refutes; good for large state spaces, words, and reals.
+- `bdd`: proves and refutes; good when a counterexample needs a long loop
+  (a counter that goes around).
+- `bmc`: finds counterexamples up to `bmc_bound` steps, and proves
+  nothing; good for short counterexamples.
 
 ```
 from chase_cps import implies

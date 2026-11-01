@@ -99,7 +99,9 @@ the logics language.
 | `past(x, n)` | yes | yes | no | no |
 
 The checks are exact for Booleans, integers, and words. For reals, the
-[checks](checks.md#real-variables) say how they are decided. Reals and words
+[checks](checks.md#real-variables) say how they are decided. The formulas
+over a bounded number of steps go to z3 when it is installed
+([SMT and optimization](../tools/smt.md)). Reals and words
 are not checked in the same formula. GR(1)
 synthesis needs [formulas in the GR(1) fragment](../tools/synthesis.md).
 

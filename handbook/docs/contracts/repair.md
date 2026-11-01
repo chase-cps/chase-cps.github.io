@@ -68,7 +68,8 @@ repair      repaired  (counterexamples, 5 rounds, 0.13 s)
 ````
 
 In a [diagram](../interfaces/diagrams.md), a click on a red tag opens the
-same repair, and Apply writes the values into the file. The demos [Drone
+same repair, and Apply writes the values into the file; the checks that
+read them run again. The demos [Drone
 timing](../demos/drone-timing.md), [Room thermostat](../demos/heater.md),
 [Resource arbiter](../demos/deadline.md), and [Drone
 climb](../demos/drone-altitude.md) repair a timing bound, a thermostat and

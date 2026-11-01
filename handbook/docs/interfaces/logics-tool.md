@@ -1,5 +1,10 @@
 # Specification language and console
 
+This page is for writing contracts in a file rather than in Python: the
+language of the `.ltl` files, which the command line, the Python package,
+and the diagrams read, and the console `logics_tool`, built from the
+sources.
+
 ## Specification files
 
 The specification files (`.ltl`) are written in the logics language of

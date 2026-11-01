@@ -101,7 +101,9 @@ The skill is in `skills/chase-contracts` of the repository, in the
 - how to turn requirements into contracts: the variables and who controls
   them, and one pattern for each requirement;
 - which group each tool belongs to;
-- how to explain a counterexample.
+- how to report a result in the words of the requirements: which
+  requirement fails and when, and which parts of an answer hold for every
+  behavior and which come from one counterexample.
 
 The skill also works without the server: the agent then uses the Python
 package.

@@ -18,6 +18,24 @@ Drag to move the diagram, and use the wheel (or a pinch) to zoom; the key 0
 fits it to the window. A box keeps its row when a box is opened. The button
 with an arrow saves the whole diagram as SVG, PNG, or PDF.
 
+## A check that fails
+
+A click on a red tag opens a panel beside the diagram. The panel lists every
+check that fails (Problems), and for the one chosen (Details):
+
+- the counterexample, step by step, opened at the step where a term first
+  fails; a slider puts the values of a step on the wires, and the terms
+  that the step breaks turn red in the boxes. When a refinement fails on
+  the assumptions, the assumptions of the parts that the counterexample
+  breaks are marked;
+- how to fix it: the named constants of the contracts of the check, with
+  their ranges. Find repairs gives the values at the least cost
+  ([Repair](../contracts/repair.md)); Preview draws them on the diagram,
+  and Apply writes them into the file. The checks that read the constant
+  run again, and the diagram shows whether another check still fails.
+
+The repairs run on the page served by `chase-cps view FILE --serve`.
+
 ## Python
 
 ```python

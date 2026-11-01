@@ -30,7 +30,8 @@ $> pip install "chase-cps[z3,rtl]"
 
 - `z3` (the solver z3) checks the formulas over a bounded number of steps
   (static contracts, signal temporal logic) and the real variables, and is
-  needed for [repair](contracts/repair.md) and optimization.
+  needed for [repair](contracts/repair.md) and optimization
+  ([SMT and optimization](tools/smt.md)).
 - `rtl` (Yosys, compiled to WebAssembly) reads Verilog and SystemVerilog, for
   the [hardware](tools/systemverilog.md) checks.
 

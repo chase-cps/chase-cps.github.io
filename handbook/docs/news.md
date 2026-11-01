@@ -3,6 +3,19 @@
 <div class="news-item" markdown>
 <span class="news-date">November 1, 2026</span>
 
+## CHASE 0.6.4: repair inside invariants
+
+- **Repair** of constants inside `G` of one step (`G (stop <= dmax)`) is
+  now exact and fast: the question is written on copies of the state, with
+  no temporal operator ([Repair](contracts/repair.md)). Two real constants
+  that gave no answer within a minute now take a fraction of a second.
+- Fixed: the repair of a state machine against a contract with constants,
+  and within a context.
+</div>
+
+<div class="news-item" markdown>
+<span class="news-date">November 1, 2026</span>
+
 ## CHASE 0.6.3: repair, C programs, and continuous time
 
 - **Repair**: when a check fails, `repair` finds the values of named

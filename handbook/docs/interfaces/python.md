@@ -18,7 +18,11 @@ Its modules are grouped as follows:
   `unrealizable_core`, `is_well_separated`, `is_vacuous`, and
   `remove_redundant(c, synth=True)`.
 - **Repair and optimization** (`chase_cps.repair`, `chase_cps.optimize`):
-  `repair`, `minimize`, `maximize` ([Repair](../contracts/repair.md)).
+  `repair`, `minimize`, `maximize` ([Repair](../contracts/repair.md),
+  [SMT and optimization](../tools/smt.md)).
+- **Continuous time** (`chase_cps.sampled`): `sampled`, the stricter
+  formula to check at the samples
+  ([sampled signals](../contracts/checks.md#sampled-signals-from-steps-to-continuous-time)).
 
 All the names are also in `chase_cps` itself.
 

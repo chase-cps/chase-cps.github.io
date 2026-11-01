@@ -16,14 +16,10 @@ input of a tool, and reads its answer back:
   (Jasper, simulators) and with Yosys: contracts read from SystemVerilog
   Assertions and written back as checker modules, and RTL read as state
   machines and checked against contracts.
+- [SMT and optimization](smt.md), with z3: the formulas over a bounded
+  number of steps (static contracts, signal temporal logic), and the
+  optimization problems of CHASE (best values, worst cases, repair), which
+  are the problems of a MILP.
 
-The tools are installed as follows:
-
-- nuXmv: `chase-cps install nuxmv --accept-license`. Its license does not
-  allow redistribution, so it is not in the Docker image.
-- slugs: `chase-cps install slugs`.
-- Yosys: `pip install chase-cps[rtl]`.
-
-The Docker image has slugs, gr1c, NuSMV, and Yosys. The tools that read SVA
-are used through the files that CHASE writes; nothing in these files is
-specific to one tool.
+How to install each tool, and which ones the Docker image has, is on the
+[Installation](../installation.md#the-tools-that-run-the-checks) page.

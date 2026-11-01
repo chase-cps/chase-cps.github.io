@@ -146,7 +146,7 @@ A formula with no `G`, `F`, `U`, `R` reads a bounded number of steps (`X`,
 formulas of one step is a static contract: a budget, a sizing, a choice of
 parts. With z3 installed (`pip install chase-cps[z3]`), such formulas are
 checked by z3 instead of nuXmv, exactly for linear arithmetic over integers
-and reals, with any Boolean structure.
+and reals ([SMT and optimization](../tools/smt.md)).
 
 `minimize(objective, constraints)` and `maximize(objective, constraints)`
 give the best value of a term where the constraints hold, and the values

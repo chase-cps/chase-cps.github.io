@@ -61,6 +61,7 @@ nav:
       - GR(1) synthesis: tools/synthesis.md
       - "Hardware: SVA and RTL": tools/systemverilog.md
       - C programs: tools/c-programs.md
+      - SMT and optimization (z3): tools/smt.md
   - Demos:
       - demos/index.md
       - Running the demos: demos/running.md

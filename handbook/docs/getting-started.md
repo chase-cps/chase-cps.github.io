@@ -58,8 +58,10 @@ refines     Queue+Server <= System                   valid           0.03 s
 ```
 
 The queue and the server, composed, refine the system: together they do what
-the system must do. The [command line](interfaces/command-line.md) page has
-the other checks, and the [specification files](interfaces/logics-tool.md)
+the system must do. `chase-cps view first.ltl --check` draws the same file as
+a web page, `first.html`, with the result on the boxes
+([Diagrams](interfaces/diagrams.md)). The [command line](interfaces/command-line.md)
+page has the other checks, and the [specification files](interfaces/logics-tool.md)
 page the language.
 
 ## The same in Python

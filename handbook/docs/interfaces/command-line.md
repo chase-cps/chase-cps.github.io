@@ -128,7 +128,8 @@ without assertions), drawn with its state machine.
 >   works offline (default: ELK from a CDN)._
 > - `--serve` _Serves the page on this computer, and draws it again whenever
 >   the file changes. When the file cannot be drawn, the page keeps the last
->   diagram and says why._
+>   diagram and says why. The repairs of the page run there, and Apply
+>   writes the values into the file ([Diagrams](diagrams.md#a-check-that-fails))._
 > - `--host HOST`, `--port PORT` _Where the page is served._
 
 For instance:
@@ -174,11 +175,8 @@ the contracts, as the input of a tool you run yourself: nuXmv or NuSMV
 (`smv`), z3 or cvc5 (`smt`), slugs or gr1c (`gr1`), an SVA checker, ESBMC
 or CBMC (`c`).
 
-## Installing the solvers
+## Installing the tools
 
-```
-$> chase-cps install nuxmv --accept-license
-$> chase-cps install slugs
-$> chase-cps install nusmv          # Linux x86_64, where nuXmv cannot be used
-$> chase-cps doctor                 # the CHASE library and the tools found
-```
+`chase-cps install nuxmv|nusmv|slugs|esbmc` installs a tool into
+`~/.chase`, and `chase-cps doctor` lists the tools found and how to
+install the others ([Installation](../installation.md#the-tools-that-run-the-checks)).

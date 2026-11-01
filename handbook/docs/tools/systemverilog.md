@@ -1,5 +1,9 @@
 # Hardware: SVA and RTL
 
+This page is for hardware designers: contracts written in SystemVerilog
+Assertions, checked against RTL, and written back as checker modules for a
+formal tool or a simulator.
+
 `parse_sva` reads the `assume property` and `assert property` statements of
 SystemVerilog as a contract: the assumptions and the guarantees. The text can
 be a module, a bind file, or the statements alone. `to_sva` writes a contract
