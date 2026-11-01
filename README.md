@@ -1,5 +1,5 @@
-> **CHASE 2, a new version of CHASE and of this website, is in preparation**,
-> with the CHASE Python package, its demos, and its tools.
+> **A new version of this website is in preparation**, with the handbook of
+> the CHASE Python package, its demos, and its tools.
 
 CHASE is a framework for requirement capture, formalization, and validation
 for cyber-physical systems.
