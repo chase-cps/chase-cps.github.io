@@ -35,7 +35,7 @@ changes, against its default branch:
 
 | What changes | Repository | Branch |
 |---|---|---|
-| the Python package, the command line, the Docker image, the build | [chase](https://github.com/chase-cps/chase/pulls) | `master` |
+| the Python package, the command line, the build<!-- DOCKER (restore when the image is public): "the command line, the Docker image, the build" --> | [chase](https://github.com/chase-cps/chase/pulls) | `master` |
 | the C++ representation and the contract algebra | [core-library](https://github.com/chase-cps/core-library/pulls) | `main` |
 | the printers for the back ends | [chase-backends](https://github.com/chase-cps/chase-backends/pulls) | `main` |
 | the specification language and its console | [logics_tool](https://github.com/chase-cps/logics_tool/pulls) | `main` |

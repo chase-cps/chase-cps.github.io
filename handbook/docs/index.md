@@ -46,8 +46,8 @@ print(refines(impl, spec).status)    # valid
 
 - [Getting started](getting-started.md): install CHASE in two commands, and
   check a first contract.
-- [Installation](installation.md): the optional tools, Docker, and the
-  sources, module by module.
+- [Installation](installation.md): the optional tools and the sources,
+  module by module.<!-- DOCKER (restore when the image is public): "the optional tools, Docker, and the sources" -->
 - [Demos](demos/index.md): design problems, from their requirements to a
   result.
 - [MCP server](interfaces/mcp.md): CHASE for AI agents.

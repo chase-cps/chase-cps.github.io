@@ -49,7 +49,7 @@ from Python, from `chase-cps view`, or from the MCP server.
 ## Earlier versions
 
 - October 28, 2026, **0.4.2**: `is_implementation` and `is_environment`
-  (the new names of `implements` and `accepts`), and the Docker image.
+  (the new names of `implements` and `accepts`).<!-- DOCKER (restore when the image is public): ", and the Docker image." -->
 - October 28, 2026, **0.4.1**: contracts read from SystemVerilog
   Assertions, and RTL checked against contracts
   ([Hardware](tools/systemverilog.md)).

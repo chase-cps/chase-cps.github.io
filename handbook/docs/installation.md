@@ -1,11 +1,23 @@
 # Installation
 
+<!-- DOCKER (restore when the image is public). The Docker image ghcr.io/chase-cps/chase is not public yet, so
+every mention of it is in an HTML comment that starts with "DOCKER": search
+the docs for "DOCKER (restore" and remove the comments. The places:
+installation.md (the list at the top, the Windows line, the section
+"The Docker image", anchor #the-docker-image), getting-started.md (the
+first paragraph), index.md (the line of Installation), news.md (0.4.2),
+contributing.md (the row of chase), tools/index.md, tools/model-checking.md
+(NuSMV), demos/index.md (the first paragraph and the demo suite at the end),
+demos/running.md (the paragraph after the list of tools). -->
+
 The [Getting started](getting-started.md) page installs CHASE in two
 commands. This page has the rest, by what you want to do:
 
 - [the Python package](#the-python-package), with its optional parts;
 - [the tools that run the checks](#the-tools-that-run-the-checks);
+<!-- DOCKER (restore when the image is public): the line below was in this list
 - [the Docker image](#the-docker-image), with everything;
+-->
 - [the sources](#from-the-sources): all the modules at once, or one by one;
 - [AI agents](#ai-agents), through the MCP server.
 
@@ -20,7 +32,7 @@ interface), the parsers of the [specification files](interfaces/logics-tool.md)
 and of the DSL, the `chase-cps` [command](interfaces/command-line.md), and the
 [diagrams](interfaces/diagrams.md). Wheels are available for Python 3.10 to
 3.15 on Linux (x86_64 and aarch64, glibc 2.28 or later) and macOS 11 or later
-(arm64 and x86_64). Windows is not supported: use WSL or the Docker image.
+(arm64 and x86_64). Windows is not supported: use WSL.<!-- DOCKER (restore when the image is public): "use WSL or the Docker image." -->
 
 Two parts are optional, installed with the package:
 
@@ -75,6 +87,8 @@ GCC 13 or later (Ubuntu 24.04, Debian 13, Fedora 39, or newer).
     they are only compared with constants, and with predicate abstraction
     otherwise.
 
+<!-- DOCKER (restore when the image is public): the whole section
+
 ## The Docker image
 
 The image has the whole toolchain: the CHASE console tools, the Python
@@ -103,6 +117,8 @@ $> git clone --recursive https://github.com/chase-cps/chase
 $> cd chase
 $> docker build --build-arg ACCEPT_NUXMV_LICENSE=yes -t chase .
 ```
+
+-->
 
 ## From the sources
 

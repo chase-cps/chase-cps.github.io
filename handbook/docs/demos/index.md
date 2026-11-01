@@ -1,7 +1,6 @@
 # Demos
 
-The demos are in the [demos](https://github.com/chase-cps/demos) repository,
-and in the `demos` directory of the Docker image; [Running the
+The demos are in the [demos](https://github.com/chase-cps/demos) repository<!-- DOCKER (restore when the image is public): ",\nand in the `demos` directory of the Docker image" -->; [Running the
 demos](running.md) says how to run them. They are grouped by the kind of
 system. The tags after each demo say what it uses.
 
@@ -64,8 +63,12 @@ Drones, robots, and their controllers, checked and synthesized.
 
 The [Diagrams](../interfaces/diagrams.md#what-is-drawn) page says what the boxes and the tags of the figures mean.
 
+<!-- DOCKER (restore when the image is public)
+
 All the demos are run and checked by the test suite of CHASE:
 
 ```
 $> docker run --rm ghcr.io/chase-cps/chase /opt/chase/tests/demo-suite.sh
 ```
+
+-->

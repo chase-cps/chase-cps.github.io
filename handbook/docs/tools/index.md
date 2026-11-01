@@ -21,5 +21,5 @@ input of a tool, and reads its answer back:
   optimization problems of CHASE (best values, worst cases, repair), which
   are the problems of a MILP.
 
-How to install each tool, and which ones the Docker image has, is on the
+How to install each tool is on the<!-- DOCKER (restore when the image is public): "How to install each tool, and which ones the Docker image has, is on the" -->
 [Installation](../installation.md#the-tools-that-run-the-checks) page.

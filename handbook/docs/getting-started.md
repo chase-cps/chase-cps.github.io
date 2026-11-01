@@ -2,7 +2,7 @@
 
 This page installs CHASE in two commands, checks a first specification from
 the command line, then writes the same contracts in Python. Other ways to
-install CHASE (Docker, the sources, the optional tools) are on the
+install CHASE (the sources, the optional tools) are on the<!-- DOCKER (restore when the image is public): "(Docker, the sources, the optional tools)" -->
 [Installation](installation.md) page.
 
 ## Install

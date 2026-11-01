@@ -7,7 +7,7 @@ decides:
 - [nuXmv](https://nuxmv.fbk.eu): LTL over Boolean, integer, real, and word
   variables. Free for academic and non-commercial use.
 - [NuSMV](https://nusmv.fbk.eu): the same without real variables, used when
-  nuXmv is not installed. It is in the Docker image.
+  nuXmv is not installed.<!-- DOCKER (restore when the image is public): " It is in the Docker image." -->
 
 Both are installed with `chase-cps install` ([Installation](../installation.md#the-tools-that-run-the-checks)).
 
