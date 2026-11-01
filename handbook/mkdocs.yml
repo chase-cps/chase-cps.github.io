@@ -14,7 +14,7 @@ plugins:
   - search
 
 extra:
-  version: "0.6.1"
+  version: "0.6.2"
   pypi: https://pypi.org/project/chase-cps/
   # sections of the sidebar that stay open
   nav_open: ["Contract theory"]
