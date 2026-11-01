@@ -18,8 +18,8 @@ corrected, does the pullup come when its requirement says?
   system requirement: the counterexample has three steps.
 - They refine FSM-001t, its timed version.
 
-[![The first requirements, unrealizable; the corrected ones inside System (red) and SystemTimed (green)](../assets/demos/lm-fsm/overview-all-checks.png)](../assets/demos/lm-fsm/overview-all-checks.png)
-_The first requirements (R red), and the corrected ones inside System (⪯ red) and SystemTimed (⪯ green)._
+[![The first requirements, unrealizable; the corrected ones inside Pullup (red) and PullupTimed (green)](../assets/demos/lm-fsm/overview-all-checks.png)](../assets/demos/lm-fsm/overview-all-checks.png)
+_The first requirements (R red), and the corrected ones inside Pullup (⪯ red) and PullupTimed (⪯ green)._
 
 The requirements come from the Ten Lockheed Martin Cyber-Physical
 Challenges (Mavridou et al., RE 2020), first and corrected, as in the FRET
@@ -42,22 +42,22 @@ _Step 1: the first requirements; the cores in red._
 
 **Step 2. The system.** The corrected _Autopilot_ and _Sensor_ are
 realizable; composed with discharge, they leave no assumption. They do not
-refine _System_ (FSM-001: a pullup when the limits are exceeded, with the
+refine _Pullup_ (FSM-001: a pullup when the limits are exceeded, with the
 pilot not in control, the system supported, and no failure). At step 1 of
 the counterexample the limits are exceeded, but the autopilot is still in
 NOMINAL: no pullup.
 
-[![Step 2: the counterexample, in the panel and on the wires](../assets/demos/lm-fsm/step2-does-not-refine-system.png)](../assets/demos/lm-fsm/step2-does-not-refine-system.png)
-_Step 2: the composition does not refine System; the values at step 1._
+[![Step 2: the counterexample, in the panel and on the wires](../assets/demos/lm-fsm/step2-does-not-refine-pullup.png)](../assets/demos/lm-fsm/step2-does-not-refine-pullup.png)
+_Step 2: the composition does not refine Pullup; the values at step 1._
 
 **Step 3. The system, with time.** The sensor and the autopilot each take a
-step to react, and the autopilot must first reach NOMINAL. _SystemTimed_
+step to react, and the autopilot must first reach NOMINAL. _PullupTimed_
 (FSM-001t) gives the pullup that time: after three steps within the limits
 and one beyond, with the pilot not in control and no failure, the pullup
 comes at the fifth step. The composition refines it.
 
-[![Step 3: Autopilot and Sensor inside SystemTimed; the refinement holds](../assets/demos/lm-fsm/step3-refines-systemtimed.png)](../assets/demos/lm-fsm/step3-refines-systemtimed.png)
-_Step 3: the composition refines SystemTimed._
+[![Step 3: Autopilot and Sensor inside PullupTimed; the refinement holds](../assets/demos/lm-fsm/step3-refines-pulluptimed.png)](../assets/demos/lm-fsm/step3-refines-pulluptimed.png)
+_Step 3: the composition refines PullupTimed._
 
 ## Run it
 

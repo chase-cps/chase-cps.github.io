@@ -29,11 +29,11 @@ contracts are written in SystemVerilog Assertions.
 ## The steps
 
 **Step 1. The old system.** _Producer_, _TwoFifo_, and _Consumer_,
-composed, refine _System_, and the RTL of `bsg_two_fifo` implements
+composed, refine _Pipeline_, and the RTL of `bsg_two_fifo` implements
 _TwoFifo_.
 
-[![Step 1: Producer, TwoFifo, and Consumer refine System; TwoFifo M ⊨ C green](../assets/demos/buffer-swap/step1-old-system.png)](../assets/demos/buffer-swap/step1-old-system.png)
-_Step 1: the old system refines System; the RTL implements TwoFifo._
+[![Step 1: Producer, TwoFifo, and Consumer refine Pipeline; TwoFifo M ⊨ C green](../assets/demos/buffer-swap/step1-old-system.png)](../assets/demos/buffer-swap/step1-old-system.png)
+_Step 1: the old system refines Pipeline; the RTL implements TwoFifo._
 
 **Step 2. The new buffer against the old one.** _OneFifo_ does not refine
 _TwoFifo_. In the counterexample of 4 steps, the empty buffer takes a
@@ -43,11 +43,11 @@ that it is.
 [![Step 2: OneFifo does not refine TwoFifo; the counterexample in the panel, the broken guarantee in red](../assets/demos/buffer-swap/step2-onefifo-counterexample.png)](../assets/demos/buffer-swap/step2-onefifo-counterexample.png)
 _Step 2: OneFifo does not refine TwoFifo; the guarantee it breaks in red._
 
-**Step 3. What the place needs.** The quotient Slot = System / (Producer
+**Step 3. What the place needs.** The quotient Slot = Pipeline / (Producer
 ⊗ Consumer), the dashed box, has 3 assumptions and 3 guarantees. _Slot_
 may assume what the consumer guarantees, that an offer is taken sooner or
 later, so one entry is enough: _OneFifo_ refines _Slot_, and the system
-with _OneFifo_ refines _System_.
+with _OneFifo_ refines _Pipeline_.
 
 [![Step 3: Slot, the quotient, with OneFifo inside; the tag ⪯ green](../assets/demos/buffer-swap/step3-slot.png)](../assets/demos/buffer-swap/step3-slot.png)
 _Step 3: OneFifo refines Slot, the contract of the place._
