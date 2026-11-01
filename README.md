@@ -1,5 +1,5 @@
-> **A new version of this website is in preparation**, with the handbook of
-> the CHASE Python package, its demos, and its tools.
+> **CHASE2, a new version of CHASE and of this website, is in preparation**,
+> with the CHASE Python package, its demos, and its tools.
 
 CHASE is a framework for requirement capture, formalization, and validation
 for cyber-physical systems.
@@ -8,10 +8,8 @@ for cyber-physical systems.
 
 CHASE features a modular and extensible software infrastructure that can support
 different domain-specific languages, modeling formalisms, and analysis tools.
-It has been applied to aircraft (a NASA lift-plus-cruise vehicle, a Lockheed
-Martin autopilot, an aircraft power system), to hardware (an OpenTitan security
-chip, an AMBA bus arbiter), to C code, to drones and robots, and to AI agents;
-the [demos](https://github.com/chase-cps/demos) show each of them.
+It has been applied to industrial design examples, including control of aircraft
+power distribution networks and arbitration of a mixed-criticality automotive bus.
 
 <p align="center">
   <img src="assets/chase-framework.png" alt="The CHASE framework components and flow" width="640">
