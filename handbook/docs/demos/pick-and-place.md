@@ -17,8 +17,8 @@ can the coordinator be synthesized?
 - The coordinator is realizable, and slugs synthesizes a controller of 128
   states.
 
-[![The page of the demo: Mission inside Target (refinement green), Target inside Mission (refinement red), and the whole system with Mission, Coordinator, Move, Turn, Pick, and Place](../assets/demos/pick-and-place/overview-all-checks.png)](../assets/demos/pick-and-place/overview-all-checks.png)
-_The two refinements and the whole system, with the checks of each contract._
+[![Mission inside Target (refinement green), and Target inside Mission (refinement red)](../assets/demos/pick-and-place/overview-all-checks.png)](../assets/demos/pick-and-place/overview-all-checks.png)
+_The two refinements: Mission refines Target (⪯ green), Target does not refine Mission (⪯ red)._
 
 The arm is the second part of a tutorial at the DATE 2021 University Booth;
 the first part is the [aircraft power system](aircraft-power.md). In `specs/robotic_arm.ltl`,

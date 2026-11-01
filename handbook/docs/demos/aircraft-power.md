@@ -53,7 +53,7 @@ controller of 97 states.
 [![Step 2: EPS_30ms, realizable, with the states of the generators and contactors as inputs and the commands of the contactors as outputs](../assets/demos/aircraft-power/step2-relaxed-realizable.png)](../assets/demos/aircraft-power/step2-relaxed-realizable.png)
 _Step 2: the relaxed requirements are realizable (R)._
 
-The same language describes a [factory](factory-gates.md).
+The same language describes a [factory](https://github.com/chase-cps/demos/blob/main/FDL2024/FDL2024.md).
 
 ## Run it
 

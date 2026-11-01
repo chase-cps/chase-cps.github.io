@@ -15,6 +15,7 @@ long enough? If not, is it the controller to change, or the requirement?
 - No climb rate `vmax` works: repair proves it impossible.
 - Repair of the requirement: the least tolerance `eps = 2.5` m, or, with
   2 m, the strongest wind `wmax = 17/21`, about 0.81 m per step.
+- Both constants at once: a cost that weighs the two changes picks one.
 
 [![The drone inside Hover, before and after the repair](../assets/demos/drone-altitude/climb-before-and-after.png)](../assets/demos/drone-altitude/climb-before-and-after.png)
 _The drone inside Hover in a wind of 1 (red), and with eps = 2.5 (green)._
@@ -53,6 +54,18 @@ keeping `eps = 2`, the strongest wind is `wmax = 17/21` (0.82 fails).
 
 [![Find repairs: eps 2 to 2.5, or wmax 1 to about 0.8095](../assets/demos/drone-altitude/repair-eps-or-wmax.png)](../assets/demos/drone-altitude/repair-eps-or-wmax.png)
 _Step 3: eps 2 to 2.5, or wmax 1 to about 0.8095 (17/21)._
+
+**Step 4. Both at once.** With two constants free, the cost says which
+change is worse: `(eps - 2) + w (1 - wmax)`, a change of the wind
+counting `w` times a change of the tolerance. With `w = 2`, the repair
+lowers the wind to 17/21 (cost 8/21); with `w = 3`, it widens the
+tolerance to 2.5 (cost 1/2). Each answer is optimal: no mix of the two
+changes costs less.
+
+```
+r = repair("refines", drone, hover, parameters={"eps": (2, 10), "wmax": (0, 1)},
+           minimize="eps - 2 + 3 - 3 * wmax")
+```
 
 ## Run it
 

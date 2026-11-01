@@ -17,8 +17,8 @@ we show it by checking each module on its own?
 - A counterexample on the RTL: a faster sender breaks its contract in 4
   steps; in the whole link, a ping makes the receiver escalate.
 
-[![The link inside Functional, the receiver open, and the fast sender (M ⊨ C red)](../assets/demos/escalation/overview-link.png)](../assets/demos/escalation/overview-link.png)
-_The link inside Functional (⪯), each module with its RTL (M ⊨ C), and the fast sender, which fails._
+[![The link: Sender and Channel, M ⊨ C green, and the receiver open on the right](../assets/demos/escalation/overview-link.png)](../assets/demos/escalation/overview-link.png)
+_The link, the composition of the three modules, with its assumptions and guarantees; each module with its RTL (M ⊨ C)._
 
 The link is a small version of the escalation link of OpenTitan. To
 escalate (order the receiver to react to an attack), the sender raises a
@@ -34,17 +34,15 @@ an escalation. The requirements follow the assertions of OpenTitan
 the receiver implements its contract. The receiver is drawn open: its
 contract and its state machine of 4 states, read from the RTL.
 
-[![Step 1: each module M ⊨ C green; the receiver open with its four states](../assets/demos/escalation/step1-modules.png)](../assets/demos/escalation/step1-modules.png)
-_Step 1: each RTL implements its contract (M ⊨ C); the receiver with its four states._
+[![Step 1: the receiver open, M ⊨ C green, with its contract and its four states](../assets/demos/escalation/step1-modules.png)](../assets/demos/escalation/step1-modules.png)
+_Step 1: the receiver implements its contract (M ⊨ C); its state machine of four states._
 
 **Step 2. The composition.** _Sender_ ⊗ _Channel_ ⊗ _Receiver_ refines
 _Functional_ and _Integrity_. The whole RTL, checked directly, meets both
 too. The quotient SenderSlot = Functional / (Channel ⊗ Receiver), the
 weakest contract any sender must meet in this link, is refined by
 _Sender_.
-
-[![Step 2: the three modules inside Functional, the tag ⪯ green](../assets/demos/escalation/step2-composition.png)](../assets/demos/escalation/step2-composition.png)
-_Step 2: the composition of the three modules refines Functional (⪯)._
+In the diagram, the tag ⪯ of the link is green.
 
 **Step 3. A faster sender.** A sender that pings at every cycle of a ping
 request does not implement _Sender_. In the counterexample of 4 steps, the

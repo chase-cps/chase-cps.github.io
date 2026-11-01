@@ -68,7 +68,6 @@ nav:
       - Aircraft and vehicles:
           - NASA Lift-Plus-Cruise aircraft: demos/lift-plus-cruise.md
           - Lockheed Martin autopilot: demos/lm-fsm.md
-          - Emergency braking: demos/braking.md
           - Aircraft power system: demos/aircraft-power.md
       - Hardware:
           - OpenTitan security chip: demos/escalation.md
@@ -80,13 +79,11 @@ nav:
           - Fire-suppression drones in C: demos/drone-grid.md
       - Drones and robots:
           - Drone climb: demos/drone-altitude.md
-          - Warehouse robot: demos/warehouse-robot.md
           - Robot charging station: demos/charger.md
           - Robotic arm joints: demos/robotic-joints.md
           - Pick-and-place arm: demos/pick-and-place.md
           - Drone timing: demos/drone-timing.md
-      - Buildings and factories:
+      - Buildings:
           - Room thermostat: demos/heater.md
-          - Factory gate controller: demos/factory-gates.md
   - Contributing: contributing.md
   - Publications: publications.md

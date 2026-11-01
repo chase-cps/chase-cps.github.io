@@ -18,8 +18,8 @@ refine the contract of the parent? If not, which sub-agent must do what?
 - Unsat core (the smallest set of requirements in conflict): a parent that
   also says "never pay" is inconsistent; the core is two clauses.
 
-[![The plan (⪯ red), the quotient Q3 with Text inside (⪯ green), and the parent with the slip](../assets/demos/payment-assistant/overview-plan-and-quotient.png)](../assets/demos/payment-assistant/overview-plan-and-quotient.png)
-_The plan of the sub-agents, the quotient Q3 with <em>Text</em> inside it, and the parent with the slip._
+[![The plan (⪯ red), and the parent with the quotient Q3 and Text inside (⪯ green)](../assets/demos/payment-assistant/overview-plan-and-quotient.png)](../assets/demos/payment-assistant/overview-plan-and-quotient.png)
+_The plan of the sub-agents (⪯ red), and the parent with the quotient Q3, Text inside it (⪯ green)._
 
 The task is 530b157_1 of [AppWorld](https://arxiv.org/abs/2407.18901): pay
 Kristin back on Venmo the amount in her text messages, with the note
@@ -45,7 +45,7 @@ asks for the rules of its tools and `F text3`. _Text_ with `F text3`
 refines Q3, so the plan refines the parent.
 
 [![Step 2: Text inside Q3, with F paid and F text3; the tag ⪯ of Q3 green](../assets/demos/payment-assistant/step3-text-refines-q3.png)](../assets/demos/payment-assistant/step3-text-refines-q3.png)
-_Step 2: <em>Text</em>, with <code>F text3</code> and the assumption <code>F paid</code>, refines Q3._
+_Step 2: Text, with <code>F text3</code> and the assumption <code>F paid</code>, refines Q3._
 
 **Step 3. A clause against the request.** If the parent also says "never
 pay" (`G !tx2`, _ParentWithSlip_), its contract is inconsistent, and the

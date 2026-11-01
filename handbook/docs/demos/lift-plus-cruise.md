@@ -16,8 +16,8 @@ steps. What must the pilot do so that every flight does?
   slows down.
 - _Decel_, which also turns on the hover control, refines Q12.
 
-[![The requirements, the split of the vehicle, and the pilots inside Q12 and Q06](../assets/demos/lift-plus-cruise/overview-requirements-and-pilots.png)](../assets/demos/lift-plus-cruise/overview-requirements-and-pilots.png)
-_The two deadlines, the split of the vehicle, the three pilots in Q12, and Decel in Q06._
+[![Reach12: ModeLogic, and the quotient Q12 with the pilot Pilot in it](../assets/demos/lift-plus-cruise/overview-requirements-and-pilots.png)](../assets/demos/lift-plus-cruise/overview-requirements-and-pilots.png)
+_The split of the vehicle: ModeLogic, and the quotient Q12, what the pilot must do, with a candidate pilot in it._
 
 Lift-Plus-Cruise is a NASA aircraft that hovers on lift rotors and
 cruises on a wing. The requirements come from the LPC_mini project of
@@ -48,13 +48,13 @@ box, is the weakest contract of the pilot with which every flight hovers
 in time. _Pilot_ does not refine it: `kias` may stay at 120.
 
 [![Step 3: Pilot inside Q12; red, with the counterexample](../assets/demos/lift-plus-cruise/step3-pilot-does-not-refine-q12.png)](../assets/demos/lift-plus-cruise/step3-pilot-does-not-refine-q12.png)
-_Step 3: <em>Pilot</em> does not refine Q12: <code>kias</code> stays at 120._
+_Step 3: Pilot does not refine Q12: <code>kias</code> stays at 120._
 
 **Step 4. A pilot that slows down.** _Slow_ lowers `kias` by 10 per step, but
 never turns the hover control on: it does not refine Q12.
 
 [![Step 4: Slow inside Q12; red, with the counterexample](../assets/demos/lift-plus-cruise/step4-slow-does-not-refine-q12.png)](../assets/demos/lift-plus-cruise/step4-slow-does-not-refine-q12.png)
-_Step 4: <em>Slow</em> slows down, but never turns the hover control on._
+_Step 4: Slow slows down, but never turns the hover control on._
 
 **Step 5. A pilot that turns on the hover control.** _Decel_ also turns
 the hover control on when `kgs` is below 20, and refines Q12. It does not
@@ -62,10 +62,10 @@ refine Q06 = Reach06 / ModeLogic: at step 6 the vehicle is still semi wing
 borne.
 
 [![Step 5: Decel inside Q12; the refinement holds](../assets/demos/lift-plus-cruise/step5-decel-refines-q12.png)](../assets/demos/lift-plus-cruise/step5-decel-refines-q12.png)
-_Step 5: <em>Decel</em> refines Q12._
+_Step 5: Decel refines Q12._
 
 [![Step 5: Decel inside Q06; red, with the counterexample](../assets/demos/lift-plus-cruise/step6-decel-does-not-refine-q06.png)](../assets/demos/lift-plus-cruise/step6-decel-does-not-refine-q06.png)
-_Step 5: <em>Decel</em> does not refine Q06._
+_Step 5: Decel does not refine Q06._
 
 ## Run it
 

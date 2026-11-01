@@ -48,11 +48,13 @@ On the command line, with the checks of `chase-cps check` and
 
 ````
 $> chase-cps repair heater.ltl --refines Room+Thermostat Comfort --param theta=60..90:int
-repair      repaired  (counterexamples, 4 rounds, 0.11 s)
+repair      repaired  (counterexamples, 5 rounds, 0.13 s)
   theta = 74
   change 2 (optimal)
 ````
 
-The demos Braking, Heater, and Deadline repair a braking system (the bounds
-of ContrACT, MEMOCODE 2026), a thermostat in signal temporal logic and its C
-code, and a deadline in LTL.
+The demos [Drone timing](../demos/drone-timing.md), [Room
+thermostat](../demos/heater.md), [Resource arbiter](../demos/deadline.md),
+and [Drone climb](../demos/drone-altitude.md) repair the timing of a drone
+(the bounds of ContrACT, MEMOCODE 2026), a thermostat in signal temporal
+logic and its C code, a deadline in LTL, and two constants at once.

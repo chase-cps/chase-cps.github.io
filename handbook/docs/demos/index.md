@@ -20,8 +20,6 @@ Requirements of aircraft and cars, on Booleans and real numbers.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [reals](../contracts/checks.md#real-variables){ .tag .t-data }
 - **[Lockheed Martin autopilot](lm-fsm.md)**: the unrealizable cores find the requirements in conflict, fixed one at a time.
   [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
-- **[Emergency braking](braking.md)**: a braking system misses its bound by 0.05 ms; repair finds the least change of the bound or of the network delay.
-  [verification](../contracts/checks.md){ .tag .t-verif } [reals](../contracts/checks.md#real-variables){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair }
 - **[Aircraft power system](aircraft-power.md)**: requirements written as patterns: the bounds as written conflict, and the core points to one DC bus; relaxed, they are realizable.
   [DSL](aircraft-power.md){ .tag .t-data } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
 
@@ -35,8 +33,8 @@ Contracts in SystemVerilog Assertions, checked against RTL, and synthesized arbi
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [SVA](../tools/systemverilog.md){ .tag .t-hw } [RTL](../contracts/checks.md#rtl){ .tag .t-hw }
 - **[AMBA AHB bus arbiter](ahb.md)**: two viewpoints that cannot be merged, the assumption that fixes them, and the arbiter synthesized.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 } [SVA](../tools/systemverilog.md){ .tag .t-hw }
-- **[Resource arbiter](deadline.md)**: the least bound on the waiting time of a request, repaired from the counterexamples of nuXmv.
-  [verification](../contracts/checks.md){ .tag .t-verif } [repair](../contracts/repair.md){ .tag .t-repair }
+- **[Resource arbiter](deadline.md)**: the least bound on the waiting time of a request, repaired from the counterexamples of nuXmv; the arbiter and its client as state machines in SMV, checked for implementation, receptiveness, and environment.
+  [verification](../contracts/checks.md){ .tag .t-verif } [repair](../contracts/repair.md){ .tag .t-repair } [SMV](../tools/model-checking.md){ .tag .t-data }
 
 ## Software
 
@@ -51,27 +49,23 @@ C functions checked one at a time against contracts written in the C file.
 
 Drones, robots, and their controllers, checked and synthesized.
 
-- **[Drone climb](drone-altitude.md)**: no climb rate beats the wind: repair says what the requirement can ask.
+- **[Drone climb](drone-altitude.md)**: no climb rate beats the wind: repair says what the requirement can ask, and a cost chooses between two constants.
   [verification](../contracts/checks.md){ .tag .t-verif } [signals](../contracts/checks.md#formulas-over-a-bounded-number-of-steps){ .tag .t-data } [robustness](../contracts/checks.md#robustness){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair }
-- **[Warehouse robot](warehouse-robot.md)**: the contract of a controller to delegate is the quotient by perception and localization.
-  [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [reals](../contracts/checks.md#real-variables){ .tag .t-data }
 - **[Robot charging station](charger.md)**: refinement does not see the conflict, realizability does: five arbiters, each problem caught by another check.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
 - **[Robotic arm joints](robotic-joints.md)**: three joints refine the contract of the arm and are synthesized one at a time; the check scales to 8 joints in 5 s.
   [algebra](../contracts/algebra.md){ .tag .t-theory } [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
 - **[Pick-and-place arm](pick-and-place.md)**: the mission refines the target, and the coordinator of the arm is synthesized.
-  [DSL](aircraft-power.md){ .tag .t-data } [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
-- **[Drone timing](drone-timing.md)**: the timing of the drones as a linear program: the worst case and the margins of each part.
+  [verification](../contracts/checks.md){ .tag .t-verif } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
+- **[Drone timing](drone-timing.md)**: the timing of the drones as a linear program: a faster timer fails, and repair finds the least bound or a faster planner; the margins of each part.
   [verification](../contracts/checks.md){ .tag .t-verif } [reals](../contracts/checks.md#real-variables){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair }
 
-## Buildings and factories
+## Buildings
 
-A room and a factory, from the requirement to the controller and its code.
+A room, from the requirement to the controller and its code.
 
-- **[Room thermostat](heater.md)**: a thermostat overshoots by 2 degrees; repair finds the threshold, and ESBMC checks that its C code implements it.
-  [verification](../contracts/checks.md){ .tag .t-verif } [signals](../contracts/checks.md#formulas-over-a-bounded-number-of-steps){ .tag .t-data } [robustness](../contracts/checks.md#robustness){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair } [C](../tools/c-programs.md){ .tag .t-code }
-- **[Factory gate controller](factory-gates.md)**: the bays keep their supply when the main conveyors fail; without the secondary conveyors, the core says why they do not.
-  [DSL](aircraft-power.md){ .tag .t-data } [GR(1)](../tools/synthesis.md){ .tag .t-gr1 }
+- **[Room thermostat](heater.md)**: a thermostat overshoots by 2 degrees; repair finds the threshold, ESBMC checks that its C code implements it, and the check between the samples says which threshold holds in continuous time.
+  [verification](../contracts/checks.md){ .tag .t-verif } [signals](../contracts/checks.md#formulas-over-a-bounded-number-of-steps){ .tag .t-data } [robustness](../contracts/checks.md#robustness){ .tag .t-data } [continuous time](../contracts/checks.md#sampled-signals-from-steps-to-continuous-time){ .tag .t-data } [repair](../contracts/repair.md){ .tag .t-repair } [C](../tools/c-programs.md){ .tag .t-code }
 
 The [Diagrams](../interfaces/diagrams.md#what-is-drawn) page says what the boxes and the tags of the figures mean.
 
