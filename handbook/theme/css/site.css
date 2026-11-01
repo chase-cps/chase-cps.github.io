@@ -78,7 +78,7 @@ p { margin: 10px 0 15px; }
 #header_wrap { background: var(--chase-header); border-bottom: 4px solid var(--chase-line); }
 .header-inner, .footer-inner { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 .header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 40px; padding-bottom: 24px; }
-.brand { min-width: 0; padding-top: 18px; }
+.brand { min-width: 0; padding-top: 34px; }
 #project_title { margin: 0; font-size: 42px; letter-spacing: -1px; }
 #project_title a { color: #fff; display: inline-flex; align-items: center; gap: 12px; }
 #project_title .logo { height: 44px; width: auto; }
