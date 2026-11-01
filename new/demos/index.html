@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demos · CHASE</title>
+  <meta name="description" content="Contract-based Heterogeneous Analysis and Systems Exploration">
+  <link rel="stylesheet" href="../css/site.css">
+  <script>
+    // The theme: the one chosen with the button, or the one of the system.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("chase-theme"); } catch (e) {}
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+
+<header id="header_wrap" class="outer">
+  <div class="header-inner">
+    <div class="brand">
+      <h1 id="project_title"><a href=".."><img class="logo" src="../assets/chase-logo-white.png" alt="">CHASE</a></h1>
+      <h2 id="project_tagline">Contract-based Heterogeneous Analysis and Systems Exploration</h2>
+    </div>
+    <div class="header-links">
+      <form class="search" role="search" action="../search.html" onsubmit="return false">
+        <input type="search" id="mkdocs-search-query" name="q" placeholder="Search" aria-label="Search the handbook" autocomplete="off">
+        <div id="mkdocs-search-results" class="search-results" aria-live="polite"></div>
+      </form>
+      <a class="header-link" href="../news/" title="What each version brought">v0.6.4</a>
+      <a class="header-link" href="https://pypi.org/project/chase-cps/" title="chase-cps on PyPI">PyPI</a>
+      <a class="github" href="https://github.com/chase-cps/chase" aria-label="CHASE on GitHub" title="CHASE on GitHub">
+        <svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="theme" type="button" onclick="flipTheme()" aria-label="Dark or light pages" title="Dark or light pages">
+        <svg class="moon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.2 1.3a6.7 6.7 0 1 0 8.5 8.5A5.6 5.6 0 0 1 6.2 1.3z"/></svg>
+        <svg class="sun" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8M3 3l1.3 1.3M11.7 11.7 13 13M3 13l1.3-1.3M11.7 4.3 13 3"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="main_content_wrap" class="outer">
+  
+  <div class="layout">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label">Contents</label>
+    <nav class="sidebar" aria-label="Handbook">
+      
+        
+          <ul class="nav-top">
+            <li><a href="..">Overview</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../news/">News</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../getting-started/">Getting started</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../installation/">Installation</a></li>
+          </ul>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group always" open>
+            <summary tabindex="-1">
+              
+                <a class="nav-group-title" href="../contracts/">Contract theory</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../contracts/formulas/">Formulas</a></li>
+                
+              
+                
+                <li><a href="../contracts/algebra/">Contract algebra</a></li>
+                
+              
+                
+                <li><a href="../contracts/checks/">Contract-based verification</a></li>
+                
+              
+                
+                <li><a href="../contracts/repair/">Repair</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../interfaces/">Interfaces</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../interfaces/inputs-outputs/">Inputs and outputs</a></li>
+                
+              
+                
+                <li><a href="../interfaces/python/">Python package</a></li>
+                
+              
+                
+                <li><a href="../interfaces/command-line/">Command line</a></li>
+                
+              
+                
+                <li><a href="../interfaces/logics-tool/">Specification language and console</a></li>
+                
+              
+                
+                <li><a href="../interfaces/mcp/">MCP server for AI agents</a></li>
+                
+              
+                
+                <li><a href="../interfaces/diagrams/">Diagrams</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../tools/">Tool integrations</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../tools/model-checking/">Model checking</a></li>
+                
+              
+                
+                <li><a href="../tools/synthesis/">GR(1) synthesis</a></li>
+                
+              
+                
+                <li><a href="../tools/systemverilog/">Hardware: SVA and RTL</a></li>
+                
+              
+                
+                <li><a href="../tools/c-programs/">C programs</a></li>
+                
+              
+                
+                <li><a href="../tools/smt/">SMT and optimization (z3)</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group" open>
+            <summary>
+              
+                <a class="nav-group-title active" href="./" aria-current="page">Demos</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="running/">Running the demos</a></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">AI agents</span><span class="nav-count">1</span></summary>
+                  <ul>
+                    
+                    <li><a href="payment-assistant/">Payment assistant agent</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Aircraft and vehicles</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="lift-plus-cruise/">NASA Lift-Plus-Cruise aircraft</a></li>
+                    
+                    <li><a href="lm-fsm/">Lockheed Martin autopilot</a></li>
+                    
+                    <li><a href="aircraft-power/">Aircraft power system</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Hardware</span><span class="nav-count">4</span></summary>
+                  <ul>
+                    
+                    <li><a href="escalation/">OpenTitan security chip</a></li>
+                    
+                    <li><a href="buffer-swap/">Circuit buffer swap</a></li>
+                    
+                    <li><a href="ahb/">AMBA AHB bus arbiter</a></li>
+                    
+                    <li><a href="deadline/">Resource arbiter</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Software</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="contracts-in-c/">Contracts in C</a></li>
+                    
+                    <li><a href="drone-grid/">Fire-suppression drones in C</a></li>
+                    
+                    <li><a href="heater/">Room thermostat</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Drones and robots</span><span class="nav-count">5</span></summary>
+                  <ul>
+                    
+                    <li><a href="drone-altitude/">Drone climb</a></li>
+                    
+                    <li><a href="charger/">Robot charging station</a></li>
+                    
+                    <li><a href="robotic-joints/">Robotic arm joints</a></li>
+                    
+                    <li><a href="pick-and-place/">Pick-and-place arm</a></li>
+                    
+                    <li><a href="drone-timing/">Drone timing</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../contributing/">Contributing</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../publications/">Publications</a></li>
+          </ul>
+        
+      
+    </nav>
+
+    <main id="main_content">
+      <h1 id="demos">Demos<a class="headerlink" href="#demos" title="Permanent link">#</a></h1>
+<p>The demos are in the <a href="https://github.com/chase-cps/demos">demos</a> repository<!-- DOCKER (restore when the image is public): ",\nand in the <code>demos</code> directory of the Docker image" -->; <a href="running/">Running the
+demos</a> says how to run them. They are grouped by the kind of
+system. The tags after each demo say what it uses.</p>
+<h2 id="ai-agents">AI agents<a class="headerlink" href="#ai-agents" title="Permanent link">#</a></h2>
+<p>The plan of an AI agent, as a contract over its tool calls.</p>
+<ul>
+<li><strong><a href="payment-assistant/">Payment assistant agent</a></strong>: the plan of an AI agent, split among three sub-agents, checked before it runs; the quotient says which sub-agent must send the text.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-code" href="../interfaces/mcp/">agents</a></li>
+</ul>
+<h2 id="aircraft-and-vehicles">Aircraft and vehicles<a class="headerlink" href="#aircraft-and-vehicles" title="Permanent link">#</a></h2>
+<p>Requirements of aircraft and cars, on Booleans and real numbers.</p>
+<ul>
+<li><strong><a href="lift-plus-cruise/">NASA Lift-Plus-Cruise aircraft</a></strong>: the requirements of a NASA aircraft are consistent with a hover in 12 steps, not in 6; the quotient says what the pilot must do.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-data" href="../contracts/checks/#real-variables">reals</a></li>
+<li><strong><a href="lm-fsm/">Lockheed Martin autopilot</a></strong>: the unrealizable cores find the requirements in conflict, fixed one at a time.
+  <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-gr1" href="../tools/synthesis/">GR(1)</a></li>
+<li><strong><a href="aircraft-power/">Aircraft power system</a></strong>: requirements written as patterns: the bounds as written conflict, and the core points to one DC bus; relaxed, they are realizable.
+  <a class="tag t-data" href="aircraft-power/">DSL</a> <a class="tag t-gr1" href="../tools/synthesis/">GR(1)</a></li>
+</ul>
+<h2 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">#</a></h2>
+<p>Contracts in SystemVerilog Assertions, checked against RTL, and synthesized arbiters.</p>
+<ul>
+<li><strong><a href="escalation/">OpenTitan security chip</a></strong>: the escalation link proven module by module from its RTL; a faster sender breaks its contract.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-hw" href="../tools/systemverilog/">SVA</a> <a class="tag t-hw" href="../contracts/checks/#rtl">RTL</a></li>
+<li><strong><a href="buffer-swap/">Circuit buffer swap</a></strong>: a smaller buffer fails the old contract, but refines the quotient: the contract of its slot.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-hw" href="../tools/systemverilog/">SVA</a> <a class="tag t-hw" href="../contracts/checks/#rtl">RTL</a></li>
+<li><strong><a href="ahb/">AMBA AHB bus arbiter</a></strong>: two viewpoints that cannot be merged, the assumption that fixes them, and the arbiter synthesized.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-gr1" href="../tools/synthesis/">GR(1)</a> <a class="tag t-hw" href="../tools/systemverilog/">SVA</a></li>
+<li><strong><a href="deadline/">Resource arbiter</a></strong>: the least bound on the waiting time of a request, repaired from the counterexamples of nuXmv; the arbiter and its client as state machines in SMV, checked for implementation, receptiveness, and environment.
+  <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-repair" href="../contracts/repair/">repair</a> <a class="tag t-data" href="../tools/model-checking/">SMV</a></li>
+</ul>
+<h2 id="software">Software<a class="headerlink" href="#software" title="Permanent link">#</a></h2>
+<p>C functions checked one at a time against contracts written in the C file.</p>
+<ul>
+<li><strong><a href="contracts-in-c/">Contracts in C</a></strong>: functions of a water tank, a ring buffer, and a drone, each checked against the contract written in its C file (ESBMC, CBMC, or ACSL clauses); code with no contract checked for overflow.
+  <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-code" href="../tools/c-programs/">C</a></li>
+<li><strong><a href="drone-grid/">Fire-suppression drones in C</a></strong>: two drones on a grid; a collision found on the contracts, the rule of the coordinator fixed with the quotient, then each C function checked alone.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-code" href="../tools/c-programs/">C</a></li>
+<li><strong><a href="heater/">Room thermostat</a></strong>: a thermostat overshoots by 2 degrees; repair finds the threshold, ESBMC checks that its C code implements it, and the check between the samples says which threshold holds in continuous time.
+  <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-data" href="../contracts/checks/#formulas-over-a-bounded-number-of-steps">signals</a> <a class="tag t-data" href="../contracts/checks/#robustness">robustness</a> <a class="tag t-data" href="../contracts/checks/#sampled-signals-from-steps-to-continuous-time">continuous time</a> <a class="tag t-repair" href="../contracts/repair/">repair</a> <a class="tag t-code" href="../tools/c-programs/">C</a></li>
+</ul>
+<h2 id="drones-and-robots">Drones and robots<a class="headerlink" href="#drones-and-robots" title="Permanent link">#</a></h2>
+<p>Drones, robots, and their controllers, checked and synthesized.</p>
+<ul>
+<li><strong><a href="drone-altitude/">Drone climb</a></strong>: a drone climbs in the wind of a fire; no climb rate is enough, so repair says what the requirement can ask, and a cost chooses between two constants.
+  <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-data" href="../contracts/checks/#formulas-over-a-bounded-number-of-steps">signals</a> <a class="tag t-data" href="../contracts/checks/#robustness">robustness</a> <a class="tag t-repair" href="../contracts/repair/">repair</a></li>
+<li><strong><a href="charger/">Robot charging station</a></strong>: five arbiters for a station shared by two robots; refinement does not see the conflict, realizability does, and each flaw is caught by another check.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-gr1" href="../tools/synthesis/">GR(1)</a></li>
+<li><strong><a href="robotic-joints/">Robotic arm joints</a></strong>: three joints refine the contract of the arm and are synthesized one at a time; the check scales to 8 joints in 5 s.
+  <a class="tag t-theory" href="../contracts/algebra/">algebra</a> <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-gr1" href="../tools/synthesis/">GR(1)</a></li>
+<li><strong><a href="pick-and-place/">Pick-and-place arm</a></strong>: an arm that picks and places a piece; the mission planner refines the requirement, the seven contracts fit together, and the coordinator is synthesized.
+  <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-gr1" href="../tools/synthesis/">GR(1)</a></li>
+<li><strong><a href="drone-timing/">Drone timing</a></strong>: the timing of fire-suppression drones, reaction by reaction: the bound of 400 ms holds with 120 ms to spare, a timer of 250 ms fails, and repair finds the least change.
+  <a class="tag t-verif" href="../contracts/checks/">verification</a> <a class="tag t-data" href="../contracts/checks/#real-variables">reals</a> <a class="tag t-repair" href="../contracts/repair/">repair</a></li>
+</ul>
+<p>The <a href="../interfaces/diagrams/#what-is-drawn">Diagrams</a> page says what the boxes and the tags of the figures mean.</p>
+<!-- DOCKER (restore when the image is public)
+
+All the demos are run and checked by the test suite of CHASE:
+
+<pre class="highlight"><code>$&gt; docker run --rm ghcr.io/chase-cps/chase /opt/chase/tests/demo-suite.sh</code></pre>
+
+-->
+
+      
+      <div class="pager">
+        <a class="prev" href="../tools/smt/">← SMT and optimization (z3)</a>
+        <a class="next" href="running/">Running the demos →</a>
+      </div>
+      
+    </main>
+
+    
+    <aside class="page-toc" aria-label="On this page">
+      <div class="nav-group-title">On this page</div>
+      <ul>
+        
+          <li><a href="#ai-agents">AI agents</a></li>
+        
+          <li><a href="#aircraft-and-vehicles">Aircraft and vehicles</a></li>
+        
+          <li><a href="#hardware">Hardware</a></li>
+        
+          <li><a href="#software">Software</a></li>
+        
+          <li><a href="#drones-and-robots">Drones and robots</a></li>
+        
+      </ul>
+    </aside>
+    
+  </div>
+</div>
+
+<footer id="footer_wrap" class="outer">
+  <div class="footer-inner">
+    <p>CHASE is maintained by <a href="https://github.com/chase-cps">chase-cps</a> and released under the BSD 3-Clause License.</p>
+  </div>
+</footer>
+
+<script>
+  // A copy button (the usual icon) at the top right of each code block.
+  var COPY = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M5 1.75C5 .78 5.78 0 6.75 0h7.5C15.22 0 16 .78 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25ZM1.75 5H3v1.5H1.75a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25V13H11v1.25A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25v-7.5C0 5.78.78 5 1.75 5Z"/></svg>';
+  var DONE = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>';
+  document.querySelectorAll("pre").forEach(function (pre) {
+    if (pre.closest(".mermaid")) return;
+    var button = document.createElement("button");
+    button.className = "copy"; button.type = "button"; button.innerHTML = COPY;
+    button.title = "Copy"; button.setAttribute("aria-label", "Copy the code");
+    button.addEventListener("click", function () {
+      var code = pre.querySelector("code") || pre;
+      navigator.clipboard.writeText(code.innerText).then(function () {
+        button.innerHTML = DONE; button.title = "Copied"; button.classList.add("done");
+        setTimeout(function () { button.innerHTML = COPY; button.title = "Copy"; button.classList.remove("done"); }, 1500);
+      }, function () { button.title = "Select the code to copy it"; });
+    });
+    var wrap = pre.parentElement.classList.contains("highlight") ? pre.parentElement : pre;
+    wrap.classList.add("has-copy");
+    wrap.appendChild(button);
+  });
+</script>
+<script>
+  // Dark or light, as the button sets it; the choice is kept for the next pages.
+  function flipTheme() {
+    var root = document.documentElement, now = root.getAttribute("data-theme")
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var next = now === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("chase-theme", next); } catch (e) {}
+  }
+</script>
+<script>var base_url = "..";</script>
+<script src="../search/main.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", fontFamily: "'Myriad Pro', Calibri, Helvetica, Arial, sans-serif" });
+</script>
+</body>
+</html>

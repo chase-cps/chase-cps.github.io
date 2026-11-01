@@ -6,3 +6,9 @@ title: CHASE
 description: Contract-based Heterogeneous Analysis and Systems Exploration
 
 show_downloads: false
+
+# The new website: its sources (handbook/) are built by MkDocs into new/,
+# which is published as it is; Jekyll builds the old pages only.
+exclude:
+  - handbook
+  - .github

@@ -3,9 +3,9 @@
 # pdoc from the docstrings of chase-cps) under /api/.
 name: Pages
 
+# Run by hand until the Pages of the repository are set to GitHub Actions;
+# then add "push: branches: [master]", and new/ becomes a redirect to the root.
 on:
-  push:
-    branches: [master]
   workflow_dispatch:
 
 permissions:

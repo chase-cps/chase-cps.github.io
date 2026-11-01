@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Command line · CHASE</title>
+  <meta name="description" content="Contract-based Heterogeneous Analysis and Systems Exploration">
+  <link rel="stylesheet" href="../../css/site.css">
+  <script>
+    // The theme: the one chosen with the button, or the one of the system.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("chase-theme"); } catch (e) {}
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+
+<header id="header_wrap" class="outer">
+  <div class="header-inner">
+    <div class="brand">
+      <h1 id="project_title"><a href="../.."><img class="logo" src="../../assets/chase-logo-white.png" alt="">CHASE</a></h1>
+      <h2 id="project_tagline">Contract-based Heterogeneous Analysis and Systems Exploration</h2>
+    </div>
+    <div class="header-links">
+      <form class="search" role="search" action="../../search.html" onsubmit="return false">
+        <input type="search" id="mkdocs-search-query" name="q" placeholder="Search" aria-label="Search the handbook" autocomplete="off">
+        <div id="mkdocs-search-results" class="search-results" aria-live="polite"></div>
+      </form>
+      <a class="header-link" href="../../news/" title="What each version brought">v0.6.4</a>
+      <a class="header-link" href="https://pypi.org/project/chase-cps/" title="chase-cps on PyPI">PyPI</a>
+      <a class="github" href="https://github.com/chase-cps/chase" aria-label="CHASE on GitHub" title="CHASE on GitHub">
+        <svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="theme" type="button" onclick="flipTheme()" aria-label="Dark or light pages" title="Dark or light pages">
+        <svg class="moon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.2 1.3a6.7 6.7 0 1 0 8.5 8.5A5.6 5.6 0 0 1 6.2 1.3z"/></svg>
+        <svg class="sun" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8M3 3l1.3 1.3M11.7 11.7 13 13M3 13l1.3-1.3M11.7 4.3 13 3"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="main_content_wrap" class="outer">
+  
+  <div class="layout">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label">Contents</label>
+    <nav class="sidebar" aria-label="Handbook">
+      
+        
+          <ul class="nav-top">
+            <li><a href="../..">Overview</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../news/">News</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../getting-started/">Getting started</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../installation/">Installation</a></li>
+          </ul>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group always" open>
+            <summary tabindex="-1">
+              
+                <a class="nav-group-title" href="../../contracts/">Contract theory</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../contracts/formulas/">Formulas</a></li>
+                
+              
+                
+                <li><a href="../../contracts/algebra/">Contract algebra</a></li>
+                
+              
+                
+                <li><a href="../../contracts/checks/">Contract-based verification</a></li>
+                
+              
+                
+                <li><a href="../../contracts/repair/">Repair</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group" open>
+            <summary>
+              
+                <a class="nav-group-title" href="../">Interfaces</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../inputs-outputs/">Inputs and outputs</a></li>
+                
+              
+                
+                <li><a href="../python/">Python package</a></li>
+                
+              
+                
+                <li><a href="./" class="active" aria-current="page">Command line</a></li>
+                
+              
+                
+                <li><a href="../logics-tool/">Specification language and console</a></li>
+                
+              
+                
+                <li><a href="../mcp/">MCP server for AI agents</a></li>
+                
+              
+                
+                <li><a href="../diagrams/">Diagrams</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../../tools/">Tool integrations</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../tools/model-checking/">Model checking</a></li>
+                
+              
+                
+                <li><a href="../../tools/synthesis/">GR(1) synthesis</a></li>
+                
+              
+                
+                <li><a href="../../tools/systemverilog/">Hardware: SVA and RTL</a></li>
+                
+              
+                
+                <li><a href="../../tools/c-programs/">C programs</a></li>
+                
+              
+                
+                <li><a href="../../tools/smt/">SMT and optimization (z3)</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../../demos/">Demos</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../demos/running/">Running the demos</a></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">AI agents</span><span class="nav-count">1</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/payment-assistant/">Payment assistant agent</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Aircraft and vehicles</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/lift-plus-cruise/">NASA Lift-Plus-Cruise aircraft</a></li>
+                    
+                    <li><a href="../../demos/lm-fsm/">Lockheed Martin autopilot</a></li>
+                    
+                    <li><a href="../../demos/aircraft-power/">Aircraft power system</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Hardware</span><span class="nav-count">4</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/escalation/">OpenTitan security chip</a></li>
+                    
+                    <li><a href="../../demos/buffer-swap/">Circuit buffer swap</a></li>
+                    
+                    <li><a href="../../demos/ahb/">AMBA AHB bus arbiter</a></li>
+                    
+                    <li><a href="../../demos/deadline/">Resource arbiter</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Software</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/contracts-in-c/">Contracts in C</a></li>
+                    
+                    <li><a href="../../demos/drone-grid/">Fire-suppression drones in C</a></li>
+                    
+                    <li><a href="../../demos/heater/">Room thermostat</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Drones and robots</span><span class="nav-count">5</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/drone-altitude/">Drone climb</a></li>
+                    
+                    <li><a href="../../demos/charger/">Robot charging station</a></li>
+                    
+                    <li><a href="../../demos/robotic-joints/">Robotic arm joints</a></li>
+                    
+                    <li><a href="../../demos/pick-and-place/">Pick-and-place arm</a></li>
+                    
+                    <li><a href="../../demos/drone-timing/">Drone timing</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../contributing/">Contributing</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../publications/">Publications</a></li>
+          </ul>
+        
+      
+    </nav>
+
+    <main id="main_content">
+      <h1 id="command-line">Command line<a class="headerlink" href="#command-line" title="Permanent link">#</a></h1>
+<p>The Python package installs the <code>chase-cps</code> command, with the commands
+<code>check</code>, <code>repair</code>, <code>view</code>, <code>export</code>, <code>install</code>, and <code>doctor</code>.</p>
+<p>In the options, a contract is <code>NAME</code>, or <code>NAME+NAME+...</code> for the
+composition of the contracts. A model is a state machine in an SMV file, or
+in a JSON file (a state machine, or a controller of slugs synthesized from
+the contract).</p>
+<h2 id="checking-a-specification">Checking a specification<a class="headerlink" href="#checking-a-specification" title="Permanent link">#</a></h2>
+<p><code>chase-cps check</code> checks the contracts of a <a href="../logics-tool/">specification file</a>
+in the logics language of CHASE, or of a JSON file (one contract, a list of
+contracts, or <code>{"contracts": [...]}</code>, each in the format of
+<code>Contract.from_dict</code>), and prints the counterexamples.</p>
+<blockquote>
+<p><strong>Usage</strong></p>
+<p><code>chase-cps check FILE [options]</code></p>
+<p><strong>Parameters:</strong></p>
+<p>Contract-based verification (nuXmv):</p>
+<ul>
+<li><code>--verify</code> <em>The assumptions and the guarantees can hold together (A ∧ G
+  satisfiable). It is the default when no check is given.</em></li>
+<li><code>--compatible</code> <em>Some environment satisfies the assumptions.</em></li>
+<li><code>--consistent</code> <em>Some behavior satisfies A → G.</em></li>
+<li><code>--contracts C...</code> <em>The contracts checked by the three options above
+  (default: all).</em></li>
+<li><code>--refines R A</code> <em>R refines A. It may be repeated.</em></li>
+<li><code>--implementation MODEL C</code> <em>The model is an implementation of C.</em></li>
+<li><code>--environment MODEL C</code> <em>The behaviors of the model satisfy the
+  assumptions of C.</em></li>
+<li><code>--receptive MODEL C</code> <em>The model accepts every input that the
+  assumptions of C allow.</em></li>
+</ul>
+<p>GR(1) synthesis (slugs):</p>
+<ul>
+<li><code>--realizable C</code> <em>C is realizable. It may be repeated.</em></li>
+<li><code>--synthesize C</code> <em>Synthesizes a controller for C. It may be repeated.</em></li>
+<li><code>--well-separated C</code> <em>The component cannot win by forcing the
+  environment to violate its assumptions.</em></li>
+<li><code>--vacuous C</code> <em>The component can win without an output that a liveness
+  guarantee asks for.</em></li>
+</ul>
+<p>For every check:</p>
+<ul>
+<li><code>--core</code> <em>When a check fails, gives a minimal set of terms that explains
+  it.</em></li>
+<li><code>--json</code> <em>Prints the results as JSON.</em></li>
+<li><code>--timeout S</code> <em>Seconds for each check.</em></li>
+<li><code>--backend auto|nuxmv|nusmv</code> <em>The model checker.</em></li>
+<li><code>--engine auto|ic3|bdd|bmc|portfolio</code> <em>The engine of the model checker.</em></li>
+</ul>
+<p>Continuous time (a step is a sample):</p>
+<ul>
+<li><code>--period S</code> <em>The time between two steps. The intervals may then be
+  written with times: <code>G[0s,2s]</code>, <code>F[0ms,500ms]</code>.</em></li>
+<li><code>--lipschitz VAR=RATE...</code> <em>How fast each variable changes, per second
+  (or one <code>RATE</code> for every variable). <code>--refines</code> then holds in continuous
+  time, between the samples too (<a href="../../contracts/checks/#sampled-signals-from-steps-to-continuous-time">sampled signals</a>).</em></li>
+</ul>
+</blockquote>
+<p>For instance:</p>
+<pre class="highlight"><code>$&gt; chase-cps check specs.ltl                                    # verify every contract
+$&gt; chase-cps check specs.ltl --refines Joint1+Joint2 Joints      # the composition refines Joints
+$&gt; chase-cps check specs.ltl --realizable Joint1 --json
+$&gt; chase-cps check specs.ltl --implementation joint1.smv Joint1 --receptive joint1.smv Joint1
+$&gt; chase-cps check plant.ltl --period 0.1 --lipschitz x=2 --refines Plant Req</code></pre>
+<p>The exit status is 0 when every check passes, 1 when a check fails or does
+not finish, and 2 on an error in the input.</p>
+<h2 id="drawing-a-specification">Drawing a specification<a class="headerlink" href="#drawing-a-specification" title="Permanent link">#</a></h2>
+<p><code>chase-cps view</code> writes the <a href="../diagrams/">diagram</a> of a file as a web page.
+The file is a specification in the logics language, in JSON, or in
+SystemVerilog Assertions (<code>.sv</code>), or a Verilog module (<code>.v</code>, or <code>.sv</code>
+without assertions), drawn with its state machine.</p>
+<blockquote>
+<p><strong>Usage</strong></p>
+<p><code>chase-cps view FILE [options]</code></p>
+<p><strong>Parameters:</strong></p>
+<p>What is drawn:</p>
+<ul>
+<li><code>--contracts C...</code> <em>The contracts drawn. By default, all the contracts of
+  the file, but those drawn inside another box.</em></li>
+<li><code>--refines R A</code> <em>Draws R inside A. It may be repeated.</em></li>
+<li><code>--implementation MODEL C</code> <em>Draws C as a component with its model: SMV,
+  JSON, or RTL read with Yosys (<code>FILE:MODULE</code> for a file with several
+  modules). It may be repeated.</em></li>
+<li><code>--environment MODEL C</code> <em>Draws the model as an environment of C, on its
+  left. It may be repeated.</em></li>
+<li><code>--open C...</code> <em>Draws these contracts open: their terms, and the core of
+  a check that fails.</em></li>
+</ul>
+<p>The checks:</p>
+<ul>
+<li><code>--check</code> <em>Checks that the assumptions and the guarantees of each
+  contract can hold together (A∧G, with the core when they cannot), and
+  the refinements, the implementations, and the environments drawn (nuXmv
+  or NuSMV).</em></li>
+<li><code>--verify</code> <em>Checks that each contract drawn is compatible and
+  consistent.</em></li>
+<li><code>--realizable</code> <em>Checks that each contract drawn is realizable (slugs);
+  when it is not, marks the guarantees of the core.</em></li>
+<li><code>--timeout S</code> <em>Seconds for each check.</em></li>
+<li><code>--budget S</code> <em>No check starts after S seconds; the checks left are not
+  marked.</em></li>
+<li><code>--results FILE</code> <em>Where the results of <code>--check</code> are kept (default: next
+  to the file, <code>charger.ltl</code> → <code>charger.results.json</code>). A check of
+  contracts that have not changed is read from it, not run again.</em></li>
+<li><code>--no-results</code> <em>Keeps no results.</em></li>
+<li><code>--no-checks</code> <em>Leaves the three checks above out.</em></li>
+</ul>
+<p>The page:</p>
+<ul>
+<li><code>-o PAGE</code> <em>The page written (default: FILE with <code>.html</code>).</em></li>
+<li><code>--format html|json</code> <em>The page, or the data of the diagram.</em></li>
+<li><code>--elk PATH</code> <em>Puts a local <code>elk.bundled.js</code> in the page, which then
+  works offline (default: ELK from a CDN).</em></li>
+<li><code>--serve</code> <em>Serves the page on this computer, and draws it again whenever
+  the file changes. When the file cannot be drawn, the page keeps the last
+  diagram and says why. The repairs of the page run there, and Apply
+  writes the values into the file (<a href="../diagrams/#a-check-that-fails">Diagrams</a>).</em></li>
+<li><code>--host HOST</code>, <code>--port PORT</code> <em>Where the page is served.</em></li>
+</ul>
+</blockquote>
+<p>For instance:</p>
+<pre class="highlight"><code>$&gt; chase-cps view specs.ltl                                       # writes specs.html
+$&gt; chase-cps view specs.ltl --refines Joint1+Joint2+Joint3 Joints --check --realizable
+$&gt; chase-cps view specs.ltl --open Joints --serve                 # drawn again on each change
+$&gt; chase-cps view arbiter.v                                       # the module and its states</code></pre>
+<p>Without <code>--refines</code> and <code>--contracts</code>, the contracts are put together by
+their ports:</p>
+<ul>
+<li>an output and an input with the same name are wired;</li>
+<li>contracts with the same inputs and outputs are versions of one part
+  (fixes, or candidates): the first one in the file is wired, the others
+  are drawn apart;</li>
+<li>a contract whose outputs are driven by several parts, which read from
+  outside only its inputs, is the contract of their composition: the parts
+  are drawn inside it, and <code>--check</code> checks the refinement;</li>
+<li>when two parts or more are written but some outputs of the contract are
+  driven by none, the part not written yet is drawn as a hole: the
+  quotient of the contract by the parts.</li>
+</ul>
+<p>The options can also be written at the top of the file, in comments
+(<code>// view:</code> in Verilog). The files named there are taken from the folder of
+the file:</p>
+<pre class="highlight"><code># view: --implementation models/arb.json Arb --check --open Arb
+CONTRACT Arb ...</code></pre>
+<h2 id="repairing-and-exporting">Repairing and exporting<a class="headerlink" href="#repairing-and-exporting" title="Permanent link">#</a></h2>
+<p><code>chase-cps repair FILE</code> takes the checks of <code>chase-cps check</code> and
+<code>--param NAME=LOW..HIGH</code> (<code>:int</code> for an integer), and finds the values of
+the constants that make the check pass (<a href="../../contracts/repair/">Repair</a>).</p>
+<p><code>chase-cps export FILE --to smv|smt|gr1|sva|c|spec|json</code> writes a check, or
+the contracts, as the input of a tool you run yourself: nuXmv or NuSMV
+(<code>smv</code>), z3 or cvc5 (<code>smt</code>), slugs or gr1c (<code>gr1</code>), an SVA checker, ESBMC
+or CBMC (<code>c</code>).</p>
+<h2 id="installing-the-tools">Installing the tools<a class="headerlink" href="#installing-the-tools" title="Permanent link">#</a></h2>
+<p><code>chase-cps install nuxmv|nusmv|slugs|esbmc</code> installs a tool into
+<code>~/.chase</code>, and <code>chase-cps doctor</code> lists the tools found and how to
+install the others (<a href="../../installation/#the-tools-that-run-the-checks">Installation</a>).</p>
+
+      
+      <div class="pager">
+        <a class="prev" href="../python/">← Python package</a>
+        <a class="next" href="../logics-tool/">Specification language and console →</a>
+      </div>
+      
+    </main>
+
+    
+    <aside class="page-toc" aria-label="On this page">
+      <div class="nav-group-title">On this page</div>
+      <ul>
+        
+          <li><a href="#checking-a-specification">Checking a specification</a></li>
+        
+          <li><a href="#drawing-a-specification">Drawing a specification</a></li>
+        
+          <li><a href="#repairing-and-exporting">Repairing and exporting</a></li>
+        
+          <li><a href="#installing-the-tools">Installing the tools</a></li>
+        
+      </ul>
+    </aside>
+    
+  </div>
+</div>
+
+<footer id="footer_wrap" class="outer">
+  <div class="footer-inner">
+    <p>CHASE is maintained by <a href="https://github.com/chase-cps">chase-cps</a> and released under the BSD 3-Clause License.</p>
+  </div>
+</footer>
+
+<script>
+  // A copy button (the usual icon) at the top right of each code block.
+  var COPY = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M5 1.75C5 .78 5.78 0 6.75 0h7.5C15.22 0 16 .78 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25ZM1.75 5H3v1.5H1.75a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25V13H11v1.25A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25v-7.5C0 5.78.78 5 1.75 5Z"/></svg>';
+  var DONE = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>';
+  document.querySelectorAll("pre").forEach(function (pre) {
+    if (pre.closest(".mermaid")) return;
+    var button = document.createElement("button");
+    button.className = "copy"; button.type = "button"; button.innerHTML = COPY;
+    button.title = "Copy"; button.setAttribute("aria-label", "Copy the code");
+    button.addEventListener("click", function () {
+      var code = pre.querySelector("code") || pre;
+      navigator.clipboard.writeText(code.innerText).then(function () {
+        button.innerHTML = DONE; button.title = "Copied"; button.classList.add("done");
+        setTimeout(function () { button.innerHTML = COPY; button.title = "Copy"; button.classList.remove("done"); }, 1500);
+      }, function () { button.title = "Select the code to copy it"; });
+    });
+    var wrap = pre.parentElement.classList.contains("highlight") ? pre.parentElement : pre;
+    wrap.classList.add("has-copy");
+    wrap.appendChild(button);
+  });
+</script>
+<script>
+  // Dark or light, as the button sets it; the choice is kept for the next pages.
+  function flipTheme() {
+    var root = document.documentElement, now = root.getAttribute("data-theme")
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var next = now === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("chase-theme", next); } catch (e) {}
+  }
+</script>
+<script>var base_url = "../..";</script>
+<script src="../../search/main.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", fontFamily: "'Myriad Pro', Calibri, Helvetica, Arial, sans-serif" });
+</script>
+</body>
+</html>

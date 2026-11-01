@@ -1,6 +1,6 @@
 site_name: CHASE
 site_description: Contract-based Heterogeneous Analysis and Systems Exploration
-site_url: https://chase-cps.github.io/
+site_url: !ENV [SITE_URL, "https://chase-cps.github.io/"]
 repo_url: https://github.com/chase-cps/chase
 repo_name: chase-cps/chase
 edit_uri: ""

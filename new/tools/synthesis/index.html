@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GR(1) synthesis · CHASE</title>
+  <meta name="description" content="Contract-based Heterogeneous Analysis and Systems Exploration">
+  <link rel="stylesheet" href="../../css/site.css">
+  <script>
+    // The theme: the one chosen with the button, or the one of the system.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("chase-theme"); } catch (e) {}
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+
+<header id="header_wrap" class="outer">
+  <div class="header-inner">
+    <div class="brand">
+      <h1 id="project_title"><a href="../.."><img class="logo" src="../../assets/chase-logo-white.png" alt="">CHASE</a></h1>
+      <h2 id="project_tagline">Contract-based Heterogeneous Analysis and Systems Exploration</h2>
+    </div>
+    <div class="header-links">
+      <form class="search" role="search" action="../../search.html" onsubmit="return false">
+        <input type="search" id="mkdocs-search-query" name="q" placeholder="Search" aria-label="Search the handbook" autocomplete="off">
+        <div id="mkdocs-search-results" class="search-results" aria-live="polite"></div>
+      </form>
+      <a class="header-link" href="../../news/" title="What each version brought">v0.6.4</a>
+      <a class="header-link" href="https://pypi.org/project/chase-cps/" title="chase-cps on PyPI">PyPI</a>
+      <a class="github" href="https://github.com/chase-cps/chase" aria-label="CHASE on GitHub" title="CHASE on GitHub">
+        <svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="theme" type="button" onclick="flipTheme()" aria-label="Dark or light pages" title="Dark or light pages">
+        <svg class="moon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.2 1.3a6.7 6.7 0 1 0 8.5 8.5A5.6 5.6 0 0 1 6.2 1.3z"/></svg>
+        <svg class="sun" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8M3 3l1.3 1.3M11.7 11.7 13 13M3 13l1.3-1.3M11.7 4.3 13 3"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="main_content_wrap" class="outer">
+  
+  <div class="layout">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label">Contents</label>
+    <nav class="sidebar" aria-label="Handbook">
+      
+        
+          <ul class="nav-top">
+            <li><a href="../..">Overview</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../news/">News</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../getting-started/">Getting started</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../installation/">Installation</a></li>
+          </ul>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group always" open>
+            <summary tabindex="-1">
+              
+                <a class="nav-group-title" href="../../contracts/">Contract theory</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../contracts/formulas/">Formulas</a></li>
+                
+              
+                
+                <li><a href="../../contracts/algebra/">Contract algebra</a></li>
+                
+              
+                
+                <li><a href="../../contracts/checks/">Contract-based verification</a></li>
+                
+              
+                
+                <li><a href="../../contracts/repair/">Repair</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../../interfaces/">Interfaces</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../interfaces/inputs-outputs/">Inputs and outputs</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/python/">Python package</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/command-line/">Command line</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/logics-tool/">Specification language and console</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/mcp/">MCP server for AI agents</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/diagrams/">Diagrams</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group" open>
+            <summary>
+              
+                <a class="nav-group-title" href="../">Tool integrations</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../model-checking/">Model checking</a></li>
+                
+              
+                
+                <li><a href="./" class="active" aria-current="page">GR(1) synthesis</a></li>
+                
+              
+                
+                <li><a href="../systemverilog/">Hardware: SVA and RTL</a></li>
+                
+              
+                
+                <li><a href="../c-programs/">C programs</a></li>
+                
+              
+                
+                <li><a href="../smt/">SMT and optimization (z3)</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../../demos/">Demos</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../demos/running/">Running the demos</a></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">AI agents</span><span class="nav-count">1</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/payment-assistant/">Payment assistant agent</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Aircraft and vehicles</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/lift-plus-cruise/">NASA Lift-Plus-Cruise aircraft</a></li>
+                    
+                    <li><a href="../../demos/lm-fsm/">Lockheed Martin autopilot</a></li>
+                    
+                    <li><a href="../../demos/aircraft-power/">Aircraft power system</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Hardware</span><span class="nav-count">4</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/escalation/">OpenTitan security chip</a></li>
+                    
+                    <li><a href="../../demos/buffer-swap/">Circuit buffer swap</a></li>
+                    
+                    <li><a href="../../demos/ahb/">AMBA AHB bus arbiter</a></li>
+                    
+                    <li><a href="../../demos/deadline/">Resource arbiter</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Software</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/contracts-in-c/">Contracts in C</a></li>
+                    
+                    <li><a href="../../demos/drone-grid/">Fire-suppression drones in C</a></li>
+                    
+                    <li><a href="../../demos/heater/">Room thermostat</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Drones and robots</span><span class="nav-count">5</span></summary>
+                  <ul>
+                    
+                    <li><a href="../../demos/drone-altitude/">Drone climb</a></li>
+                    
+                    <li><a href="../../demos/charger/">Robot charging station</a></li>
+                    
+                    <li><a href="../../demos/robotic-joints/">Robotic arm joints</a></li>
+                    
+                    <li><a href="../../demos/pick-and-place/">Pick-and-place arm</a></li>
+                    
+                    <li><a href="../../demos/drone-timing/">Drone timing</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../contributing/">Contributing</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../publications/">Publications</a></li>
+          </ul>
+        
+      
+    </nav>
+
+    <main id="main_content">
+      <h1 id="gr1-synthesis">GR(1) synthesis<a class="headerlink" href="#gr1-synthesis" title="Permanent link">#</a></h1>
+<p>The algebra and the verification tasks hold for any contracts. This page is
+about contracts in the GR(1) fragment of LTL, for which a component can be
+synthesized. The analyses ask whether a <strong>component can be
+synthesized</strong> from a contract: a controller that sets the outputs so that the guarantees
+hold against every environment that sets the inputs and meets the
+assumptions. This depends on the synthesis approach, here GR(1) with
+<a href="https://github.com/VerifiableRobotics/slugs">slugs</a>; it is not a property of
+contracts in general.</p>
+<p>The examples below are from the <a href="../../demos/charger/">Charger demo</a>: two
+robots ask for a charging station (<code>req1</code>, <code>req2</code>), and an arbiter gives it
+(<code>grant1</code>, <code>grant2</code>).</p>
+<h2 id="the-gr1-form">The GR(1) form<a class="headerlink" href="#the-gr1-form" title="Permanent link">#</a></h2>
+<p>Each assumption and guarantee must be one of:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Form</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>initial</td>
+<td>no temporal operator</td>
+<td><code>!grant1</code></td>
+</tr>
+<tr>
+<td>safety</td>
+<td><code>G f</code>, with only <code>X</code> (or <code>x'</code>) in f</td>
+<td><code>G !(grant1 &amp; grant2)</code></td>
+</tr>
+<tr>
+<td>justice</td>
+<td><code>G F f</code></td>
+<td><code>G F req1</code></td>
+</tr>
+</tbody>
+</table>
+<p>In addition, the environment cannot read the next value of the outputs: the
+initial assumptions read the inputs only, and the safety assumptions read
+only the next value of the inputs. A contract that is not in this form gives
+<code>unknown</code>, with the term at fault.</p>
+<h2 id="realizability-and-synthesis">Realizability and synthesis<a class="headerlink" href="#realizability-and-synthesis" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_realizable(c)</code></td>
+<td><code>realizable</code>, or <code>unrealizable</code> with the counter-strategy of the environment</td>
+</tr>
+<tr>
+<td><code>synthesize(c)</code></td>
+<td>the same, and the controller (a state machine) when realizable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example.</strong> The arbiter <em>Greedy</em> gives the station to a robot at the next
+step after its request, and never to both:</p>
+<pre class="highlight"><code>G (req1 -&gt; X grant1)     R6.1
+G (req2 -&gt; X grant2)     R6.2
+G !(grant1 &amp; grant2)     R5</code></pre>
+<p>When both robots ask at once, it cannot keep its promise: <em>Greedy</em> is
+unrealizable. The arbiter <em>Fair</em> promises a grant eventually instead,
+<code>G F (grant1 | !req1)</code>, and is realizable:</p>
+<pre class="highlight"><code class="language-python">cs = load_spec("Charger/charger.ltl")
+is_realizable(cs["Greedy"]).status      # unrealizable
+r = synthesize(cs["Fair"])              # realizable, a controller with 18 states</code></pre>
+<h2 id="writing-the-specification-for-a-gr1-solver">Writing the specification for a GR(1) solver<a class="headerlink" href="#writing-the-specification-for-a-gr1-solver" title="Permanent link">#</a></h2>
+<p>slugs is the solver that CHASE runs. To run a solver yourself,
+<code>to_gr1(c, format=...)</code> writes the contract as its input:</p>
+<ul>
+<li><code>format="slugs"</code> (the default): the file that chase-cps gives to slugs.</li>
+<li><code>format="gr1c"</code>: the input of <a href="https://github.com/tulip-control/gr1c">gr1c</a>.</li>
+</ul>
+<pre class="highlight"><code class="language-python">open("fair.structuredSlugs", "w").write(to_gr1(cs["Fair"]))
+open("fair.spc", "w").write(to_gr1(cs["Fair"], format="gr1c"))
+# gr1c -r fair.spc      realizability</code></pre>
+<p>The inputs of the contract are the variables of the environment, and its
+outputs are those of the system. gr1c compares an integer only with a
+constant. Thus, for gr1c, a relation with arithmetic or between variables
+(<code>x' = x + 1</code>) is written as the values that satisfy it.</p>
+<h2 id="unrealizable-cores">Unrealizable cores<a class="headerlink" href="#unrealizable-cores" title="Permanent link">#</a></h2>
+<p>An unrealizable contract can have many guarantees. <code>unrealizable_core</code> (or
+<code>is_realizable(c, core=True)</code>) gives a minimal set of guarantees that is
+unrealizable under all the assumptions: remove any one, and the rest is
+realizable.</p>
+<pre class="highlight"><code class="language-python">r = is_realizable(cs["Greedy"], core=True)
+r.core.core.guarantees</code></pre>
+<pre class="highlight"><code>G (req1 -&gt; X grant1)
+G (req2 -&gt; X grant2)
+G !(grant1 &amp; grant2)</code></pre>
+<p>The two initial guarantees of <em>Greedy</em> (<code>!grant1</code>, <code>!grant2</code>) are not in the
+core: they play no part in the conflict. The search follows QuickCore
+(Maoz and Shalom, ICSE 2021).</p>
+<h2 id="well-separation">Well-separation<a class="headerlink" href="#well-separation" title="Permanent link">#</a></h2>
+<p>A contract is realizable for a bad reason when the controller can win by
+making the environment break its assumptions. Such a controller satisfies
+the contract (A → G holds when A fails) without doing its job.</p>
+<p><strong>Example.</strong> The arbiter <em>Pushy</em> assumes two things about robot 1:</p>
+<pre class="highlight"><code>G F req1                     A2   robot 1 asks infinitely often
+G (grant1 -&gt; X !req1)        A3   robot 1 stops asking after a grant</code></pre>
+<p>If the arbiter gives <code>grant1</code> at every step, A3 makes robot 1 stop asking
+from the next step on, and A2 can then never hold. The arbiter wins without
+serving anybody. <code>is_well_separated</code> finds it:</p>
+<pre class="highlight"><code class="language-python">r = is_well_separated(cs["Pushy"], core=True)
+r.status                     # not_separated
+r.core.core.assumptions      # A2 and A3
+r.controller                 # the strategy that forces the violation
+is_well_separated(cs["Polite"]).status     # separated</code></pre>
+<p><em>Polite</em> assumes <code>G ((req1 &amp; grant1) -&gt; X !req1)</code> instead of A3: robot 1 stops
+asking only after a grant it asked for. The arbiter can no longer force a
+violation, and the contract is well-separated.</p>
+<p>The check asks whether the controller can still win with the goal
+<code>G F false</code> (Klein and Pnueli, HVC 2010; Maoz and Ringert, FSE 2016): if it
+can, it wins only by breaking the assumptions, while keeping its own initial
+and safety guarantees.</p>
+<h2 id="vacuity">Vacuity<a class="headerlink" href="#vacuity" title="Permanent link">#</a></h2>
+<p>A contract is vacuous when the controller can win without an output that a
+liveness guarantee asks for: the assumptions already make the guarantee
+hold, and it obliges nothing. <code>is_vacuous</code> strengthens the guarantees and
+asks slugs whether the contract is still realizable (Bloem, Chockler,
+Ebrahimi, and Strichman, FMSD 2021):</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Query, for an output y</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>never</td>
+<td G="G" _y="!y">A, G +</td>
+<td>a winning strategy never sets y</td>
+</tr>
+<tr>
+<td>eventually</td>
+<td>A, G + {!p, G (p → X p), G (p → !y), G F p}, p a new output</td>
+<td>a winning strategy stops setting y from some step on</td>
+</tr>
+</tbody>
+</table>
+<p>The outputs checked are those that a justice guarantee asks to set (they
+occur only positively in it).</p>
+<p><strong>Example.</strong> <em>Fair</em> is not vacuous: it cannot win without granting each
+robot. An arbiter that trusts the robots to stop asking on their own is:</p>
+<pre class="highlight"><code class="language-python">fair = cs["Fair"]
+trusting = Contract("Trusting", fair.inputs, fair.outputs,
+                    [ltl.parse("G F !req1"), ltl.parse("G F !req2")], fair.guarantees)
+is_vacuous(fair).status                  # not_vacuous
+r = is_vacuous(trusting, core=True)
+for v in r.vacuous:
+    print(v.output, v.mode, [ltl.to_str(a) for a in v.core.core])</code></pre>
+<pre class="highlight"><code>grant1 never ['G F !req1']
+grant2 never ['G F !req2']</code></pre>
+<p>With G F !req1, the guarantee G F (grant1 | !req1) holds without any grant.
+The core is the assumption that makes it so; it is too strong.</p>
+<h2 id="redundancy-in-the-gr1-game">Redundancy in the GR(1) game<a class="headerlink" href="#redundancy-in-the-gr1-game" title="Permanent link">#</a></h2>
+<p>A term is redundant in the game when removing it does not change the
+synthesis problem: the same contracts are realizable, with the same
+controllers (the inherent vacuity of Maoz and Shalom, ESEC/FSE 2020).
+<code>remove_redundant(c, synth=True)</code> removes these terms.</p>
+<p><strong>Example.</strong> <em>Fair</em> has these justice guarantees:</p>
+<pre class="highlight"><code>G F (grant1 | !req1)             R7.1
+G F (grant2 | !req2)             R7.2
+G F (grant1 | !req1 | grant2)    R8</code></pre>
+<p>R8 is weaker than R7.1, so it adds nothing:</p>
+<pre class="highlight"><code class="language-python">v = remove_redundant(cs["Fair"], synth=True, core=True)
+for t in v.removed:
+    print(t.part, t.kind, ltl.to_str(t.term), [ltl.to_str(x) for x in t.core])</code></pre>
+<pre class="highlight"><code>guarantee justice G F (grant1 | !req1 | grant2) ['G F (grant1 | !req1)']</code></pre>
+<p>Without <code>synth</code>, <code>remove_redundant</code> (<a href="../../contracts/checks/">contract-based
+verification</a>) keeps A → G instead. The two differ
+only when the assumptions are wrong: in the game, the component must keep
+its safety guarantees even when the environment breaks its justice
+assumptions. Use <code>synth=True</code> before synthesis, and the default before the
+algebra and the checks.</p>
+
+      
+      <div class="pager">
+        <a class="prev" href="../model-checking/">← Model checking</a>
+        <a class="next" href="../systemverilog/">Hardware: SVA and RTL →</a>
+      </div>
+      
+    </main>
+
+    
+    <aside class="page-toc" aria-label="On this page">
+      <div class="nav-group-title">On this page</div>
+      <ul>
+        
+          <li><a href="#the-gr1-form">The GR(1) form</a></li>
+        
+          <li><a href="#realizability-and-synthesis">Realizability and synthesis</a></li>
+        
+          <li><a href="#writing-the-specification-for-a-gr1-solver">Writing the specification for a GR(1) solver</a></li>
+        
+          <li><a href="#unrealizable-cores">Unrealizable cores</a></li>
+        
+          <li><a href="#well-separation">Well-separation</a></li>
+        
+          <li><a href="#vacuity">Vacuity</a></li>
+        
+          <li><a href="#redundancy-in-the-gr1-game">Redundancy in the GR(1) game</a></li>
+        
+      </ul>
+    </aside>
+    
+  </div>
+</div>
+
+<footer id="footer_wrap" class="outer">
+  <div class="footer-inner">
+    <p>CHASE is maintained by <a href="https://github.com/chase-cps">chase-cps</a> and released under the BSD 3-Clause License.</p>
+  </div>
+</footer>
+
+<script>
+  // A copy button (the usual icon) at the top right of each code block.
+  var COPY = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M5 1.75C5 .78 5.78 0 6.75 0h7.5C15.22 0 16 .78 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25ZM1.75 5H3v1.5H1.75a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25V13H11v1.25A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25v-7.5C0 5.78.78 5 1.75 5Z"/></svg>';
+  var DONE = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>';
+  document.querySelectorAll("pre").forEach(function (pre) {
+    if (pre.closest(".mermaid")) return;
+    var button = document.createElement("button");
+    button.className = "copy"; button.type = "button"; button.innerHTML = COPY;
+    button.title = "Copy"; button.setAttribute("aria-label", "Copy the code");
+    button.addEventListener("click", function () {
+      var code = pre.querySelector("code") || pre;
+      navigator.clipboard.writeText(code.innerText).then(function () {
+        button.innerHTML = DONE; button.title = "Copied"; button.classList.add("done");
+        setTimeout(function () { button.innerHTML = COPY; button.title = "Copy"; button.classList.remove("done"); }, 1500);
+      }, function () { button.title = "Select the code to copy it"; });
+    });
+    var wrap = pre.parentElement.classList.contains("highlight") ? pre.parentElement : pre;
+    wrap.classList.add("has-copy");
+    wrap.appendChild(button);
+  });
+</script>
+<script>
+  // Dark or light, as the button sets it; the choice is kept for the next pages.
+  function flipTheme() {
+    var root = document.documentElement, now = root.getAttribute("data-theme")
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var next = now === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("chase-theme", next); } catch (e) {}
+  }
+</script>
+<script>var base_url = "../..";</script>
+<script src="../../search/main.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", fontFamily: "'Myriad Pro', Calibri, Helvetica, Arial, sans-serif" });
+</script>
+</body>
+</html>

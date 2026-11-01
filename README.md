@@ -1,3 +1,7 @@
+> **A new version of this website is at
+> [chase-cps.github.io/new](https://chase-cps.github.io/new/)**: the
+> handbook of the CHASE Python package, its demos, and its tools.
+
 CHASE is a framework for requirement capture, formalization, and validation
 for cyber-physical systems.
 

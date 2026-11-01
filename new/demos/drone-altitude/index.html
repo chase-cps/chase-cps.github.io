@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drone climb · CHASE</title>
+  <meta name="description" content="Contract-based Heterogeneous Analysis and Systems Exploration">
+  <link rel="stylesheet" href="../../css/site.css">
+  <script>
+    // The theme: the one chosen with the button, or the one of the system.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("chase-theme"); } catch (e) {}
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+
+<header id="header_wrap" class="outer">
+  <div class="header-inner">
+    <div class="brand">
+      <h1 id="project_title"><a href="../.."><img class="logo" src="../../assets/chase-logo-white.png" alt="">CHASE</a></h1>
+      <h2 id="project_tagline">Contract-based Heterogeneous Analysis and Systems Exploration</h2>
+    </div>
+    <div class="header-links">
+      <form class="search" role="search" action="../../search.html" onsubmit="return false">
+        <input type="search" id="mkdocs-search-query" name="q" placeholder="Search" aria-label="Search the handbook" autocomplete="off">
+        <div id="mkdocs-search-results" class="search-results" aria-live="polite"></div>
+      </form>
+      <a class="header-link" href="../../news/" title="What each version brought">v0.6.4</a>
+      <a class="header-link" href="https://pypi.org/project/chase-cps/" title="chase-cps on PyPI">PyPI</a>
+      <a class="github" href="https://github.com/chase-cps/chase" aria-label="CHASE on GitHub" title="CHASE on GitHub">
+        <svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="theme" type="button" onclick="flipTheme()" aria-label="Dark or light pages" title="Dark or light pages">
+        <svg class="moon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.2 1.3a6.7 6.7 0 1 0 8.5 8.5A5.6 5.6 0 0 1 6.2 1.3z"/></svg>
+        <svg class="sun" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8M3 3l1.3 1.3M11.7 11.7 13 13M3 13l1.3-1.3M11.7 4.3 13 3"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="main_content_wrap" class="outer">
+  
+  <div class="layout wide">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label">Contents</label>
+    <nav class="sidebar" aria-label="Handbook">
+      
+        
+          <ul class="nav-top">
+            <li><a href="../..">Overview</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../news/">News</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../getting-started/">Getting started</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../installation/">Installation</a></li>
+          </ul>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group always" open>
+            <summary tabindex="-1">
+              
+                <a class="nav-group-title" href="../../contracts/">Contract theory</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../contracts/formulas/">Formulas</a></li>
+                
+              
+                
+                <li><a href="../../contracts/algebra/">Contract algebra</a></li>
+                
+              
+                
+                <li><a href="../../contracts/checks/">Contract-based verification</a></li>
+                
+              
+                
+                <li><a href="../../contracts/repair/">Repair</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../../interfaces/">Interfaces</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../interfaces/inputs-outputs/">Inputs and outputs</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/python/">Python package</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/command-line/">Command line</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/logics-tool/">Specification language and console</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/mcp/">MCP server for AI agents</a></li>
+                
+              
+                
+                <li><a href="../../interfaces/diagrams/">Diagrams</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group">
+            <summary>
+              
+                <a class="nav-group-title" href="../../tools/">Tool integrations</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../../tools/model-checking/">Model checking</a></li>
+                
+              
+                
+                <li><a href="../../tools/synthesis/">GR(1) synthesis</a></li>
+                
+              
+                
+                <li><a href="../../tools/systemverilog/">Hardware: SVA and RTL</a></li>
+                
+              
+                
+                <li><a href="../../tools/c-programs/">C programs</a></li>
+                
+              
+                
+                <li><a href="../../tools/smt/">SMT and optimization (z3)</a></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          
+          
+          
+          
+          <details class="nav-group" open>
+            <summary>
+              
+                <a class="nav-group-title" href="../">Demos</a>
+              
+            </summary>
+            <ul>
+              
+                
+              
+                
+                <li><a href="../running/">Running the demos</a></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">AI agents</span><span class="nav-count">1</span></summary>
+                  <ul>
+                    
+                    <li><a href="../payment-assistant/">Payment assistant agent</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Aircraft and vehicles</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="../lift-plus-cruise/">NASA Lift-Plus-Cruise aircraft</a></li>
+                    
+                    <li><a href="../lm-fsm/">Lockheed Martin autopilot</a></li>
+                    
+                    <li><a href="../aircraft-power/">Aircraft power system</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Hardware</span><span class="nav-count">4</span></summary>
+                  <ul>
+                    
+                    <li><a href="../escalation/">OpenTitan security chip</a></li>
+                    
+                    <li><a href="../buffer-swap/">Circuit buffer swap</a></li>
+                    
+                    <li><a href="../ahb/">AMBA AHB bus arbiter</a></li>
+                    
+                    <li><a href="../deadline/">Resource arbiter</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details>
+                  <summary><span class="nav-sub-title">Software</span><span class="nav-count">3</span></summary>
+                  <ul>
+                    
+                    <li><a href="../contracts-in-c/">Contracts in C</a></li>
+                    
+                    <li><a href="../drone-grid/">Fire-suppression drones in C</a></li>
+                    
+                    <li><a href="../heater/">Room thermostat</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+                
+                
+                <li class="nav-sub"><details open>
+                  <summary><span class="nav-sub-title">Drones and robots</span><span class="nav-count">5</span></summary>
+                  <ul>
+                    
+                    <li><a href="./" class="active" aria-current="page">Drone climb</a></li>
+                    
+                    <li><a href="../charger/">Robot charging station</a></li>
+                    
+                    <li><a href="../robotic-joints/">Robotic arm joints</a></li>
+                    
+                    <li><a href="../pick-and-place/">Pick-and-place arm</a></li>
+                    
+                    <li><a href="../drone-timing/">Drone timing</a></li>
+                    
+                  </ul>
+                </details></li>
+                
+              
+            </ul>
+          </details>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../contributing/">Contributing</a></li>
+          </ul>
+        
+      
+        
+          <ul class="nav-top">
+            <li><a href="../../publications/">Publications</a></li>
+          </ul>
+        
+      
+    </nav>
+
+    <main id="main_content">
+      <h1 id="drone-climb-no-controller-beats-the-wind">Drone climb: no controller beats the wind<a class="headerlink" href="#drone-climb-no-controller-beats-the-wind" title="Permanent link">#</a></h1>
+<p><strong>The system.</strong> A drone of a fire-suppression mission climbs to the
+altitude where it drops its water, <code>r</code> = 20 m. The fire makes a vertical
+wind <code>w</code> (up or down, at most <code>wmax</code> per step) that pushes the drone. The
+drone comes from the mission of ContrACT (Xiao, Lutz, Castillo-Effen,
+Nuzzo, MEMOCODE 2026). <em>Drone</em> starts on the ground at height <code>h</code> = 0
+and moves by <code>v + w</code> each step. <em>Climb</em>, the controller, sets the climb
+rate <code>v</code> to half the error to <code>r</code>, at most <code>vmax</code> (3 m per step). The
+requirement <em>Hover</em>: while the wind stays within <code>wmax</code>, the drone is
+within <code>eps</code> (2 m) of <code>r</code> for 5 steps, starting at one of the first 10,
+and is never above <code>r + eps</code>. The contracts are in signal temporal logic
+in discrete time, checked by z3.</p>
+<p><strong>The question.</strong> Does the drone get there in time and stay long enough?
+If not, should the controller change, or the requirement? A faster
+controller costs a stronger motor; a looser requirement costs water
+dropped from farther away.</p>
+<p><a href="../../assets/demos/drone-altitude/system.png"><img alt="Drone and Climb inside Hover, with their terms" src="../../assets/demos/drone-altitude/system.png" width="870" /></a>
+<em>The system: the drone and its controller inside the requirement Hover.</em></p>
+<h2 id="the-steps">The steps<a class="headerlink" href="#the-steps" title="Permanent link">#</a></h2>
+<p><strong>Step 1. The wind decides.</strong> <em>Drone</em> and <em>Climb</em> composed refine
+<em>Hover</em> (every behavior of the two meets it) in a wind of 0.5 m per
+step, not of 1. The robustness of <em>Hover</em>, the margin by which it holds
+in the worst case, is 0.75 m in a wind of 0.5. In a wind of 1 it is
+-0.5 m: in the counterexample the wind always pushes down, and the drone
+is at 17.5 m at step 10, the last step where the 5 steps can start,
+0.5 m below the band of 18 to 22 m.</p>
+<p><a href="../../assets/demos/drone-altitude/hover-counterexample.png"><img alt="The counterexample of Hover in a wind of 1, step by step" src="../../assets/demos/drone-altitude/hover-counterexample.png" /></a>
+<em>Step 1: a counterexample in a wind of 1, step 7 on the ports.</em></p>
+<p><strong>Step 2. The controller cannot fix it.</strong> <code>repair</code> looks for values of
+named constants that make the check pass at the least change. For
+<code>vmax</code> it finds none, and proves it: near the target, with the wind
+down, the error goes as <code>e' = e/2 + 1</code>, so it stays above 2 m however
+fast the drone climbs.</p>
+<p><a href="../../assets/demos/drone-altitude/repair-vmax-impossible.png"><img alt="Find repairs with vmax picked: no value in [0, 9] works" src="../../assets/demos/drone-altitude/repair-vmax-impossible.png" /></a>
+<em>Step 2: vmax picked, its range widened to [0, 9]: no value works.</em></p>
+<p><strong>Step 3. The requirement.</strong> The least tolerance is <code>eps = 2.5</code> m (2.49
+fails): the 0.5 m of step 1. Or, keeping <code>eps = 2</code>, the strongest wind
+is <code>wmax = 17/21</code>, about 0.81 m per step (0.82 fails).</p>
+<p><a href="../../assets/demos/drone-altitude/repair-eps-or-wmax.png"><img alt="Find repairs: eps 2 to 2.5, or wmax 1 to about 0.8095" src="../../assets/demos/drone-altitude/repair-eps-or-wmax.png" /></a>
+<em>Step 3: eps 2 to 2.5, or wmax 1 to about 0.8095 (17/21).</em></p>
+<p><strong>Step 4. Both at once.</strong> With two constants free, a cost says which
+change is worse: <code>(eps - 2) + w (1 - wmax)</code>, a change of the wind
+counting <code>w</code> times a change of the tolerance. With <code>w = 2</code> the repair
+lowers the wind to 17/21 (cost 8/21); with <code>w = 3</code> it widens the
+tolerance to 2.5 (cost 1/2). Each answer is the least cost over every
+mix of the two changes, which is hard to find by trying values.</p>
+<pre class="highlight"><code>r = repair("refines", drone, hover, parameters={"eps": (2, 10), "wmax": (0, 1)},
+           minimize="(eps - 2) + 3 * (1 - wmax)")</code></pre>
+<p>The tags of the pictures are explained on the page
+<a href="../../interfaces/diagrams/#what-is-drawn">Diagrams</a>.</p>
+<h2 id="run-it">Run it<a class="headerlink" href="#run-it" title="Permanent link">#</a></h2>
+<pre class="highlight"><code>pip install "chase-cps[z3]"
+python altitude.py --expect
+chase-cps view altitude.ltl --check --serve</code></pre>
+<p>The files of the demo are in the <a href="https://github.com/chase-cps/demos/tree/main/DroneAltitude">repository</a>; <a href="../running/">Running the demos</a> says what the scripts print and how to use the diagrams.</p>
+
+      
+      <div class="pager">
+        <a class="prev" href="../heater/">← Room thermostat</a>
+        <a class="next" href="../charger/">Robot charging station →</a>
+      </div>
+      
+    </main>
+
+    
+  </div>
+</div>
+
+<footer id="footer_wrap" class="outer">
+  <div class="footer-inner">
+    <p>CHASE is maintained by <a href="https://github.com/chase-cps">chase-cps</a> and released under the BSD 3-Clause License.</p>
+  </div>
+</footer>
+
+<script>
+  // A copy button (the usual icon) at the top right of each code block.
+  var COPY = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M5 1.75C5 .78 5.78 0 6.75 0h7.5C15.22 0 16 .78 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25ZM1.75 5H3v1.5H1.75a.25.25 0 0 0-.25.25v7.5c0 .14.11.25.25.25h7.5a.25.25 0 0 0 .25-.25V13H11v1.25A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25v-7.5C0 5.78.78 5 1.75 5Z"/></svg>';
+  var DONE = '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>';
+  document.querySelectorAll("pre").forEach(function (pre) {
+    if (pre.closest(".mermaid")) return;
+    var button = document.createElement("button");
+    button.className = "copy"; button.type = "button"; button.innerHTML = COPY;
+    button.title = "Copy"; button.setAttribute("aria-label", "Copy the code");
+    button.addEventListener("click", function () {
+      var code = pre.querySelector("code") || pre;
+      navigator.clipboard.writeText(code.innerText).then(function () {
+        button.innerHTML = DONE; button.title = "Copied"; button.classList.add("done");
+        setTimeout(function () { button.innerHTML = COPY; button.title = "Copy"; button.classList.remove("done"); }, 1500);
+      }, function () { button.title = "Select the code to copy it"; });
+    });
+    var wrap = pre.parentElement.classList.contains("highlight") ? pre.parentElement : pre;
+    wrap.classList.add("has-copy");
+    wrap.appendChild(button);
+  });
+</script>
+<script>
+  // Dark or light, as the button sets it; the choice is kept for the next pages.
+  function flipTheme() {
+    var root = document.documentElement, now = root.getAttribute("data-theme")
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var next = now === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("chase-theme", next); } catch (e) {}
+  }
+</script>
+<script>var base_url = "../..";</script>
+<script src="../../search/main.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", fontFamily: "'Myriad Pro', Calibri, Helvetica, Arial, sans-serif" });
+</script>
+</body>
+</html>
