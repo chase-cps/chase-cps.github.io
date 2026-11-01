@@ -20,7 +20,7 @@ $> chase-cps install slugs
 - `pip install "chase-cps[rtl]"` adds Yosys, which reads the RTL;
 - ESBMC or CBMC checks the C programs.
 
-The [Docker image](../getting-started.md) has all of them but nuXmv, whose
+The [Docker image](../installation.md#the-docker-image) has all of them but nuXmv, whose
 license does not allow redistribution: `chase-cps install nuxmv
 --accept-license` adds it in a container.
 
