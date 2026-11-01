@@ -72,4 +72,4 @@ python heater.py --expect
 chase-cps view heater.ltl --check --serve
 ```
 
-The files of the demo are in the [repository](https://github.com/chase-cps/demos/tree/main//Users/yifengxiao/Documents/dependencies/demos/Heater); [Running the demos](running.md) says what the scripts print and how to use the diagrams.
+The files of the demo are in the [repository](https://github.com/chase-cps/demos/tree/main/Heater); [Running the demos](running.md) says what the scripts print and how to use the diagrams.
